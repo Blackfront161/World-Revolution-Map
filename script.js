@@ -20,13 +20,16 @@ map.on('load', async () => {
 
     if (error) {
         console.error('Fehler beim Laden aus Supabase:', error);
-        return;
+        return; // Bricht ab, wenn Supabase einen Fehler meldet
     }
+
+    // Wenn noch keine Daten da sind, bauen wir einfach eine leere Liste, damit nichts abstürzt
+    const sichereDaten = data || [];
 
     // 4. SUPABASE-DATEN FÜR DIE KARTE ÜBERSETZEN
     alleEreignisse = {
         type: 'FeatureCollection',
-        features: data.map(ereignis => ({
+        features: sichereDaten.map(ereignis => ({
             type: 'Feature',
             geometry: {
                 type: 'Point',
