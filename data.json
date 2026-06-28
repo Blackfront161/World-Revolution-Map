@@ -7,6 +7,7 @@
       "properties": {
         "title": "Haymarket Riot",
         "category": "Arbeiter*innenbewegung",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/1/13/HaymarketRiot-Harper.jpg",
         "description": "Ursprung des 8-Stunden-Tags in Chicago durch kämpfende Arbeiter*innen. (1886)"
       }
     },
@@ -16,6 +17,7 @@
       "properties": {
         "title": "Pariser Kommune",
         "category": "Antiautoritäre Revolution",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Barricade_M%C3%A9nilmontant.jpg",
         "description": "Radikaldemokratischer Aufstand der Pariser Bürger*innen und Arbeiter*innen. (1871)"
       }
     },
@@ -25,6 +27,7 @@
       "properties": {
         "title": "Ghadar-Bewegung",
         "category": "Antikolonialer Widerstand",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/2/23/Ghadar_Party_Kartar_Singh_Sarabha.jpg",
         "description": "Zentrum der antikolonialen indischen Aktivist*innen im Exil in San Francisco (1913). Ein Knotenpunkt für den globalen Austausch revolutionärer Ideen."
       }
     },
@@ -34,6 +37,7 @@
       "properties": {
         "title": "Landesweiter Generalstreik",
         "category": "Arbeiter*innenbewegung",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Kavallerie_vor_dem_Bundeshaus_in_Bern.jpg",
         "description": "Zentrum der Proteste der streikenden Schweizer Arbeiter*innen auf dem Bundesplatz. (1918)"
       }
     }

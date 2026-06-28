@@ -12,7 +12,7 @@
         body { margin: 0; padding: 0; background-color: #111; font-family: 'Courier New', Courier, monospace; }
         #map { position: absolute; top: 0; bottom: 0; width: 100%; }
 
-        /* NEU: Das Design für das Filter-Menü oben links */
+        /* Das Design für den Filter- und Such-Kasten oben links */
         #filter-container {
             position: absolute;
             top: 20px;
@@ -21,9 +21,10 @@
             border: 1px solid #00ffcc;
             border-radius: 8px;
             padding: 15px;
-            z-index: 1; /* Sorgt dafür, dass das Menü über der Karte liegt */
+            z-index: 1; 
             box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
             color: #00ffcc;
+            width: 250px;
         }
 
         #filter-container label {
@@ -32,9 +33,15 @@
             font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-top: 10px;
+        }
+        
+        #filter-container label:first-child {
+            margin-top: 0;
         }
 
-        #filter-container select {
+        /* Design für das Dropdown UND die Suchleiste */
+        #filter-container select, #filter-container input {
             background-color: #111;
             color: #e0e0e0;
             border: 1px solid rgba(0, 255, 204, 0.5);
@@ -42,15 +49,16 @@
             border-radius: 4px;
             font-family: inherit;
             width: 100%;
-            cursor: pointer;
+            box-sizing: border-box; /* Verhindert, dass Felder über den Rand hinausgehen */
             outline: none;
         }
 
-        #filter-container select:focus {
+        #filter-container select:focus, #filter-container input:focus {
             border-color: #00ffcc;
+            box-shadow: 0 0 8px rgba(0, 255, 204, 0.6);
         }
 
-        /* Das Design für das Pop-up (wie vorher) */
+        /* Das Design für das Pop-up */
         .maplibregl-popup-content {
             background-color: rgba(10, 15, 20, 0.9); 
             border: 1px solid #00ffcc; 
@@ -58,6 +66,15 @@
             color: #e0e0e0; 
             box-shadow: 0 0 15px rgba(0, 255, 204, 0.4); 
             padding: 15px;
+            max-width: 300px; /* Damit die Bilder nicht riesig werden */
+        }
+        
+        /* NEU: So sehen die historischen Bilder im Pop-up aus */
+        .popup-image {
+            width: 100%;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(0, 255, 204, 0.3);
         }
         
         .category-badge {
@@ -95,10 +112,12 @@
             color: #00ffcc;
             font-size: 18px;
             padding: 4px 8px;
+            background-color: rgba(10, 15, 20, 0.8);
+            border-radius: 4px;
         }
         
         .maplibregl-popup-close-button:hover {
-            background-color: rgba(0, 255, 204, 0.2);
+            background-color: rgba(0, 255, 204, 0.4);
             color: #ffffff;
         }
     </style>
@@ -107,7 +126,10 @@
     <div id="map"></div>
     
     <div id="filter-container">
-        <label for="category-filter">Archiv durchsuchen:</label>
+        <label for="search-bar">Suchbegriff:</label>
+        <input type="text" id="search-bar" placeholder="Stadt, Person, Jahr...">
+
+        <label for="category-filter">Kategorie:</label>
         <select id="category-filter">
             <option value="alle">Alle Ereignisse</option>
             <option value="Arbeiter*innenbewegung">Arbeiter*innenbewegung</option>
