@@ -1,0 +1,41 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-87.6486, 41.8849] },
+      "properties": {
+        "title": "Haymarket Riot",
+        "category": "Arbeiter*innenbewegung",
+        "description": "Ursprung des 8-Stunden-Tags in Chicago durch kämpfende Arbeiter*innen. (1886)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [2.3522, 48.8566] },
+      "properties": {
+        "title": "Pariser Kommune",
+        "category": "Antiautoritäre Revolution",
+        "description": "Radikaldemokratischer Aufstand der Pariser Bürger*innen und Arbeiter*innen. (1871)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-122.4312, 37.7739] },
+      "properties": {
+        "title": "Ghadar-Bewegung",
+        "category": "Antikolonialer Widerstand",
+        "description": "Zentrum der antikolonialen indischen Aktivist*innen im Exil in San Francisco (1913). Ein Knotenpunkt für den globalen Austausch revolutionärer Ideen."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [7.44415, 46.94726] },
+      "properties": {
+        "title": "Landesweiter Generalstreik",
+        "category": "Arbeiter*innenbewegung",
+        "description": "Zentrum der Proteste der streikenden Schweizer Arbeiter*innen auf dem Bundesplatz. (1918)"
+      }
+    }
+  ]
+}

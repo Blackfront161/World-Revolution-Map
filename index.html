@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archiv des Widerstands</title>
+    
+    <script src="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.js"></script>
+    <link href="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.css" rel="stylesheet" />
+    
+    <style>
+        body { margin: 0; padding: 0; background-color: #111; }
+        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+
+        .maplibregl-popup-content {
+            background-color: rgba(10, 15, 20, 0.9); 
+            border: 1px solid #00ffcc; 
+            border-radius: 8px; 
+            color: #e0e0e0; 
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.4); 
+            font-family: 'Courier New', Courier, monospace; 
+            padding: 15px;
+        }
+        
+        /* NEU: Das Design für das Kategorie-Abzeichen */
+        .category-badge {
+            display: inline-block;
+            background-color: rgba(0, 255, 204, 0.15);
+            color: #00ffcc;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(0, 255, 204, 0.5);
+        }
+
+        .maplibregl-popup-content h3 {
+            margin: 0 0 10px 0;
+            color: #00ffcc; 
+            font-size: 16px;
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+        }
+
+        .maplibregl-popup-content p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .maplibregl-popup-anchor-bottom .maplibregl-popup-tip {
+            border-top-color: #00ffcc;
+        }
+
+        .maplibregl-popup-close-button {
+            color: #00ffcc;
+            font-size: 18px;
+            padding: 4px 8px;
+        }
+        
+        .maplibregl-popup-close-button:hover {
+            background-color: rgba(0, 255, 204, 0.2);
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script src="script.js"></script>
+</body>
+</html>
