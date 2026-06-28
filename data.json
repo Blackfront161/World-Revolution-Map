@@ -8,7 +8,7 @@
         "title": "Haymarket Riot",
         "location": "Chicago, USA",
         "category": "Arbeiter*innenbewegung",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/1/13/HaymarketRiot-Harper.jpg",
+        "image": "https://commons.wikimedia.org/wiki/Special:FilePath/HaymarketRiot-Harper.jpg?width=300",
         "description": "Ursprung des 8-Stunden-Tags. Kämpfende Arbeiter*innen und Anarchist*innen wehrten sich gegen Polizeigewalt. (1886)"
       }
     },
@@ -19,7 +19,7 @@
         "title": "Pariser Kommune",
         "location": "Paris, Frankreich",
         "category": "Antiautoritäre Revolution",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Barricade_M%C3%A9nilmontant.jpg",
+        "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Barricade_de_la_rue_de_Flandre.jpg?width=300",
         "description": "Radikaldemokratischer Aufstand der Pariser Bürger*innen und Arbeiter*innen, die für 72 Tage die Stadt selbst verwalteten. (1871)"
       }
     },
@@ -30,7 +30,7 @@
         "title": "Ghadar-Bewegung",
         "location": "San Francisco, USA",
         "category": "Antikolonialer Widerstand",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/2/23/Ghadar_Party_Kartar_Singh_Sarabha.jpg",
+        "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ghadar_Party_Kartar_Singh_Sarabha.jpg?width=300",
         "description": "Zentrum der antikolonialen indischen Aktivist*innen im Exil. Ein wichtiger Knotenpunkt für den globalen Austausch revolutionärer Ideen. (1913)"
       }
     },
@@ -41,8 +41,8 @@
         "title": "Landesweiter Generalstreik",
         "location": "Bern, Schweiz",
         "category": "Arbeiter*innenbewegung",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Kavallerie_vor_dem_Bundeshaus_in_Bern.jpg",
-        "description": "Zentrum der Proteste der streikenden Schweizer Arbeiter*innen auf dem Bundesplatz. Das Militär wurde gegen die Streikenden mobilisiert. (1918)"
+        "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Kavallerie_vor_dem_Bundeshaus_in_Bern.jpg?width=300",
+        "description": "Zentrum der Proteste der streikenden Schweizer Arbeiter*innen auf dem Bundesplatz. Das Militär wurde mobilisiert. (1918)"
       }
     },
     {
@@ -52,7 +52,7 @@
         "title": "EZLN Aufstand",
         "location": "Chiapas, Mexiko",
         "category": "Antikolonialer Widerstand",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Zapatistas_in_San_Cristobal_de_las_Casas.jpg",
+        "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Zapatistas_in_San_Cristobal_de_las_Casas.jpg?width=300",
         "description": "Die Zapatistas (EZLN) erheben sich gegen den Neoliberalismus und für indigene Autonomie. Ein Meilenstein des Widerstands aus dem globalen Süden. (1994)"
       }
     },
@@ -63,7 +63,7 @@
         "title": "Kronstädter Matrosenaufstand",
         "location": "Kronstadt, Russland",
         "category": "Antiautoritäre Revolution",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Stepan_Petrichenko.jpg",
+        "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Stepan_Petrichenko.jpg?width=300",
         "description": "Radikale Räte-Demokrat*innen und Matros*innen fordern freie Wahlen und rebellieren gegen den autoritären Kurs der Bolschewiki. (1921)"
       }
     },
@@ -74,8 +74,8 @@
         "title": "Rojava-Revolution",
         "location": "Rojava, Syrien",
         "category": "Antiautoritäre Revolution",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/f/fe/YPJ_fighters.jpg",
-        "description": "Aufbau des Demokratischen Konföderalismus in Nordsyrien. Basierend auf Basisdemokratie, Frauenbefreiung und Ökologie unter radikalen Bedingungen. (ab 2012)"
+        "image": "https://commons.wikimedia.org/wiki/Special:FilePath/YPJ_fighters_in_Raqqa.jpg?width=300",
+        "description": "Aufbau des Demokratischen Konföderalismus in Nordsyrien. Basierend auf Basisdemokratie, Frauenbefreiung und Ökologie. (ab 2012)"
       }
     }
   ]
