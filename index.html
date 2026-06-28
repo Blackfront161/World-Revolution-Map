@@ -9,20 +9,57 @@
     <link href="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.css" rel="stylesheet" />
     
     <style>
-        body { margin: 0; padding: 0; background-color: #111; }
+        body { margin: 0; padding: 0; background-color: #111; font-family: 'Courier New', Courier, monospace; }
         #map { position: absolute; top: 0; bottom: 0; width: 100%; }
 
+        /* NEU: Das Design für das Filter-Menü oben links */
+        #filter-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(10, 15, 20, 0.9);
+            border: 1px solid #00ffcc;
+            border-radius: 8px;
+            padding: 15px;
+            z-index: 1; /* Sorgt dafür, dass das Menü über der Karte liegt */
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+            color: #00ffcc;
+        }
+
+        #filter-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        #filter-container select {
+            background-color: #111;
+            color: #e0e0e0;
+            border: 1px solid rgba(0, 255, 204, 0.5);
+            padding: 8px;
+            border-radius: 4px;
+            font-family: inherit;
+            width: 100%;
+            cursor: pointer;
+            outline: none;
+        }
+
+        #filter-container select:focus {
+            border-color: #00ffcc;
+        }
+
+        /* Das Design für das Pop-up (wie vorher) */
         .maplibregl-popup-content {
             background-color: rgba(10, 15, 20, 0.9); 
             border: 1px solid #00ffcc; 
             border-radius: 8px; 
             color: #e0e0e0; 
             box-shadow: 0 0 15px rgba(0, 255, 204, 0.4); 
-            font-family: 'Courier New', Courier, monospace; 
             padding: 15px;
         }
         
-        /* NEU: Das Design für das Kategorie-Abzeichen */
         .category-badge {
             display: inline-block;
             background-color: rgba(0, 255, 204, 0.15);
@@ -68,6 +105,17 @@
 </head>
 <body>
     <div id="map"></div>
+    
+    <div id="filter-container">
+        <label for="category-filter">Archiv durchsuchen:</label>
+        <select id="category-filter">
+            <option value="alle">Alle Ereignisse</option>
+            <option value="Arbeiter*innenbewegung">Arbeiter*innenbewegung</option>
+            <option value="Antiautoritäre Revolution">Antiautoritäre Revolution</option>
+            <option value="Antikolonialer Widerstand">Antikolonialer Widerstand</option>
+        </select>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
