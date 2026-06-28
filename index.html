@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="no-referrer">
-    
     <title>Archiv des Widerstands</title>
     
     <script src="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.js"></script>
@@ -15,123 +14,21 @@
     <style>
         body { margin: 0; padding: 0; background-color: #111; font-family: 'Courier New', Courier, monospace; }
         #map { position: absolute; top: 0; bottom: 0; width: 100%; }
-
-        #filter-container {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background-color: rgba(10, 15, 20, 0.9);
-            border: 1px solid #00ffcc;
-            border-radius: 8px;
-            padding: 15px;
-            z-index: 1; 
-            box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
-            color: #00ffcc;
-            width: 250px;
-        }
-
-        #filter-container label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 10px;
-        }
-        
-        #filter-container label:first-child { margin-top: 0; }
-
-        #filter-container select, #filter-container input {
-            background-color: #111;
-            color: #e0e0e0;
-            border: 1px solid rgba(0, 255, 204, 0.5);
-            padding: 8px;
-            border-radius: 4px;
-            font-family: inherit;
-            width: 100%;
-            box-sizing: border-box; 
-            outline: none;
-        }
-
-        #filter-container select:focus, #filter-container input:focus {
-            border-color: #00ffcc;
-            box-shadow: 0 0 8px rgba(0, 255, 204, 0.6);
-        }
-
-        .maplibregl-popup-content {
-            background-color: rgba(10, 15, 20, 0.9); 
-            border: 1px solid #00ffcc; 
-            border-radius: 8px; 
-            color: #e0e0e0; 
-            box-shadow: 0 0 15px rgba(0, 255, 204, 0.4); 
-            padding: 15px;
-            max-width: 300px; 
-        }
-        
-        .popup-image {
-            width: 100%;
-            height: auto;
-            border-radius: 4px;
-            margin-bottom: 12px;
-            border: 1px solid rgba(0, 255, 204, 0.3);
-            object-fit: cover;
-        }
-        
-        .category-badge {
-            display: inline-block;
-            background-color: rgba(0, 255, 204, 0.15);
-            color: #00ffcc;
-            font-size: 11px;
-            padding: 3px 8px;
-            border-radius: 4px;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border: 1px solid rgba(0, 255, 204, 0.5);
-        }
-
-        .maplibregl-popup-content h3 {
-            margin: 0 0 5px 0;
-            color: #00ffcc; 
-            font-size: 16px;
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-        }
-
-        .popup-location {
-            color: #a0a0a0;
-            font-size: 12px;
-            margin-bottom: 10px;
-            letter-spacing: 0.5px;
-        }
-
-        .maplibregl-popup-content p {
-            margin: 0;
-            font-size: 14px;
-            line-height: 1.4;
-        }
-
-        .maplibregl-popup-anchor-bottom .maplibregl-popup-tip { border-top-color: #00ffcc; }
-        .maplibregl-popup-close-button {
-            color: #00ffcc;
-            font-size: 18px;
-            padding: 4px 8px;
-            background-color: rgba(10, 15, 20, 0.8);
-            border-radius: 4px;
-        }
-        .maplibregl-popup-close-button:hover {
-            background-color: rgba(0, 255, 204, 0.4);
-            color: #ffffff;
-        }
+        #filter-container { position: absolute; top: 20px; left: 20px; background-color: rgba(10, 15, 20, 0.9); border: 1px solid #00ffcc; border-radius: 8px; padding: 15px; z-index: 1; box-shadow: 0 0 15px rgba(0, 255, 204, 0.4); color: #00ffcc; width: 250px; }
+        #filter-container label { display: block; margin-bottom: 8px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-top: 10px; }
+        #filter-container select, #filter-container input { background-color: #111; color: #e0e0e0; border: 1px solid rgba(0, 255, 204, 0.5); padding: 8px; border-radius: 4px; font-family: inherit; width: 100%; box-sizing: border-box; outline: none; }
+        .maplibregl-popup-content { background-color: rgba(10, 15, 20, 0.9); border: 1px solid #00ffcc; border-radius: 8px; color: #e0e0e0; box-shadow: 0 0 15px rgba(0, 255, 204, 0.4); padding: 15px; max-width: 300px; }
+        .popup-image { width: 100%; height: auto; border-radius: 4px; margin-bottom: 12px; border: 1px solid rgba(0, 255, 204, 0.3); object-fit: cover; }
+        .category-badge { display: inline-block; background-color: rgba(0, 255, 204, 0.15); color: #00ffcc; font-size: 11px; padding: 3px 8px; border-radius: 4px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; border: 1px solid rgba(0, 255, 204, 0.5); }
+        .maplibregl-popup-content h3 { margin: 0 0 5px 0; color: #00ffcc; font-size: 16px; text-transform: uppercase; letter-spacing: 1px; }
+        .popup-location { color: #a0a0a0; font-size: 12px; margin-bottom: 10px; letter-spacing: 0.5px; }
     </style>
 </head>
 <body>
     <div id="map"></div>
-    
     <div id="filter-container">
         <label for="search-bar">Suchbegriff:</label>
         <input type="text" id="search-bar" placeholder="Stadt, Person, Jahr...">
-
         <label for="category-filter">Kategorie:</label>
         <select id="category-filter">
             <option value="alle">Alle Ereignisse</option>
@@ -140,7 +37,6 @@
             <option value="Antikolonialer Widerstand">Antikolonialer Widerstand</option>
         </select>
     </div>
-
-    <script src="script.js?v=9"></script>
+    <script src="script.js?v=10"></script>
 </body>
 </html>
