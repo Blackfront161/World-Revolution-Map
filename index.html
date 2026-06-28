@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- NEU: DER BILD-FIX. Verhindert, dass Wikipedia die Bilder blockiert -->
     <meta name="referrer" content="no-referrer">
     
     <title>Archiv des Widerstands</title>
     
     <script src="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.js"></script>
     <link href="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.css" rel="stylesheet" />
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <style>
         body { margin: 0; padding: 0; background-color: #111; font-family: 'Courier New', Courier, monospace; }
@@ -140,7 +141,6 @@
         </select>
     </div>
 
-    <!-- ?v=3 zwingt den Browser dieses Mal garantiert zum Update -->
-    <script src="script.js?v=3"></script>
+    <script src="script.js?v=5"></script>
 </body>
 </html>
