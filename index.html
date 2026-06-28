@@ -12,7 +12,6 @@
         body { margin: 0; padding: 0; background-color: #111; font-family: 'Courier New', Courier, monospace; }
         #map { position: absolute; top: 0; bottom: 0; width: 100%; }
 
-        /* Das Design für den Filter- und Such-Kasten oben links */
         #filter-container {
             position: absolute;
             top: 20px;
@@ -36,11 +35,8 @@
             margin-top: 10px;
         }
         
-        #filter-container label:first-child {
-            margin-top: 0;
-        }
+        #filter-container label:first-child { margin-top: 0; }
 
-        /* Design für das Dropdown UND die Suchleiste */
         #filter-container select, #filter-container input {
             background-color: #111;
             color: #e0e0e0;
@@ -49,7 +45,7 @@
             border-radius: 4px;
             font-family: inherit;
             width: 100%;
-            box-sizing: border-box; /* Verhindert, dass Felder über den Rand hinausgehen */
+            box-sizing: border-box; 
             outline: none;
         }
 
@@ -58,7 +54,6 @@
             box-shadow: 0 0 8px rgba(0, 255, 204, 0.6);
         }
 
-        /* Das Design für das Pop-up */
         .maplibregl-popup-content {
             background-color: rgba(10, 15, 20, 0.9); 
             border: 1px solid #00ffcc; 
@@ -66,10 +61,9 @@
             color: #e0e0e0; 
             box-shadow: 0 0 15px rgba(0, 255, 204, 0.4); 
             padding: 15px;
-            max-width: 300px; /* Damit die Bilder nicht riesig werden */
+            max-width: 300px; 
         }
         
-        /* NEU: So sehen die historischen Bilder im Pop-up aus */
         .popup-image {
             width: 100%;
             border-radius: 4px;
@@ -91,11 +85,19 @@
         }
 
         .maplibregl-popup-content h3 {
-            margin: 0 0 10px 0;
+            margin: 0 0 5px 0;
             color: #00ffcc; 
             font-size: 16px;
             text-transform: uppercase; 
             letter-spacing: 1px; 
+        }
+
+        /* NEU: Das Styling für die Ortsangabe */
+        .popup-location {
+            color: #a0a0a0;
+            font-size: 12px;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
         }
 
         .maplibregl-popup-content p {
@@ -104,10 +106,7 @@
             line-height: 1.4;
         }
 
-        .maplibregl-popup-anchor-bottom .maplibregl-popup-tip {
-            border-top-color: #00ffcc;
-        }
-
+        .maplibregl-popup-anchor-bottom .maplibregl-popup-tip { border-top-color: #00ffcc; }
         .maplibregl-popup-close-button {
             color: #00ffcc;
             font-size: 18px;
@@ -115,7 +114,6 @@
             background-color: rgba(10, 15, 20, 0.8);
             border-radius: 4px;
         }
-        
         .maplibregl-popup-close-button:hover {
             background-color: rgba(0, 255, 204, 0.4);
             color: #ffffff;

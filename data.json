@@ -6,9 +6,10 @@
       "geometry": { "type": "Point", "coordinates": [-87.6486, 41.8849] },
       "properties": {
         "title": "Haymarket Riot",
+        "location": "Chicago, USA",
         "category": "Arbeiter*innenbewegung",
         "image": "https://upload.wikimedia.org/wikipedia/commons/1/13/HaymarketRiot-Harper.jpg",
-        "description": "Ursprung des 8-Stunden-Tags in Chicago durch kämpfende Arbeiter*innen. (1886)"
+        "description": "Ursprung des 8-Stunden-Tags. Kämpfende Arbeiter*innen und Anarchist*innen wehrten sich gegen Polizeigewalt. (1886)"
       }
     },
     {
@@ -16,9 +17,10 @@
       "geometry": { "type": "Point", "coordinates": [2.3522, 48.8566] },
       "properties": {
         "title": "Pariser Kommune",
+        "location": "Paris, Frankreich",
         "category": "Antiautoritäre Revolution",
         "image": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Barricade_M%C3%A9nilmontant.jpg",
-        "description": "Radikaldemokratischer Aufstand der Pariser Bürger*innen und Arbeiter*innen. (1871)"
+        "description": "Radikaldemokratischer Aufstand der Pariser Bürger*innen und Arbeiter*innen, die für 72 Tage die Stadt selbst verwalteten. (1871)"
       }
     },
     {
@@ -26,9 +28,10 @@
       "geometry": { "type": "Point", "coordinates": [-122.4312, 37.7739] },
       "properties": {
         "title": "Ghadar-Bewegung",
+        "location": "San Francisco, USA",
         "category": "Antikolonialer Widerstand",
         "image": "https://upload.wikimedia.org/wikipedia/commons/2/23/Ghadar_Party_Kartar_Singh_Sarabha.jpg",
-        "description": "Zentrum der antikolonialen indischen Aktivist*innen im Exil in San Francisco (1913). Ein Knotenpunkt für den globalen Austausch revolutionärer Ideen."
+        "description": "Zentrum der antikolonialen indischen Aktivist*innen im Exil. Ein wichtiger Knotenpunkt für den globalen Austausch revolutionärer Ideen. (1913)"
       }
     },
     {
@@ -36,9 +39,43 @@
       "geometry": { "type": "Point", "coordinates": [7.44415, 46.94726] },
       "properties": {
         "title": "Landesweiter Generalstreik",
+        "location": "Bern, Schweiz",
         "category": "Arbeiter*innenbewegung",
         "image": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Kavallerie_vor_dem_Bundeshaus_in_Bern.jpg",
-        "description": "Zentrum der Proteste der streikenden Schweizer Arbeiter*innen auf dem Bundesplatz. (1918)"
+        "description": "Zentrum der Proteste der streikenden Schweizer Arbeiter*innen auf dem Bundesplatz. Das Militär wurde gegen die Streikenden mobilisiert. (1918)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-92.6376, 16.7370] },
+      "properties": {
+        "title": "EZLN Aufstand",
+        "location": "Chiapas, Mexiko",
+        "category": "Antikolonialer Widerstand",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Zapatistas_in_San_Cristobal_de_las_Casas.jpg",
+        "description": "Die Zapatistas (EZLN) erheben sich gegen den Neoliberalismus und für indigene Autonomie. Ein Meilenstein des Widerstands aus dem globalen Süden. (1994)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [29.7667, 59.9833] },
+      "properties": {
+        "title": "Kronstädter Matrosenaufstand",
+        "location": "Kronstadt, Russland",
+        "category": "Antiautoritäre Revolution",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Stepan_Petrichenko.jpg",
+        "description": "Radikale Räte-Demokrat*innen und Matros*innen fordern freie Wahlen und rebellieren gegen den autoritären Kurs der Bolschewiki. (1921)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [41.2262, 37.0494] },
+      "properties": {
+        "title": "Rojava-Revolution",
+        "location": "Rojava, Syrien",
+        "category": "Antiautoritäre Revolution",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/f/fe/YPJ_fighters.jpg",
+        "description": "Aufbau des Demokratischen Konföderalismus in Nordsyrien. Basierend auf Basisdemokratie, Frauenbefreiung und Ökologie unter radikalen Bedingungen. (ab 2012)"
       }
     }
   ]
