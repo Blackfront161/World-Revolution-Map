@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- NEU: DER BILD-FIX. Verhindert, dass Wikipedia die Bilder blockiert -->
+    <meta name="referrer" content="no-referrer">
+    
     <title>Archiv des Widerstands</title>
     
     <script src="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.js"></script>
@@ -137,6 +140,7 @@
         </select>
     </div>
 
-    <script src="script.js?v=2"></script>
+    <!-- ?v=3 zwingt den Browser dieses Mal garantiert zum Update -->
+    <script src="script.js?v=3"></script>
 </body>
 </html>
