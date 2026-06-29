@@ -19,21 +19,18 @@ map.on('load', async () => {
     // 3. DATEN ABRUFEN
     const { data, error } = await window.supabaseClient.from('ereignisse').select('*');
 
-    if (error) {
-        console.error("Supabase Fehler:", error);
-        return;
-    }
+    if (error) { console.error("Supabase Fehler:", error); return; }
 
-    // 4. DATEN FÜR DIE KARTE ÜBERSETZEN (Mit eingebauten Sicherheitsnetzen)
+    // 4. SICHERES ÜBERSETZEN DER DATEN
     const features = (data || []).map(e => ({
         type: 'Feature',
         geometry: { type: 'Point', coordinates: [parseFloat(e.longitude), parseFloat(e.latitude)] },
         properties: { 
             title: e.title || "Unbekanntes Ereignis", 
             location: e.location || "", 
-            category: e.category || "Allgemein", 
-            description: e.description || "Keine Beschreibung verfügbar.", 
-            image: e.image_url || "" 
+            category: e.category || "Ereignis", 
+            description: e.description || "", 
+            apiUrl: e.image_url || "" // Hier liegt jetzt die API URL
         }
     }));
 
@@ -47,7 +44,6 @@ map.on('load', async () => {
         clusterRadius: 50
     });
 
-    // 5. LAYER HINZUFÜGEN
     map.addLayer({
         id: 'clusters',
         type: 'circle',
@@ -76,32 +72,50 @@ map.on('load', async () => {
         type: 'circle',
         source: 'widerstand-daten',
         filter: ['!', ['has', 'point_count']],
-        paint: {
-            'circle-color': '#00ffcc', 
-            'circle-radius': 8,        
-            'circle-blur': 0.2,
-            'circle-stroke-width': 1,
-            'circle-stroke-color': '#ffffff'
-        }
+        paint: { 'circle-color': '#00ffcc', 'circle-radius': 8, 'circle-stroke-width': 1, 'circle-stroke-color': '#ffffff' }
     });
 
-    // 6. POPUPS UND INTERAKTIONEN (Jetzt 100% Text- und Bild-sicher)
-    map.on('click', 'unclustered-point', (e) => {
+    // 5. LIVE-BILD-FETCH BEIM KLICK
+    map.on('click', 'unclustered-point', async (e) => {
         const p = e.features[0].properties;
+        const coordinates = e.features[0].geometry.coordinates.slice();
         
-        const imageHTML = p.image ? `<img src="${p.image}" class="popup-image" onerror="this.style.display='none';">` : '';
+        // Eine einzigartige ID für den Platzhalter generieren
+        const imgContainerId = `img-box-${Math.random().toString(36).substr(2, 9)}`;
         const locationHTML = p.location ? `<div class="popup-location">📍 ${p.location}</div>` : '';
 
+        // Popup sofort anzeigen (Text ist direkt da!)
         new maplibregl.Popup()
-            .setLngLat(e.features[0].geometry.coordinates)
+            .setLngLat(coordinates)
             .setHTML(`
-                ${imageHTML}
+                <div id="${imgContainerId}" style="min-height: 50px; text-align: center; margin-bottom: 10px;">
+                    <span style="color: #00ffcc; font-size: 12px; opacity: 0.6;">Lade Bild...</span>
+                </div>
                 <span class="category-badge">${p.category}</span>
                 <h3>${p.title}</h3>
                 ${locationHTML}
                 <p>${p.description}</p>
             `)
             .addTo(map);
+
+        // Bild im Hintergrund live von Wikipedia holen
+        if (p.apiUrl && p.apiUrl.includes('wikipedia.org')) {
+            try {
+                const response = await fetch(p.apiUrl);
+                const apiData = await response.json();
+                const container = document.getElementById(imgContainerId);
+                
+                if (apiData.thumbnail && apiData.thumbnail.source) {
+                    container.innerHTML = `<img src="${apiData.thumbnail.source}" class="popup-image" style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(0, 255, 204, 0.3);">`;
+                } else {
+                    container.style.display = 'none'; // Verstecken, falls kein Bild da ist
+                }
+            } catch (err) {
+                document.getElementById(imgContainerId).style.display = 'none';
+            }
+        } else {
+            document.getElementById(imgContainerId).style.display = 'none';
+        }
     });
 
     map.on('click', 'clusters', (e) => {
@@ -118,7 +132,7 @@ map.on('load', async () => {
     map.on('mouseenter', 'unclustered-point', () => map.getCanvas().style.cursor = 'pointer');
     map.on('mouseleave', 'unclustered-point', () => map.getCanvas().style.cursor = '');
 
-    // 7. FILTER-LOGIK (Suche & Kategorien)
+    // 6. FILTER LOGIK
     const filterKarte = () => {
         const ausgewaehlteKategorie = document.getElementById('category-filter').value;
         const suchText = document.getElementById('search-bar').value.toLowerCase();
