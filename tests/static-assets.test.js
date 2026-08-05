@@ -18,7 +18,9 @@ test('HTML verweist auf vorhandene lokale Kernressourcen', async () => {
 
 test('Fallback-Archiv enthält valide, eindeutige und belegte Ereignisse', async () => {
   const files = ['data/fallback-events.json', 'data/movement-events.json', 'data/historical-resistance-events.json'];
-  const rows = (await Promise.all(files.map(file => readFile(new URL(file, root), 'utf8')))).flatMap(JSON.parse).filter(row => !row.archived);
+  const allRows = (await Promise.all(files.map(file => readFile(new URL(file, root), 'utf8')))).flatMap(JSON.parse);
+  assert.equal(allRows.filter(event => event.category === 'Tiefe Geschichte').length, 0);
+  const rows = allRows.filter(row => !row.archived);
   const events = rows.map(normalizeEvent);
   assert.equal(events.length, 160);
   assert.equal(new Set(events.map(event => event.id)).size, events.length);
