@@ -62,5 +62,5 @@ test('mischt deterministisch und formatiert Zeiträume', () => {
   assert.deepEqual(seededShuffle([1, 2, 3, 4], 'seed'), seededShuffle([1, 2, 3, 4], 'seed'));
   assert.equal(formatYearRange({ yearStart: 1918, yearEnd: 1921 }), '1918–1921');
   assert.equal(formatYearRange({ yearStart: null, yearEnd: null }), 'undatiert');
-  assert.equal(formatYearRange({ yearStart: -65000, yearEnd: -45000, dateLabel: 'ca. 45.000–65.000 Jahre vor heute' }), 'ca. 45.000–65.000 Jahre vor heute');
+  assert.equal(formatYearRange({ yearStart: -1157, yearEnd: -1157, dateLabel: 'ca. 1157 v. u. Z.' }), 'ca. 1157 v. u. Z.');
 });

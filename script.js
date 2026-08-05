@@ -44,7 +44,7 @@ const app = {
   events: [],
   filteredEvents: [],
   progress: loadProgress(),
-  filters: { query: '', category: 'all', from: -400000, to: 2030, undiscoveredOnly: false },
+  filters: { query: '', category: 'all', from: -1200, to: 2030, undiscoveredOnly: false },
   activeQuiz: null
 };
 
@@ -134,10 +134,13 @@ function attachUiEvents() {
 async function loadEvents() {
   const fallbackResponses = await Promise.all([
     fetch('./data/fallback-events.json'),
-    fetch('./data/movement-events.json')
+    fetch('./data/movement-events.json'),
+    fetch('./data/historical-resistance-events.json')
   ]);
   if (fallbackResponses.some(response => !response.ok)) throw new Error('Fallback-Daten fehlen.');
-  const fallbackRows = (await Promise.all(fallbackResponses.map(response => response.json()))).flat();
+  const fallbackRows = (await Promise.all(fallbackResponses.map(response => response.json())))
+    .flat()
+    .filter(row => !row.archived);
   const fallback = fallbackRows.map(normalizeEvent).filter(isValidEvent);
 
   if (!window.supabase?.createClient) {
@@ -349,9 +352,8 @@ async function openEventPopup(event, coordinates = [event.longitude, event.latit
 
   const sourceUrl = safeExternalUrl(event.sourceUrl);
   if (sourceUrl) {
-    const source = document.createElement('a');
-    source.className = 'source-link';
-    source.href = sou×®m¢G§²ÚîÆ­yÐ  image.className = 'event-popup-image';
+    const sourc×Þ-¢G§²ÚîÆ­y×);
+    image.className = 'event-popup-image';
     image.src = imageUrl;
     image.alt = event.imageAlt;
     image.loading = 'lazy';
@@ -610,7 +612,7 @@ function populateCategories() {
 function updateEraFilter() {
   let from = Number(ui.eraFrom.value);
   let to = Number(ui.eraTo.value);
-  if (!Number.isFinite(from)) from = -400000;
+  if (!Number.isFinite(from)) from = -1200;
   if (!Number.isFinite(to)) to = 2030;
   if (from > to) [from, to] = [to, from];
   ui.eraFrom.value = from;
@@ -621,10 +623,10 @@ function updateEraFilter() {
 }
 
 function resetFilters() {
-  app.filters = { query: '', category: 'all', from: -400000, to: 2030, undiscoveredOnly: false };
+  app.filters = { query: '', category: 'all', from: -1200, to: 2030, undiscoveredOnly: false };
   ui.searchInput.value = '';
   ui.categoryFilter.value = 'all';
-  ui.eraFrom.value = -400000;
+  ui.eraFrom.value = -1200;
   ui.eraTo.value = 2030;
   ui.undiscoveredOnly.checked = false;
   renderMapData();

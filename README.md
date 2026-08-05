@@ -6,9 +6,10 @@ Eine interaktive, spielerische Weltkarte historischer Bewegungen, Aufstände, St
 
 - interaktive MapLibre-Weltkarte mit Clustern und farbcodierten Kategorien
 - Volltextsuche sowie Kategorie- und Zeitraumfilter
-- 88 kuratierte Ereignisse auf mehreren Kontinenten
+- 160 kuratierte Ereignisse auf sechs Kontinenten
 - Mehrfach-Tags für überlappende Spektren wie Anarchismus, indigener Widerstand, Antisexismus, Schwarze Befreiung, Antifaschismus, Antikolonialismus und Tierbefreiung
-- gesonderte Ebene „Tiefe Geschichte“ für frühe Homo-sapiens-, Neandertaler- und Denisova-Fundorte, ohne politische Rückprojektion
+- historische Spannweite vom frühesten ausführlich dokumentierten Streik in Deir el-Medina (ca. 1157 v. u. Z.) bis zu heutigen Bewegungen
+- eigene Perspektiven auf frühe soziale Revolten, Widerstand versklavter Menschen, antifeudale Kämpfe, Commons und Rätebewegungen
 - Live-Daten aus Supabase, automatisch mit dem Fallback-Archiv zusammengeführt
 - Karten-Popups mit Einordnung, Bild und weiterführender Quelle
 - lokales Fortschrittssystem mit XP, Levels und Entdeckungsarchiv
@@ -42,9 +43,9 @@ Benötigt wird Node.js 20 oder neuer. Es müssen keine Pakete installiert werden
 
 ## Datenquellen
 
-Beim Start lädt die Anwendung zunächst `data/fallback-events.json` und `data/movement-events.json`. Wenn Supabase verfügbar ist, werden Datensätze aus `public.ereignisse` ergänzt beziehungsweise mit gleichnamigen Einträgen zusammengeführt. Dadurch bleibt die Karte auch bei einem Ausfall der Datenbank nutzbar.
+Beim Start lädt die Anwendung `data/fallback-events.json`, `data/movement-events.json` und `data/historical-resistance-events.json`. Wenn Supabase verfügbar ist, werden Datensätze aus `public.ereignisse` ergänzt beziehungsweise mit gleichnamigen Einträgen zusammengeführt. Dadurch bleibt die Karte auch bei einem Ausfall der Datenbank nutzbar.
 
-Ein Eintrag besitzt eine primäre Kategorie und beliebig viele `tags`. Der Filter berücksichtigt beides. Negative Jahreswerte ermöglichen tiefe Geschichte; für die sichtbare Datierung sollte dort zusätzlich `dateLabel` gepflegt werden.
+Ein Eintrag besitzt eine primäre Kategorie und beliebig viele `tags`. Der Filter berücksichtigt beides. Negative Jahreswerte stehen für Jahre vor unserer Zeitrechnung; für ihre sichtbare Datierung wird zusätzlich `dateLabel` gepflegt. Paläontologische Fundorte gehören nicht zum aktiven Atlas: Der zeitliche Anfang folgt der frühesten belastbaren Überlieferung kollektiven sozialen Handelns. Moderne Begriffe werden in antiken und mittelalterlichen Einträgen nicht als Selbstbezeichnungen ausgegeben.
 
 Das erweiterte Referenzschema einschließlich einer Nur-Lesen-RLS-Policy befindet sich unter `docs/supabase-schema.sql`. Der im Browser verwendete Supabase-Schlüssel ist ein öffentlicher Publishable Key. Schreibzugriffe müssen dennoch zwingend durch Row Level Security blockiert werden.
 

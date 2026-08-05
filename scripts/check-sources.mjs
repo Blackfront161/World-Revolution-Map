@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 
-const files = ['data/fallback-events.json', 'data/movement-events.json'];
-const rows = (await Promise.all(files.map(file => readFile(file, 'utf8')))).flatMap(JSON.parse);
+const files = ['data/fallback-events.json', 'data/movement-events.json', 'data/historical-resistance-events.json'];
+const rows = (await Promise.all(files.map(file => readFile(file, 'utf8')))).flatMap(JSON.parse).filter(row => !row.archived);
 const sources = [...new Map(rows.filter(row => row.sourceUrl).map(row => [row.sourceUrl, row.title])).entries()];
 const failures = [];
 const botProtected = [];
