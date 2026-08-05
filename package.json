@@ -6,7 +6,8 @@
   "description": "Ein spielerischer Atlas historischer Widerstandsbewegungen.",
   "scripts": {
     "start": "node scripts/serve.mjs",
-    "test": "node --test"
+    "test": "node --test",
+    "check:sources": "node scripts/check-sources.mjs"
   },
   "engines": {
     "node": ">=20"

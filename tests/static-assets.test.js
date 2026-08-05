@@ -17,13 +17,16 @@ test('HTML verweist auf vorhandene lokale Kernressourcen', async () => {
 });
 
 test('Fallback-Archiv enthält valide, eindeutige und belegte Ereignisse', async () => {
-  const rows = JSON.parse(await readFile(new URL('data/fallback-events.json', root), 'utf8'));
+  const files = ['data/fallback-events.json', 'data/movement-events.json'];
+  const rows = (await Promise.all(files.map(file => readFile(new URL(file, root), 'utf8')))).flatMap(JSON.parse);
   const events = rows.map(normalizeEvent);
-  assert.equal(events.length, 24);
+  assert.equal(events.length, 88);
   assert.equal(new Set(events.map(event => event.id)).size, events.length);
   assert.ok(events.every(isValidEvent));
   assert.ok(events.every(event => event.sourceUrl.startsWith('https://')));
   assert.ok(new Set(events.map(event => event.continent)).size >= 6);
+  assert.ok(new Set(events.flatMap(event => [event.category, ...event.tags])).size >= 18);
+  assert.ok(events.filter(event => event.category === 'Tiefe Geschichte').length >= 8);
 });
 
 test('Datenbankinhalte werden nicht über innerHTML in die Seite geschrieben', async () => {

@@ -44,7 +44,7 @@ const app = {
   events: [],
   filteredEvents: [],
   progress: loadProgress(),
-  filters: { query: '', category: 'all', from: 1700, to: 2030, undiscoveredOnly: false },
+  filters: { query: '', category: 'all', from: -400000, to: 2030, undiscoveredOnly: false },
   activeQuiz: null
 };
 
@@ -132,9 +132,12 @@ function attachUiEvents() {
 }
 
 async function loadEvents() {
-  const fallbackResponse = await fetch('./data/fallback-events.json');
-  if (!fallbackResponse.ok) throw new Error('Fallback-Daten fehlen.');
-  const fallbackRows = await fallbackResponse.json();
+  const fallbackResponses = await Promise.all([
+    fetch('./data/fallback-events.json'),
+    fetch('./data/movement-events.json')
+  ]);
+  if (fallbackResponses.some(response => !response.ok)) throw new Error('Fallback-Daten fehlen.');
+  const fallbackRows = (await Promise.all(fallbackResponses.map(response => response.json()))).flat();
   const fallback = fallbackRows.map(normalizeEvent).filter(isValidEvent);
 
   if (!window.supabase?.createClient) {
@@ -313,6 +316,17 @@ async function openEventPopup(event, coordinates = [event.longitude, event.latit
   description.textContent = event.description;
   body.append(meta, title, location, description);
 
+  if (event.tags.length) {
+    const tags = document.createElement('div');
+    tags.className = 'event-popup-tags';
+    event.tags.slice(0, 4).forEach(tag => {
+      const chip = document.createElement('span');
+      chip.textContent = tag;
+      tags.append(chip);
+    });
+    body.append(tags);
+  }
+
   if (event.significance) {
     const significance = document.createElement('p');
     significance.className = 'event-popup-description';
@@ -337,24 +351,7 @@ async function openEventPopup(event, coordinates = [event.longitude, event.latit
   if (sourceUrl) {
     const source = document.createElement('a');
     source.className = 'source-link';
-    source.href = sourceUrl;
-    source.target = '_blank';
-    source.rel = 'noopener noreferrer';
-    source.textContent = 'Quelle â†—';
-    actions.append(source);
-  }
-  body.append(actions);
-  content.append(body);
-
-  app.popup = new window.maplibregl.Popup({ offset: 14, closeButton: true })
-    .setLngLat(coordinates)
-    .setDOMContent(content)
-    .addTo(app.map);
-
-  const imageUrl = await resolveImageUrl(event);
-  if (imageUrl && content.isConnected) {
-    const image = document.createElement('img');
-    image.className = 'event-popup-image';
+    source.href = sou×®m¢G§²ÚîÆ­yÐ  image.className = 'event-popup-image';
     image.src = imageUrl;
     image.alt = event.imageAlt;
     image.loading = 'lazy';
@@ -602,7 +599,7 @@ async function expandCluster(event) {
 }
 
 function populateCategories() {
-  [...new Set(app.events.map(event => event.category))].sort((a, b) => a.localeCompare(b, 'de')).forEach(category => {
+  [...new Set(app.events.flatMap(event => [event.category, ...event.tags]))].sort((a, b) => a.localeCompare(b, 'de')).forEach(category => {
     const option = document.createElement('option');
     option.value = category;
     option.textContent = category;
@@ -611,8 +608,10 @@ function populateCategories() {
 }
 
 function updateEraFilter() {
-  let from = Number(ui.eraFrom.value) || 1700;
-  let to = Number(ui.eraTo.value) || 2030;
+  let from = Number(ui.eraFrom.value);
+  let to = Number(ui.eraTo.value);
+  if (!Number.isFinite(from)) from = -400000;
+  if (!Number.isFinite(to)) to = 2030;
   if (from > to) [from, to] = [to, from];
   ui.eraFrom.value = from;
   ui.eraTo.value = to;
@@ -622,10 +621,10 @@ function updateEraFilter() {
 }
 
 function resetFilters() {
-  app.filters = { query: '', category: 'all', from: 1700, to: 2030, undiscoveredOnly: false };
+  app.filters = { query: '', category: 'all', from: -400000, to: 2030, undiscoveredOnly: false };
   ui.searchInput.value = '';
   ui.categoryFilter.value = 'all';
-  ui.eraFrom.value = 1700;
+  ui.eraFrom.value = -400000;
   ui.eraTo.value = 2030;
   ui.undiscoveredOnly.checked = false;
   renderMapData();
@@ -744,7 +743,10 @@ function eventSignature(event) {
 }
 
 function withoutEmptyValues(object) {
-  return Object.fromEntries(Object.entries(object).filter(([, value]) => value !== '' && value !== null && value !== undefined));
+  return Object.fromEntries(Object.entries(object).filter(([, value]) => value !== ''
+    && value !== null
+    && value !== undefined
+    && (!Array.isArray(value) || value.length > 0)));
 }
 
 function safeExternalUrl(value) {

@@ -56,7 +56,7 @@
         <kbd>F</kbd>
       </div>
 
-      <label class="field-label" for="category-filter">Bewegung</label>
+      <label class="field-label" for="category-filter">Spektrum oder Bewegung</label>
       <select id="category-filter">
         <option value="all">Alle Bewegungen</option>
       </select>
@@ -64,14 +64,15 @@
       <div class="field-row">
         <div>
           <label class="field-label" for="era-from">Von</label>
-          <input id="era-from" type="number" inputmode="numeric" min="1700" max="2030" value="1700">
+          <input id="era-from" type="number" inputmode="numeric" min="-500000" max="2030" value="-400000" aria-describedby="deep-time-hint">
         </div>
         <span class="range-dash" aria-hidden="true">—</span>
         <div>
           <label class="field-label" for="era-to">Bis</label>
-          <input id="era-to" type="number" inputmode="numeric" min="1700" max="2030" value="2030">
+          <input id="era-to" type="number" inputmode="numeric" min="-500000" max="2030" value="2030">
         </div>
       </div>
+      <small class="field-hint" id="deep-time-hint">Negative Zahlen stehen für Jahre vor unserer Zeitrechnung.</small>
 
       <label class="check-row" for="undiscovered-only">
         <input id="undiscovered-only" type="checkbox">

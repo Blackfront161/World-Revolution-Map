@@ -190,6 +190,7 @@ kbd {
 .field-row { gap: 10px; }
 .field-row > div { flex: 1; }
 .range-dash { margin-top: 32px; color: var(--muted); }
+.field-hint { display: block; margin-top: 6px; color: var(--muted); font-size: 9px; line-height: 1.35; }
 
 .check-row { display: flex; align-items: center; gap: 9px; margin: 16px 0; color: var(--muted); font-size: 13px; cursor: pointer; }
 .check-row input { width: 17px; min-height: auto; accent-color: var(--accent-strong); }
@@ -370,6 +371,8 @@ kbd {
 .event-popup-body h3 { margin: 0 0 4px; font-size: 22px; }
 .event-popup-location { margin: 0 0 10px; color: var(--warm); font-size: 11px; }
 .event-popup-description { color: #bfd0c5; font-size: 12px; line-height: 1.52; }
+.event-popup-tags { display: flex; flex-wrap: wrap; gap: 5px; margin: 10px 0 2px; }
+.event-popup-tags span { padding: 3px 7px; border: 1px solid var(--line); border-radius: 99px; color: var(--muted); font-size: 9px; }
 .event-popup-actions { display: flex; gap: 8px; margin-top: 13px; }
 .event-popup-actions a, .event-popup-actions button { flex: 1; display: grid; place-items: center; min-height: 38px; padding: 8px; border-radius: 9px; text-decoration: none; font-size: 11px; font-weight: 800; cursor: pointer; }
 .discover-button { border: 1px solid var(--accent); background: var(--accent); color: #042113; }

@@ -33,6 +33,12 @@ test('filtert nach Suche, Kategorie, Zeitraum und Entdeckungsstatus', () => {
   assert.equal(filterEvents(events, { query: '', category: 'all', from: 1700, to: 2030, undiscoveredOnly: true }, new Set(['1'])).length, 3);
 });
 
+test('Mehrfach-Tags sind such- und filterbar', () => {
+  const tagged = normalizeEvent({ title: 'Fünf', category: 'A', tags: ['Indigener Widerstand', 'Ökologischer Widerstand'], yearStart: 2016, longitude: 1, latitude: 1 });
+  const result = filterEvents([tagged], { query: 'ökologisch', category: 'Indigener Widerstand', from: 1900, to: 2030, undiscoveredOnly: false });
+  assert.equal(result.length, 1);
+});
+
 test('berechnet Level und Fortschritt konsistent', () => {
   assert.equal(levelFromXp(0), 1);
   assert.equal(levelFromXp(100), 2);
@@ -56,4 +62,5 @@ test('mischt deterministisch und formatiert Zeiträume', () => {
   assert.deepEqual(seededShuffle([1, 2, 3, 4], 'seed'), seededShuffle([1, 2, 3, 4], 'seed'));
   assert.equal(formatYearRange({ yearStart: 1918, yearEnd: 1921 }), '1918–1921');
   assert.equal(formatYearRange({ yearStart: null, yearEnd: null }), 'undatiert');
+  assert.equal(formatYearRange({ yearStart: -65000, yearEnd: -45000, dateLabel: 'ca. 45.000–65.000 Jahre vor heute' }), 'ca. 45.000–65.000 Jahre vor heute');
 });

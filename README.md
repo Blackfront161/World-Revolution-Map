@@ -6,7 +6,9 @@ Eine interaktive, spielerische Weltkarte historischer Bewegungen, Aufstände, St
 
 - interaktive MapLibre-Weltkarte mit Clustern und farbcodierten Kategorien
 - Volltextsuche sowie Kategorie- und Zeitraumfilter
-- 24 kuratierte Fallback-Ereignisse auf mehreren Kontinenten
+- 88 kuratierte Ereignisse auf mehreren Kontinenten
+- Mehrfach-Tags für überlappende Spektren wie Anarchismus, indigener Widerstand, Antisexismus, Schwarze Befreiung, Antifaschismus, Antikolonialismus und Tierbefreiung
+- gesonderte Ebene „Tiefe Geschichte“ für frühe Homo-sapiens-, Neandertaler- und Denisova-Fundorte, ohne politische Rückprojektion
 - Live-Daten aus Supabase, automatisch mit dem Fallback-Archiv zusammengeführt
 - Karten-Popups mit Einordnung, Bild und weiterführender Quelle
 - lokales Fortschrittssystem mit XP, Levels und Entdeckungsarchiv
@@ -33,13 +35,16 @@ Danach `http://localhost:4173` aufrufen.
 
 ```bash
 npm test
+npm run check:sources
 ```
 
-Benötigt wird Node.js 20 oder neuer. Es müssen keine Pakete installiert werden.
+Benötigt wird Node.js 20 oder neuer. Es müssen keine Pakete installiert werden. Die Quellenprüfung benötigt Internetzugang und meldet vorübergehende Sperren einzelner Webseiten gegebenenfalls ebenfalls als Fehler.
 
 ## Datenquellen
 
-Beim Start lädt die Anwendung zunächst `data/fallback-events.json`. Wenn Supabase verfügbar ist, werden Datensätze aus `public.ereignisse` ergänzt beziehungsweise mit gleichnamigen Einträgen zusammengeführt. Dadurch bleibt die Karte auch bei einem Ausfall der Datenbank nutzbar.
+Beim Start lädt die Anwendung zunächst `data/fallback-events.json` und `data/movement-events.json`. Wenn Supabase verfügbar ist, werden Datensätze aus `public.ereignisse` ergänzt beziehungsweise mit gleichnamigen Einträgen zusammengeführt. Dadurch bleibt die Karte auch bei einem Ausfall der Datenbank nutzbar.
+
+Ein Eintrag besitzt eine primäre Kategorie und beliebig viele `tags`. Der Filter berücksichtigt beides. Negative Jahreswerte ermöglichen tiefe Geschichte; für die sichtbare Datierung sollte dort zusätzlich `dateLabel` gepflegt werden.
 
 Das erweiterte Referenzschema einschließlich einer Nur-Lesen-RLS-Policy befindet sich unter `docs/supabase-schema.sql`. Der im Browser verwendete Supabase-Schlüssel ist ein öffentlicher Publishable Key. Schreibzugriffe müssen dennoch zwingend durch Row Level Security blockiert werden.
 
