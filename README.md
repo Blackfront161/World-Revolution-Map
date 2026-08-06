@@ -14,13 +14,33 @@ Eine interaktive, spielerische Weltkarte historischer Bewegungen, Aufstände, St
 - Karten-Popups mit Einordnung, Bild und weiterführender Quelle
 - lokales Fortschrittssystem mit XP, Levels und Entdeckungsarchiv
 - zufällige und tägliche Missionen
-- Wissensquiz und acht freischaltbare Erfolge
+- Wissensquiz, Solidaritäts-Combos und zehn freischaltbare Erfolge
+- humorvolles Funkenlabor für belegbare Verbindungen zwischen Zeiten, Orten und Bewegungen
+- satirische „Ausrede der Herrschenden“ mit historischer Gegenprobe
 - mobil optimierte und tastaturbedienbare Oberfläche
 - sichere DOM-Ausgabe statt ungeprüfter HTML-Injektion aus der Datenbank
+- Content Security Policy, kryptografische CDN-Integritätsprüfung und begrenzte Remote-/Speicherdaten
+- versionierte Einbettungs-API, Embed-Modus und strikt adressierte postMessage-Ereignisse
 - automatische Rückfallebene, falls Supabase nicht erreichbar ist
 - Tests für Normalisierung, Filter, Level, Missionen und Quizlogik
 
-Der Spielfortschritt wird ausschließlich im lokalen Browser gespeichert. Es gibt weder Tracking noch ein Benutzerkonto.
+Der Spielfortschritt wird ausschließlich im lokalen Browser gespeichert. Es gibt weder Tracking noch ein Benutzerkonto. Die Integrations-API kann diesen validierten Spielstand exportieren, damit eine Host-App ihn freiwillig synchronisieren kann.
+
+## In eine andere App einbetten
+
+Der Atlas kann als iframe, WebView oder Mikro-Frontend eingebunden werden. Query-Parameter steuern Embed-Modus, Einführung, Akzentfarbe und den optionalen Supabase-Zugriff. Eine kleine JavaScript-API bietet Filter, Ereignisfokus, Panels sowie Fortschrittsimport und -export. Die vollständige Schnittstelle und ein abgesichertes iframe-Beispiel stehen in `docs/embedding.md`.
+
+## Sicherheit
+
+- Datenbankinhalte werden ausschließlich über `textContent` und DOM-Knoten ausgegeben.
+- Quellenlinks akzeptieren nur HTTPS; dynamische Bilder und Bild-APIs sind auf Wikimedia/Wikipedia begrenzt.
+- Fortschrittsimporte werden typisiert, längenbegrenzt und gegen bekannte Ereignis-IDs abgeglichen.
+- Supabase-Live-Daten sind auf 2.000 Zeilen pro Abruf begrenzt.
+- Externe Skripte und Styles sind fest versioniert und mit SHA-384-SRI abgesichert.
+- Die CSP beschränkt Skripte, Netzwerkziele, Worker, Formulare und Plugins.
+- postMessage wird nur mit einer expliziten, validierten Empfänger-Origin aktiviert; `*` ist verboten.
+
+Der Publishable Key im Browser ist bestimmungsgemäß öffentlich und kein Geheimnis. Die Sicherheit der Datenbank hängt davon ab, dass das dokumentierte RLS-/Grant-Schema tatsächlich in der produktiven Supabase-Instanz angewendet wird. Spiel-XP ist lokale UI-Daten und darf nie als serverseitige Berechtigung oder geldwerter Nachweis gelten.
 
 ## Lokal starten
 
@@ -54,6 +74,7 @@ Das erweiterte Referenzschema einschließlich einer Nur-Lesen-RLS-Policy befinde
 - `F` – Suche fokussieren
 - `R` – zufällige Spur anzeigen
 - `M` – neue Mission starten
+- `V` – Funkenlabor öffnen
 - `?` – Einführung und Spielregeln öffnen
 - `Esc` – Dialoge und Seitenleisten schließen
 

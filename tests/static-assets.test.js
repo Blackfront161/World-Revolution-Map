@@ -14,6 +14,9 @@ test('HTML verweist auf vorhandene lokale Kernressourcen', async () => {
   }
   assert.match(html, /aria-label=/);
   assert.match(html, /skip-link/);
+  assert.match(html, /Content-Security-Policy/);
+  assert.equal((html.match(/integrity="sha384-/g) || []).length, 3);
+  assert.doesNotMatch(html, /targetOrigin="\*"/);
 });
 
 test('Fallback-Archiv enthält valide, eindeutige und belegte Ereignisse', async () => {
@@ -37,6 +40,8 @@ test('Datenbankinhalte werden nicht über innerHTML in die Seite geschrieben', a
   const script = await readFile(new URL('script.js', root), 'utf8');
   assert.doesNotMatch(script, /\.innerHTML\s*=/);
   assert.match(script, /setDOMContent/);
+  assert.match(script, /sanitizeProgress/);
+  assert.match(script, /safeWikipediaApiUrl/);
 });
 
 test('Design berücksichtigt reduzierte Bewegung und mobile Ansichten', async () => {

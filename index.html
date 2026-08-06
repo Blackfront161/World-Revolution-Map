@@ -1,19 +1,20 @@
 <!doctype html>
-<html lang="de">
+<html lang="de" data-atlas-version="2.1.0">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#07130f">
   <meta name="description" content="Ein spielerischer Atlas historischer Bewegungen, Aufstände und solidarischer Kämpfe.">
   <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; script-src 'self' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co https://*.cartocdn.com https://de.wikipedia.org https://en.wikipedia.org; worker-src blob:; child-src blob:; upgrade-insecure-requests">
   <title>Atlas des Widerstands</title>
 
   <link rel="preconnect" href="https://unpkg.com">
   <link rel="preconnect" href="https://basemaps.cartocdn.com">
-  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" integrity="sha384-MinO0mNliZ3vwppuPOUnGa+iq619pfMhLVUXfC4LHwSCvF9H+6P/KO4Q7qBOYV5V" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
-  <script defer src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4"></script>
+  <script defer src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js" integrity="sha384-SYKAG6cglRMN0RVvhNeBY0r3FYKNOJtznwA0v7B5Vp9tr31xAHsZC0DqkQ/pZDmj" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4" integrity="sha384-GFr3yTh5lJznCbZfpTtXnwboFsxqtTQoeTZCRHhE0579KrRmlCzen5AA8ohaB5ug" crossorigin="anonymous"></script>
   <script type="module" src="script.js"></script>
 </head>
 <body>
@@ -112,6 +113,7 @@
       <button class="nav-button is-active" type="button" data-panel="map"><span>◉</span>Karte</button>
       <button class="nav-button" type="button" data-panel="archive"><span>▤</span>Archiv <b id="archive-count">0</b></button>
       <button class="nav-button" type="button" data-panel="achievements"><span>◇</span>Erfolge <b id="achievement-count">0</b></button>
+      <button class="nav-button" type="button" data-panel="connections"><span>⚡</span>Funken</button>
       <button class="nav-button" id="quiz-button" type="button" data-panel="quiz"><span>?</span>Quiz</button>
     </nav>
 
@@ -131,17 +133,38 @@
       <div class="achievement-grid" id="achievement-list"></div>
     </section>
 
+    <section class="drawer glass-panel connections-drawer" id="connections-drawer" aria-labelledby="connections-title" hidden>
+      <div class="drawer-header">
+        <div><p class="eyebrow">Labor für historische Funken</p><h2 id="connections-title">Unwahrscheinliche Allianzen</h2></div>
+        <button class="icon-button drawer-close" type="button" aria-label="Funkenlabor schließen">×</button>
+      </div>
+      <p class="drawer-intro">Zwei Kämpfe betreten ein Archiv. Der gemeinsame Nenner verlässt es nicht mehr.</p>
+      <div id="connection-content" aria-live="polite"></div>
+      <div class="lab-actions">
+        <button class="primary-button" id="new-connection" type="button">⚡ Neue Verbindung</button>
+        <button class="secondary-button" id="copy-connection" type="button">Verbindung kopieren</button>
+      </div>
+      <aside class="excuse-machine" aria-labelledby="excuse-title">
+        <p class="eyebrow">Satirische Quellenkritik</p>
+        <h3 id="excuse-title">Ausrede der Herrschenden</h3>
+        <blockquote id="power-excuse">„Jetzt ist wirklich nicht der richtige Zeitpunkt.“</blockquote>
+        <p id="power-counter">Historische Gegenprobe wird geladen.</p>
+        <button class="text-button" id="new-excuse" type="button">Noch eine Ausrede entlarven →</button>
+      </aside>
+    </section>
+
     <div class="modal-backdrop" id="modal-backdrop" hidden></div>
 
     <section class="modal glass-panel" id="welcome-modal" role="dialog" aria-modal="true" aria-labelledby="welcome-title" hidden>
       <button class="icon-button modal-close" type="button" aria-label="Einführung schließen">×</button>
       <p class="eyebrow">Willkommen, Chronist*in</p>
       <h2 id="welcome-title">Geschichte ist voller verborgener Spuren.</h2>
-      <p>Reise über die Karte, öffne Ereignisse und sichere sie für dein Archiv. Löse Missionen und Quizfragen, sammle XP und erschließe neue Perspektiven auf globale Bewegungen.</p>
+      <p>Reise über die Karte, öffne Ereignisse und sichere sie für dein Archiv. Löse Missionen und Quizfragen, schmiede im Funkenlabor überraschende Verbindungen und sammle Solidaritäts-Combos.</p>
       <ol class="how-to-play">
         <li><span>1</span><div><strong>Spur auswählen</strong><small>Öffne einen leuchtenden Punkt auf der Karte.</small></div></li>
         <li><span>2</span><div><strong>Ins Archiv aufnehmen</strong><small>Lies den Eintrag und sichere die Entdeckung.</small></div></li>
         <li><span>3</span><div><strong>Wissen verknüpfen</strong><small>Erfülle Missionen und teste dich im Quiz.</small></div></li>
+        <li><span>4</span><div><strong>Funken schlagen</strong><small>Verbinde Kämpfe über Zeiten und Kontinente hinweg. Bürokratische Genehmigung nicht erforderlich.</small></div></li>
       </ol>
       <button class="primary-button wide" id="begin-button" type="button">Expedition beginnen</button>
       <p class="editorial-note">Ein Bildungsprototyp: Die kurzen Texte ersetzen keine historische Quellenprüfung.</p>
