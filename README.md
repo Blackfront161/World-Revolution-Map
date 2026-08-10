@@ -6,8 +6,9 @@ Eine interaktive, spielerische Weltkarte historischer Bewegungen, Aufstände, St
 
 - interaktive MapLibre-Weltkarte mit Clustern und farbcodierten Kategorien
 - Volltextsuche sowie Kategorie- und Zeitraumfilter
-- 160 kuratierte Ereignisse auf sechs Kontinenten
+- 340 kuratierte Ereignisse aus allen Weltregionen
 - Mehrfach-Tags für überlappende Spektren wie Anarchismus, indigener Widerstand, Antisexismus, Schwarze Befreiung, Antifaschismus, Antikolonialismus und Tierbefreiung
+- regional aufgeteilte, über `data/event-catalog.json` erweiterbare Datendateien
 - historische Spannweite vom frühesten ausführlich dokumentierten Streik in Deir el-Medina (ca. 1157 v. u. Z.) bis zu heutigen Bewegungen
 - eigene Perspektiven auf frühe soziale Revolten, Widerstand versklavter Menschen, antifeudale Kämpfe, Commons und Rätebewegungen
 - Live-Daten aus Supabase, automatisch mit dem Fallback-Archiv zusammengeführt
@@ -59,11 +60,11 @@ npm test
 npm run check:sources
 ```
 
-Benötigt wird Node.js 20 oder neuer. Es müssen keine Pakete installiert werden. Die Quellenprüfung benötigt Internetzugang und meldet vorübergehende Sperren einzelner Webseiten gegebenenfalls ebenfalls als Fehler.
+Benötigt wird Node.js 20 oder neuer. Es müssen keine Pakete installiert werden. Die Quellenprüfung benötigt Internetzugang und weist 401-, 403- und 429-Antworten separat als automatisiert blockiert aus.
 
 ## Datenquellen
 
-Beim Start lädt die Anwendung `data/fallback-events.json`, `data/movement-events.json` und `data/historical-resistance-events.json`. Wenn Supabase verfügbar ist, werden Datensätze aus `public.ereignisse` ergänzt beziehungsweise mit gleichnamigen Einträgen zusammengeführt. Dadurch bleibt die Karte auch bei einem Ausfall der Datenbank nutzbar.
+Beim Start liest die Anwendung `data/event-catalog.json` und lädt daraus die drei Kernsammlungen sowie sechs regionale Erweiterungsdateien. Neue Sammlungen können durch eine zusätzliche JSON-Datei und einen Katalogeintrag ergänzt werden, ohne den JavaScript-Lader zu verändern. Wenn Supabase verfügbar ist, werden Datensätze aus `public.ereignisse` ergänzt beziehungsweise mit gleichnamigen Einträgen zusammengeführt. Dadurch bleibt die Karte auch bei einem Ausfall der Datenbank nutzbar.
 
 Ein Eintrag besitzt eine primäre Kategorie und beliebig viele `tags`. Der Filter berücksichtigt beides. Negative Jahreswerte stehen für Jahre vor unserer Zeitrechnung; für ihre sichtbare Datierung wird zusätzlich `dateLabel` gepflegt. Paläontologische Fundorte gehören nicht in diesen Atlas: Der zeitliche Anfang folgt der frühesten belastbaren Überlieferung kollektiven sozialen Handelns. Moderne Begriffe werden in antiken und mittelalterlichen Einträgen nicht als Selbstbezeichnungen ausgegeben.
 

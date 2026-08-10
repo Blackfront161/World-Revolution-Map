@@ -25,6 +25,8 @@ export const CATEGORY_COLORS = {
   'Gefängnisabolitionismus': '#df8f72',
   'Migrantischer Widerstand': '#6dd4c1',
   'Antimilitarismus': '#c5b1ff',
+  'Bäuerlicher Widerstand': '#d7b86a',
+  'Studierendenbewegung': '#9fb9ff',
   'Ereignis': '#c7d8cf'
 };
 

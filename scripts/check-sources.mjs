@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises';
 
-const files = ['data/fallback-events.json', 'data/movement-events.json', 'data/historical-resistance-events.json'];
+const catalog = JSON.parse(await readFile('data/event-catalog.json', 'utf8'));
+const files = catalog.map(file => `data/${file}`);
 const rows = (await Promise.all(files.map(file => readFile(file, 'utf8')))).flatMap(JSON.parse).filter(row => !row.archived);
 const sources = [...new Map(rows.filter(row => row.sourceUrl).map(row => [row.sourceUrl, row.title])).entries()];
 const failures = [];
@@ -33,6 +34,6 @@ async function checkSource() {
 await Promise.all(Array.from({ length: 8 }, checkSource));
 
 console.log(`${sources.length - failures.length - botProtected.length}/${sources.length} Quellen direkt erreichbar.`);
-if (botProtected.length) console.log(`${botProtected.length} weitere Quellen blockieren automatisierte Abrufe, sind aber redaktionell verifiziert.`);
+if (botProtected.length) console.log(`${botProtected.length} weitere Quellen blockieren automatisierte Abrufe mit 401, 403 oder 429.`);
 failures.forEach(failure => console.error(`${failure.status}\t${failure.title}\t${failure.url}`));
 if (failures.length) process.exitCode = 1;

@@ -20,20 +20,24 @@ test('HTML verweist auf vorhandene lokale Kernressourcen', async () => {
 });
 
 test('Fallback-Archiv enthält valide, eindeutige und belegte Ereignisse', async () => {
-  const files = ['data/fallback-events.json', 'data/movement-events.json', 'data/historical-resistance-events.json'];
+  const catalog = JSON.parse(await readFile(new URL('data/event-catalog.json', root), 'utf8'));
+  const files = catalog.map(file => `data/${file}`);
   const allRows = (await Promise.all(files.map(file => readFile(new URL(file, root), 'utf8')))).flatMap(JSON.parse);
   assert.equal(allRows.filter(event => event.category === 'Tiefe Geschichte').length, 0);
   const rows = allRows.filter(row => !row.archived);
   const events = rows.map(normalizeEvent);
-  assert.equal(events.length, 160);
+  assert.equal(events.length, 340);
   assert.equal(new Set(events.map(event => event.id)).size, events.length);
   assert.ok(events.every(isValidEvent));
   assert.ok(events.every(event => event.sourceUrl.startsWith('https://')));
   assert.ok(new Set(events.map(event => event.continent)).size >= 6);
-  assert.ok(new Set(events.flatMap(event => [event.category, ...event.tags])).size >= 18);
+  assert.ok(new Set(events.flatMap(event => [event.category, ...event.tags])).size >= 35);
   assert.equal(events.filter(event => event.category === 'Tiefe Geschichte').length, 0);
   assert.equal(Math.min(...events.map(event => event.yearStart)), -1157);
-  assert.ok(events.filter(event => event.yearStart < 1500).length >= 18);
+  assert.ok(events.filter(event => event.yearStart < 1500).length >= 25);
+  assert.ok(events.filter(event => event.continent === 'Afrika').length >= 40);
+  assert.ok(events.filter(event => event.continent === 'Asien').length >= 55);
+  assert.ok(events.filter(event => event.continent === 'Ozeanien').length >= 18);
 });
 
 test('Datenbankinhalte werden nicht über innerHTML in die Seite geschrieben', async () => {
