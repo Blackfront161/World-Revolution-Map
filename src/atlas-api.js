@@ -1,4 +1,4 @@
-export const ATLAS_API_VERSION = '2.1.0';
+export const ATLAS_API_VERSION = '2.2.0';
 export const ATLAS_EVENT_PREFIX = 'resistance-atlas:';
 
 const clone = value => JSON.parse(JSON.stringify(value ?? null));
@@ -16,6 +16,7 @@ export function createAtlasApi({ host, parentOrigin = '', getSnapshot, actions }
     version: ATLAS_API_VERSION,
     getState: () => clone(getSnapshot()),
     setFilters: filters => actions.setFilters(clone(filters || {})),
+    setLanguage: language => actions.setLanguage?.(String(language || '')) ?? false,
     focusEvent: id => actions.focusEvent(String(id || '')),
     randomEvent: () => actions.randomEvent(),
     openPanel: panel => actions.openPanel(String(panel || 'map')),

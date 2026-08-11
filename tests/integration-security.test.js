@@ -64,13 +64,14 @@ test('öffentliche API gibt Kopien aus und postet nur an die konfigurierte Origi
     parentOrigin: 'https://app.example.org',
     getSnapshot: () => state,
     actions: {
-      setFilters: () => true, focusEvent: () => true, randomEvent: () => true, openPanel: () => true,
+      setFilters: () => true, setLanguage: language => language === 'en', focusEvent: () => true, randomEvent: () => true, openPanel: () => true,
       exportProgress: () => state.progress, importProgress: () => true, resetProgress: () => true
     }
   });
   const snapshot = bridge.api.getState();
   snapshot.progress.xp = 999;
   assert.equal(state.progress.xp, 5);
+  assert.equal(bridge.api.setLanguage('en'), true);
   bridge.emit('ready', { count: 160 });
   assert.equal(dispatched[0].type, 'resistance-atlas:ready');
   assert.equal(posted[0].origin, 'https://app.example.org');

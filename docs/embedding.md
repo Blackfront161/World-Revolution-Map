@@ -25,7 +25,7 @@ Unterstützte Parameter:
 
 ## JavaScript-API bei gleicher Origin
 
-Nach dem Laden steht window.ResistanceAtlas zur Verfügung:
+Nach dem Laden steht `window.ResistanceAtlas` in API-Version 2.2.0 zur Verfügung:
 
     window.addEventListener('resistance-atlas:ready', () => {
       window.ResistanceAtlas.setFilters({ category: 'Indigener Widerstand', from: 1900 });
