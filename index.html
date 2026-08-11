@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="de" data-atlas-version="2.1.0">
+<html lang="de" data-atlas-version="2.4.0">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#07130f">
-  <meta name="description" content="Ein spielerischer Atlas historischer Bewegungen, Aufstände und solidarischer Kämpfe.">
+  <meta name="description" id="meta-description" content="Ein spielerischer Atlas historischer Bewegungen, Aufstände und solidarischer Kämpfe.">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; script-src 'self' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co https://*.cartocdn.com https://de.wikipedia.org https://en.wikipedia.org; worker-src blob:; child-src blob:; upgrade-insecure-requests">
   <title>Atlas des Widerstands</title>
@@ -18,87 +18,88 @@
   <script type="module" src="script.js"></script>
 </head>
 <body>
-  <a class="skip-link" href="#map">Direkt zur Karte</a>
+  <a class="skip-link" href="#map" data-i18n="skipMap">Direkt zur Karte</a>
 
   <main class="app-shell" id="app">
-    <div id="map" aria-label="Interaktive Weltkarte historischer Widerstandsereignisse"></div>
+    <div id="map" aria-label="Interaktive Weltkarte historischer Widerstandsereignisse" data-i18n-aria="mapAria"></div>
     <div class="map-vignette" aria-hidden="true"></div>
 
     <header class="topbar glass-panel">
-      <button class="icon-button mobile-only" id="menu-toggle" type="button" aria-label="Filter öffnen" aria-controls="control-panel" aria-expanded="false">☰</button>
+      <button class="icon-button mobile-only" id="menu-toggle" type="button" aria-label="Filter öffnen" data-i18n-aria="openFilters" aria-controls="control-panel" aria-expanded="false">☰</button>
       <div class="brand">
         <div class="brand-mark" aria-hidden="true">✦</div>
         <div>
-          <p class="eyebrow">Interaktives Geschichtsarchiv</p>
-          <h1>Atlas des Widerstands</h1>
+          <p class="eyebrow" data-i18n="archiveType">Interaktives Geschichtsarchiv</p>
+          <h1 data-i18n="appTitle">Atlas des Widerstands</h1>
         </div>
       </div>
-      <div class="player-hud" aria-label="Spielfortschritt">
+      <div class="player-hud" aria-label="Spielfortschritt" data-i18n-aria="progress">
+        <label class="language-picker"><span data-i18n="language">Sprache</span><select id="language-select" aria-label="Sprache"></select></label>
         <div class="hud-stat"><span class="hud-label">Level</span><strong id="level-value">1</strong></div>
         <div class="hud-stat"><span class="hud-label">XP</span><strong id="xp-value">0</strong></div>
-        <div class="xp-track" title="Fortschritt zum nächsten Level"><span id="xp-progress"></span></div>
-        <button class="icon-button" id="help-button" type="button" aria-label="Hilfe und Spielregeln">?</button>
+        <div class="xp-track" title="Fortschritt zum nächsten Level" data-i18n-title="nextLevel"><span id="xp-progress"></span></div>
+        <button class="icon-button" id="help-button" type="button" aria-label="Hilfe und Spielregeln" data-i18n-aria="help">?</button>
       </div>
     </header>
 
     <aside class="control-panel glass-panel" id="control-panel" aria-label="Kartensuche und Filter">
       <div class="panel-heading">
         <div>
-          <p class="eyebrow">Deine Expedition</p>
-          <h2>Spuren finden</h2>
+          <p class="eyebrow" data-i18n="expedition">Deine Expedition</p>
+          <h2 data-i18n="findTraces">Spuren finden</h2>
         </div>
-        <button class="icon-button mobile-only" id="menu-close" type="button" aria-label="Filter schließen">×</button>
+        <button class="icon-button mobile-only" id="menu-close" type="button" aria-label="Filter schließen" data-i18n-aria="closeFilters">×</button>
       </div>
 
-      <label class="field-label" for="search-input">Suche</label>
+      <label class="field-label" for="search-input" data-i18n="search">Suche</label>
       <div class="search-wrap">
         <span aria-hidden="true">⌕</span>
-        <input id="search-input" type="search" autocomplete="off" placeholder="Ort, Bewegung, Jahr …">
+        <input id="search-input" type="search" autocomplete="off" placeholder="Ort, Bewegung, Jahr …" data-i18n-placeholder="searchPlaceholder">
         <kbd>F</kbd>
       </div>
 
-      <label class="field-label" for="category-filter">Spektrum oder Bewegung</label>
+      <label class="field-label" for="category-filter" data-i18n="spectrum">Spektrum oder Bewegung</label>
       <select id="category-filter">
-        <option value="all">Alle Bewegungen</option>
+        <option value="all" data-i18n="allMovements">Alle Bewegungen</option>
       </select>
 
       <div class="field-row">
         <div>
-          <label class="field-label" for="era-from">Von</label>
+          <label class="field-label" for="era-from" data-i18n="from">Von</label>
           <input id="era-from" type="number" inputmode="numeric" min="-1200" max="2030" value="-1200" aria-describedby="deep-time-hint">
         </div>
         <span class="range-dash" aria-hidden="true">—</span>
         <div>
-          <label class="field-label" for="era-to">Bis</label>
+          <label class="field-label" for="era-to" data-i18n="to">Bis</label>
           <input id="era-to" type="number" inputmode="numeric" min="-1200" max="2030" value="2030">
         </div>
       </div>
-      <small class="field-hint" id="deep-time-hint">Negative Zahlen stehen für Jahre vor unserer Zeitrechnung; der Atlas beginnt 1157 v. u. Z.</small>
+      <small class="field-hint" id="deep-time-hint" data-i18n="deepTime">Negative Zahlen stehen für Jahre vor unserer Zeitrechnung; der Atlas beginnt 1157 v. u. Z.</small>
 
       <label class="check-row" for="undiscovered-only">
         <input id="undiscovered-only" type="checkbox">
-        <span>Nur unentdeckte Spuren</span>
+        <span data-i18n="undiscovered">Nur unentdeckte Spuren</span>
       </label>
 
       <div class="filter-summary" aria-live="polite">
         <span id="result-count">0 Ereignisse</span>
-        <button class="text-button" id="reset-filters" type="button">Filter zurücksetzen</button>
+        <button class="text-button" id="reset-filters" type="button" data-i18n="resetFilters">Filter zurücksetzen</button>
       </div>
 
       <div class="action-grid">
-        <button class="primary-button" id="random-event" type="button"><span aria-hidden="true">⚄</span> Überrasch mich</button>
-        <button class="secondary-button" id="start-mission" type="button"><span aria-hidden="true">◎</span> Neue Mission</button>
+        <button class="primary-button" id="random-event" type="button"><span aria-hidden="true">⚄</span> <span data-i18n="surprise">Überrasch mich</span></button>
+        <button class="secondary-button" id="start-mission" type="button"><span aria-hidden="true">◎</span> <span data-i18n="newMission">Neue Mission</span></button>
       </div>
 
       <div class="data-status" id="data-status" role="status">
         <span class="status-dot"></span>
-        <span>Daten werden geladen …</span>
+        <span data-i18n="loadingData">Daten werden geladen …</span>
       </div>
     </aside>
 
     <section class="mission-card glass-panel" id="mission-card" aria-labelledby="mission-title">
       <div class="mission-topline">
-        <span class="mission-kicker">Aktive Mission</span>
+        <span class="mission-kicker" data-i18n="activeMission">Aktive Mission</span>
         <span class="mission-reward" id="mission-reward">+60 XP</span>
       </div>
       <h2 id="mission-title">Erste Spuren</h2>
@@ -110,76 +111,76 @@
     </section>
 
     <nav class="bottom-nav glass-panel" aria-label="Spielbereiche">
-      <button class="nav-button is-active" type="button" data-panel="map"><span>◉</span>Karte</button>
-      <button class="nav-button" type="button" data-panel="archive"><span>▤</span>Archiv <b id="archive-count">0</b></button>
-      <button class="nav-button" type="button" data-panel="achievements"><span>◇</span>Erfolge <b id="achievement-count">0</b></button>
-      <button class="nav-button" type="button" data-panel="connections"><span>⚡</span>Funken</button>
+      <button class="nav-button is-active" type="button" data-panel="map"><span>◉</span><span data-i18n="map">Karte</span></button>
+      <button class="nav-button" type="button" data-panel="archive"><span>▤</span><span data-i18n="archive">Archiv</span> <b id="archive-count">0</b></button>
+      <button class="nav-button" type="button" data-panel="achievements"><span>◇</span><span data-i18n="achievements">Erfolge</span> <b id="achievement-count">0</b></button>
+      <button class="nav-button" type="button" data-panel="connections"><span>⚡</span><span data-i18n="sparks">Funken</span></button>
       <button class="nav-button" id="quiz-button" type="button" data-panel="quiz"><span>?</span>Quiz</button>
     </nav>
 
     <section class="drawer glass-panel" id="archive-drawer" aria-labelledby="archive-title" hidden>
       <div class="drawer-header">
-        <div><p class="eyebrow">Deine Sammlung</p><h2 id="archive-title">Entdecktes Archiv</h2></div>
-        <button class="icon-button drawer-close" type="button" aria-label="Archiv schließen">×</button>
+        <div><p class="eyebrow" data-i18n="collection">Deine Sammlung</p><h2 id="archive-title" data-i18n="discoveredArchive">Entdecktes Archiv</h2></div>
+        <button class="icon-button drawer-close" type="button" aria-label="Archiv schließen" data-i18n-aria="closeArchive">×</button>
       </div>
       <div class="archive-list" id="archive-list"></div>
     </section>
 
     <section class="drawer glass-panel" id="achievements-drawer" aria-labelledby="achievements-title" hidden>
       <div class="drawer-header">
-        <div><p class="eyebrow">Meilensteine</p><h2 id="achievements-title">Erfolge</h2></div>
-        <button class="icon-button drawer-close" type="button" aria-label="Erfolge schließen">×</button>
+        <div><p class="eyebrow" data-i18n="milestones">Meilensteine</p><h2 id="achievements-title" data-i18n="achievements">Erfolge</h2></div>
+        <button class="icon-button drawer-close" type="button" aria-label="Erfolge schließen" data-i18n-aria="closeAchievements">×</button>
       </div>
       <div class="achievement-grid" id="achievement-list"></div>
     </section>
 
     <section class="drawer glass-panel connections-drawer" id="connections-drawer" aria-labelledby="connections-title" hidden>
       <div class="drawer-header">
-        <div><p class="eyebrow">Labor für historische Funken</p><h2 id="connections-title">Unwahrscheinliche Allianzen</h2></div>
-        <button class="icon-button drawer-close" type="button" aria-label="Funkenlabor schließen">×</button>
+        <div><p class="eyebrow" data-i18n="connectionsLab">Labor für historische Funken</p><h2 id="connections-title" data-i18n="unlikelyAlliances">Unwahrscheinliche Allianzen</h2></div>
+        <button class="icon-button drawer-close" type="button" aria-label="Funkenlabor schließen" data-i18n-aria="closeConnections">×</button>
       </div>
-      <p class="drawer-intro">Zwei Kämpfe betreten ein Archiv. Der gemeinsame Nenner verlässt es nicht mehr.</p>
+      <p class="drawer-intro" data-i18n="connectionsIntro">Zwei Kämpfe betreten ein Archiv. Der gemeinsame Nenner verlässt es nicht mehr.</p>
       <div id="connection-content" aria-live="polite"></div>
       <div class="lab-actions">
-        <button class="primary-button" id="new-connection" type="button">⚡ Neue Verbindung</button>
-        <button class="secondary-button" id="copy-connection" type="button">Verbindung kopieren</button>
+        <button class="primary-button" id="new-connection" type="button">⚡ <span data-i18n="newConnection">Neue Verbindung</span></button>
+        <button class="secondary-button" id="copy-connection" type="button" data-i18n="copyConnection">Verbindung kopieren</button>
       </div>
       <aside class="excuse-machine" aria-labelledby="excuse-title">
-        <p class="eyebrow">Satirische Quellenkritik</p>
-        <h3 id="excuse-title">Ausrede der Herrschenden</h3>
-        <blockquote id="power-excuse">„Jetzt ist wirklich nicht der richtige Zeitpunkt.“</blockquote>
-        <p id="power-counter">Historische Gegenprobe wird geladen.</p>
-        <button class="text-button" id="new-excuse" type="button">Noch eine Ausrede entlarven →</button>
+        <p class="eyebrow" data-i18n="satiricalCritique">Satirische Quellenkritik</p>
+        <h3 id="excuse-title" data-i18n="excuseTitle">Ausrede der Herrschenden</h3>
+        <blockquote id="power-excuse" data-i18n="defaultExcuse">„Jetzt ist wirklich nicht der richtige Zeitpunkt.“</blockquote>
+        <p id="power-counter" data-i18n="defaultCounter">Historische Gegenprobe wird geladen.</p>
+        <button class="text-button" id="new-excuse" type="button" data-i18n="anotherExcuse">Noch eine Ausrede entlarven →</button>
       </aside>
     </section>
 
     <div class="modal-backdrop" id="modal-backdrop" hidden></div>
 
     <section class="modal glass-panel" id="welcome-modal" role="dialog" aria-modal="true" aria-labelledby="welcome-title" hidden>
-      <button class="icon-button modal-close" type="button" aria-label="Einführung schließen">×</button>
-      <p class="eyebrow">Willkommen, Chronist*in</p>
-      <h2 id="welcome-title">Geschichte ist voller verborgener Spuren.</h2>
-      <p>Reise über die Karte, öffne Ereignisse und sichere sie für dein Archiv. Löse Missionen und Quizfragen, schmiede im Funkenlabor überraschende Verbindungen und sammle Solidaritäts-Combos.</p>
+      <button class="icon-button modal-close" type="button" aria-label="Einführung schließen" data-i18n-aria="closeIntro">×</button>
+      <p class="eyebrow" data-i18n="welcome">Willkommen, Chronist*in</p>
+      <h2 id="welcome-title" data-i18n="welcomeTitle">Geschichte ist voller verborgener Spuren.</h2>
+      <p data-i18n="welcomeBody">Reise über die Karte, öffne Ereignisse und sichere sie für dein Archiv. Löse Missionen und Quizfragen, schmiede im Funkenlabor überraschende Verbindungen und sammle Solidaritäts-Combos.</p>
       <ol class="how-to-play">
-        <li><span>1</span><div><strong>Spur auswählen</strong><small>Öffne einen leuchtenden Punkt auf der Karte.</small></div></li>
-        <li><span>2</span><div><strong>Ins Archiv aufnehmen</strong><small>Lies den Eintrag und sichere die Entdeckung.</small></div></li>
-        <li><span>3</span><div><strong>Wissen verknüpfen</strong><small>Erfülle Missionen und teste dich im Quiz.</small></div></li>
-        <li><span>4</span><div><strong>Funken schlagen</strong><small>Verbinde Kämpfe über Zeiten und Kontinente hinweg. Bürokratische Genehmigung nicht erforderlich.</small></div></li>
+        <li><span>1</span><div><strong data-i18n="step1Title">Spur auswählen</strong><small data-i18n="step1Body">Öffne einen leuchtenden Punkt auf der Karte.</small></div></li>
+        <li><span>2</span><div><strong data-i18n="step2Title">Ins Archiv aufnehmen</strong><small data-i18n="step2Body">Lies den Eintrag und sichere die Entdeckung.</small></div></li>
+        <li><span>3</span><div><strong data-i18n="step3Title">Wissen verknüpfen</strong><small data-i18n="step3Body">Erfülle Missionen und teste dich im Quiz.</small></div></li>
+        <li><span>4</span><div><strong data-i18n="step4Title">Funken schlagen</strong><small data-i18n="step4Body">Verbinde Kämpfe über Zeiten und Kontinente hinweg. Bürokratische Genehmigung nicht erforderlich.</small></div></li>
       </ol>
-      <button class="primary-button wide" id="begin-button" type="button">Expedition beginnen</button>
-      <p class="editorial-note">Ein Bildungsprototyp: Die kurzen Texte ersetzen keine historische Quellenprüfung.</p>
+      <button class="primary-button wide" id="begin-button" type="button" data-i18n="begin">Expedition beginnen</button>
+      <p class="editorial-note" data-i18n="editorial">Ein Bildungsprototyp: Die kurzen Texte ersetzen keine historische Quellenprüfung.</p>
     </section>
 
     <section class="modal glass-panel" id="quiz-modal" role="dialog" aria-modal="true" aria-labelledby="quiz-title" hidden>
-      <button class="icon-button modal-close" type="button" aria-label="Quiz schließen">×</button>
-      <p class="eyebrow">Wissensprobe</p>
-      <h2 id="quiz-title">Wann begann dieses Ereignis?</h2>
+      <button class="icon-button modal-close" type="button" aria-label="Quiz schließen" data-i18n-aria="closeQuiz">×</button>
+      <p class="eyebrow" data-i18n="knowledgeTest">Wissensprobe</p>
+      <h2 id="quiz-title" data-i18n="quizDefault">Wann begann dieses Ereignis?</h2>
       <div id="quiz-content"></div>
     </section>
 
     <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
   </main>
 
-  <noscript>Diese interaktive Karte benötigt JavaScript.</noscript>
+  <noscript>JavaScript erforderlich · JavaScript required · JavaScript necesario · JavaScript requis.</noscript>
 </body>
 </html>

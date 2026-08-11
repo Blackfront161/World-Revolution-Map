@@ -15,6 +15,7 @@ Der Atlas verwaltet öffentliche Geschichtsdaten und einen lokalen, nicht vertra
 - CDN-Dateien sind fest versioniert und über SHA-384 Subresource Integrity gebunden.
 - Cross-Origin-Nachrichten werden nur an eine explizite HTTPS-Origin gesendet. Wildcards werden verworfen.
 - Der anonyme Supabase-Zugriff ist im Referenzschema ausschließlich lesend.
+- Alle neun Sprachfassungen der Oberfläche liegen lokal im Repository; Ereignistexte werden nicht an externe Übersetzungsdienste gesendet.
 
 ## Verantwortung beim Deployment
 

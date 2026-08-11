@@ -6,7 +6,7 @@ Der Atlas bleibt eine statische Webanwendung und kann deshalb als iframe, als ei
 
     <iframe
       title="Atlas des Widerstands"
-      src="https://blackfront161.github.io/World-Revolution-Map/?embed=1&welcome=0&parentOrigin=https%3A%2F%2Fapp.example.org"
+      src="https://blackfront161.github.io/World-Revolution-Map/?embed=1&welcome=0&lang=en&parentOrigin=https%3A%2F%2Fapp.example.org"
       loading="lazy"
       sandbox="allow-scripts allow-same-origin allow-popups"
       referrerpolicy="strict-origin-when-cross-origin"
@@ -17,6 +17,7 @@ parentOrigin ist optional. Wird es gesetzt, muss es eine konkrete HTTPS-Origin s
 Unterstützte Parameter:
 
 - embed=1 – kompaktere Abstände und keine automatische Einführung
+- lang=de|en|es|fr|it|pt|ru|el|tr – Sprache der Oberfläche und Spieltexte
 - welcome=0 – Einführung nicht automatisch öffnen
 - supabase=0 – ausschließlich die mitgelieferten JSON-Daten verwenden
 - accent=%2365f3a6 – sechsstellige Akzentfarbe
@@ -28,15 +29,16 @@ Nach dem Laden steht window.ResistanceAtlas zur Verfügung:
 
     window.addEventListener('resistance-atlas:ready', () => {
       window.ResistanceAtlas.setFilters({ category: 'Indigener Widerstand', from: 1900 });
+      window.ResistanceAtlas.setLanguage('en');
       window.ResistanceAtlas.focusEvent('standing-rock');
     });
 
     const progress = window.ResistanceAtlas.exportProgress();
     window.ResistanceAtlas.importProgress(progress);
 
-Methoden: getState, setFilters, focusEvent, randomEvent, openPanel, exportProgress, importProgress, resetProgress.
+Methoden: getState, setFilters, setLanguage, focusEvent, randomEvent, openPanel, exportProgress, importProgress, resetProgress.
 
-Ereignisse: resistance-atlas:ready, resistance-atlas:event-discovered, resistance-atlas:connection-created, resistance-atlas:filters-changed, resistance-atlas:progress-imported, resistance-atlas:progress-reset.
+Ereignisse: resistance-atlas:ready, resistance-atlas:language-changed, resistance-atlas:event-discovered, resistance-atlas:connection-created, resistance-atlas:filters-changed, resistance-atlas:progress-imported, resistance-atlas:progress-reset.
 
 ## Kommunikation über Origins hinweg
 

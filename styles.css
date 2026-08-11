@@ -105,6 +105,8 @@ h2 { margin-bottom: 8px; font-size: 24px; }
 }
 
 .player-hud { gap: 12px; }
+.language-picker { display: grid; gap: 2px; color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.language-picker select { width: auto; min-width: 108px; min-height: 34px; padding: 5px 28px 5px 9px; font-size: 12px; letter-spacing: 0; text-transform: none; }
 .hud-stat { display: grid; min-width: 40px; }
 .hud-label { color: var(--muted); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
 .hud-stat strong { font-size: 18px; line-height: 1.1; }
@@ -408,6 +410,7 @@ kbd {
 .event-popup-body h3 { margin: 0 0 4px; font-size: 22px; }
 .event-popup-location { margin: 0 0 10px; color: var(--warm); font-size: 11px; }
 .event-popup-description { color: #bfd0c5; font-size: 12px; line-height: 1.52; }
+.event-language-note { display: inline-block; margin: 2px 0 6px; padding: 3px 7px; border: 1px solid var(--line); border-radius: 99px; color: var(--muted); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
 .event-popup-tags { display: flex; flex-wrap: wrap; gap: 5px; margin: 10px 0 2px; }
 .event-popup-tags span { padding: 3px 7px; border: 1px solid var(--line); border-radius: 99px; color: var(--muted); font-size: 9px; }
 .event-popup-actions { display: flex; gap: 8px; margin-top: 13px; }
@@ -447,6 +450,8 @@ kbd {
 @media (max-width: 470px) {
   .brand-mark { display: none; }
   .hud-label { display: none; }
+  .language-picker > span, .hud-stat { display: none; }
+  .language-picker select { min-width: 92px; max-width: 102px; }
   .modal { padding: 24px 20px; }
   .achievement-grid { grid-template-columns: 1fr; }
   .maplibregl-popup { max-width: min(310px, calc(100vw - 30px)) !important; }

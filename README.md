@@ -6,7 +6,8 @@ Eine interaktive, spielerische Weltkarte historischer Bewegungen, Aufstände, St
 
 - interaktive MapLibre-Weltkarte mit Clustern und farbcodierten Kategorien
 - Volltextsuche sowie Kategorie- und Zeitraumfilter
-- 500 kuratierte Ereignisse aus allen Weltregionen
+- 600 kuratierte, aktive Ereignisse aus allen Weltregionen
+- neun lokal gespeicherte Oberflächensprachen wie bei World Revolution News: Deutsch, Englisch, Spanisch, Französisch, Italienisch, Portugiesisch, Russisch, Griechisch und Türkisch
 - Mehrfach-Tags für überlappende Spektren wie Anarchismus, indigener Widerstand, Antisexismus, Schwarze Befreiung, Antifaschismus, Antikolonialismus und Tierbefreiung
 - regional aufgeteilte, über `data/event-catalog.json` erweiterbare Datendateien
 - historische Spannweite vom frühesten ausführlich dokumentierten Streik in Deir el-Medina (ca. 1157 v. u. Z.) bis zu heutigen Bewegungen
@@ -27,6 +28,8 @@ Eine interaktive, spielerische Weltkarte historischer Bewegungen, Aufstände, St
 
 Der Spielfortschritt wird ausschließlich im lokalen Browser gespeichert. Es gibt weder Tracking noch ein Benutzerkonto. Die Integrations-API kann diesen validierten Spielstand exportieren, damit eine Host-App ihn freiwillig synchronisieren kann.
 
+Die Sprache kann im Kopfbereich oder mit `?lang=de|en|es|fr|it|pt|ru|el|tr` gewählt werden. Oberfläche, Filterbegriffe, Zeitangaben, Missionen, Quiz und Funkenlabor werden vollständig lokal übersetzt. Historische Eigennamen bleiben unverändert; die kuratierten Langtexte sind vorerst als gekennzeichnete deutsche Originalfassungen enthalten. Es wird kein Text an externe Übersetzungsdienste übertragen.
+
 ## In eine andere App einbetten
 
 Der Atlas kann als iframe, WebView oder Mikro-Frontend eingebunden werden. Query-Parameter steuern Embed-Modus, Einführung, Akzentfarbe und den optionalen Supabase-Zugriff. Eine kleine JavaScript-API bietet Filter, Ereignisfokus, Panels sowie Fortschrittsimport und -export. Die vollständige Schnittstelle und ein abgesichertes iframe-Beispiel stehen in `docs/embedding.md`.
@@ -40,6 +43,7 @@ Der Atlas kann als iframe, WebView oder Mikro-Frontend eingebunden werden. Query
 - Externe Skripte und Styles sind fest versioniert und mit SHA-384-SRI abgesichert.
 - Die CSP beschränkt Skripte, Netzwerkziele, Worker, Formulare und Plugins.
 - postMessage wird nur mit einer expliziten, validierten Empfänger-Origin aktiviert; `*` ist verboten.
+- Sprachwahl und Übersetzungen funktionieren offline; Atlas-Texte werden nicht an Übersetzungsdienste gesendet.
 
 Der Publishable Key im Browser ist bestimmungsgemäß öffentlich und kein Geheimnis. Die Sicherheit der Datenbank hängt davon ab, dass das dokumentierte RLS-/Grant-Schema tatsächlich in der produktiven Supabase-Instanz angewendet wird. Spiel-XP ist lokale UI-Daten und darf nie als serverseitige Berechtigung oder geldwerter Nachweis gelten.
 
@@ -64,7 +68,7 @@ Benötigt wird Node.js 20 oder neuer. Es müssen keine Pakete installiert werden
 
 ## Datenquellen
 
-Beim Start liest die Anwendung `data/event-catalog.json` und lädt daraus die drei Kernsammlungen sowie zehn thematische und regionale Erweiterungsdateien. Neue Sammlungen können durch eine zusätzliche JSON-Datei und einen Katalogeintrag ergänzt werden, ohne den JavaScript-Lader zu verändern. Wenn Supabase verfügbar ist, werden Datensätze aus `public.ereignisse` ergänzt beziehungsweise mit gleichnamigen Einträgen zusammengeführt. Dadurch bleibt die Karte auch bei einem Ausfall der Datenbank nutzbar.
+Beim Start liest die Anwendung `data/event-catalog.json` und lädt daraus die Kernsammlungen sowie thematische und regionale Erweiterungsdateien. Neue Sammlungen können durch eine zusätzliche JSON-Datei und einen Katalogeintrag ergänzt werden, ohne den JavaScript-Lader zu verändern. Wenn Supabase verfügbar ist, werden Datensätze aus `public.ereignisse` ergänzt beziehungsweise mit gleichnamigen Einträgen zusammengeführt. Dadurch bleibt die Karte auch bei einem Ausfall der Datenbank nutzbar.
 
 Ein Eintrag besitzt eine primäre Kategorie und beliebig viele `tags`. Der Filter berücksichtigt beides. Negative Jahreswerte stehen für Jahre vor unserer Zeitrechnung; für ihre sichtbare Datierung wird zusätzlich `dateLabel` gepflegt. Paläontologische Fundorte gehören nicht in diesen Atlas: Der zeitliche Anfang folgt der frühesten belastbaren Überlieferung kollektiven sozialen Handelns. Moderne Begriffe werden in antiken und mittelalterlichen Einträgen nicht als Selbstbezeichnungen ausgegeben.
 
