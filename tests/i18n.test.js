@@ -30,3 +30,12 @@ test('lokalisiert Kategorien und tiefe Jahresangaben ohne Netzzugriff', () => {
   assert.match(formatLocalizedYear({ yearStart: -1157, yearEnd: -1157 }, i18n), /1,157/);
   assert.equal(formatLocalizedYear({ yearStart: 1918, yearEnd: 1921 }, i18n), '1918–1921');
 });
+
+test('lokalisiert die Komfortfunktionen in allen neun Sprachen', () => {
+  for (const language of LANGUAGES.map(item => item.code)) {
+    const i18n = createI18n({ search: `?lang=${language}` });
+    for (const key of ['clearSearch', 'showResults', 'copyEventLink', 'eventLinkCopied']) {
+      assert.notEqual(i18n.t(key), key);
+    }
+  }
+});

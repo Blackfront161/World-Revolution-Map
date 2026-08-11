@@ -1,0 +1,362 @@
+[
+  {
+    "id": "new-zealand-womens-suffrage-1893",
+    "title": "Frauenwahlrecht in Aotearoa Neuseeland",
+    "location": "Wellington und landesweit",
+    "country": "Aotearoa Neuseeland",
+    "continent": "Ozeanien",
+    "category": "Soziale Errungenschaft",
+    "tags": [
+      "Feministischer & antisexistischer Widerstand",
+      "Rechtsbewegung",
+      "Indigener Widerstand"
+    ],
+    "yearStart": 1893,
+    "yearEnd": 1893,
+    "coordinates": [
+      174.78,
+      -41.29
+    ],
+    "description": "Nach jahrelanger Organisierung und einer Petition mit fast 32.000 Unterschriften erhielten alle erwachsenen Frauen – einschließlich Māori-Frauen – das aktive Wahlrecht.",
+    "significance": "Aotearoa Neuseeland war damit das erste selbstverwaltete Land mit Frauenwahlrecht bei nationalen Wahlen; kandidieren durften Frauen allerdings erst ab 1919.",
+    "clue": "Suche dort, wo 1893 eine sehr lange Unterschriftenrolle das Parlament erreichte.",
+    "sourceUrl": "https://nzhistory.govt.nz/womens-suffrage-day",
+    "difficulty": 1
+  },
+  {
+    "id": "finland-full-political-rights-1906",
+    "title": "Volle politische Rechte für Frauen in Finnland",
+    "location": "Helsinki und Großfürstentum Finnland",
+    "country": "Finnland",
+    "continent": "Europa",
+    "category": "Soziale Errungenschaft",
+    "tags": [
+      "Feministischer & antisexistischer Widerstand",
+      "Rechtsbewegung",
+      "Arbeiter*innenbewegung"
+    ],
+    "yearStart": 1905,
+    "yearEnd": 1907,
+    "coordinates": [
+      24.94,
+      60.17
+    ],
+    "description": "Ein Generalstreik und eine breite Demokratiebewegung erzwangen ein Einkammerparlament mit allgemeinem und gleichem Wahlrecht sowie dem Recht von Frauen, selbst zu kandidieren.",
+    "significance": "1907 zogen 19 Frauen ins Parlament ein. Finnland war das erste Land, das Frauen die vollen nationalen Wahl- und Kandidaturrechte zugleich gewährte.",
+    "clue": "Suche am nördlichen Rand Europas, wo aus einem Generalstreik Wahlzettel wurden.",
+    "sourceUrl": "https://finland.fi/life-society/when-everyone-got-the-vote/",
+    "difficulty": 1
+  },
+  {
+    "id": "mexican-constitution-social-rights-1917",
+    "title": "Soziale Rechte in der mexikanischen Verfassung",
+    "location": "Querétaro",
+    "country": "Mexiko",
+    "continent": "Nordamerika",
+    "category": "Soziale Errungenschaft",
+    "tags": [
+      "Bäuerlicher Widerstand",
+      "Arbeiter*innenbewegung",
+      "Antikolonialer Widerstand"
+    ],
+    "yearStart": 1917,
+    "yearEnd": 1917,
+    "coordinates": [
+      -100.39,
+      20.59
+    ],
+    "description": "Unter dem Druck der Revolution verankerte die Verfassung Landreform, Arbeitsrechte, säkulare Bildung und Grenzen für kirchlichen und ausländischen Großgrundbesitz.",
+    "significance": "Sie gehörte zu den ersten Verfassungen mit umfassenden sozialen Rechten; ihre Umsetzung blieb ein langes Konfliktfeld zwischen Gemeinden, Arbeit und Staat.",
+    "clue": "Suche in Querétaro, aber höre im Text noch die Rufe aus Morelos und den Fabriken.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Constitution_of_Mexico",
+    "difficulty": 2
+  },
+  {
+    "id": "soviet-russia-abortion-legalization-1920",
+    "title": "Legalisierung von Schwangerschaftsabbrüchen in Sowjetrussland",
+    "location": "Moskau / Russische SFSR",
+    "country": "Sowjetrussland",
+    "continent": "Europa",
+    "category": "Soziale Errungenschaft",
+    "tags": [
+      "Feministischer & antisexistischer Widerstand",
+      "Gesundheitsgerechtigkeit",
+      "Rechtsbewegung"
+    ],
+    "yearStart": 1920,
+    "yearEnd": 1920,
+    "coordinates": [
+      37.62,
+      55.75
+    ],
+    "description": "Ein gemeinsames Dekret der Volkskommissariate für Gesundheit und Justiz erlaubte Schwangerschaftsabbrüche in öffentlichen Krankenhäusern.",
+    "significance": "Sowjetrussland wurde der erste moderne Staat mit legalem Abbruch auf Wunsch. Die Errungenschaft war widersprüchlich: 1936 schränkte der Stalinismus sie drastisch ein, 1955 wurde sie wiederhergestellt.",
+    "clue": "Suche 1920 in einem Land, das dieses Recht später erst wieder verlieren sollte.",
+    "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3542819/",
+    "difficulty": 1
+  },
+  {
+    "id": "ilo-eight-hour-standard-1919",
+    "title": "Der Achtstundentag wird internationaler Standard",
+    "location": "Washington, D.C. / international",
+    "country": "International",
+    "continent": "Nordamerika",
+    "category": "Soziale Errungenschaft",
+    "tags": [
+      "Arbeiter*innenbewegung",
+      "Gewerkschaftliche Organisierung",
+      "Rechtsbewegung"
+    ],
+    "yearStart": 1919,
+    "yearEnd": 1921,
+    "coordinates": [
+      -77.04,
+      38.9
+    ],
+    "description": "Nach Jahrzehnten von Streiks und Kämpfen nahm die erste Internationale Arbeitskonferenz die Begrenzung auf acht Stunden täglich und 48 Stunden wöchentlich an.",
+    "significance": "Die erste ILO-Konvention machte eine zentrale Forderung der weltweiten Arbeiter*innenbewegung zum internationalen Maßstab – auch wenn viele Staaten sie nie ratifizierten.",
+    "clue": "Suche dort, wo Haymarkets Forderung 33 Jahre später in einen Vertrag wanderte.",
+    "sourceUrl": "https://www.ilo.org/resource/article/convention-no-1-landmark-workers%E2%80%99-rights",
+    "difficulty": 1
+  },
+  {
+    "id": "france-paid-holidays-1936",
+    "title": "Bezahlter Urlaub und 40-Stunden-Woche in Frankreich",
+    "location": "Paris und landesweit",
+    "country": "Frankreich",
+    "continent": "Europa",
+    "category": "Soziale Errungenschaft",
+    "tags": [
+      "Arbeiter*innenbewegung",
+      "Gewerkschaftliche Organisierung",
+      "Antifaschistischer Widerstand"
+    ],
+    "yearStart": 1936,
+    "yearEnd": 1936,
+    "coordinates": [
+      2.35,
+      48.86
+    ],
+    "description": "Eine Welle von Fabrikbesetzungen nach dem Wahlsieg der Volksfront erzwang Tarifverträge, Lohnerhöhungen, zwei Wochen bezahlten Urlaub und die 40-Stunden-Woche.",
+    "significance": "Die Matignon-Abkommen zeigen: Freizeit wurde nicht großzügig verschenkt – sie wurde in besetzten Betrieben erkämpft.",
+    "clue": "Suche in den Fabriken, in denen 1936 getanzt und zugleich verhandelt wurde.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Matignon_Agreements_(1936)",
+    "difficulty": 1
+  },
+  {
+    "id": "new-zealand-social-security-1938",
+    "title": "Nationaler Gesundheitsdienst in Aotearoa Neuseeland",
+    "location": "Wellington",
+    "country": "Aotearoa Neuseeland",
+    "continent": "Ozeanien",
+    "category": "Soziale Errungenschaft",
+    "tags": [
+      "Gesundheitsgerechtigkeit",
+      "Arbeiter*innenbewegung",
+      "Commons-Bewegung"
+    ],
+    "yearStart": 1938,
+    "yearEnd": 1941,
+    "coordinates": [
+      174.78,
+      -41.29
+    ],
+    "description": "Der Social Security Act schuf steuerfinanzierte Leistungen und den Rahmen für einen nationalen Gesundheitsdienst, der Behandlung unabhängig vom Einkommen zugänglich machen sollte.",
+    "significance": "Die WHO bezeichnet Neuseeland als erstes Land mit nationalem Gesundheitsdienst; Konflikte mit Ärzt*innen verzögerten Teile der Umsetzung.",
+    "clue": "Suche auf derselben Inselgruppe wie das frühe Frauenwahlrecht, diesmal 45 Jahre später.",
+    "sourceUrl": "https://nzhistory.govt.nz/politics/social-security-act-passed",
+    "difficulty": 2
+  },
+  {
+    "id": "uk-nhs-founded-1948",
+    "title": "Gründung des britischen NHS",
+    "location": "Manchester / Vereinigtes Königreich",
+    "country": "Vereinigtes Königreich",
+    "continent": "Europa",
+    "category": "Soziale Errungenschaft",
+    "tags": [
+      "Gesundheitsgerechtigkeit",
+      "Arbeiter*innenbewegung",
+      "Commons-Bewegung"
+    ],
+    "yearStart": 1948,
+    "yearEnd": 1948,
+    "coordinates": [
+      -2.24,
+      53.48
+    ],
+    "description": "Der National Health Service nahm den Betrieb auf und bot umfassende medizinische Versorgung, finanziert aus Steuern und grundsätzlich kostenlos bei Nutzung.",
+    "significance": "Der NHS machte Gesundheit im Alltag zu einer öffentlichen Infrastruktur statt zu einer Ware – Ergebnis langer Arbeiter*innen-, Genossenschafts- und Sozialreformkämpfe.",
+    "clue": "Suche im Park Hospital bei Manchester, wo der Dienst am 5. Juli startete.",
+    "sourceUrl": "https://www.nationalarchives.gov.uk/explore-the-collection/stories/the-foundation-of-the-nhs/",
+    "difficulty": 1
+  },
+  {
+    "id": "sweden-gender-neutral-parental-leave-1974",
+    "title": "Geschlechtsneutrale Elternzeit in Schweden",
+    "location": "Stockholm / landesweit",
+    "country": "Schweden",
+    "continent": "Europa",
+    "category": "Soziale Errungenschaft",
+    "tags": [
+      "Feministischer & antisexistischer Widerstand",
+      "Care-Bewegung",
+      "Arbeiter*innenbewegung"
+    ],
+    "yearStart": 1974,
+    "yearEnd": 1974,
+    "coordinates": [
+      18.07,
+      59.33
+    ],
+    "description": "Schweden ersetzte Mutterschaftsurlaub durch eine bezahlte Elternversicherung, die grundsätzlich von beiden Elternteilen genutzt werden konnte.",
+    "significance": "Als erstes Land führte es eine geschlechtsneutrale bezahlte Elternzeit ein und machte Sorgearbeit zumindest teilweise zu einer gemeinsamen sozialen Aufgabe.",
+    "clue": "Suche in Skandinavien nach einem Gesetz, das auch Väter an den Wickeltisch schickte.",
+    "sourceUrl": "https://www.government.se/articles/2020/11/three-important-welfare-reforms-to-promote-gender-equality-in-sweden/",
+    "difficulty": 1
+  },
+  {
+    "id": "saskatchewan-medicare-1962",
+    "title": "Medicare in Saskatchewan",
+    "location": "Regina, Saskatchewan",
+    "country": "Kanada",
+    "continent": "Nordamerika",
+    "category": "Soziale Errungenschaft",
+    "tags": [
+      "Gesundheitsgerechtigkeit",
+      "Arbeiter*innenbewegung",
+      "Commons-Bewegung"
+    ],
+    "yearStart": 1962,
+    "yearEnd": 1962,
+    "coordinates": [
+      -104.62,
+      50.45
+    ],
+    "description": "Trotz eines 23-tägigen Ärzt*innenstreiks führte Saskatchewan eine öffentliche Versicherung für medizinische Behandlung ein.",
+    "significance": "Das Modell setzte sich später in ganz Kanada durch und machte universelle Krankenversorgung zu einem dauerhaften, wenn auch weiterhin umkämpften Gemeingut.",
+    "clue": "Suche in der Prärieprovinz, wo ein Streik gegen öffentliche Medizin sein Ziel verfehlte.",
+    "sourceUrl": "https://www.thecanadianencyclopedia.ca/en/article/medicare",
+    "difficulty": 1
+  },
+  {
+    "id": "iceland-womens-day-off-equality-act",
+    "title": "Islands Frauenstreik und Gleichstellungsgesetz",
+    "location": "Reykjavík und landesweit",
+    "country": "Island",
+    "continent": "Europa",
+    "category": "Soziale Errungenschaft",
+    "tags": [
+      "Feministischer & antisexistischer Widerstand",
+      "Arbeiter*innenbewegung",
+      "Care-Bewegung"
+    ],
+    "yearStart": 1975,
+    "yearEnd": 1976,
+    "coordinates": [
+      -21.94,
+      64.15
+    ],
+    "description": "Am Women’s Day Off legten rund 90 Prozent der Frauen bezahlte und unbezahlte Arbeit nieder; Schulen, Geschäfte und Haushalte gerieten sichtbar ins Stocken.",
+    "significance": "Die Mobilisierung beschleunigte das Gleichstellungsgesetz von 1976 und zeigte mit trockenem Humor: Unsichtbare Arbeit fällt erstaunlich auf, sobald sie niemand erledigt.",
+    "clue": "Suche auf einer Insel, die einen Tag lang merkte, wer den Laden wirklich am Laufen hält.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/1975_Icelandic_women%27s_strike",
+    "difficulty": 1
+  },
+  {
+    "id": "south-africa-constitutional-equality-1996",
+    "title": "Gleichheit in Südafrikas Verfassung",
+    "location": "Sharpeville / Südafrika",
+    "country": "Südafrika",
+    "continent": "Afrika",
+    "category": "Soziale Errungenschaft",
+    "tags": [
+      "Antirassistischer Widerstand",
+      "Queerer Widerstand",
+      "Antikolonialer Widerstand"
+    ],
+    "yearStart": 1996,
+    "yearEnd": 1997,
+    "coordinates": [
+      28.01,
+      -26.69
+    ],
+    "description": "Die nach dem Ende der Apartheid verabschiedete Verfassung verbot Diskriminierung unter anderem nach race, Geschlecht, sexueller Orientierung und Behinderung.",
+    "significance": "Südafrika war der erste Staat mit ausdrücklichem verfassungsrechtlichem Schutz vor Diskriminierung aufgrund sexueller Orientierung; soziale Ungleichheit blieb damit jedoch nicht automatisch beseitigt.",
+    "clue": "Suche in Sharpeville, wo die Verfassung an einem Erinnerungsort des Apartheid-Terrors unterzeichnet wurde.",
+    "sourceUrl": "https://www.justice.gov.za/constitution/chp02.html",
+    "difficulty": 1
+  },
+  {
+    "id": "netherlands-same-sex-marriage-2001",
+    "title": "Erste Öffnung der Ehe für gleichgeschlechtliche Paare",
+    "location": "Amsterdam / Niederlande",
+    "country": "Niederlande",
+    "continent": "Europa",
+    "category": "Soziale Errungenschaft",
+    "tags": [
+      "Queerer Widerstand",
+      "Rechtsbewegung",
+      "Feministischer & antisexistischer Widerstand"
+    ],
+    "yearStart": 2001,
+    "yearEnd": 2001,
+    "coordinates": [
+      4.9,
+      52.37
+    ],
+    "description": "Nach jahrzehntelanger queerer Organisierung öffneten die Niederlande die zivile Ehe für gleichgeschlechtliche Paare; vier Paare heirateten kurz nach Mitternacht in Amsterdam.",
+    "significance": "Es war die erste landesweite vollständige Eheöffnung weltweit – ein wichtiger Rechtsgewinn, ohne die vielfältigeren Ziele queerer Befreiung darauf zu reduzieren.",
+    "clue": "Suche um Mitternacht im Amsterdamer Rathaus.",
+    "sourceUrl": "https://www.amsterdam.nl/stadsarchief/stukken/liefde-lust/homohuwelijk/",
+    "difficulty": 1
+  },
+  {
+    "id": "argentina-gender-identity-law-2012",
+    "title": "Argentiniens Gesetz zur Geschlechtsidentität",
+    "location": "Buenos Aires / landesweit",
+    "country": "Argentinien",
+    "continent": "Südamerika",
+    "category": "Soziale Errungenschaft",
+    "tags": [
+      "Queerer Widerstand",
+      "Rechtsbewegung",
+      "Gesundheitsgerechtigkeit"
+    ],
+    "yearStart": 2012,
+    "yearEnd": 2012,
+    "coordinates": [
+      -58.38,
+      -34.6
+    ],
+    "description": "Trans- und Travesti-Organisationen erkämpften ein Gesetz, das amtliche Geschlechtsänderungen auf Grundlage der Selbstauskunft und Zugang zu geschlechtsangleichender Gesundheitsversorgung garantiert.",
+    "significance": "Das Gesetz galt international als wegweisend, weil es weder psychiatrische Diagnose noch Operation oder richterliche Erlaubnis voraussetzt.",
+    "clue": "Suche vor dem Congreso in Buenos Aires unter hellblau-rosa-weißen Fahnen.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Gender_Identity_Law_(Argentina)",
+    "difficulty": 1
+  },
+  {
+    "id": "ireland-repeal-eighth-2018",
+    "title": "Repeal the Eighth in Irland",
+    "location": "Dublin und landesweit",
+    "country": "Irland",
+    "continent": "Europa",
+    "category": "Soziale Errungenschaft",
+    "tags": [
+      "Feministischer & antisexistischer Widerstand",
+      "Gesundheitsgerechtigkeit",
+      "Rechtsbewegung"
+    ],
+    "yearStart": 2012,
+    "yearEnd": 2018,
+    "coordinates": [
+      -6.26,
+      53.35
+    ],
+    "description": "Jahrelange feministische Kampagnen, Abortion-Support-Netzwerke und die Erinnerung an vermeidbare Todesfälle führten zu einem Referendum über das Abtreibungsverbot der Verfassung.",
+    "significance": "2018 stimmten 66,4 Prozent für die Aufhebung des achten Verfassungszusatzes; der Erfolg verband gegenseitige Hilfe, Erzählungen Betroffener und Massenmobilisierung.",
+    "clue": "Suche in einem Land, dessen Auslandscommunity unter #HomeToVote in Flugzeuge stieg.",
+    "sourceUrl": "https://www.referendum.ie/archive/referendum-on-the-regulation-of-termination-of-pregnancy/",
+    "difficulty": 1
+  }
+]

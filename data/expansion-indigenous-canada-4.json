@@ -1,0 +1,371 @@
+[
+  {
+    "id": "mikmaq-resistance-halifax-1749",
+    "title": "Miâ€™kmaw-Widerstand gegen die britische Besiedlung",
+    "location": "Miâ€™kmaâ€™ki / Halifax",
+    "country": "Kanada",
+    "continent": "Nordamerika",
+    "category": "Indigener Widerstand",
+    "tags": [
+      "Antikolonialer Widerstand",
+      "Landverteidigung",
+      "GedÃ¤chtnis der Besiegten"
+    ],
+    "yearStart": 1749,
+    "yearEnd": 1761,
+    "coordinates": [
+      -63.58,
+      44.65
+    ],
+    "description": "Miâ€™kmaw-Gemeinschaften verteidigten Miâ€™kmaâ€™ki gemeinsam mit akadischen VerbÃ¼ndeten gegen britische Siedlungen, Festungen und die einseitige Aneignung ihres Landes.",
+    "significance": "Der langjÃ¤hrige Widerstand widerspricht der ErzÃ¤hlung einer friedlichen, leeren Kolonialgrenze und mÃ¼ndete in VertrÃ¤ge, deren Bedeutung bis heute umkÃ¤mpft ist.",
+    "clue": "Suche an der AtlantikkÃ¼ste rund um Kjipuktuk, das heutige Halifax.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Father_Le_Loutre%27s_War",
+    "difficulty": 2
+  },
+  {
+    "id": "pontiacs-war-great-lakes",
+    "title": "GroÃŸseen-Aufstand gegen britische Herrschaft",
+    "location": "GroÃŸe Seen und Ohio Country",
+    "country": "Kanada / USA",
+    "continent": "Nordamerika",
+    "category": "Indigener Widerstand",
+    "tags": [
+      "Antikolonialer Widerstand",
+      "Landverteidigung",
+      "Antiimperialistischer Widerstand"
+    ],
+    "yearStart": 1763,
+    "yearEnd": 1766,
+    "coordinates": [
+      -83.05,
+      42.33
+    ],
+    "description": "Odawa, Anishinaabe, Haudenosaunee, Shawnee, Lenape und weitere Nationen griffen britische Forts an und widersetzten sich Besatzung, Handelspolitik und Landraub.",
+    "significance": "Das dezentrale BÃ¼ndnis brachte fast alle britischen Posten westlich der Appalachen zu Fall und zwang die Kolonialmacht zu Verhandlungen.",
+    "clue": "Suche an der Meerenge zwischen Huron- und Eriesee.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Pontiac%27s_War",
+    "difficulty": 2
+  },
+  {
+    "id": "mica-bay-incident-1849",
+    "title": "Mica-Bay-Aktion",
+    "location": "Mica Bay, Oberer See",
+    "country": "Kanada",
+    "continent": "Nordamerika",
+    "category": "Indigener Widerstand",
+    "tags": [
+      "Landverteidigung",
+      "Antikolonialer Widerstand",
+      "Ã–kologischer Widerstand"
+    ],
+    "yearStart": 1849,
+    "yearEnd": 1850,
+    "coordinates": [
+      -85.55,
+      47.93
+    ],
+    "description": "Anishinaabe und MÃ©tis stoppten den Betrieb einer Kupfermine, die ohne Vertrag und Zustimmung auf ihrem Land erÃ¶ffnet worden war.",
+    "significance": "Die direkte Aktion machte Landrechte zur unvermeidbaren politischen Frage und trug zu den Robinson-VertrÃ¤gen von 1850 bei.",
+    "clue": "Suche am Nordostufer des Oberen Sees.",
+    "sourceUrl": "https://www.metisnation.org/about-the-mno/metis-timeline/",
+    "difficulty": 2
+  },
+  {
+    "id": "tsilhqotin-war-1864",
+    "title": "Tsilhqotâ€™in-Krieg",
+    "location": "Tsilhqotâ€™in-Territorium, British Columbia",
+    "country": "Kanada",
+    "continent": "Nordamerika",
+    "category": "Indigener Widerstand",
+    "tags": [
+      "Landverteidigung",
+      "Antikolonialer Widerstand",
+      "GedÃ¤chtnis der Besiegten"
+    ],
+    "yearStart": 1864,
+    "yearEnd": 1865,
+    "coordinates": [
+      -123.6,
+      52.1
+    ],
+    "description": "Tsilhqotâ€™in-Krieger wehrten sich gegen einen StraÃŸenbau, Landinvasion und die Ausbreitung der Pocken; sechs AnfÃ¼hrer wurden unter dem Vorwand von FriedensgesprÃ¤chen verhaftet und hingerichtet.",
+    "significance": "Die 2018 erfolgte Entschuldigung und Rehabilitierung erkannte sie ausdrÃ¼cklich als Krieger und nicht als Verbrecher an.",
+    "clue": "Suche im Chilcotin-Plateau westlich des Fraser River.",
+    "sourceUrl": "https://tsilhqotin.ca/",
+    "difficulty": 2
+  },
+  {
+    "id": "red-river-resistance-1869",
+    "title": "Red-River-Widerstand",
+    "location": "Red River, Manitoba",
+    "country": "Kanada",
+    "continent": "Nordamerika",
+    "category": "Indigener Widerstand",
+    "tags": [
+      "Antikolonialer Widerstand",
+      "Basisdemokratie",
+      "Landverteidigung"
+    ],
+    "yearStart": 1869,
+    "yearEnd": 1870,
+    "coordinates": [
+      -97.13,
+      49.89
+    ],
+    "description": "MÃ©tis-Gemeinschaften unter Louis Riel verhinderten eine LandÃ¼bertragung ohne ihre Zustimmung, bildeten eine provisorische Regierung und verhandelten den Eintritt Manitobas in Kanada.",
+    "significance": "Der Widerstand verband Selbstregierung, Sprach- und Landrechte, wurde aber anschlieÃŸend durch Repression und neue Siedlungspolitik zurÃ¼ckgedrÃ¤ngt.",
+    "clue": "Suche am Zusammenfluss von Red und Assiniboine River.",
+    "sourceUrl": "https://www.thecanadianencyclopedia.ca/en/article/red-river-rebellion",
+    "difficulty": 1
+  },
+  {
+    "id": "north-west-resistance-1885",
+    "title": "Nordwest-Widerstand von 1885",
+    "location": "Batoche und Saskatchewan",
+    "country": "Kanada",
+    "continent": "Nordamerika",
+    "category": "Indigener Widerstand",
+    "tags": [
+      "Antikolonialer Widerstand",
+      "Landverteidigung",
+      "GedÃ¤chtnis der Besiegten"
+    ],
+    "yearStart": 1885,
+    "yearEnd": 1885,
+    "coordinates": [
+      -106.13,
+      52.75
+    ],
+    "description": "MÃ©tis sowie Cree- und Assiniboine-Gruppen widersetzten sich gebrochenen Zusagen, Hungerpolitik, Landvermessung und der Zerschlagung ihrer Lebensgrundlagen.",
+    "significance": "Kanadas militÃ¤rischer Sieg und die Hinrichtung Louis Riels verschÃ¤rften Kolonisierung und Repression; indigene Perspektiven sprechen bewusst von Widerstand statt Rebellion.",
+    "clue": "Suche am South Saskatchewan River bei Batoche.",
+    "sourceUrl": "https://indigenouspeoplesatlasofcanada.ca/article/1885-northwest-resistance/",
+    "difficulty": 1
+  },
+  {
+    "id": "nisgaa-land-committee-1887",
+    "title": "Nisgaâ€™a Land Committee",
+    "location": "Nass River, British Columbia",
+    "country": "Kanada",
+    "continent": "Nordamerika",
+    "category": "Indigener Widerstand",
+    "tags": [
+      "Landverteidigung",
+      "Rechtsbewegung",
+      "Antikolonialer Widerstand"
+    ],
+    "yearStart": 1887,
+    "yearEnd": 1913,
+    "coordinates": [
+      -129.1,
+      55.1
+    ],
+    "description": "Nisgaâ€™a-HÃ¤uptlinge und Gemeinden organisierten sich dauerhaft gegen die Behauptung, ihr Land sei ohne Vertrag an die Krone gefallen.",
+    "significance": "Petitionen, Delegationen und die Nisgaâ€™a Petition von 1913 hielten den Anspruch auf Titel und Selbstbestimmung trotz staatlicher Blockade lebendig.",
+    "clue": "Suche im Tal des Nass River nahe der PazifikkÃ¼ste.",
+    "sourceUrl": "https://www.nisgaanation.ca/about-2/history/",
+    "difficulty": 2
+  },
+  {
+    "id": "cranmer-potlatch-resistance-1921",
+    "title": "â€™Mimkwamlis-Potlatch und Widerstand gegen das Verbot",
+    "location": "â€™Mimkwamlis, Village Island",
+    "country": "Kanada",
+    "continent": "Nordamerika",
+    "category": "Indigener Widerstand",
+    "tags": [
+      "Kultureller Widerstand",
+      "Antikolonialer Widerstand",
+      "GedÃ¤chtnis der Besiegten"
+    ],
+    "yearStart": 1921,
+    "yearEnd": 1951,
+    "coordinates": [
+      -126.58,
+      50.62
+    ],
+    "description": "Kwakwakaâ€™wakw-Gemeinschaften hielten trotz kolonialem Potlatch-Verbot Zeremonien ab; nach Dan Cranmers groÃŸem Potlatch wurden Teilnehmende verhaftet und Regalia beschlagnahmt.",
+    "significance": "Geheime und offene FortfÃ¼hrung bewahrte soziale, rechtliche und spirituelle Beziehungen, bis das Verbot 1951 aus dem Indian Act verschwand.",
+    "clue": "Suche auf einer Insel im Broughton-Archipel.",
+    "sourceUrl": "https://www.thecanadianencyclopedia.ca/en/article/potlatch-ban",
+    "difficulty": 2
+  },
+  {
+    "id": "allied-tribes-bc-1916",
+    "title": "Allied Tribes of British Columbia",
+    "location": "British Columbia",
+    "country": "Kanada",
+    "continent": "Nordamerika",
+    "category": "Indigener Widerstand",
+    "tags": [
+      "Landverteidigung",
+      "Basisdemokratie",
+      "Antikolonialer Widerstand"
+    ],
+    "yearStart": 1916,
+    "yearEnd": 1927,
+    "coordinates": [
+      -123.12,
+      49.28
+    ],
+    "description": "Vertreter vieler First Nations bÃ¼ndelten ihre Landforderungen und wiesen Vertragslosigkeit, Reservatspolitik und die Leugnung indigenen Titels zurÃ¼ck.",
+    "significance": "Kanada reagierte 1927 mit einem Gesetz, das das Sammeln von Geld fÃ¼r Landklagen kriminalisierte â€“ ein MaÃŸ fÃ¼r die Wirkung der Organisierung.",
+    "clue": "Suche zwischen KÃ¼stengemeinden und den politischen BÃ¼ros in Vancouver und Ottawa.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Allied_Tribes_of_British_Columbia",
+    "difficulty": 3
+  },
+  {
+    "id": "six-nations-council-resistance-1924",
+    "title": "Widerstand des Haudenosaunee-KonfÃ¶derationsrats",
+    "location": "Six Nations of the Grand River",
+    "country": "Kanada",
+    "continent": "Nordamerika",
+    "category": "Indigener Widerstand",
+    "tags": [
+      "Basisdemokratie",
+      "Antikolonialer Widerstand",
+      "Landverteidigung"
+    ],
+    "yearStart": 1924,
+    "yearEnd": 1924,
+    "coordinates": [
+      -80.12,
+      43.07
+    ],
+    "description": "Kanada setzte die traditionelle Haudenosaunee-Regierung gewaltsam ab und installierte ein Band-Council-System; UnterstÃ¼tzer*innen der KonfÃ¶deration verweigerten der kolonialen Neuordnung ihre Anerkennung.",
+    "significance": "Der bis heute fortwirkende Konflikt zeigt, wie der Indian Act eigenstÃ¤ndige politische Ordnungen durch staatlich definierte Vertretung ersetzen sollte.",
+    "clue": "Suche am Grand River sÃ¼dwestlich von Hamilton.",
+    "sourceUrl": "https://www.thecanadianencyclopedia.ca/en/article/six-nations-of-the-grand-river",
+    "difficulty": 3
+  },
+  {
+    "id": "native-brotherhood-bc-1931",
+    "title": "Native Brotherhood of British Columbia",
+    "location": "Port Simpson und PazifikkÃ¼ste",
+    "country": "Kanada",
+    "continent": "Nordamerika",
+    "category": "Indigener Widerstand",
+    "tags": [
+      "Arbeiter*innenbewegung",
+      "Antirassistischer Widerstand",
+      "Fischereirechte"
+    ],
+    "yearStart": 1931,
+    "yearEnd": 1960,
+    "coordinates": [
+      -130.32,
+      54.55
+    ],
+    "description": "Indigene Fischer und KÃ¼stengemeinden grÃ¼ndeten eine provinzweite Organisation gegen rassistische LÃ¶hne, Lizenzpolitik und politische Entrechtung.",
+    "significance": "Die Brotherhood verband gewerkschaftsÃ¤hnliche Selbstorganisation mit Land-, Fischerei- und BÃ¼rgerrechten unter den EinschrÃ¤nkungen des Indian Act.",
+    "clue": "Suche in Lax Kwâ€™alaams nÃ¶rdlich von Prince Rupert.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Native_Brotherhood_of_British_Columbia",
+    "difficulty": 3
+  },
+  {
+    "id": "white-paper-resistance-1969",
+    "title": "Indigener Widerstand gegen das White Paper",
+    "location": "Kanadaweit / Ottawa",
+    "country": "Kanada",
+    "continent": "Nordamerika",
+    "category": "Indigener Widerstand",
+    "tags": [
+      "Antikolonialer Widerstand",
+      "Basisdemokratie",
+      "Rechtsbewegung"
+    ],
+    "yearStart": 1969,
+    "yearEnd": 1971,
+    "coordinates": [
+      -75.7,
+      45.42
+    ],
+    "description": "First-Nations-Organisationen wiesen den Regierungsplan zurÃ¼ck, besonderen Rechtsstatus, VertrÃ¤ge und kollektive Landbeziehungen im Namen formaler Gleichheit aufzulÃ¶sen.",
+    "significance": "Das Red Paper der Indian Association of Alberta und landesweite Mobilisierung zwangen Ottawa, das Vorhaben zurÃ¼ckzunehmen.",
+    "clue": "Suche zwischen Gemeindehallen in Alberta und dem Parlament in Ottawa.",
+    "sourceUrl": "https://www.thecanadianencyclopedia.ca/en/article/the-white-paper-1969",
+    "difficulty": 1
+  },
+  {
+    "id": "james-bay-cree-hydro-resistance",
+    "title": "Eeyou-Widerstand gegen das James-Bay-Projekt",
+    "location": "Eeyou Istchee, QuÃ©bec",
+    "country": "Kanada",
+    "continent": "Nordamerika",
+    "category": "Indigener Widerstand",
+    "tags": [
+      "Ã–kologischer Widerstand",
+      "Landverteidigung",
+      "Rechtsbewegung"
+    ],
+    "yearStart": 1971,
+    "yearEnd": 1975,
+    "coordinates": [
+      -77.63,
+      53.79
+    ],
+    "description": "Cree- und Inuit-Gemeinschaften organisierten rechtlichen und politischen Widerstand gegen ein riesiges Wasserkraftprojekt, das ohne ihre Zustimmung begonnen wurde.",
+    "significance": "Eine einstweilige VerfÃ¼gung stoppte die Arbeiten kurzzeitig; der Druck fÃ¼hrte zum ersten modernen umfassenden Landabkommen Kanadas, trotz bleibender SchÃ¤den und Konflikte.",
+    "clue": "Suche an den FlÃ¼ssen, die zur James Bay flieÃŸen.",
+    "sourceUrl": "https://www.thecanadianencyclopedia.ca/en/article/james-bay-project",
+    "difficulty": 2
+  },
+  {
+    "id": "anicinabe-park-occupation-1974",
+    "title": "Besetzung des Anicinabe Park",
+    "location": "Kenora, Ontario",
+    "country": "Kanada",
+    "continent": "Nordamerika",
+    "category": "Indigener Widerstand",
+    "tags": [
+      "Antirassistischer Widerstand",
+      "Landverteidigung",
+      "Antirepression"
+    ],
+    "yearStart": 1974,
+    "yearEnd": 1974,
+    "coordinates": [
+      -94.49,
+      49.77
+    ],
+    "description": "Anishinaabe-Aktivist*innen besetzten den Park gegen Polizeigewalt, Wohnungsnot, Rassismus und die Kontrolle indigener RÃ¤ume durch die Stadt.",
+    "significance": "Die mehrwÃ¶chige Besetzung machte Kenoras koloniale Gewalt sichtbar und schuf einen dauerhaften Erinnerungsort fÃ¼r Land Back und Selbstbestimmung.",
+    "clue": "Suche am Lake of the Woods in Kenora.",
+    "sourceUrl": "https://reconciliationkenora.ca/",
+    "difficulty": 2
+  },
+  {
+    "id": "native-peoples-caravan-1974",
+    "title": "Native Peopleâ€™s Caravan",
+    "location": "Vancouver bis Ottawa",
+    "country": "Kanada",
+    "continent": "Nordamerika",
+    "category": "Indigener Widerstand",
+    "tags": [
+      "Antikolonialer Widerstand",
+      "Antirepression",
+      "Basisdemokratie"
+    ],
+    "yearStart": 1974,
+    "yearEnd": 1974,
+    "coordinates": [
+      -75.7,
+      45.42
+    ],
+    "description": "Hunderte Indigene reisten quer durch Kanada, sammelten lokale Beschwerden und demonstrierten am Parlament gegen Indian Act, Landraub, Armut und staatliche Kontrolle.",
+    "significance": "Nach Polizeigewalt auf Parliament Hill besetzten Teilnehmende ein GebÃ¤ude und grÃ¼ndeten die Native Peoples Embassy als selbstverwalteten Treffpunkt.",
+    "clue": "Folge einer Karawane von Vancouver bis auf Parliament Hill.",
+    "sourceUrl": "https://equitableeducation.ca/2024/native-peoples-caravan-50",
+    "difficulty": 3
+  },
+  {
+    "id": "mackenzie-valley-pipeline-resistance",
+    "title": "Dene-Widerstand gegen die Mackenzie-Pipeline",
+    "location": "Mackenzie Valley, Nordwest-Territorien",
+    "country": "Kanada",
+    "continent": "Nordamerika",
+    "category": "Indigener Widerstand",
+    "tags": [
+      "Landverteidigung",
+      "Ã–kologischer Widerstan×}ö¶‰ËkºwµçQé•È©¥¹¹•¸‰±½­¥•ÉÑ•¸½ÉÍÑÍÑÉ‡}•¸••¸‘•¸-…¡±Í¡±…œ…Õ˜Ñ¡±¥¤İ…¥¤ìÕÑé•¹‘”İÕÉ‘•¸Ù•É¡…™Ñ•Ğ¸ˆ°(€€€€‰Í¥¹¥™¥…¹”ˆè€‰¥”­Ñ¥½¸ÑÉÕœéÕÈM¡…™™Õ¹œ‘•ÌM¡ÕÑé•‰¥•ÑÌİ…¥¤!……¹…Ì‰•¤°‘•ÍÍ•¸Y•Éİ…±ÑÕ¹œÍÃ‘Ñ•Èéİ¥Í¡•¸!…¥‘„9…Ñ¥½¸Õ¹-…¹…‘„•Ñ•¥±ĞİÕÉ‘”¸ˆ°(€€€€‰±Õ”ˆè€‰MÕ¡”¥´Ïñ‘±¥¡•¸É¡¥Á•°Ù½¸!…¥‘„İ…¥¤¸ˆ°(€€€€‰Í½ÕÉ•UÉ°ˆè€‰¡ÑÑÁÌè¼½•¸¹İ¥­¥Á•‘¥„¹½Éœ½İ¥­¤½1å•±±}%Í±…¹ˆ°(€€€€‰‘¥™™¥Õ±Ñäˆè€Ä(€ô°(€ì(€€€€‰¥ˆè€‰±Õ‰¥½¸µÍÁ¥É¥ĞµÍ¥¹Ìµ‰½å½ÑĞ´Ääààˆ°(€€€€‰Ñ¥Ñ±”ˆè€‰1Õ‰¥½¸µ	½å­½ÑĞÙ½¸Q¡”MÁ¥É¥ĞM¥¹Ìˆ°(€€€€‰±½…Ñ¥½¸ˆè€‰…±…Éä€¼1Õ‰¥½¸1…­”ˆ°(€€€€‰½Õ¹ÑÉäˆè€‰-…¹…‘„ˆ°(€€€€‰½¹Ñ¥¹•¹Ğˆè€‰9½É‘…µ•É¥­„ˆ°(€€€€‰…Ñ•½Éäˆè€‰%¹‘¥•¹•È]¥‘•ÉÍÑ…¹ˆ°(€€€€‰Ñ…Ìˆèl(€€€€€€‰-Õ±ÑÕÉ•±±•È]¥‘•ÉÍÑ…¹ˆ°(€€€€€€‰1…¹‘Ù•ÉÑ•¥‘¥Õ¹œˆ°(€€€€€€‰¹Ñ¥¥µÁ•É¥…±¥ÍÑ¥Í¡•È]¥‘•ÉÍÑ…¹ˆ(€€€t°(€€€€‰å•…ÉMÑ…ÉĞˆè€ÄäàØ°(€€€€‰å•…É¹ˆè€Ääàà°(€€€€‰½½É‘¥¹…Ñ•Ìˆèl(€€€€€€´ÄÄĞ¸ÀÜ°(€€€€€€ÔÄ¸ÀÔ(€€€t°(€€€€‰‘•ÍÉ¥ÁÑ¥½¸ˆè€‰¥”1Õ‰¥½¸1…­”9…Ñ¥½¸É¥•˜éÕ´¥¹Ñ•É¹…Ñ¥½¹…±•¸	½å­½ÑĞ•¥¹•È½±åµÁ¥Í¡•¸5ÕÍ•ÕµÍ…ÕÍÍÑ•±±Õ¹œ…Õ˜°‘¥”Ù½¸M¡•±°™¥¹…¹é¥•ÉĞİÕÉ‘”°ß‘¡É•¹I½¡ÍÑ½™™›ÙÉ‘•ÉÕ¹œ¥¡È1…¹é•ÉÍÓÙÉÑ”¸ˆ°(€€€€‰Í¥¹¥™¥…¹”ˆè€‰•ÈAÉ½Ñ•ÍĞ±•Ñ”‘¥”Y•É‰¥¹‘Õ¹œéİ¥Í¡•¸­Õ±ÑÕÉ•±±•È¹•¥¹Õ¹œ°-½¹é•É¹ÍÁ½¹Í½É¥¹œÕ¹™½ÉÑ•Í•ÑéÑ•´1…¹‘É…Õˆ½™™•¸¸ˆ°(€€€€‰±Õ”ˆè€‰MÕ¡”‰•¤‘•¸=±åµÁ¥Í¡•¸]¥¹Ñ•ÉÍÁ¥•±•¸€Ääàà¥¸…±…Éä¸ˆ°(€€€€‰Í½ÕÉ•UÉ°ˆè€‰¡ÑÑÁÌè¼½İİÜ¹…µµÍ„¹½´½ÁÕ‰±¥…Ñ¥½¹Ì½İ¥¹‘ÍÁ•…­•È½¹…Ñ¥½¹Ìµ…Ñ¡•ÈµÁÉ½Ñ•ÍĞµ±•¹‰½İÌµÍÁ¥É¥ĞµÍ¥¹Ìµ‘¥ÍÁ±…äˆ°(€€€€‰‘¥™™¥Õ±Ñäˆè€È(€ô°(€ì(€€€€‰¥ˆè€‰¥¹¹Ôµ¹…Ñ¼µ™±¥¡ĞµÉ•Í¥ÍÑ…¹”´Ääààˆ°(€€€€‰Ñ¥Ñ±”ˆè€‰%¹¹Ôµ]¥‘•ÉÍÑ…¹••¸9Q<µQ¥•™™³ñ”ˆ°(€€€€‰±½…Ñ¥½¸ˆè€‰9¥Ñ…ÍÍ¥¹…¸€¼½½Í”	…äˆ°(€€€€‰½Õ¹ÑÉäˆè€‰-…¹…‘„ˆ°(€€€€‰½¹Ñ¥¹•¹Ğˆè€‰9½É‘…µ•É¥­„ˆ°(€€€€‰…Ñ•½Éäˆè€‰%¹‘¥•¹•È]¥‘•ÉÍÑ…¹ˆ°(€€€€‰Ñ…Ìˆèl(€€€€€€‰¹Ñ¥µ¥±¥Ñ…É¥ÍµÕÌˆ°(€€€€€€‰1…¹‘Ù•ÉÑ•¥‘¥Õ¹œˆ°(€€€€€€‹Y­½±½¥Í¡•È]¥‘•ÉÍÑ…¹ˆ(€€€t°(€€€€‰å•…ÉMÑ…ÉĞˆè€Ääàà°(€€€€‰å•…É¹ˆè€ÄääÀ°(€€€€‰½½É‘¥¹…Ñ•Ìˆèl(€€€€€€´ØÀ¸ĞÈ°(€€€€€€ÔÌ¸ÌÈ(€€€t°(€€€€‰‘•ÍÉ¥ÁÑ¥½¸ˆè€‰%¹¹Ôµ…µ¥±¥•¸•ÉÉ¥¡Ñ•Ñ•¸1…•È…Õ˜µ¥±¥Ó‘É¥Í •¹ÕÑéÑ•´1…¹°‰•Í•ÑéÑ•¸MÑ…ÉÑ‰…¡¹•¸Õ¹ÍÓÙÉÑ•¸Q¥•™™±ÕŸñ‰Õ¹•¸ƒñ‰•È9¥Ñ…ÍÍ¥¹…¸¸ˆ°(€€€€‰Í¥¹¥™¥…¹”ˆè€‰¥”­Ñ¥½¹•¸Ù•É‰…¹‘•¸¹Ñµ¥±¥Ñ…É¥Í¥•ÉÕ¹œµ¥Ğ)…‘É•¡Ñ•¸°•ÍÕ¹‘¡•¥ĞÕ¹‘•ÈiÕËñ­İ•¥ÍÕ¹œ•¥¹•È	…Í¥Ì°‘¥”½¡¹”¥¹‘¥•¹”iÕÍÑ¥µµÕ¹œ•‰…ÕĞİ½É‘•¸İ…È¸ˆ°(€€€€‰±Õ”ˆè€‰MÕ¡”…¸‘•È1Õ™Ñİ…™™•¹‰…Í¥Ì‰•¤!…ÁÁäY…±±•äµ½½Í”	…ä¸ˆ°(€€€€‰Í½ÕÉ•UÉ°ˆè€‰¡ÑÑÁÌè¼½•¸¹İ¥­¥Á•‘¥„¹½Éœ½İ¥­¤½	}½½Í•}	…ä%¹‘¥•¹½ÕÍ}ÁÉ½Ñ•ÍÑÌˆ°(€€€€‰‘¥™™¥Õ±Ñäˆè€È(€ô°(€ì(€€€€‰¥ˆè€‰Ñ•µ……µ¤µÉ•µÍÅÕ¥ÉÉ•°µ‰±½­…‘”ˆ°(€€€€‰Ñ¥Ñ±”ˆè€‰I•µMÅÕ¥ÉÉ•°µI½…µ	±½­…‘”ˆ°(€€€€‰±½…Ñ¥½¸ˆè€‰Q•µ……µ¤°=¹Ñ…É¥¼ˆ°(€€€€‰½Õ¹ÑÉäˆè€‰-…¹…‘„ˆ°(€€€€‰½¹Ñ¥¹•¹Ğˆè€‰9½É‘…µ•É¥­„ˆ°(€€€€‰…Ñ•½Éäˆè€‰%¹‘¥•¹•È]¥‘•ÉÍÑ…¹ˆ°(€€€€‰Ñ…Ìˆèl(€€€€€€‹Y­½±½¥Í¡•È]¥‘•ÉÍÑ…¹ˆ°(€€€€€€‰1…¹‘Ù•ÉÑ•¥‘¥Õ¹œˆ°(€€€€€€‰¹Ñ¥­½±½¹¥…±•È]¥‘•ÉÍÑ…¹ˆ(€€€t°(€€€€‰å•…ÉMÑ…ÉĞˆè€Ääàà°(€€€€‰å•…É¹ˆè€Ääàä°(€€€€‰½½É‘¥¹…Ñ•Ìˆèl(€€€€€€´àÀ¸ÀÜ°(€€€€€€ĞÜ¸ÀØ(€€€t°(€€€€‰‘•ÍÉ¥ÁÑ¥½¸ˆè€‰Q•µ”µÕ…µ„¹¥Í¡¹…‰…¤Õ¹Uµİ•±Ñ…­Ñ¥Ù¥ÍĞ©¥¹¹•¸‰±½­¥•ÉÑ•¸‘•¸ÕÍ‰…Ô•¥¹•È½ÉÍÑÍÑÉ‡}”¥¸…±Ñ•´-¥•™•É¹İ…±Õ¹µ…¡Ñ•¸Õ¹•­³‘ÉÑ•¸¥¹‘¥•¹•¸Q¥Ñ•°Í¥¡Ñ‰…È¸ˆ°(€€€€‰Í¥¹¥™¥…¹”ˆè€‰¥”	±½­…‘”ÍÑ½ÁÁÑ”‘•¸MÑÉ‡}•¹‰…Ôé•¥Ñİ•¥Í”Õ¹Ù•É‰…¹]…±‘Í¡ÕÑèµ¥Ğ‘•È½É‘•ÉÕ¹œ¹… ¹•É­•¹¹Õ¹œÙ½¸;Še…­¤5•¹…¸¸ˆ°(€€€€‰±Õ”ˆè€‰MÕ¡”»ÙÉ‘±¥ ‘•Ì1…­”Q•µ……µ¤¥¸=¹Ñ…É¥¼¸ˆ°(€€€€‰Í½ÕÉ•UÉ°ˆè€‰¡ÑÑÁÌè¼½•¸¹İ¥­¥Á•‘¥„¹½Éœ½İ¥­¤½Q•µ……µ¥}¥ÉÍÑ}9…Ñ¥½¸ˆ°(€€€€‰‘¥™™¥Õ±Ñäˆè€È(€ô°(€ì(€€€€‰¥ˆè€‰‰ÕÉ¹Ğµ¡ÕÉ µ™¥Í¡•ÉäµÉ•Í¥ÍÑ…¹”ˆ°(€€€€‰Ñ¥Ñ±”ˆè€‰Í•¹¿ÑÁ•Ñ¥Ñ¨µ¥Í¡•É•¥İ¥‘•ÉÍÑ…¹ˆ°(€€€€‰±½…Ñ¥½¸ˆè€‰	ÕÉ¹Ğ¡ÕÉ €¼Í•¹¿ÑÁ•Ñ¥Ñ¨°9•Ü	ÉÕ¹Íİ¥¬ˆ°(€€€€‰½Õ¹ÑÉäˆè€‰-…¹…‘„ˆ°(€€€€‰½¹Ñ¥¹•¹Ğˆè€‰9½É‘…µ•É¥­„ˆ°(€€€€‰…Ñ•½Éäˆè€‰%¹‘¥•¹•È]¥‘•ÉÍÑ…¹ˆ°(€€€€‰Ñ…Ìˆèl(€€€€€€‰¥Í¡•É•¥É•¡Ñ”ˆ°(€€€€€€‰1…¹‘Ù•ÉÑ•¥‘¥Õ¹œˆ°(€€€€€€‰¹Ñ¥É•ÁÉ•ÍÍ¥½¸ˆ(€€€t°(€€€€‰å•…ÉMÑ…ÉĞˆè€Ääää°(€€€€‰å•…É¹ˆè€ÈÀÀÈ°(€€€€‰½½É‘¥¹…Ñ•Ìˆèl(€€€€€€´ØÔ¸Àà°(€€€€€€ĞÜ¸È(€€€t°(€€€€‰‘•ÍÉ¥ÁÑ¥½¸ˆè€‰5§Še­µ…Üµ¥Í¡•ÈÙ•ÉÑ•¥‘¥Ñ•¸¹… ‘•´5…ÉÍ¡…±°µUÉÑ•¥°•¥¹”Í•±‰ÍĞÉ•Õ±¥•ÉÑ”!Õµµ•É™¥Í¡•É•¤••¸	•Í¡±…¹…¡µ•¸°I…µµ…¹É¥™™”Õ¹µ…ÍÍ¥Ù”A½±¥é•¥•¥¹Ï‘Ñé”¸ˆ°(€€€€‰Í¥¹¥™¥…¹”ˆè€‰•È-½¹™±¥­Ğµ…¡Ñ”‘•ÕÑ±¥ °‘…ÍÌÙ•ÉÑÉ…±¥¡”I•¡Ñ”½¡¹”•¥•¹”-½¹ÑÉ½±±”ƒñ‰•ÈI••±¸Õ¹1•‰•¹ÍÉÕ¹‘±…•¸ÁÉ•¯‘È‰±•¥‰•¸¸ˆ°(€€€€‰±Õ”ˆè€‰MÕ¡”…¸‘•È5¥É…µ¥¡¤	…ä¥´=ÍÑ•¸9•Ü	ÉÕ¹Íİ¥­Ì¸ˆ°(€€€€‰Í½ÕÉ•UÉ°ˆè€‰¡ÑÑÁÌè¼½•¸¹İ¥­¥Á•‘¥„¹½Éœ½İ¥­¤½	ÕÉ¹Ñ}¡ÕÉ¡}É¥Í¥Ìˆ°(€€€€‰‘¥™™¥Õ±Ñäˆè€Ä(€ô°(€ì(€€€€‰¥ˆè€‰Í­İ•±­İ•­İ•±ĞµÍÕ¸µÁ•…­Ìµ…µÀˆ°(€€€€‰Ñ¥Ñ±”ˆè€‰M­İ•±­İ•¯Šeİ•±Ğµ1…¹‘Ù•ÉÑ•¥‘¥Õ¹œˆ°(€€€€‰±½…Ñ¥½¸ˆè€‰MÕ¸A•…­Ì°M•ß¥Á•µŒµQ•ÉÉ¥Ñ½É¥Õ´ˆ°(€€€€‰½Õ¹ÑÉäˆè€‰-…¹…‘„ˆ°(€€€€‰½¹Ñ¥¹•¹Ğˆè€‰9½É‘…µ•É¥­„ˆ°(€€€€‰…Ñ•½Éäˆè€‰%¹‘¥•¹•È]¥‘•ÉÍÑ…¹ˆ°(€€€€‰Ñ…Ìˆèl(€€€€€€‰1…¹‘Ù•ÉÑ•¥‘¥Õ¹œˆ°(€€€€€€‹Y­½±½¥Í¡•È]¥‘•ÉÍÑ…¹ˆ°(€€€€€€‰¹Ñ¥­½±½¹¥…±•È]¥‘•ÉÍÑ…¹ˆ(€€€t°(€€€€‰å•…ÉMÑ…ÉĞˆè€ÈÀÀÀ°(€€€€‰å•…É¹ˆè€ÈÀÀØ°(€€€€‰½½É‘¥¹…Ñ•Ìˆèl(€€€€€€´ÄÈÀ¸àà°(€€€€€€ÔÀ¸àà(€€€t°(€€€€‰‘•ÍÉ¥ÁÑ¥½¸ˆè€‰M•ß¥Á•µŒµ1…¹‘Ù•ÉÑ•¥‘¥•È©¥¹¹•¸•ÉÉ¥¡Ñ•Ñ•¸•¥¸‘…Õ•É¡…™Ñ•Ì…µÀÕ¹‰±½­¥•ÉÑ•¸‘•¸ÕÍ‰…Ô•¥¹•ÌM­¥É•Í½ÉÑÌ…Õ˜¹¥¡Ğ…‰•ÑÉ•Ñ•¹•´•‰¥•Ğ¸ˆ°(€€€€‰Í¥¹¥™¥…¹”ˆè€‰¥”ÕÍ•¥¹…¹‘•ÉÍ•ÑéÕ¹œ‰É…¡Ñ”‘¥”…±±Ó‘±¥¡”áÁ…¹Í¥½¸Ù½¸Q½ÕÉ¥ÍµÕÌÕ¹AÉ¥Ù…Ñ•¥•¹ÑÕ´…±Ì­½±½¹¥…±”1…¹‘™É…”…Õ˜‘¥”Á½±¥Ñ¥Í¡”-…ÉÑ”¸ˆ°(€€€€‰±Õ”ˆè€‰MÕ¡”¥¸‘•¸	•É•¸¹½É“ÙÍÑ±¥ Ù½¸-…µ±½½ÁÌ¸ˆ°(€€€€‰Í½ÕÉ•UÉ°ˆè€‰¡ÑÑÁÌè¼½•¸¹İ¥­¥Á•‘¥„¹½Éœ½İ¥­¤½MÕ¹}A•…­Í}I•Í½ÉĞ=ÁÁ½Í¥Ñ¥½¹}‰å}%¹‘¥•¹½ÕÍ}É½ÕÁÌˆ°(€€€€‰‘¥™™¥Õ±Ñäˆè€È(€ô°(€ì(€€€€‰¥ˆè€‰É…ÍÍäµ¹…ÉÉ½İÌµÉ½…µ‰±½­…‘”ˆ°(€€€€‰Ñ¥Ñ±”ˆè€‰É…ÍÍäµ9…ÉÉ½İÌµMÑÉ‡}•¹‰±½­…‘”ˆ°(€€€€‰±½…Ñ¥½¸ˆè€‰ÍÕ‰Á••Í¡½Í••İ…½¹œ°=¹Ñ…É¥¼ˆ°(€€€€‰½Õ¹ÑÉäˆè€‰-…¹…‘„ˆ°(€€€€‰½¹Ñ¥¹•¹Ğˆè€‰9½É‘…µ•É¥­„ˆ°(€€€€‰…Ñ•½Éäˆè€‰%¹‘¥•¹•È]¥‘•ÉÍÑ…¹ˆ°(€€€€‰Ñ…Ìˆèl(€€€€€€‹Y­½±½¥Í¡•È]¥‘•ÉÍÑ…¹ˆ°(€€€€€€‰1…¹‘Ù•ÉÑ•¥‘¥Õ¹œˆ°(€€€€€€‰•ÍÕ¹‘¡•¥ÑÍ•É•¡Ñ¥­•¥Ğˆ(€€€t°(€€€€‰å•…ÉMÑ…ÉĞˆè€ÈÀÀÈ°(€€€€‰å•…É¹ˆè€ÈÀÈØ°(€€€€‰½½É‘¥¹…Ñ•Ìˆèl(€€€€€€´äĞ¸äØ°(€€€€€€ÔÀ¸ÄÔ(€€€t°(€€€€‰‘•ÍÉ¥ÁÑ¥½¸ˆè€‰)Õ•¹‘±¥¡”Õ¹•µ•¥¹‘•µ¥Ñ±¥•‘•È‰•…¹¹•¸•¥¹”	±½­…‘”••¸-…¡±Í¡±…œ…Õ˜¥¡É•´ÑÉ…‘¥Ñ¥½¹•±±•¸1…¹ìÍ¥”‰•ÍÑ•¡Ğ…±Ì•¥¹”‘•È³‘¹ÍÑ•¸¥¹‘¥•¹•¸	±½­…‘•¸-…¹…‘…Ì™½ÉĞ¸ˆ°(€€€€‰Í¥¹¥™¥…¹”ˆè€‰•È-…µÁ˜Ù•É‰¥¹‘•Ğ]…±‘Í¡ÕÑèµ¥Ğ‘•¸½±•¸©…¡Éé•¡¹Ñ•±…¹•ÈEÕ•­Í¥±‰•ÉÙ•É¥™ÑÕ¹œÕ¹‘•È½É‘•ÉÕ¹œ¹… •ÍÕ¹‘•ÈiÕ­Õ¹™Ğ¸ˆ°(€€€€‰±Õ”ˆè€‰MÕ¡”»ÙÉ‘±¥ Ù½¸-•¹½É„…¸•¥¹•ÈiÕ™…¡ÉĞ›ñÈ!½±éÑÉ…¹ÍÁ½ÉÑ•È¸ˆ°(€€€€‰Í½ÕÉ•UÉ°ˆè€‰¡ÑÑÁÌè¼½•¸¹İ¥­¥Á•‘¥„¹½Éœ½İ¥­¤½É…ÍÍå}9…ÉÉ½İÍ}É½…‘}‰±½­…‘”ˆ°(€€€€‰‘¥™™¥Õ±Ñäˆè€Ä(€ô°(€ì(€€€€‰¥ˆè€‰­±…‰½¹„µ­••Á•ÉÌµ‰±½­…‘•Ìˆ°(€€€€‰Ñ¥Ñ±”ˆè€‰-±…‰½¹„-••Á•ÉÌˆ°(€€€€‰±½…Ñ¥½¸ˆè€‰-±…‰½¹„€¼M…É•!•…‘İ…Ñ•ÉÌ°	É¥Ñ¥Í ½±Õµ‰¥„ˆ°(€€€€‰½Õ¹ÑÉäˆè€‰-…¹…‘„ˆ°(€€€€‰½¹Ñ¥¹•¹Ğˆè€‰9½É‘…µ•É¥­„ˆ°(€€€€‰…Ñ•½Éäˆè€‰%¹‘¥•¹•È]¥‘•ÉÍÑ…¹ˆ°(€€€€‰Ñ…Ìˆèl(€€€€€€‹Y­½±½¥Í¡•È]¥‘•ÉÍÑ…¹ˆ°(€€€€€€‰1…¹‘Ù•ÉÑ•¥‘¥Õ¹œˆ°(€€€€€€‰¹Ñ¥¥µÁ•É¥…±¥ÍÑ¥Í¡•È]¥‘•ÉÍÑ…¹ˆ(€€€t°(€€€€‰å•…ÉMÑ…ÉĞˆè€ÈÀÀÔ°(€€€€‰å•…É¹ˆè€ÈÀÄÔ°(€€€€‰½½É‘¥¹…Ñ•Ìˆèl(€€€€€€´ÄÈä¸ÌÔ°(€€€€€€ÔÜ¸ÄÔ(€€€t°(€€€€‰‘•ÍÉ¥ÁÑ¥½¸ˆè€‰Q…¡±Ñ…¸·±Ñ•ÍÑ”Õ¹…µ¥±¥•¸•ÉÉ¥¡Ñ•Ñ•¸	±½­…‘•¸Õ¹…µÁÌ••¸-½¡±”´°½±´Õ¹…Í­½¹é•É¹”¥¸‘•¸EÕ•±±•‰¥•Ñ•¸‘É•¥•ÈÉ¿}•È³ñÍÍ”¸ˆ°(€€€€‰Í¥¹¥™¥…¹”ˆè€‰5•¡É•É”U¹Ñ•É¹•¡µ•¸é½•¸AÉ½©•­Ñ”éÕËñ¬ì‘…ÌÙ½¸ƒ±Ñ•ÍÑ•¸•›ñ¡ÉÑ”5½‘•±°Ù•É‰…¹‘¥É•­Ñ”­Ñ¥½¸°­Õ±ÑÕÉ•±±”AÉ…á¥ÌÕ¹±…¹™É¥ÍÑ¥”1…¹‘Á™±•”¸ˆ°(€€€€‰±Õ”ˆè€‰MÕ¡”¥¸‘•¸M…É•!•…‘İ…Ñ•ÉÌ¥´9½É‘İ•ÍÑ•¸	É¥Ñ¥Í ½±Õµ‰¥…Ì¸ˆ°(€€€€‰Í½ÕÉ•UÉ°ˆè€‰¡ÑÑÁÌè¼½•¸¹İ¥­¥Á•‘¥„¹½Éœ½İ¥­¤½M…É•‘}!•…‘İ…Ñ•ÉÌˆ°(€€€€‰‘¥™™¥Õ±Ñäˆè€È(€ô°(€ì(€€€€‰¥ˆè€‰­…¹½¹¡ÍÑ…Ñ½¸µ±…¹µÉ•±…µ…Ñ¥½¸ˆ°(€€€€‰Ñ¥Ñ±”ˆè€‰-…¹½¹¡ÍÑ…Ñ½¸µ1…¹‘Ëñ­•İ¥¹¹Õ¹œˆ°(€€€€‰±½…Ñ¥½¸ˆè€‰…±•‘½¹¥„€¼É…¹I¥Ù•Èˆ°(€€€€‰½Õ¹ÑÉäˆè€‰-…¹…‘„ˆ°(€€€€‰½¹Ñ¥¹•¹Ğˆè€‰9½É‘…µ•É¥­„ˆ°(€€€€‰…Ñ•½Éäˆè€‰%¹‘¥•¹•È]¥‘•ÉÍÑ…¹ˆ°(€€€€‰Ñ…Ìˆèl(€€€€€€‰1…¹‘Ù•ÉÑ•¥‘¥Õ¹œˆ°(€€€€€€‰¹Ñ¥­½±½¹¥…±•È]¥‘•ÉÍÑ…¹ˆ°(€€€€€€‰	…Í¥Í‘•µ½­É…Ñ¥”ˆ(€€€t°(€€€€‰å•…ÉMÑ…ÉĞˆè€ÈÀÀØ°(€€€€‰å•…É¹ˆè€ÈÀÈØ°(€€€€‰½½É‘¥¹…Ñ•Ìˆèl(€€€€€€´Üä¸äÔ°(€€€€€€ĞÌ¸ÀÜ(€€€t°(€€€€‰‘•ÍÉ¥ÁÑ¥½¸ˆè€‰!…Õ‘•¹½Í…Õ¹•”µ1…¹‘Ù•ÉÑ•¥‘¥•È©¥¹¹•¸‰•Í•ÑéÑ•¸•¥¸	…Õ•‰¥•Ğ…Õ˜ÕµÍÑÉ¥ÑÑ•¹•´1…¹Õ¹‰•¹…¹¹Ñ•¸•Ì-…¹½¹¡ÍÑ…Ñ½¸°‘•¸•Í£ñÑéÑ•¸=ÉĞ¸ˆ°(€€€€‰Í¥¹¥™¥…¹”ˆè€‰¥”Kñ­•İ¥¹¹Õ¹œÍÑ½ÁÁÑ”‘¥”M¥•‘±Õ¹Í•¹Ñİ¥­±Õ¹œÕ¹µ…¡Ñ”©…¡É¡Õ¹‘•ÉÑ•…±Ñ”É…¹µI¥Ù•Èµ1…¹‘™½É‘•ÉÕ¹•¸ÁÉ…­Ñ¥Í Í¥¡Ñ‰…È¸ˆ°(€€€€‰±Õ”ˆè€‰MÕ¡”Ïñ‘±¥ Ù½¸!…µ¥±Ñ½¸‰•¤…±•‘½¹¥„¸ˆ°(€€€€‰Í½ÕÉ•UÉ°ˆè€‰¡ÑÑÁÌè¼½•¸¹İ¥­¥Á•‘¥„¹½Éœ½İ¥­¤½É…¹‘}I¥Ù•É}±…¹‘}‘¥ÍÁÕÑ”ˆ°(€€€€‰‘¥™™¥Õ±Ñäˆè€Ä(€ô°(€ì(€€€€‰¥ˆè€‰­¤µÁ±…Ñ¥¹•àµµ¥¹¥¹œµÉ•Í¥ÍÑ…¹”ˆ°(€€€€‰Ñ¥Ñ±”ˆè€‰-¥Ñ¡•¹Õ¡µ…å­½½Í¥ˆµ%¹¹¥¹ÕİÕœµ]¥‘•ÉÍÑ…¹••¸A±…Ñ¥¹•àˆ°(€€€€‰±½…Ñ¥½¸ˆè€‰	¥œQÉ½ÕĞ1…­”°=¹Ñ…É¥¼ˆ°(€€€€‰½Õ¹ÑÉäˆè€‰-…¹…‘„ˆ°(€€€€‰½¹Ñ¥¹•¹Ğˆè€‰9½É‘…µ•É¥­„ˆ°(€€€€‰…Ñ•½Éäˆè€‰%¹‘¥•¹•È]¥‘•ÉÍÑ…¹ˆ°(€€€€‰Ñ…Ìˆèl(€€€€€€‰1…¹‘Ù•ÉÑ•¥‘¥Õ¹œˆ°(€€€€€€‹Y­½±½¥Í¡•È]¥‘•ÉÍÑ…¹ˆ°(€€€€€€‰¹Ñ¥É•ÁÉ•ÍÍ¥½¸ˆ(€€€t°(€€€€‰å•…ÉMÑ…ÉĞˆè€ÈÀÀØ°(€€€€‰å•…É¹ˆè€ÈÀÀä°(€€€€‰½½É‘¥¹…Ñ•Ìˆèl(€€€€€€´àä¸ä°(€€€€€€ÔÌ¸àÈ(€€€t°(€€€€‰‘•ÍÉ¥ÁÑ¥½¸ˆè€‰-¥Ñ¡•¹Õ¡µ…å­½½Í¥ˆ%¹¹¥¹ÕİÕœÙ•Éİ•¥•ÉÑ”•¥¹•´	•É‰…ÕÕ¹Ñ•É¹•¡µ•¸‘•¸iÕ…¹œìÍ•¡Ì•µ•¥¹‘•›ñ¡É•¹‘”İÕÉ‘•¸İ••¸5¥ÍÍ…¡ÑÕ¹œ•¥¹•ÈY•É›ñÕ¹œ¥¹¡…™Ñ¥•ÉĞ¸ˆ°(€€€€‰Í¥¹¥™¥…¹”ˆè€‹Y™™•¹Ñ±¥¡•ÈÉÕ¬›ñ¡ÉÑ”éÔ¥¡É•ÈÉ•¥±…ÍÍÕ¹œÕ¹‘…éÔ°‘…ÍÌ=¹Ñ…É¥¼‘…ÌáÁ±½É…Ñ¥½¹ÍÁÉ½©•­Ğ…Õ™­…Õ™Ñ”Õ¹‰••¹‘•Ñ”¸ˆ°(€€€€‰±Õ”ˆè€‰MÕ¡”…´	¥œQÉ½ÕĞ1…­”¥´…‰•±••¹•¸9½É‘•¸=¹Ñ…É¥½Ì¸ˆ°(€€€€‰Í½ÕÉ•UÉ°ˆè€‰¡ÑÑÁÌè¼½•¸¹İ¥­¥Á•‘¥„¹½Éœ½İ¥­¤½-¥Ñ¡•¹Õ¡µ…å­½½Í¥‰}%¹¹¥¹ÕİÕ}¥ÉÍÑ}9…Ñ¥½¸ˆ°(€€€€‰‘¥™™¥Õ±Ñäˆè€È(€ô°(€ì(€€€€‰¥ˆè€‰…É‘½ µÕÉ…¹¥Õ´µ‰±½­…‘”ˆ°(€€€€‰Ñ¥Ñ±”ˆè€‰±½¹ÅÕ¥¸µUÉ…¹‰±½­…‘”‰•¤M¡…É‰½Ğ1…­”ˆ°(€€€€‰±½…Ñ¥½¸ˆè€‰M¡…É‰½Ğ1…­”°=¹Ñ…É¥¼ˆ°(€€€€‰½Õ¹ÑÉäˆè€‰-…¹…‘„ˆ°(€€€€‰½¹Ñ¥¹•¹Ğˆè€‰9½É‘…µ•É¥­„ˆ°(€€€€‰…Ñ•½Éäˆè€‰%¹‘¥•¹•È]¥‘•ÉÍÑ…¹ˆ°(€€€€‰Ñ…Ìˆèl(€€€€€€‹Y­½±½¥Í¡•È]¥‘•ÉÍÑ…¹ˆ°(€€€€€€‰1…¹‘Ù•ÉÑ•¥‘¥Õ¹œˆ°(€€€€€€‰¹Ñ¥É•ÁÉ•ÍÍ¥½¸ˆ(€€€t°(€€€€‰å•…ÉMÑ…ÉĞˆè€ÈÀÀÜ°(€€€€‰å•…É¹ˆè€ÈÀÀà°(€€€€‰½½É‘¥¹…Ñ•Ìˆèl(€€€€€€´ÜØ¸Øä°(€€€€€€ĞĞ¸ÜÜ(€€€t°(€€€€‰‘•ÍÉ¥ÁÑ¥½¸ˆè€‰É‘½ ±½¹ÅÕ¥¸Õ¹M¡…‰½Ğ=‰……‘©¥İ…¸‰±½­¥•ÉÑ•¸UÉ…¹•É­Õ¹‘Õ¹•¸…Õ˜¹¥¡Ğ…‰•ÑÉ•Ñ•¹•´•‰¥•Ğì¹›ñ¡É•É¥¸A…Õ±„M¡•Éµ…¸İÕÉ‘”¥¹¡…™Ñ¥•ÉĞÕ¹µ¥Ğ•¥¹•È¡½¡•¸•±‘ÍÑÉ…™”‰•±•Ğ¸ˆ°(€€€€‰Í¥¹¥™¥…¹”ˆè€‰¥”­Ñ¥½¸ÍÑ½ÁÁÑ”‘¥”áÁ±½É…Ñ¥½¸Õ¹•¹Ñ™…¡Ñ”•¥¹”•‰…ÑÑ”ƒñ‰•È­½±½¹¥…±”•É¥¡Ñ”°-½¹ÍÕ±Ñ…Ñ¥½¸Õ¹É…‘¥½…­Ñ¥Ù”I¥Í¥­•¸¸ˆ°(€€€€‰±Õ”ˆè€‰MÕ¡”»ÙÉ‘±¥ Ù½¸-¥¹ÍÑ½¸…´!¥¡İ…ä€Ü¸ˆ°(€€€€‰Í½ÕÉ•UÉ°ˆè€‰¡ÑÑÁÌè¼½µ¥¹¥¹İ…Ñ ¹„½¹•İÌ¼ÈÀÀÜ¼à¼ÌÄ½…±½¹ÅÕ¥¹Ìµ‘•µ…¹‘¥¹œµµ½É…Ñ½É¥Õ´µÕÉ…¹¥Õ´µ•áÁ±½É…Ñ¥½¸µÑÉ…‘¥Ñ¥½¹…°µÑ•ÉÉ¥Ñ½Éäˆ°(€€€€‰‘¥™™¥Õ±Ñäˆè€È(€ô°(€ì(€€€€‰¥ˆè€‰µÕÍ­É…Ğµ™…±±Ìµ±…¹µÁÉ½Ñ•Ñ½ÉÌˆ°(€€€€‰Ñ¥Ñ±”ˆè€‰	•Í•ÑéÕ¹œÙ½¸5ÕÍ­É…Ğ…±±Ìˆ°(€€€€‰±½…Ñ¥½¸ˆè€‰5ÕÍ­É…Ğ…±±Ì°1…‰É…‘½Èˆ°(€€€€‰½Õ¹ÑÉäˆè€‰-…¹…‘„ˆ°(€€€€‰½¹Ñ¥¹•¹Ğˆè€‰9½É‘…µ•É¥­„ˆ°(€€€€‰…Ñ•½Éäˆè€‰%¹‘¥•¹•È]¥‘•ÉÍÑ…¹ˆ°(€€€€‰Ñ…Ìˆèl(€€€€€€‹Y­½±½¥Í¡•È]¥‘•ÉÍÑ…¹ˆ°(€€€€€€‰1…¹‘Ù•ÉÑ•¥‘¥Õ¹œˆ°(€€€€€€‰•ÍÕ¹‘¡•¥ÑÍ•É•¡Ñ¥­•¥Ğˆ(€€€t°(€€€€‰å•…ÉMÑ…ÉĞˆè€ÈÀÄØ°(€€€€‰å•…É¹ˆè€ÈÀÄØ°(€€€€‰½½É‘¥¹…Ñ•Ìˆèl(€€€€€€´ØÀ¸ÜĞ°(€€€€€€ÔÌ¸ÈÔ(€€€t°(€€€€‰‘•ÍÉ¥ÁÑ¥½¸ˆè€‰%¹Õ¥Ğ´°%¹¹Ô´Õ¹Í•ÑÑ±•È1…¹AÉ½Ñ•Ñ½ÉÌƒñ‰•Éİ…¹‘•¸k‘Õ¹”Õ¹‰•Í•ÑéÑ•¸‘…Ì]…ÍÍ•É­É…™Ñ•³‘¹‘”••¸5•Ñ¡å±ÅÕ•­Í¥±‰•ÉÉ¥Í¥­•¸Õ¹‘¥”±ÕÑÕ¹œ¹¥¡Ğ•É½‘•Ñ•ÈÙ‘•¸¸ˆ°(€€€€‰Í¥¹¥™¥…¹”ˆè€‰¥¸!Õ¹•ÉÍÑÉ•¥¬Õ¹‘¥”	•Í•ÑéÕ¹œéİ…¹•¸Á½±¥Ñ¥Í¡”•ÍÁË‘¡”Õ¹éÕÏ‘Ñé±¥¡”M¡ÕÑéµ‡}¹…¡µ•¸…Õ˜‘¥”Q…•Í½É‘¹Õ¹œ¸ˆ°(€€€€‰±Õ”ˆè€‰MÕ¡”…´¡ÕÉ¡¥±°I¥Ù•Èİ•ÍÑ±¥ Ù½¸!…ÁÁäY…±±•äµ½½Í”	…ä¸ˆ°(€€€€‰Í½ÕÉ•UÉ°ˆè€‰¡ÑÑÁÌè¼½Ñ¡•¥¹‘•Á•¹‘•¹Ğ¹„½¹•İÌ½İ”µ¡½±µµÕÍ­É…Ğµ™…±±Ì¼ˆ°(€€€€‰‘¥™™¥Õ±Ñäˆè€Ä(€ô°(€ì(€€€€‰¥ˆè€‰Ñ¥¹äµ¡½ÕÍ”µİ…ÉÉ¥½ÉÌˆ°(€€€€‰Ñ¥Ñ±”ˆè€‰Q¥¹ä!½ÕÍ”]…ÉÉ¥½ÉÌˆ°(€€€€‰±½…Ñ¥½¸ˆè€‰M•ß¥Á•µŒµQ•ÉÉ¥Ñ½É¥Õ´°	É¥Ñ¥Í ½±Õµ‰¥„ˆ°(€€€€‰½Õ¹ÑÉäˆè€‰-…¹…‘„ˆ°(€€€€‰½¹Ñ¥¹•¹Ğˆè€‰9½É‘…µ•É¥­„ˆ°(€€€€‰…Ñ•½Éäˆè€‰%¹‘¥•¹•È]¥‘•ÉÍÑ…¹ˆ°(€€€€‰Ñ…Ìˆèl(€€€€€€‰1…¹‘Ù•ÉÑ•¥‘¥Õ¹œˆ°(€€€€€€‹Y­½±½¥Í¡•È]¥‘•ÉÍÑ…¹ˆ°(€€€€€€‰½µµ½¹Ìµ	•İ•Õ¹œˆ(€€€t°(€€€€‰å•…ÉMÑ…ÉĞˆè€ÈÀÄÜ°(€€€€‰å•…É¹ˆè€ÈÀÈØ°(€€€€‰½½É‘¥¹…Ñ•Ìˆèl(€€€€€€´ÄÄä¸Øä°(€€€€€€ÔÄ¸Ää(€€€t°(€€€€‰‘•ÍÉ¥ÁÑ¥½¸ˆè€‰M•ß¥Á•µŒµÉ…Õ•¸Õ¹…µ¥±¥•¸‰…ÕÑ•¸µ½‰¥±”#‘ÕÍ•È•¹Ñ±…¹œ‘•ÈI½ÕÑ”‘•ÈQÉ…¹Ìµ5½Õ¹Ñ…¥¸µA¥Á•±¥¹”Õ¹Ù•É‰…¹‘•¸]½¡¹É…Õ´µ¥ĞÁ¡åÍ¥Í¡•È1…¹‘Ù•ÉÑ•¥‘¥Õ¹œ¸ˆ°(€€€€‰Í¥¹¥™¥…¹”ˆè€‰¥”#‘ÕÍ•ÈÍ¥¹éÕ±•¥ %¹™É…ÍÑÉÕ­ÑÕÈ°-Õ¹ÍĞÕ¹‘¥É•­Ñ”	…ÉÉ¥•É”••¸•¥¸5•…ÁÉ½©•­Ğ…Õ˜¹¥¡Ğ…‰•ÑÉ•Ñ•¹•´Q•ÉÉ¥Ñ½É¥Õ´¸ˆ°(€€€€‰±Õ”ˆè€‰MÕ¡”•¹Ñ±…¹œ‘•ÈA¥Á•±¥¹”µI½ÕÑ”¹…¡”	±Õ”I¥Ù•È¸ˆ°(€€€€‰Í½ÕÉ•UÉ°ˆè€‰¡ÑÑÁÌè¼½İİÜ¹İ¥±‘•É¹•ÍÍ½µµ¥ÑÑ•”¹½Éœ½Í¥Ñ•Ì½…±°½™¥±•Ì½ÁÕ‰±¥…Ñ¥½¹Ì¼ÈÀÄá}İ}­µÁ…Á•É}İ•ˆ¹Á‘˜ˆ°(€€€€‰‘¥™™¥Õ±Ñäˆè€Ä(€ô°(€ì(€€€€‰¥ˆè€ˆÄĞäÈµ±…¹µ‰…¬µ±…¹”ˆ°(€€€€‰Ñ¥Ñ±”ˆè€ˆÄĞäÈ1…¹	…¬1…¹”ˆ°(€€€€‰±½…Ñ¥½¸ˆè€‰…±•‘½¹¥„°=¹Ñ…É¥¼ˆ°(€€€€‰½Õ¹ÑÉäˆè€‰-…¹…‘„ˆ°(€€€€‰½¹Ñ¥¹•¹Ğˆè€‰9½É‘…µ•É¥­„ˆ°(€€€€‰…Ñ•½Éäˆè€‰%¹‘¥•¹•È]¥‘•ÉÍÑ…¹ˆ°(€€€€‰Ñ…Ìˆèl(€€€€€€‰1…¹‘Ù•ÉÑ•¥‘¥Õ¹œˆ°(€€€€€€‰¹Ñ¥­½±½¹¥…±•È]¥‘•ÉÍÑ…¹ˆ°(€€€€€€‰¹Ñ¥É•ÁÉ•ÍÍ¥½¸ˆ(€€€t°(€€€€‰å•…ÉMÑ…ÉĞˆè€ÈÀÈÀ°(€€€€‰å•…É¹ˆè€ÈÀÈØ°(€€€€‰½½É‘¥¹…Ñ•Ìˆèl(€€€€€€´Üä¸äØ°(€€€€€€ĞÌ¸ÀØ(€€€t°(€€€€‰‘•ÍÉ¥ÁÑ¥½¸ˆè€‰!…Õ‘•¹½Í…Õ¹•”µ1…¹‘Ù•ÉÑ•¥‘¥•È©¥¹¹•¸ÍÑ½ÁÁÑ•¸•¥¸]½¡¹‰…ÕÁÉ½©•­Ğ…Õ˜‘•´!…±‘¥µ…¹QÉ…ĞÕ¹•ÉÉ¥¡Ñ•Ñ•¸ÑÉ½ÑèK‘ÕµÕ¹•¸Õ¹•ÍÑ¹…¡µ•¸•¥¸‘…Õ•É¡…™Ñ•ÌKñ­•İ¥¹¹Õ¹Í…µÀ¸ˆ°(€€€€‰Í¥¹¥™¥…¹”ˆè€‰•È-…µÁ˜ƒñ‰•É›ñ¡ÉĞ‘¥”1½ÍÕ¹œ1…¹	…¬¥¸•¥¹”­½¹­É•Ñ”°­½±±•­Ñ¥ØÙ•ÉÍ½ÉÑ”AÉ…á¥ÌÕ¹­»ñÁ™Ğ…¸-…¹½¹¡ÍÑ…Ñ½¸…¸¸ˆ°(€€€€‰±Õ”ˆè€‰MÕ¡”•É¹•ÕĞ…´É…¹I¥Ù•È°‘¥•Íµ…°…¸‘•È5-•¹é¥”I½…¸ˆ°(€€€€‰Í½ÕÉ•UÉ°ˆè€‰¡ÑÑÁÌè¼½å•±±½İ¡•…‘¥¹ÍÑ¥ÑÕÑ”¹½Éœ½İÀµ½¹Ñ•¹Ğ½ÕÁ±½…‘Ì¼ÈÀÈÀ¼Àà¼ÄĞäÈµ±…¹µ‰…¬µ±…¹”µÍÑ…Ñ•µ•¹Ğ¹Á‘˜ˆ°(€€€€‰‘¥™™¥Õ±Ñäˆè€Ä(€ô°(€ì(€€€€‰¥ˆè€‰Í¥Á•­¹•­…Ñ¥¬µ±¥Ù•±¥¡½½µ™¥Í¡•Éäˆ°(€€€€‰Ñ¥Ñ±”ˆè€‰M¥Á•­¹—Še­…Ñ¥¬µ1•‰•¹ÍÕ¹Ñ•É¡…±ÑÍ™¥Í¡•É•¤ˆ°(€€€€‰±½…Ñ¥½¸ˆè€‰M…Õ±¹¥•ÉÙ¥±±”°9½Ù„M½Ñ¥„ˆ°(€€€€‰½Õ¹ÑÉäˆè€‰-…¹…‘„ˆ°(€€€€‰½¹Ñ¥¹•¹Ğˆè€‰9½É‘…µ•É¥­„ˆ°(€€€€‰…Ñ•½Éäˆè€‰%¹‘¥•¹•È]¥‘•ÉÍÑ…¹ˆ°(€€€€‰Ñ…Ìˆèl(€€€€€€‰¥Í¡•É•¥É•¡Ñ”ˆ°(€€€€€€‰¹Ñ¥­½±½¹¥…±•È]¥‘•ÉÍÑ…¹ˆ°(€€€€€€‰¹Ñ¥É•ÁÉ•ÍÍ¥½¸ˆ(€€€t°(€€€€‰å•…ÉMÑ…ÉĞˆè€ÈÀÈÀ°(€€€€‰å•…É¹ˆè€ÈÀÈÄ°(€€€€‰½½É‘¥¹…Ñ•Ìˆèl(€€€€€€´ØØ¸ÄÌ°(€€€€€€ĞĞ¸Èä(€€€t°(€€€€‰‘•ÍÉ¥ÁÑ¥½¸ˆè€‰M¥Á•­¹—Še­…Ñ¥¬•ËÙ™™¹•Ñ”•¥¹”Í•±‰ÍĞÉ•Õ±¥•ÉÑ”5§Še­µ…Üµ¥Í¡•É•¤…Õ˜ÉÕ¹‘±…”Ù•ÉÑÉ…±¥¡•ÈI•¡Ñ”ì¥Í¡•È©¥¹¹•¸İÕÉ‘•¸…¹•É¥™™•¸°ÕÍËñÍÑÕ¹œé•ÉÍÓÙÉĞÕ¹…¹£‘ÕÍ•È¹¥•‘•É•‰É…¹¹Ğ¸ˆ°(€€€€‰Í¥¹¥™¥…¹”ˆè€‰¥”±½ÑÑ”Ù•ÉÑ•¥‘¥Ñ”¹¥¡Ğ¹ÕÈiÕ…¹œéÔ!Õµµ•È°Í½¹‘•É¸‘…ÌI•¡Ğ°I••±¸Õ¹1•‰•¹ÍÉÕ¹‘±…•¸©•¹Í•¥ÑÌ­½±½¹¥…±•È1¥é•¹éÍåÍÑ•µ”Í•±‰ÍĞéÔ‰•ÍÑ¥µµ•¸¸ˆ°(€€€€‰±Õ”ˆè€‰MÕ¡”…¸‘•ÈMĞ¸5…ÉåÌ	…ä¥´]•ÍÑ•¸9½Ù„M½Ñ¥…Ì¸ˆ°(€€€€‰Í½ÕÉ•UÉ°ˆè€‰¡ÑÑÁÌè¼½•¸¹İ¥­¥Á•‘¥„¹½Éœ½İ¥­¤¼ÈÀÈÁ}5¤”Èİ­µ…Å}±½‰ÍÑ•É}‘¥ÍÁÕÑ”ˆ°(€€€€‰‘¥™™¥Õ±Ñäˆè€Ä(€ô°(€ì(€€€€‰¥ˆè€‰…µÀµµ½É…¸µ±…¹‘™¥±°µÍ•…É ˆ°(€€€€‰Ñ¥Ñ±”ˆè€‰…µÀ5½É…¸Õ¹‘¥”•Á½¹¥•‰±½­…‘•¸ˆ°(€€€€‰±½…Ñ¥½¸ˆè€‰]¥¹¹¥Á•œ°5…¹¥Ñ½‰„ˆ°(€€€€‰½Õ¹ÑÉäˆè€‰-…¹…‘„ˆ°(€€€€‰½¹Ñ¥¹•¹Ğˆè€‰9½É‘…µ•É¥­„ˆ°(€€€€‰…Ñ•½Éäˆè€‰%¹‘¥•¹•È]¥‘•ÉÍÑ…¹ˆ°(€€€€‰Ñ…Ìˆèl(€€€€€€‰•µ¥¹¥ÍÑ¥Í¡•È€˜…¹Ñ¥Í•á¥ÍÑ¥Í¡•È]¥‘•ÉÍÑ…¹ˆ°(€€€€€€‰¹Ñ¥É•ÁÉ•ÍÍ¥½¸ˆ°(€€€€€€‰•“‘¡Ñ¹¥Ì‘•È	•Í¥•Ñ•¸ˆ(€€€t°(€€€€‰å•…ÉMÑ…ÉĞˆè€ÈÀÈÈ°(€€€€‰å•…É¹ˆè€ÈÀÈÔ°(€€€€‰½½É‘¥¹…Ñ•Ìˆèl(€€€€€€´äÜ¸Ì°(€€€€€€Ğä¸Üà(€€€t°(€€€€‰‘•ÍÉ¥ÁÑ¥½¸ˆè€‰¹•£ÙÉ¥”Õ¹U¹Ñ•ÉÍÓñÑé•È©¥¹¹•¸•ÉÉ¥¡Ñ•Ñ•¸…µÀ5½É…¸Õ¹‰±½­¥•ÉÑ•¸iÕ™…¡ÉÑ•¸°Õ´‘¥”MÕ¡”¹… •Éµ½É‘•Ñ•¸¥¹‘¥•¹•¸É…Õ•¸¥¸•Á½¹¥•¸‘ÕÉ¡éÕÍ•Ñé•¸¸ˆ°(€€€€‰Í¥¹¥™¥…¹”ˆè€‰•È‰•¡…ÉÉ±¥¡”55%]ÉLµAÉ½Ñ•ÍĞéİ…¹œI•¥•ÉÕ¹•¸éÕ´-ÕÉÍİ•¡Í•°ì€ÈÀÈÔİÕÉ‘•¸‘¥”ƒq‰•ÉÉ•ÍÑ”Ù½¸5½É…¸!…ÉÉ¥ÌÕ¹5…É•‘•Ì5åÉ…¸•™Õ¹‘•¸¸ˆ°(€€€€‰±Õ”ˆè€‰MÕ¡”…´	É…‘äI½…1…¹‘™¥±°Ïñ‘±¥ Ù½¸]¥¹¹¥Á•œ¸ˆ°(€€€€‰Í½ÕÉ•UÉ°ˆè€‰¡ÑÑÁÌè¼½å•±±½İ¡•…‘¥¹ÍÑ¥ÑÕÑ”¹½Éœ½İÀµ½¹Ñ•¹Ğ½ÕÁ±½…‘Ì¼ÈÀÈÌ¼ÀÈ½9¥­¥Ñ„µ1½¹µ…¸µ55%]ÉLµA½±¥¥¹œ´È¸ÈÌ´Ä¹Á‘˜ˆ°(€€€€‰‘¥™™¥Õ±Ñäˆè€Ä(€ô)t(

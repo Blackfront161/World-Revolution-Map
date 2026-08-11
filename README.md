@@ -6,12 +6,14 @@ Eine interaktive, spielerische Weltkarte historischer Bewegungen, Aufstände, St
 
 - interaktive MapLibre-Weltkarte mit Clustern und farbcodierten Kategorien
 - Volltextsuche sowie Kategorie- und Zeitraumfilter
-- 600 kuratierte, aktive Ereignisse aus allen Weltregionen
+- 655 kuratierte, aktive Ereignisse aus allen Weltregionen
 - neun lokal gespeicherte Oberflächensprachen wie bei World Revolution News: Deutsch, Englisch, Spanisch, Französisch, Italienisch, Portugiesisch, Russisch, Griechisch und Türkisch
 - Mehrfach-Tags für überlappende Spektren wie Anarchismus, indigener Widerstand, Antisexismus, Schwarze Befreiung, Antifaschismus, Antikolonialismus und Tierbefreiung
 - regional aufgeteilte, über `data/event-catalog.json` erweiterbare Datendateien
 - historische Spannweite vom frühesten ausführlich dokumentierten Streik in Deir el-Medina (ca. 1157 v. u. Z.) bis zu heutigen Bewegungen
 - eigene Perspektiven auf frühe soziale Revolten, Widerstand versklavter Menschen, antifeudale Kämpfe, Commons und Rätebewegungen
+- ein vertiefter Kanada-Schwerpunkt mit über 40 indigenen Land-, Autonomie-, Kultur-, Fischerei- und Umweltkämpfen vom 18. Jahrhundert bis zur Gegenwart
+- soziale Errungenschaften als eigene Kategorie: erkämpfte Wahl-, Arbeits-, Gesundheits-, reproduktive und queere Rechte – jeweils mit ihren Grenzen und möglichen Rückschritten
 - Live-Daten aus Supabase, automatisch mit dem Fallback-Archiv zusammengeführt
 - Karten-Popups mit Einordnung, Bild und weiterführender Quelle
 - lokales Fortschrittssystem mit XP, Levels und Entdeckungsarchiv

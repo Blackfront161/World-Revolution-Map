@@ -1,11 +1,584 @@
 [
-{"archived":true,"id":"morant-bay-rebellion","title":"Morant-Bay-Aufstand","location":"Morant Bay","country":"Jamaika","continent":"Lateinamerika & Karibik","category":"Antikolonialer Widerstand","tags":["BÃ¤uerlicher Widerstand","Schwarze Befreiungsbewegung"],"yearStart":1865,"yearEnd":1865,"coordinates":[-76.41,17.88],"description":"Schwarze BÃ¤uer*innen marschierten gegen Landnot, rassistische Justiz und politische Entrechtung; Kolonialtruppen Ã¼bten blutige Vergeltung.","significance":"Der Aufstand legte die unvollendete Emanzipation nach der Sklaverei offen.","clue":"Suche im Osten Jamaikas.","sourceUrl":"https://en.wikipedia.org/wiki/Morant_Bay_rebellion","difficulty":1},
-{"id":"santa-maria-iquique","title":"Streik von Santa MarÃ­a de Iquique","location":"Iquique","country":"Chile","continent":"Lateinamerika & Karibik","category":"Arbeiter*innenbewegung","tags":["GedÃ¤chtnis der Besiegten","Anarchistische Bewegung"],"yearStart":1907,"yearEnd":1907,"coordinates":[-70.15,-20.21],"description":"Salpeterarbeiter*innen und ihre Familien zogen in die Hafenstadt und forderten Lohn und WÃ¼rde; das MilitÃ¤r massakrierte sie in einer Schule.","significance":"Die Erinnerung wurde zu einem Grundmotiv der chilenischen Arbeiter*innenbewegung.","clue":"Suche in einer Schule in der Atacama.","sourceUrl":"https://en.wikipedia.org/wiki/Santa_Mar%C3%ADa_School_massacre","difficulty":1},
-{"id":"independent-party-color-1912","title":"Aufstand der Partido Independiente de Color","location":"Oriente","country":"Kuba","continent":"Lateinamerika & Karibik","category":"Schwarze Befreiungsbewegung","tags":["Antirassistischer Widerstand","GedÃ¤chtnis der Besiegten"],"yearStart":1912,"yearEnd":1912,"coordinates":[-75.82,20.02],"description":"Afrokubanische Organisierte protestierten gegen das Verbot ihrer Partei und fortbestehenden Rassismus; Armee und Milizen tÃ¶teten Tausende.","significance":"Die Republik beantwortete Schwarze politische Selbstorganisation mit einem lange verschwiegenen Massaker.","clue":"Suche im Osten Kubas zwanzig Jahre nach der UnabhÃ¤ngigkeit.","sourceUrl":"https://en.wikipedia.org/wiki/Negro_Rebellion","difficulty":2},
-{"id":"cordoba-university-reform","title":"UniversitÃ¤tsreform von CÃ³rdoba","location":"CÃ³rdoba","country":"Argentinien","continent":"Lateinamerika & Karibik","category":"Studierendenbewegung","tags":["Bildungsbewegung","Basisdemokratie"],"yearStart":1918,"yearEnd":1918,"coordinates":[-64.19,-31.42],"description":"Studierende forderten Mitbestimmung, wissenschaftliche Freiheit und eine UniversitÃ¤t im Dienst gesellschaftlicher VerÃ¤nderung.","significance":"Das Manifest inspirierte Studierendenbewegungen in ganz Lateinamerika.","clue":"Suche an Argentiniens Ã¤ltester UniversitÃ¤t.","sourceUrl":"https://en.wikipedia.org/wiki/University_Reform_of_1918","difficulty":1},
-{"id":"tragic-week-argentina","title":"Semana TrÃ¡gica","location":"Buenos Aires","country":"Argentinien","continent":"Lateinamerika & Karibik","category":"Arbeiter*innenbewegung","tags":["Anarchistische Bewegung","GedÃ¤chtnis der Besiegten"],"yearStart":1919,"yearEnd":1919,"coordinates":[-58.38,-34.60],"description":"Ein Metallarbeiterstreik wuchs zum Generalstreik; Polizei, Armee und rechte Banden tÃ¶teten Arbeiter*innen und griffen jÃ¼dische Viertel an.","significance":"Klassenrepression verband sich offen mit Antisemitismus und nationalistischer Gewalt.","clue":"Suche im Januar 1919 in Buenos Aires.","sourceUrl":"https://en.wikipedia.org/wiki/Tragic_Week_(Argentina)","difficulty":1},
-{"archived":true,"id":"patagonia-rebelde","title":"Patagonia Rebelde","location":"Santa Cruz","country":"Argentinien","continent":"Lateinamerika & Karibik","category":"Anarchistische Bewegung","tags":["Arbeiter*innenbewegung","GedÃ¤chtnis der Besiegten"],"yearStart":1920,"yearEnd":1922,"coordinates":[-69.22,-51.62],"description":"Landarbeiter*innen organisierten Streiks gegen extreme Ausbeutung; die Armee exekutierte Hunderte nach ihrer Kapitulation.","significance":"Der Kampf erinnert an anarchosyndikalistische Organisierung und staatlichen Terror im agrarischen SÃ¼den.","clue":"Suche auf den Schaffarmen Patagoniens.","sourceUrl":"https://en.wikipedia.org/wiki/Patagonia_Rebelde","difficulty":1},
-{"id":"guayaquil-general-strike-1922","title":"Generalstreik von Guayaquil","location":"Guayaquil","country":"Ecuador","continent":"Lateinamerika & Karibik","category":"Arbeiter*innenbewegung","tags":["Anarchistische Bewegung","GedÃ¤chtnis der Besiegten"],"yearStart":1922,"yearEnd":1922,"coordinates":[-79.90,-2.19],"description":"Arbeiter*innenverbÃ¤nde legten die Hafenstadt gegen Teuerung und niedrige LÃ¶hne lahm; das MilitÃ¤r massakrierte die Demonstrierenden.","significance":"Der 15. November wurde zum zentralen Gedenktag der ecuadorianischen Arbeiter*innenbewegung.","clue":"Suche am RÃ­o Guayas.","sourceUrl":"https://en.wikipedia.org/wiki/1922_Guayaquil_general_strike","difficulty":2},
-{"id":"banana-massacre","title":"Bananenmassaker","location":"CiÃ©naga","country":"Kolumbien","continent":"Lateinamerika & Karibik","category":"Arbeiter*innenbewegung","tags":["Antiimperialistischer Widerstand","GedÃ¤chtnis der Besiegten"],"yearStart":1928,"yearEnd":1928,"coordinates":[-74.24,11.01],"description":"Streikende Plantagenarbeiter*innen der United Fruit Company wurden von der kolumbianischen Armee beschossen.","significance":"Das Massaker wurde zum Symbol der Verbindung von Konzernmacht, Imperialismus und staatlicher Gewalt.","clue":"Suche nahe Santa Marta zwischen Bananenplantagen.","sourceUrl":"https://en.wikipedia.org/wiki/Banana_Massacre","difficulty":1},
-{"archived":true,"id":"el-salvador-uprising-1932","title":"Bauernaufstand in El Salvador 1932","location":"Westliches El Salvador","country":"El Salvador","continent":"Lateinamerika & Karibik","category":"BÃ¤uerlicher Widerstand","tags":["Indigener Widerstand","GedÃ¤chtnis der Besiegten"],"yearStart":1932,"yearEnd":1932,"coordinates":[-89.68,13.84],"description":"Indigene und bÃ¤uerliche Gemeinden erhoben sich gegen Landenteignung und Diktatur; das MilitÃ¤r ermordete Zehntausende.","significance":"La Matanza zerstÃ¶rte offg½xÓ»h‘éì¶»§q«^vKˆ‹œÛİ\˜ÙU\›ˆšÎ‹ËÙ[‹ÚZÚ\YXK›Ü™ËİÚZÚKÖIPÌÉPP[—Ğ‰PÌÉPLZWÛ]][H‹™Y™šXİ[HŒŸKÈ˜\˜Ú]™YYKšYˆXšYØK[[İ™[Y[‹]Hˆ•XšYØKP™]ÙYİ[™È‹›ØØ][Ûˆˆ™[™Ø[[ˆ‹˜Ûİ[Hˆœš]\ØÚR[™Y[ˆ‹˜ÛÛ[™[ˆ\ÚY[ˆ‹˜Ø]YÛÜHˆ°éY\›XÚ\ˆÚY\œİ[™‹YÜÈ–È[Y™]Y[\ˆÚY\œİ[™‹‘™[Z[š\İ\ØÚ\ˆ	ˆ[\Ù^\İ\ØÚ\ˆÚY\œİ[™—KYX\”İ\ŒNM‹YX\‘[™ŒNMË˜ÛÛÜ™[˜]\È–ÎŒÍ‹Œ‹M×K™\ØÜš\[Ûˆˆ”0éÚ\Šš[›™[ˆ›Ü™\[ˆÙZHš][\ˆ\›Hİ]\ˆ0éH[™œ˜XÚ[ˆ\°éÙH[ˆZYÙ[™HÜZXÚ\‹ˆ‹œÚYÛšYšXØ[˜ÙHˆ‘œ˜]Y[ˆ™\ZYYİ[ˆ0íœ™™\ˆ[™XXÚ[ˆ[™H[™Ù\ØÚXÚ\›Ü™[™ÈYÛZXÚ[HØ[\™™[ˆ‹˜ÛYHˆ•XšYØH™Y]]]ÙZHš][ˆ‹œÛİ\˜ÙU\›ˆšÎ‹ËÙ[‹ÚZÚ\YXK›Ü™ËİÚZÚKÕXšYØWÛ[İ™[Y[‹™Y™šXİ[HŒ_KÈšYˆŒŒZ[˜ÚY[]Z]Ø[ˆ‹]Hˆ]Yœİ[™›ÛHˆ™XœX\ˆ‹›ØØ][Ûˆˆ•Z\Z[™Z]Ø[ˆ‹˜Ûİ[Hˆ•Z]Ø[ˆ‹˜ÛÛ[™[ˆ\ÚY[ˆ‹˜Ø]YÛÜHˆ[\™\™\ÜÚ[Ûˆ‹YÜÈ–È‘ÙY0éÚš\È\ˆ™\ÚYYİ[ˆ‹˜\Ú\Ù[[ÚÜ˜]YH—KYX\”İ\ŒNMËYX\‘[™ŒNMË˜ÛÛÜ™[˜]\È–ÌLŒKM‹KŒK™\ØÜš\[Ûˆˆ“˜XÚÛ^™ZYÙ]Ø[[İ[™[ˆ[œÙ[›İ\İH[™ÚØ[HÛÛZ]Y\ÎÈYHİ[ÛZ[[™È[ÛÜ]HZ]X\ÜØZÙ\›‹ˆ‹œÚYÛšYšXØ[˜ÙHˆ’˜Z™Z[[™ÈXZ\ÚY\İ\™HŒ™[˜[°ïˆ\š[›™\[™È[™[[ÚÜ˜]YX™]ÙYİ[™Ëˆ‹˜ÛYHˆ‘\È][HİXÚİ[H˜[Y[‹ˆ‹œÛİ\˜ÙU\›ˆšÎ‹ËÙ[‹ÚZÚ\YXK›Ü™ËİÚZÚKÑ™XœX\WÌÚ[˜ÚY[‹™Y™šXİ[HŒ_KÈ˜\˜Ú]™YYKšYˆ˜[œË\›İ\İÈ‹]Hˆ[œËT›İ\İH‹›ØØ][Ûˆˆ•ÚÚ[È[™˜\[ˆ‹˜Ûİ[Hˆ’˜\[ˆ‹˜ÛÛ[™[ˆ\ÚY[ˆ‹˜Ø]YÛÜHˆ[Z[\\šX[\İ\ØÚ\ˆÚY\œİ[™‹YÜÈ–È”İYY\™[™[˜™]ÙYİ[™È‹[[Z[]\š\Û]\È—KYX\”İ\ŒNMNKYX\‘[™ŒNMŒ˜ÛÛÜ™[˜]\È–ÌLÎKÍKÍKK™\ØÜš\[Ûˆˆ“Z[[Û™[ˆ›İ\İY\[ˆÙYÙ[ˆ[ˆ\›™]Y\[ˆÚXÚ\šZ]İ™\˜YÈZ][ˆTĞH[™YH›Ü]Y\›™HZ[]0é›Ü™[™Ëˆ‹œÚYÛšYšXØ[˜ÙHˆ‘Ù]Ù\šÜØÚY[‹İYY\™[™H[™˜XÚ˜\œØÚY[ˆØÚY™[ˆ˜\[œÈÜ°í°çİH˜XÚÜšYYÜÛ[Øš[\ÚY\[™Ëˆ‹˜ÛYHˆ”İXÚH›Üˆ[H˜\[š\ØÚ[ˆ\›[Y[ˆ‹œÛİ\˜ÙU\›ˆšÎ‹ËÙ[‹ÚZÚ\YXK›Ü™ËİÚZÚKĞ[œ×Ü›İ\İÈ‹™Y™šXİ[HŒ_KÈšYˆšÛŞ˜K\š[İ‹]Hˆ’ÛŞ˜KP]Yœİ[™‹›ØØ][Ûˆˆ’ÛŞ˜KÚÚ[˜]ØH‹˜Ûİ[Hˆ’˜\[ˆÈÚÚ[˜]ØH‹˜ÛÛ[™[ˆ\ÚY[ˆ‹˜Ø]YÛÜHˆ[Z[\\šX[\İ\ØÚ\ˆÚY\œİ[™‹YÜÈ–È[[Z[]\š\Û]\È‹[\™\™\ÜÚ[Ûˆ—KYX\”İ\ŒNMÌYX\‘[™ŒNMÌ˜ÛÛÜ™[˜]\È–ÌLËK‹ŒÌ×K™\ØÜš\[Ûˆˆ“˜XÚZ[™[H™\šÙZœİ[™˜[™X™[Y\[ˆ]\Ù[™HÚÚ[˜]Ø[™\Šš[›™[ˆÙYÙ[ˆTËSZ[]0éœ°éÙ[ˆ[™[0éÛXÚHİ˜Y›ÜÚYÚÙZ]ˆ‹œÚYÛšYšXØ[˜ÙHˆ‘\ˆÜÛ[™H]Yœİ[™XXÚHÛÛÛšX[HZ[]0é™\š0éš\ÜÙHÚXÚ˜\‹ˆ‹˜ÛYHˆ”İXÚH˜ZHØY[˜HZ\ˆ˜\ÙKˆ‹œÛİ\˜ÙU\›ˆšÎ‹ËÙ[‹ÚZÚ\YXK›Ü™ËİÚZÚKÒÛŞ˜WÜš[İ‹™Y™šXİ[HŒŸKÈ˜\˜Ú]™YYKšYˆZK]\š\Ú[™ËLNMÌÈ‹]Hˆ•Z[0é™\ØÚ\ˆ›ÛÜØ]Yœİ[™NMÌÈ‹›ØØ][Ûˆˆ˜[™ÚÛÚÈ‹˜Ûİ[Hˆ•Z[[™‹˜ÛÛ[™[ˆ\ÚY[ˆ‹˜Ø]YÛÜHˆ”İYY\™[™[˜™]ÙYİ[™È‹YÜÈ–È[\™\™\ÜÚ[Ûˆ‹˜\Ú\Ù[[ÚÜ˜]YH—KYX\”İ\ŒNMÌËYX\‘[™ŒNMÌË˜ÛÛÜ™[˜]\È–ÌLLLËÍ—K™\ØÜš\[Ûˆˆ”İYY\™[™H[™[™\]\Ù[™H[[ÛœİšY\™[™H™Y[™][ˆ\˜Úİ˜pçÙ[œ›İ\İHZ[™HZ[]0é™Zİ]\‹ˆ‹œÚYÛšYšXØ[˜ÙHˆ‘\ˆÚYYÈ0í™™›™]HZ[ˆİ\™\È[[ÚÜ˜]\ØÚ\È™[œİ\ˆ°ïˆ\˜™Z]\Šš[›™[‹H[™˜]Y\››Ü™Ø[š\ÚY\[™Ëˆ‹˜ÛYHˆ”İXÚH[H[[ÚÜ˜]YKQ[šÛX[[ˆ˜[™ÚÛÚËˆ‹œÛİ\˜ÙU\›ˆšÎ‹ËÙ[‹ÚZÚ\YXK›Ü™ËİÚZÚKÌNMÌ×ÕZWÜÜ[\—İ\š\Ú[™È‹™Y™šXİ[HŒ_KÈšYˆ[[X\Ø]LNMÍˆ‹]Hˆ•[[X\Ø]SX\ÜØZÙ\ˆ[™ÚY\œİ[™‹›ØØ][Ûˆˆ˜[™ÚÛÚÈ‹˜Ûİ[Hˆ•Z[[™‹˜ÛÛ[™[ˆ\ÚY[ˆ‹˜Ø]YÛÜHˆ‘ÙY0éÚš\È\ˆ™\ÚYYİ[ˆ‹YÜÈ–È”İYY\™[™[˜™]ÙYİ[™È‹[Y˜\ØÚ\İ\ØÚ\ˆÚY\œİ[™—KYX\”İ\ŒNMÍ‹YX\‘[™ŒNMÍ‹˜ÛÛÜ™[˜]\È–ÌLKLËÍ—K™\ØÜš\[Ûˆˆ”™XÚHZ[^™[ˆ[™İX]ÚÜ°éHX\ÜØZÜšY\[ˆİYY\™[™KYHÙYÙ[ˆYH°ïÚÚÙZˆZ[™\ÈZİ]ÜœÈ›İ\İY\[‹ˆ‹œÚYÛšYšXØ[˜ÙHˆ‘\È™\™°é™İH™\˜œ™XÚ[ˆ\š[›™\[ˆYH0í™XÚH[X[ˆ›Ûˆ[Û˜\˜Ú\Û]\ËZ[]0éˆ[™™XÚ\ˆ[Øš[\ÚY\[™Ëˆ‹˜ÛYHˆ”İXÚH[H‹ˆÚİØ™\ˆ]YˆZ[™[H˜[™ÚÛÚÙ\ˆØ[\\Ëˆ‹œÛİ\˜ÙU\›ˆšÎ‹ËÙ[‹ÚZÚ\YXK›Ü™ËİÚZÚKÍ—ÓØİØ™\—ÌNMÍ—ÛX\ÜØXÜ™H‹™Y™šXİ[HŒ_KÈšYˆ˜šÜ[\İ\š]›ÜœË[[İ™[Y[‹]Hˆ™]ÙYİ[™È\ˆšÜ[pç™\›X™[™[ˆ‹›ØØ][ÛˆˆšÜ[‹˜Ûİ[Hˆ’[™Y[ˆ‹˜ÛÛ[™[ˆ\ÚY[ˆ‹˜Ø]YÛÜHˆ°åšÛÛÙÚ\ØÚ\ˆÚY\œİ[™‹YÜÈ–È[ZØ\][\İ\ØÚH™]ÙYİ[™È‹‘™[Z[š\İ\ØÚ\ˆ	ˆ[\Ù^\İ\ØÚ\ˆÚY\œİ[™—KYX\”İ\ŒNNYX\‘[™ŒŒ‹˜ÛÛÜ™[˜]\È–ÍÍËKŒËŒ—K™\ØÜš\[Ûˆˆ°ç™\›X™[™H\ˆ[š[Û‹PØ\˜šYKRØ]\İ›ÜK™\ÛÛ™\œÈœ˜]Y[›Ü™Ø[š\Ø][Û™[‹ğé\™[ˆ°ïˆ™\œÛÜ™İ[™Ë™Z[šYİ[™È[™[\›™ZY[œÚY[™Ëˆ‹œÚYÛšYšXØ[˜ÙHˆ‘\ˆ˜Z™Z[[™ÙHØ[\ˆ0é[]Ù[Ù\™XÚYÚÙZ]ÙYÙ[ˆÛÛ™\›™›XÚ[™İX]XÚ\È™\™Ù\ÜÙ[ˆÙ™™[‹ˆ‹˜ÛYHˆ”İXÚH™ZH\ˆØÚ[[\İ[ˆÚ[ZYZØ]\İ›ÜH\ˆ[™\İšYYÙ\ØÚXÚKˆ‹œÛİ\˜ÙU\›ˆšÎ‹ËÙ[‹ÚZÚ\YXK›Ü™ËİÚZÚKĞšÜ[Ù\Ø\İ\ˆ‹™Y™šXİ[HŒ_KÈ˜\˜Ú]™YYKšYˆ]\š\Ú[™È‹]HˆP]Yœİ[™‹›ØØ][Ûˆˆ–X[™ÛÛˆ[™^X[›X\ˆ‹˜Ûİ[Hˆ“^X[›X\ˆ‹˜ÛÛ[™[ˆ\ÚY[ˆ‹˜Ø]YÛÜHˆ[\™\™\ÜÚ[Ûˆ‹YÜÈ–È”İYY\™[™[˜™]ÙYİ[™È‹\˜™Z]\Šš[›™[˜™]ÙYİ[™È—KYX\”İ\ŒNNYX\‘[™ŒNN˜ÛÛÜ™[˜]\È–ÎM‹ŒM‹M‹K™\ØÜš\[Ûˆˆ”İYY\™[™Kpí›˜ÚK\˜™Z]\Šš[›™[ˆ[™œ™Z]H™]°í›Ù\[™È\šØ™[ˆÚXÚ[™\İÙZ]ÙYÙ[ˆYHZ[]0é™Zİ]\‹ˆ‹œÚYÛšYšXØ[˜ÙHˆ•]\Ù[™HİH[™Z[ˆÙ[™\˜[İ™ZZÈ°éİ[ˆ^X[›X\œÈ[[ÚÜ˜]\ØÚH™]ÙYİ[™Ëˆ‹˜ÛYHˆ•šY\ˆÛZXÚHšY™™\›ˆÙX™[ˆ\ÈØÚ0ïÜÙ[][H[‹ˆ‹œÛİ\˜ÙU\›ˆšÎ‹ËÙ[‹ÚZÚ\YXK›Ü™ËİÚZÚKÎÕ\š\Ú[™È‹™Y™šXİ[HŒ_KÈ˜\˜Ú]™YYKšYˆš˜[˜KX[™Û[‹LNNL‹]Hˆ’˜[˜H[™Û[ˆNNL‹›ØØ][Ûˆˆ’Ø]X[™H[™™\[‹˜Ûİ[Hˆ“™\[‹˜ÛÛ[™[ˆ\ÚY[ˆ‹˜Ø]YÛÜHˆ[\™\™\ÜÚ[Ûˆ‹YÜÈ–È˜\Ú\Ù[[ÚÜ˜]YH‹\˜™Z]\Šš[›™[˜™]ÙYİ[™È—KYX\”İ\ŒNNLYX\‘[™ŒNNL˜ÛÛÜ™[˜]\È–ÎKŒÌ‹ËÌ—K™\ØÜš\[Ûˆˆ‘Z[™H›ÛÜØ™]ÙYİ[™È]\È\ZY[‹Ù]Ù\šÜØÚY[ˆ[™İ˜pçÙ[œ›İ\İ[ˆ™Y[™]H\È]]Üš]0é™H[˜Ú^X]TŞ\İ[Kˆ‹œÚYÛšYšXØ[˜ÙHˆ’˜[˜H[™Û[ˆ\Ø[™ÈYZœ\ZY[™[[ÚÜ˜]YH[™Z[™H™]YH™\™˜\Üİ[™Ëˆ‹˜ÛYHˆ‘\ˆ™\[\Ú\ØÚH˜[YH™Y]]]›ÛÜØ™]ÙYİ[™Ëˆ‹œÛİ\˜ÙU\›ˆšÎ‹ËÙ[‹ÚZÚ\YXK›Ü™ËİÚZÚKÌNNLÓ™\[\ÙWÜ™]›Û][Ûˆ‹™Y™šXİ[HŒ_KÈšYˆ™[K[X\ÜØXÜ™K\™\Ú\İ[˜ÙH‹]Hˆ”Ø[KPÜ^‹SX\œØÚ[ˆ[H‹›ØØ][Ûˆˆ‘[H‹˜Ûİ[Hˆ“Üİ[[Üˆ‹˜ÛÛ[™[ˆ\ÚY[ˆ‹˜Ø]YÛÜHˆ[ZÛÛÛšX[\ˆÚY\œİ[™‹YÜÈ–È‘ÙY0éÚš\È\ˆ™\ÚYYİ[ˆ‹[Z[\\šX[\İ\ØÚ\ˆÚY\œİ[™—KYX\”İ\ŒNNLKYX\‘[™ŒNNLK˜ÛÛÜ™[˜]\È–ÌLKNNM—K™\ØÜš\[Ûˆˆ‘Z[ˆœšYYXÚ\ˆ˜]Y\›X\œØÚ°ïˆ[˜Xš0é™ÚYÚÙZ]İ\™H›Ûˆ[™Û™\Ú\ØÚ[ˆÛÛ][ˆ]Yˆ[HœšYYÙˆ™\ØÚÜÜÙ[‹ˆ‹œÚYÛšYšXØ[˜ÙHˆ‘Ù\ØÚ]YÙÙ[Hš[X]Y›˜ZY[ˆ\˜Úœ˜XÚ[ˆYH[\›˜][Û˜[H[œÚXÚ˜\šÙZ]\ˆ™\Ø][™Ëˆ‹˜ÛYHˆ”İXÚH]Yˆ[HØ[KPÜ^‹QœšYYÙ‹ˆ‹œÛİ\˜ÙU\›ˆšÎ‹ËÙ[‹ÚZÚ\YXK›Ü™ËİÚZÚKÔØ[WĞÜ^—ÛX\ÜØXÜ™H‹™Y™šXİ[HŒ_KÈ˜\˜Ú]™YYKšYˆœ™Y›Ü›X\ÚKZ[™Û™\ÚXH‹]Hˆ”™Y›Ü›X\ÚH[ˆ[™Û™\ÚY[ˆ‹›ØØ][Ûˆˆ’˜ZØ\H[™[™Û™\ÚY[ˆ‹˜Ûİ[Hˆ’[™Û™\ÚY[ˆ‹˜ÛÛ[™[ˆ\ÚY[ˆ‹˜Ø]YÛÜHˆ”İYY\™[™[˜™]ÙYİ[™È‹YÜÈ–È\˜™Z]\Šš[›™[˜™]ÙYİ[™È‹[\™\™\ÜÚ[Ûˆ—KYX\”İ\ŒNNNYX\‘[™ŒNNN˜ÛÛÜ™[˜]\È–ÌL‹KM‹ŒŒWK™\ØÜš\[Ûˆˆ”İYY\™[™[˜™\Ù][™Ù[‹[œZ[ˆ[™Ù\Ù[ØÚYXÚ\ˆXÚÈ™Y[™][ˆİZ\ÜÈÌ‹Z°éšYÙHZİ]\‹ˆ‹œÚYÛšYšXØ[˜ÙHˆ‘\ˆ]Y˜œXÚ0í™™›™]HÛ]\ØÚH°é[YK›YXˆX™\ˆ›Ûˆ[XÚ[™\Ú\ØÚ\ˆ[™Ù^X[\ÚY\\ˆÙ]Ø[0ï™\œØÚ]]ˆ‹˜ÛYHˆ”İXÚH[H\›[Y[›Ûˆ˜ZØ\Kˆ‹œÛİ\˜ÙU\›ˆšÎ‹ËÙ[‹ÚZÚ\YXK›Ü™ËİÚZÚKÓX^WÌNNNÜš[İ×ÛÙ—Ò[™Û™\ÚXH‹™Y™šXİ[HŒ_KÈšYˆœ[ÜK[[İ™[Y[[™\[LŒˆ‹]Hˆ“™\[\Ú\ØÚH›ÛÜØ™]ÙYİ[™ÈŒˆ‹›ØØ][Ûˆˆ’Ø]X[™H[™[™\İÙZ]‹˜Ûİ[Hˆ“™\[‹˜ÛÛ[™[ˆ\ÚY[ˆ‹˜Ø]YÛÜHˆ˜\Ú\Ù[[ÚÜ˜]YH‹YÜÈ–È[\™\™\ÜÚ[Ûˆ‹\˜™Z]\Šš[›™[˜™]ÙYİ[™È—KYX\”İ\ŒŒ‹YX\‘[™ŒŒ‹˜ÛÛÜ™[˜]\È–ÎKŒÌ‹ËÌ—K™\ØÜš\[Ûˆˆ‘Z[ˆ™][™Z0éÚYÙ\ˆÙ[™\˜[İ™ZZÈ[™šY\ÚYÙH[[Ûœİ˜][Û™[ˆØ[™Ù[ˆ[ˆğí›šYË\È\›[Y[ÚYY\ˆZ[\Ù]™[‹ˆ‹œÚYÛšYšXØ[˜ÙHˆ‘YH™]ÙYİ[™È0í™™›™]H[ˆÙYÈ\ˆ™\X›ZÈ[™[H[™H\ˆ[Û˜\˜ÚYKˆ‹˜ÛYHˆ]XÚÚİ[˜H[™Û[ˆÙ[˜[›ˆ‹œÛİ\˜ÙU\›ˆšÎ‹ËÙ[‹ÚZÚ\YXK›Ü™ËİÚZÚKÌŒ—Ó™\[\ÙWÜ™]›Û][Ûˆ‹™Y™šXİ[HŒ_KÈ˜\˜Ú]™YYKšYˆœİ[™›İÙ\‹[[İ™[Y[‹]Hˆ”ÛÛ›™[˜›[Y[‹P™]ÙYİ[™È‹›ØØ][Ûˆˆ•Z\Z‹˜Ûİ[Hˆ•Z]Ø[ˆ‹˜ÛÛ[™[ˆ\ÚY[ˆ‹˜Ø]YÛÜHˆ”İYY\™[™[˜™]ÙYİ[™È‹YÜÈ–È˜\Ú\Ù[[ÚÜ˜]YH‹‘\™ZİHZİ[Ûˆ—KYX\”İ\ŒŒMYX\‘[™ŒŒM˜ÛÛÜ™[˜]\È–ÌLŒKL‹KŒK™\ØÜš\[Ûˆˆ”İYY\™[™H[™°ï™Ù\Šš[›™[ˆ™\Ù][ˆ\È\›[Y[ÙYÙ[ˆZ[ˆ[˜[œÜ\™[\È[™[ØXšÛÛ[Y[ˆZ]Ú[˜Kˆ‹œÚYÛšYšXØ[˜ÙHˆ‘YH™\Ù][™ÈÜ[\š\ÚY\HÙ™™[™H™\™˜Z™[‹]™\İ™X[\È[™[[ÚÜ˜]\ØÚHÛÛ›ÛHÚ\ØÚYXÚ\ˆ™\°éÙKˆ‹˜ÛYHˆ”İXÚHŒÈYÙH[HYÚ\Û]]‹V]X[‹ˆ‹œÛİ\˜ÙU\›ˆšÎ‹ËÙ[‹ÚZÚ\YXK›Ü™ËİÚZÚKÔİ[™›İÙ\—ÔİY[Ó[İ™[Y[‹™Y™šXİ[HŒ_KÈšYˆ[Xœ™[K[[İ™[Y[‹]Hˆ”™YÙ[œØÚ\›X™]ÙYİ[™È‹›ØØ][Ûˆˆ’Û™ÚÛÛ™È‹˜Ûİ[Hˆ’Û™ÚÛÛ™È‹˜ÛÛ[™[ˆ\ÚY[ˆ‹˜Ø]YÛÜHˆ˜\Ú\Ù[[ÚÜ˜]YH‹YÜÈ–È”İYY\™[™[˜™]ÙYİ[™È‹‘\™ZİHZİ[Ûˆ—KYX\”İ\ŒŒMYX\‘[™ŒŒM˜ÛÛÜ™[˜]\È–ÌLMŒMËŒ‹ŒK™\ØÜš\[Ûˆˆ“X\ÜÙ[˜™\Ù][™Ù[ˆ›Ü™\[ˆœ™ZYHØZ[È™YÙ[œØÚ\›YHØÚ0ï[ˆÙYÙ[ˆ™Y™™\œÜ˜^H[™İ\™[ˆ[HŞ[X›Ûˆ‹œÚYÛšYšXØ[˜ÙHˆ”Ù[œİÜ™Ø[š\ÚY\HØ[\ÈXXÚ[ˆİY™\šÙZˆH[[ÚÜ˜]\ØÚ[H˜][Kˆ‹˜ÛYHˆ”İXÚH[ˆYZ\˜[K[Û™ÈÛÚÈ[™Ø]\Ù]Ø^H˜^Kˆ‹œÛİ\˜ÙU\›ˆšÎ‹ËÙ[‹ÚZÚ\YXK›Ü™ËİÚZÚKÌŒMÒÛ™×ÒÛÛ™×Ü›İ\İÈ‹™Y™šXİ[HŒ_KÈ˜\˜Ú]™YYKšYˆšÛ™ËZÛÛ™Ë\›İ\İËLŒNH‹]Hˆ’Û™ÚÛÛ™Ù\ˆ›İ\İHŒNH‹›ØØ][Ûˆˆ’Û™ÚÛÛ™È‹˜Ûİ[Hˆ’Û™ÚÛÛ™È‹˜ÛÛ[™[ˆ\ÚY[ˆ‹˜Ø]YÛÜHˆ[\™\™\ÜÚ[Ûˆ‹YÜÈ–È’YÙ[™™]ÙYİ[™È‹˜\Ú\Ù[[ÚÜ˜]YH—KYX\”İ\ŒŒNKYX\‘[™ŒŒŒ˜ÛÛÜ™[˜]\È–ÌLMŒMËŒ‹ŒÌ—K™\ØÜš\[Ûˆˆ“Z[[Û™[ˆ›İ\İY\[ˆÙYÙ[ˆZ[ˆ]\ÛYY™\[™ÜÙÙ\Ù]ˆ[™[ÚXÚÙ[[ˆ^™[˜[KØÚ™[HZİ[ÛœÙ›Ü›Y[‹ˆ‹œÚYÛšYšXØ[˜ÙHˆ™HØ]\ˆ™\˜˜[™X\ÜÙ[™[[Ûœİ˜][Û™[‹˜XÚ˜\œØÚYÚ[™H[™YÚ][HZİZÈ[\ˆØXÚÙ[™\ˆ™\™\ÜÚ[Û‹ˆ‹˜ÛYHˆ”İXÚH˜XÚ°ï™ˆ›Ü™\[™Ù[ˆ[™ÙZ[™\ˆÙ[šYÙ\‹ˆ‹œÛİ\˜ÙU\›ˆšÎ‹ËÙ[‹ÚZÚ\YXK›Ü™ËİÚZÚKÌŒNIQL‰N	NLÌŒŒÒÛ™×ÒÛÛ™×Ü›İ\İÈ‹™Y™šXİ[HŒ_KÈšYˆZK\›İ\İËLŒŒ‹]Hˆ•Z[0é™\ØÚHYÙ[™›İ\İHŒŒ‹›ØØ][Ûˆˆ˜[™ÚÛÚÈ[™[™\İÙZ]‹˜Ûİ[Hˆ•Z[[™‹˜ÛÛ[™[ˆ\ÚY[ˆ‹˜Ø]YÛÜHˆ’YÙ[™™]ÙYİ[™È‹YÜÈ–È[\™\™\ÜÚ[Ûˆ‹”]YY\™\ˆÚY\œİ[™—KYX\”İ\ŒŒŒYX\‘[™ŒŒŒK˜ÛÛÜ™[˜]\È–ÌLLLËÍ—K™\ØÜš\[Ûˆˆ’[™ÙH[[ÛœİšY\™[™H›Ü™\[ˆ[[ÚÜ˜]YKZ[™H™]YH™\™˜\Üİ[™È[™\œİX[ÈÙ™™[ˆZ[™H™Y›Ü›H\ˆ[Û˜\˜ÚYKˆ‹œÚYÛšYšXØ[˜ÙHˆ”Üİ[\‹]YY\™HÚXÚ˜\šÙZ][™™ZKQš[™Ù\‹QÜpçÈ\ÙZ]\[ˆ[ˆÛ]\ØÚ[ˆÜš^›Ûˆ‹˜ÛYHˆ”İXÚH˜XÚZ[™[HÜpçÈ]\È[ˆ[™Ù\ˆØ[Y\Ëˆ‹œÛİ\˜ÙU\›ˆšÎ‹ËÙ[‹ÚZÚ\YXK›Ü™ËİÚZÚKÌŒŒ	QL‰N	NLÌŒŒWÕZWÜ›İ\İÈ‹™Y™šXİ[HŒ_KÈšYˆ›^X[›X\‹\Üš[™Ë\™]›Û][Ûˆ‹]Hˆ‘œ°ï[™ÜÜ™]›Û][Ûˆ[ˆ^X[›X\ˆ‹›ØØ][Ûˆˆ“^X[›X\ˆ‹˜Ûİ[Hˆ“^X[›X\ˆ‹˜ÛÛ[™[ˆ\ÚY[ˆ‹˜Ø]YÛÜHˆ[\™\™\ÜÚ[Ûˆ‹YÜÈ–È\˜™Z]\Šš[›™[˜™]ÙYİ[™È‹˜\Ú\Ù[[ÚÜ˜]YH—KYX\”İ\ŒŒŒKYX\‘[™ŒŒ‹˜ÛÛÜ™[˜]\È–ÎM‹ŒM‹M‹K™\ØÜš\[Ûˆˆ“˜XÚ[HZ[]0éœ]ØÚ[İ[™[ˆš]š[\ˆ[™ÙZÜœØ[KÙ[™\˜[İ™ZZÜË˜XÚ˜\œØÚYÛ™]™H[™™]ØY™›™]\ˆÚY\œİ[™ˆ‹œÚYÛšYšXØ[˜ÙHˆ‘Z[™HšY[°éYÙH™]ÙYİ[™È™\˜š[™][[ÚÜ˜]YHZ]ØXÚÙ[™\ˆ[™\šÙ[›[™È]š\ØÚ\ˆÙ[œİ™\İ[[][™Ëˆ‹˜ÛYHˆ”İXÚH˜XÚÛØÚÜ‹T›İ\İ[ˆÙYÙ[ˆZ[™H[Kˆ‹œÛİ\˜ÙU\›ˆšÎ‹ËÙ[‹ÚZÚ\YXK›Ü™ËİÚZÚKÓ^X[›X\—ØÚ]š[İØ\—ÊŒŒIQL‰N	NLÜ™\Ù[
-H‹™Y™šXİ[HŒ_KÈ˜\˜Ú]™YYKšYˆ˜\˜YØ[^XK\ÜšK[[šØH‹]Hˆ\˜YØ[^XH[ˆÜšH[šØH‹›ØØ][ÛˆˆÛÛÛX›È[™[™\İÙZ]‹˜Ûİ[Hˆ”ÜšH[šØH‹˜ÛÛ[™[ˆ\ÚY[ˆ‹˜Ø]YÛÜHˆ[ZØ\][\İ\ØÚH™]ÙYİ[™È‹YÜÈ–È’YÙ[™™]ÙYİ[™È‹˜\Ú\Ù[[ÚÜ˜]YH—KYX\”İ\ŒŒŒ‹YX\‘[™ŒŒŒ‹˜ÛÛÜ™[˜]\È–ÍÎK‹‹L×K™\ØÜš\[Ûˆˆ[™Ù\ÚXÚÈ\ˆÚ\ØÚYÚÜš\ÙH\œšXÚ][ˆY[œØÚ[ˆ›İ\İØ[\ËÜ™Ø[š\ÚY\[ˆ™\œÛÜ™İ[™È[™İ0ï›][ˆ[ˆ°éÚY[[œ[\İˆ‹œÚYÛšYšXØ[˜ÙHˆ‘\ˆØ[\ˆİ[H[][š\œœØÚY[™ØÚ[[œÛ]ZÈYÛZXÚ[™œ˜YÙKˆ‹˜ÛYHˆ\˜YØ[^XH™Y]]]Ø[\ˆ]YˆÚ[™Ú[\Ú\ØÚˆ‹œÛİ\˜ÙU\›ˆšÎ‹ËÙ[‹ÚZÚ\YXK›Ü™ËİÚZÚKÌŒŒ—ÔÜšWÓ[šØ[—Ü›İ\İÈ‹™Y™šXİ[HŒ_KÈšYˆœ[]KX[K[XÛX\‹XÛÛœİ]][Ûˆ‹]Hˆ”[]\È]Û]ØY™™[™œ™ZYH™\™˜\Üİ[™È‹›ØØ][Ûˆˆ’ÛÜ›Üˆ‹˜Ûİ[Hˆ”[]H‹˜ÛÛ[™[ˆ“Ş™X[šY[ˆ‹˜Ø]YÛÜHˆ[[Z[]\š\Û]\È‹YÜÈ–È’[™YÙ[™\ˆÚY\œİ[™‹°åšÛÛÙÚ\ØÚ\ˆÚY\œİ[™—KYX\”İ\ŒNMÎKYX\‘[™ŒNNM˜ÛÛÜ™[˜]\È–ÌLÍËŒÍK™\ØÜš\[Ûˆˆ‘Z[™H›ÛÜØXœİ[[][™È™\˜[šÙ\HZ[ˆ™\˜›İZÛX\™\ˆİÙ™™NÈ™\ÛÛ™\œÈœ˜]Y[ˆ™\ZYYİ[ˆ\ÈÙYÙ[ˆX\ÜÚ]™[ˆTËQXÚËˆ‹œÚYÛšYšXØ[˜ÙHˆ‘Z[™HÛZ[™H[œÙ[Ù\Ù[ØÚYİ[H[[ÚÜ˜]\ØÚHÙ[œİ™\İ[[][™ÈÙYÙ[ˆİ˜]YÚ\ØÚHZ[]0éš[\™\ÜÙ[‹ˆ‹˜ÛYHˆ”İXÚH[ˆZZÜ›Û™\ÚY[ˆ˜XÚ\ˆÙ[ÙZ]\œİ[ˆ]Û]ØY™™[™œ™ZY[ˆ™\™˜\Üİ[™Ëˆ‹œÛİ\˜ÙU\›ˆšÎ‹ËÙ[‹ÚZÚ\YXK›Ü™ËİÚZÚKĞÛÛœİ]][Û—ÛÙ—Ô[]H‹™Y™šXİ[HŒŸKÈšYˆ›XX\Ú[˜K\\H‹]Hˆ“XX\Ú[˜H\H‹›ØØ][Ûˆˆ“X[Z]H‹˜Ûİ[Hˆ”Ø[Û[Û™[ˆ‹˜ÛÛ[™[ˆ“Ş™X[šY[ˆ‹˜Ø]YÛÜHˆ[ZÛÛÛšX[\ˆÚY\œİ[™‹YÜÈ–È’[™YÙ[™\ˆÚY\œİ[™‹ÛÛ[[ÛœËP™]ÙYİ[™È—KYX\”İ\ŒNMKYX\‘[™ŒNML‹˜ÛÛÜ™[˜]\È–ÌMŒNKNNWK™\ØÜš\[Ûˆˆ‘0íœ™™\ˆ˜]][ˆZYÙ[™H°éH[™™\ÙZYÙ\[ˆ\ˆœš]\ØÚ[ˆÛÛÛšX[™\Ø[[™Èİ]Y\›ˆ[™ÛÛÜ\˜][Û‹ˆ‹œÚYÛšYšXØ[˜ÙHˆ‘YH™]ÙYİ[™È™\˜˜[™ÚØ[H™YÚY\[™ÜÙ›Ü›Y[‹ğï™H[™X]\šY[HÙ[œİ™\İ[[][™Ëˆ‹˜ÛYHˆ‘\ˆ˜[YHÚ\™[Èœ°ï\›XÚH\œœØÚY0ï™\œÙ]ˆ‹œÛİ\˜ÙU\›ˆšÎ‹ËÙ[‹ÚZÚ\YXK›Ü™ËİÚZÚKÓXX\Ú[˜WÔ\H‹™Y™šXİ[HŒßKÈšYˆœØ]™KX\˜[[Ø[˜H‹]Hˆ”Ø]™H\˜[[Ø[˜H‹›ØØ][Ûˆˆ\˜[[Ø[˜H‹˜Ûİ[Hˆ[İX\›ØH™]\ÙY[[™‹˜ÛÛ[™[ˆ“Ş™X[šY[ˆ‹˜Ø]YÛÜHˆ°åšÛÛÙÚ\ØÚ\ˆÚY\œİ[™‹YÜÈ–ÈÛÛ[[ÛœËP™]ÙYİ[™È‹‘\™ZİHZİ[Ûˆ—KYX\”İ\ŒNMÍYX\‘[™ŒNNË˜ÛÛÜ™[˜]\È–ÌMÌÌMKÎK™\ØÜš\[Ûˆˆ‘Z[™Hğïİ[™Ù[YZ[™H\šÛ0éHÚXÚŞ[X›Û\ØÚ[˜Xš0é™ÚYÈ[™İÜHÙ[YZ[œØ[HZ]™\˜°ï™][ˆZ[ˆšY\ÚYÙ\È[[Z[š][]Ù\šËˆ‹œÚYÛšYšXØ[˜ÙHˆ’[[Ü‹˜XÚÚ\ÜÙ[ˆ[™ÚØ[HÜ™Ø[š\ÚY\[™È™\ÚYYİ[ˆZ[ˆİX]XÚÙ\İ0ï\È[™\İšY\›Ú™Zİˆ‹˜ÛYHˆ”İXÚH[HZ[™Ø[™È\ÈİYÛÈ\˜›İ\‹ˆ‹œÛİ\˜ÙU\›ˆšÎ‹ËÙ[‹ÚZÚ\YXK›Ü™ËİÚZÚKÔØ]™WĞ\˜[[Ø[˜WĞØ[\ZYÛˆ‹™Y™šXİ[HŒŸKÈšYˆšZ[X][Ë[ØØİ\][Ûˆ‹]Hˆ™\Ù][™È›ÛˆZ[q ][È‹›ØØ][Ûˆˆ•1 [XZÚHXZØ]\˜]HÈ]XÚÛ[™‹˜Ûİ[Hˆ[İX\›ØH™]\ÙY[[™‹˜ÛÛ[™[ˆ“Ş™X[šY[ˆ‹˜Ø]YÛÜHˆ’[™YÙ[™\ˆÚY\œİ[™‹YÜÈ–È“[™™\ZYYİ[™È‹’YÙ[™™]ÙYİ[™È—KYX\”İ\ŒŒM‹YX\‘[™ŒŒŒ˜ÛÛÜ™[˜]\È–ÌMÍÍKLÍËŒK™\ØÜš\[Ûˆˆ’[™ÙHq [ÜšH[™[\œİ0ï™\Šš[›™[ˆ™\Ù][ˆZ™[›[™[HZ[™Hš]˜]HÛÚ˜™X˜]][™ÈH™\š[™\›‹ˆ‹œÚYÛšYšXØ[˜ÙHˆ”ÓÕS™\˜˜[™[™°ïÚÙØX™Kİ[\™\˜™H[™Z[™H™]YHÙ[™\˜][Ûˆ[™YÙ[™\ˆ°ï[™Ëˆ‹˜ÛYHˆ”İXÚH˜ZH[H›YÚY™[ˆ]XÚÛ[™ˆ‹œÛİ\˜ÙU\›ˆšÎ‹ËÙ[‹ÚZÚ\YXK›Ü™ËİÚZÚKÒZ[IPÍ	N][È‹™Y™šXİ[HŒ_B—B
+  {
+    "archived": true,
+    "id": "morant-bay-rebellion",
+    "title": "Morant-Bay-Aufstand",
+    "location": "Morant Bay",
+    "country": "Jamaika",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Antikolonialer Widerstand",
+    "tags": [
+      "BÃ¤uerlicher Widerstand",
+      "Schwarze Befreiungsbewegung"
+    ],
+    "yearStart": 1865,
+    "yearEnd": 1865,
+    "coordinates": [
+      -76.41,
+      17.88
+    ],
+    "description": "Schwarze BÃ¤uer*innen marschierten gegen Landnot, rassistische Justiz und politische Entrechtung; Kolonialtruppen Ã¼bten blutige Vergeltung.",
+    "significance": "Der Aufstand legte die unvollendete Emanzipation nach der Sklaverei offen.",
+    "clue": "Suche im Osten Jamaikas.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Morant_Bay_rebellion",
+    "difficulty": 1
+  },
+  {
+    "id": "santa-maria-iquique",
+    "title": "Streik von Santa MarÃ­a de Iquique",
+    "location": "Iquique",
+    "country": "Chile",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "GedÃ¤chtnis der Besiegten",
+      "Anarchistische Bewegung"
+    ],
+    "yearStart": 1907,
+    "yearEnd": 1907,
+    "coordinates": [
+      -70.15,
+      -20.21
+    ],
+    "description": "Salpeterarbeiter*innen und ihre Familien zogen in die Hafenstadt und forderten Lohn und WÃ¼rde; das MilitÃ¤r massakrierte sie in einer Schule.",
+    "significance": "Die Erinnerung wurde zu einem Grundmotiv der chilenischen Arbeiter*innenbewegung.",
+    "clue": "Suche in einer Schule in der Atacama.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Santa_Mar%C3%ADa_School_massacre",
+    "difficulty": 1
+  },
+  {
+    "id": "independent-party-color-1912",
+    "title": "Aufstand der Partido Independiente de Color",
+    "location": "Oriente",
+    "country": "Kuba",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Schwarze Befreiungsbewegung",
+    "tags": [
+      "Antirassistischer Widerstand",
+      "GedÃ¤chtnis der Besiegten"
+    ],
+    "yearStart": 1912,
+    "yearEnd": 1912,
+    "coordinates": [
+      -75.82,
+      20.02
+    ],
+    "description": "Afrokubanische Organisierte protestierten gegen das Verbot ihrer Partei und fortbestehenden Rassismus; Armee und Milizen tÃ¶teten Tausende.",
+    "significance": "Die Republik beantwortete Schwarze politische Selbstorganisation mit einem lange verschwiegenen Massaker.",
+    "clue": "Suche im Osten Kubas zwanzig Jahre nach der UnabhÃ¤ngigkeit.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Negro_Rebellion",
+    "difficulty": 2
+  },
+  {
+    "id": "cordoba-university-reform",
+    "title": "UniversitÃ¤tsreform von CÃ³rdoba",
+    "location": "CÃ³rdoba",
+    "country": "Argentinien",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Studierendenbewegung",
+    "tags": [
+      "Bildungsbewegung",
+      "Basisdemokratie"
+    ],
+    "yearStart": 1918,
+    "yearEnd": 1918,
+    "coordinates": [
+      -64.19,
+      -31.42
+    ],
+    "description": "Studierende forderten Mitbestimmung, wissenschaftliche Freiheit und eine UniversitÃ¤t im Dienst gesellschaftlicher VerÃ¤nderung.",
+    "significance": "Das Manifest inspirierte Studierendenbewegungen in ganz Lateinamerika.",
+    "clue": "Suche an Argentiniens Ã¤ltester UniversitÃ¤t.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/University_Reform_of_1918",
+    "difficulty": 1
+  },
+  {
+    "id": "tragic-week-argentina",
+    "title": "Semana TrÃ¡gica",
+    "location": "Buenos Aires",
+    "country": "Argentinien",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Anarchistische Bewegung",
+      "GedÃ¤chtnis der Besiegten"
+    ],
+    "yearStart": 1919,
+    "yearEnd": 1919,
+    "coordinates": [
+      -58.38,
+      -34.6
+    ],
+    "description": "Ein Metallarbeiterstreik wuchs zum Generalstreik; Polizei, Armee und rechte Banden tÃ¶teten Arbeiter*innen und griffen jÃ¼dische Viertel an.",
+    "significance": "Klassenrepression verband sich offen mit Antisemitismus und nationalistischer Gewalt.",
+    "clue": "Suche im Januar 1919 in Buenos Aires.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Tragic_Week_(Argentina)",
+    "difficulty": 1
+  },
+  {
+    "archived": true,
+    "id": "patagonia-rebelde",
+    "title": "Patagonia Rebelde",
+    "location": "Santa Cruz",
+    "country": "Argentinien",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Anarchistische Bewegung",
+    "tags": [
+      "Arbeiter*innenbewegung",
+      "GedÃ¤chtnis der Besiegten"
+    ],
+    "yearStart": 1920,
+    "yearEnd": 1922,
+    "coordinates": [
+      -69.22,
+      -51.62
+    ],
+    "description": "Landarbeiter*innen organisierten Streiks gegen extreme Ausbeutung; die Armee exekutierte Hunderte nach ihrer Kapitulation.",
+    "significance": "Der Kampf erinnert an anarchosyndikalistische Organisierung und staatlichen Terror im agrarischen SÃ¼den.",
+    "clue": "Suche auf den Schaffarmen Patagoniens.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Patagonia_Rebelde",
+    "difficulty": 1
+  },
+  {
+    "id": "guayaquil-general-strike-1922",
+    "title": "Generalstreik von Guayaquil",
+    "location": "Guayaquil",
+    "country": "Ecuador",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Anarchistische Bewegung",
+      "GedÃ¤chtnis der Besiegten"
+    ],
+    "yearStart": 1922,
+    "yearEnd": 1922,
+    "coordinates": [
+      -79.9,
+      -2.19
+    ],
+    "description": "Arbeiter*innenverbÃ¤nde legten die Hafenstadt gegen Teuerung und niedrige LÃ¶hne lahm; das MilitÃ¤r massakrierte die Demonstrierenden.",
+    "significance": "Der 15. November wurde zum zentralen Gedenktag der ecuadorianischen Arbeiter*innenbewegung.",
+    "clue": "Suche am RÃ­o Guayas.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/1922_Guayaquil_general_strike",
+    "difficulty": 2
+  },
+  {
+    "id": "banana-massacre",
+    "title": "Bananenmassaker",
+    "location": "CiÃ©naga",
+    "country": "Kolumbien",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Antiimperialistischer Widerstand",
+      "GedÃ¤chtnis der Besiegten"
+    ],
+    "yearStart": 1928,
+    "yearEnd": 1928,
+    "coordinates": [
+      -74.24,
+      11.01
+    ],
+    "description": "Streikende Plantagenarbeiter*innen der United Fruit Company wurden von der kolumbianischen Armee beschossen.",
+    "significance": "Das Massaker wurde zum Symbol der Verbindung von Konzernmacht, Imperialismus und staatlicher Gewalt.",
+    "clue": "Suche nahe Santa Marta zwischen Bananenplantagen.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Banana_Massacre",
+    "difficulty": 1
+  },
+  {
+    "archived": true,
+    "id": "el-salvador-uprising-1932",
+    "title": "Bauernaufstand in El Salvador 1932",
+    "location": "Westliches El Salvador",
+    "country": "El Salvador",
+    "continent": "Lateinamerika & Karibik",
+    "category": "BÃ¤uerlicher Widerstand",
+    "tags": [
+      "Indigener Widerstand",
+      "GedÃ¤chtnis der Besiegten"
+    ],
+    "yearStart": 1932,
+    "yearEnd": 1932,
+    "coordinates": [
+      -89.68,
+      13.84
+    ],
+    "description": "Indigene und bÃ¤uerliche Gemeinden erhoben sich gegen Landenteignung und Diktatur; das MilitÃ¤r ermordete Zehntausende.",
+    "significance": "La Matanza zerstÃ¶rte offene indigene Sichtbarkeit und prÃ¤gte Generationen politischer Angst.",
+    "clue": "Suche nach Farabundo MartÃ­ und Feliciano Ama.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/1932_Salvadoran_peasant_massacre",
+    "difficulty": 1
+  },
+  {
+    "archived": true,
+    "id": "cuban-general-strike-1933",
+    "title": "Kubas Generalstreik von 1933",
+    "location": "Havanna und landesweit",
+    "country": "Kuba",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Antirepression",
+      "Antiimperialistischer Widerstand"
+    ],
+    "yearStart": 1933,
+    "yearEnd": 1933,
+    "coordinates": [
+      -82.37,
+      23.11
+    ],
+    "description": "Streiks, Studierendenproteste und MilitÃ¤rmeuterei stÃ¼rzten die Diktatur Gerardo Machados.",
+    "significance": "Die revolutionÃ¤re Krise zeigte gesellschaftliche Macht, aber auch die rasche Neuordnung durch MilitÃ¤r und US-Einfluss.",
+    "clue": "Suche im August 1933 in Havanna.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Cuban_Revolution_of_1933",
+    "difficulty": 2
+  },
+  {
+    "id": "st-kitts-labour-riots",
+    "title": "Buckley-Aufstand",
+    "location": "Basseterre",
+    "country": "St. Kitts und Nevis",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Antikolonialer Widerstand",
+      "Schwarze Befreiungsbewegung"
+    ],
+    "yearStart": 1935,
+    "yearEnd": 1935,
+    "coordinates": [
+      -62.73,
+      17.3
+    ],
+    "description": "Zuckerarbeiter*innen streikten gegen gekÃ¼rzte LÃ¶hne; Kolonialpolizei tÃ¶tete mehrere Streikende.",
+    "significance": "Der Konflikt erÃ¶ffnete die Welle karibischer Arbeiter*innenaufstÃ¤nde der 1930er Jahre.",
+    "clue": "Suche auf der Buckley-Plantage.",
+    "sourceUrl": "https://stkittsnevisflag.com/discover-stkitts-nevis/historical-overview/significant-historical-events-in-st-kitts-and-nevis/1932-founding-of-the-st-kitts-workers-league/",
+    "difficulty": 3
+  },
+  {
+    "id": "barbados-labour-rebellion",
+    "title": "Arbeiter*innenaufstand auf Barbados",
+    "location": "Bridgetown",
+    "country": "Barbados",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Antikolonialer Widerstand",
+      "Schwarze Befreiungsbewegung"
+    ],
+    "yearStart": 1937,
+    "yearEnd": 1937,
+    "coordinates": [
+      -59.61,
+      13.1
+    ],
+    "description": "Nach der Deportation Clement Paynes protestierten Arbeiter*innen gegen Armut, Rassismus und Kolonialherrschaft.",
+    "significance": "Der Aufstand trieb Gewerkschaftsbildung und politische Organisierung voran.",
+    "clue": "Suche Ende Juli in Bridgetown.",
+    "sourceUrl": "https://www.barbadospocketguide.com/our-island-barbados/national-heroes/clement-osbourne-payne.html",
+    "difficulty": 2
+  },
+  {
+    "id": "trinidad-oilfield-strike",
+    "title": "Ã–lfeldstreik in Trinidad",
+    "location": "Fyzabad",
+    "country": "Trinidad und Tobago",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Antikolonialer Widerstand",
+      "Schwarze Befreiungsbewegung"
+    ],
+    "yearStart": 1937,
+    "yearEnd": 1937,
+    "coordinates": [
+      -61.48,
+      10.18
+    ],
+    "description": "Ã–larbeiter*innen um Tubal Uriah Butler streikten gegen rassistische LÃ¶hne und koloniale Arbeitsbedingungen.",
+    "significance": "Die Bewegung begrÃ¼ndete moderne Gewerkschaftsmacht in Trinidad und strahlte in die Karibik aus.",
+    "clue": "Suche an den Ã–lfeldern im SÃ¼den Trinidads.",
+    "sourceUrl": "https://nationaltrust.tt/locales-of-the-1937-labour-revolution/",
+    "difficulty": 2
+  },
+  {
+    "id": "jamaica-labour-rebellion-1938",
+    "title": "Jamaikanischer Arbeiter*innenaufstand 1938",
+    "location": "Frome, Kingston und landesweit",
+    "country": "Jamaika",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Antikolonialer Widerstand",
+      "Schwarze Befreiungsbewegung"
+    ],
+    "yearStart": 1938,
+    "yearEnd": 1938,
+    "coordinates": [
+      -77.3,
+      18
+    ],
+    "description": "Zucker- und Hafenarbeiter*innen streikten gegen Hungerlohn und koloniale Ungleichheit.",
+    "significance": "Der Aufstand beschleunigte Gewerkschaften, allgemeines Wahlrecht und Selbstregierung.",
+    "clue": "Suche auf der Frome-Zuckerplantage.",
+    "sourceUrl": "https://www.nationalarchives.gov.uk/education/resources/commonwealth-migration-since-1945/disturbance-tate-lyle-estate/",
+    "difficulty": 2
+  },
+  {
+    "id": "jayuya-uprising",
+    "title": "Jayuya-Aufstand",
+    "location": "Jayuya",
+    "country": "Puerto Rico",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Antikolonialer Widerstand",
+    "tags": [
+      "Antiimperialistischer Widerstand",
+      "GedÃ¤chtnis der Besiegten"
+    ],
+    "yearStart": 1950,
+    "yearEnd": 1950,
+    "coordinates": [
+      -66.59,
+      18.22
+    ],
+    "description": "Puertoricanische Nationalist*innen erklÃ¤rten eine freie Republik; US- und InselkrÃ¤fte schlugen den Aufstand nieder.",
+    "significance": "Die Bombardierung erinnert an den gewaltsam unterdrÃ¼ckten Kampf gegen US-Kolonialstatus.",
+    "clue": "Suche in einer Bergstadt im Zentrum Puerto Ricos.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Jayuya_Uprising",
+    "difficulty": 1
+  },
+  {
+    "archived": true,
+    "id": "curacao-uprising-1969",
+    "title": "Aufstand von CuraÃ§ao 1969",
+    "location": "Willemstad",
+    "country": "CuraÃ§ao",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Antirassistischer Widerstand",
+      "Antikolonialer Widerstand"
+    ],
+    "yearStart": 1969,
+    "yearEnd": 1969,
+    "coordinates": [
+      -68.93,
+      12.11
+    ],
+    "description": "Ein Streik von Raffineriearbeiter*innen wurde zum Aufstand gegen rassistische Lohnhierarchien und niederlÃ¤ndische Kolonialordnung.",
+    "significance": "Der 30. Mai verÃ¤nderte Politik und SelbstverstÃ¤ndnis der Insel.",
+    "clue": "Suche nahe einer Shell-Raffinerie.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/1969_Cura%C3%A7ao_uprising",
+    "difficulty": 2
+  },
+  {
+    "id": "trinidad-black-power-revolution",
+    "title": "Black-Power-Revolution in Trinidad",
+    "location": "Port of Spain",
+    "country": "Trinidad und Tobago",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Schwarze Befreiungsbewegung",
+    "tags": [
+      "Arbeiter*innenbewegung",
+      "Antirassistischer Widerstand"
+    ],
+    "yearStart": 1970,
+    "yearEnd": 1970,
+    "coordinates": [
+      -61.52,
+      10.66
+    ],
+    "description": "Studierende, Arbeitslose, Gewerkschaften und meuternde Soldaten mobilisierten gegen Rassismus, auslÃ¤ndisches Kapital und Elitenherrschaft.",
+    "significance": "Panafrikanismus traf auf karibische Klassenpolitik und bedrohte die bestehende Ordnung.",
+    "clue": "Suche nach einem Marsch von Port of Spain nach Caroni.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Black_Power_Revolution",
+    "difficulty": 1
+  },
+  {
+    "archived": true,
+    "id": "uruguay-general-strike-1973",
+    "title": "Uruguayischer Generalstreik 1973",
+    "location": "Montevideo und landesweit",
+    "country": "Uruguay",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Antifaschistischer Widerstand",
+      "Direkte Aktion"
+    ],
+    "yearStart": 1973,
+    "yearEnd": 1973,
+    "coordinates": [
+      -56.16,
+      -34.9
+    ],
+    "description": "Gewerkschaften besetzten Betriebe und legten das Land fÃ¼nfzehn Tage gegen den zivil-militÃ¤rischen Putsch lahm.",
+    "significance": "Der vorbereitete Widerstand machte die Diktatur vom ersten Tag an umkÃ¤mpft.",
+    "clue": "Suche in Fabriken nach dem 27. Juni.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/1973_Uruguayan_coup_d%27%C3%A9tat",
+    "difficulty": 1
+  },
+  {
+    "id": "mothers-plaza-mayo-first-march",
+    "title": "Erster Marsch der MÃ¼tter der Plaza de Mayo",
+    "location": "Buenos Aires",
+    "country": "Argentinien",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Feministischer & antisexistischer Widerstand",
+    "tags": [
+      "Menschenrechtsbewegung",
+      "GedÃ¤chtnis der Besiegten"
+    ],
+    "yearStart": 1977,
+    "yearEnd": 1977,
+    "coordinates": [
+      -58.37,
+      -34.61
+    ],
+    "description": "MÃ¼tter Verschwundener gingen im Kreis, weil die Diktatur stehende Versammlungen verbot.",
+    "significance": "Die weiÃŸen KopftÃ¼cher verwandelten Sorgearbeit in beharrlichen Ã¶ffentlichen Widerstand.",
+    "clue": "Suche jeden Donnerstag auf dem Platz vor dem PrÃ¤sidentenpalast.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Mothers_of_Plaza_de_Mayo",
+    "difficulty": 1
+  },
+  {
+    "id": "caracazo",
+    "title": "Caracazo",
+    "location": "Caracas und Venezuela",
+    "country": "Venezuela",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Antikapitalistische Bewegung",
+    "tags": [
+      "Direkte Aktion",
+      "GedÃ¤chtnis der Besiegten"
+    ],
+    "yearStart": 1989,
+    "yearEnd": 1989,
+    "coordinates": [
+      -66.9,
+      10.48
+    ],
+    "description": "Nach Fahrpreis- und BenzinerhÃ¶hungen explodierten Proteste gegen ein IWF-Paket; MilitÃ¤r und Polizei tÃ¶teten Hunderte oder mehr.",
+    "significance": "Der Aufstand zerstÃ¶rte den Konsens der alten Parteienordnung.",
+    "clue": "Suche Ende Februar in Venezuelas Hauptstadt.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Caracazo",
+    "difficulty": 1
+  },
+  {
+    "id": "bagua-protests",
+    "title": "Amazonas-Aufstand und Bagua",
+    "location": "Bagua",
+    "country": "Peru",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Indigener Widerstand",
+    "tags": [
+      "Ã–kologischer Widerstand",
+      "Landverteidigung"
+    ],
+    "yearStart": 2009,
+    "yearEnd": 2009,
+    "coordinates": [
+      -78.53,
+      -5.64
+    ],
+    "description": "Indigene Gemeinden blockierten StraÃŸen gegen Dekrete, die Extraktion im Amazonasgebiet erleichterten; eine RÃ¤umung endete tÃ¶dlich.",
+    "significance": "Der Kampf erzwang die RÃ¼cknahme von Gesetzen und machte freie, vorherige Zustimmung zentral.",
+    "clue": "Suche an der Teufelskurve im Norden Perus.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/2009_Peruvian_political_crisis",
+    "difficulty": 1
+  },
+  {
+    "id": "guadeloupe-general-strike",
+    "title": "Generalstreik auf Guadeloupe",
+    "location": "Guadeloupe",
+    "country": "Guadeloupe",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Antikolonialer Widerstand",
+      "Antikapitalistische Bewegung"
+    ],
+    "yearStart": 2009,
+    "yearEnd": 2009,
+    "coordinates": [
+      -61.55,
+      16.25
+    ],
+    "description": "Das BÃ¼ndnis LKP legte die Insel 44 Tage gegen hohe Preise, niedrige LÃ¶hne und koloniale Wirtschaftsstrukturen lahm.",
+    "significance": "Breite Selbstorganisation gewann LohnerhÃ¶hungen und verband soziale mit antikolonialer Kritik.",
+    "clue": "Suche in einem franzÃ¶sischen Ãœberseegebiet der Karibik.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/2009_French_Caribbean_general_strikes",
+    "difficulty": 1
+  },
+  {
+    "archived": true,
+    "id": "chile-student-protests-2011",
+    "title": "Chilenischer Bildungsaufstand",
+    "location": "Santiago und Chile",
+    "country": "Chile",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Studierendenbewegung",
+    "tags": [
+      "Bildungsbewegung",
+      "Antikapitalistische Bewegung"
+    ],
+    "yearStart": 2011,
+    "yearEnd": 2013,
+    "coordinates": [
+      -70.67,
+      -33.45
+    ],
+    "description": "SchÃ¼ler*innen und Studierende besetzten Einrichtungen und forderten kostenlose Ã¶ffentliche Bildung statt Pinochet-Erbe und Verschuldung.",
+    "significance": "Kreative Massenaktionen verschoben die Debatte Ã¼ber Markt, Verfassung und soziale Rechte.",
+    "clue": "Suche nach TÃ¤nzen, KÃ¼ssen und LÃ¤ufen als Protestformen.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/2011_Chilean_student_protests",
+    "difficulty": 1
+  },
+  {
+    "id": "puerto-rico-university-strike-2017",
+    "title": "UniversitÃ¤tsstreik in Puerto Rico",
+    "location": "San Juan und Inselcampus",
+    "country": "Puerto Rico",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Studierendenbewegung",
+    "tags": [
+      "Antiimperialistischer Widerstand",
+      "Bildungsbewegung"
+    ],
+    "yearStart": 2017,
+    "yearEnd": 2017,
+    "coordinates": [
+      -66.05,
+      18.4
+    ],
+    "description": "Studierende bestreikten die UniversitÃ¤t gegen KÃ¼rzungen, StudiengebÃ¼hren und die koloniale Schuldenaufsicht.",
+    "significance": "Der Ausstand verband Ã¶ffentliche Bildung mit Kritik an AusteritÃ¤t und US-Fiskalkontrolle.",
+    "clue": "Suche am RÃ­o-Piedras-Campus.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/University_of_Puerto_Rico_strikes,_2017",
+    "difficulty": 2
+  },
+  {
+    "id": "telegramgate-puerto-rico",
+    "title": "Telegramgate und Verano del 19",
+    "location": "San Juan",
+    "country": "Puerto Rico",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Antirepression",
+    "tags": [
+      "Queerer Widerstand",
+      "Feministischer & antisexistischer Widerstand"
+    ],
+    "yearStart": 2019,
+    "yearEnd": 2019,
+    "coordinates": [
+      -66.11,
+      18.47
+    ],
+    "description": "Nach geleakten sexistischen und homophoben Chats erzwangen Massenproteste den RÃ¼cktritt von Gouverneur Ricardo RossellÃ³.",
+    "significance": "Queere, feministische und diasporische KrÃ¤fte machten EmpÃ¶rung zu einer tanzenden, vielfÃ¤ltigen Volksbewegung.",
+    "clue": "Suche nach Perreo Combativo in San Juan.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Telegramgate",
+    "difficulty": 1
+  }
+]

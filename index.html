@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de" data-atlas-version="2.4.0">
+<html lang="de" data-atlas-version="2.5.0">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -55,6 +55,7 @@
       <div class="search-wrap">
         <span aria-hidden="true">⌕</span>
         <input id="search-input" type="search" autocomplete="off" placeholder="Ort, Bewegung, Jahr …" data-i18n-placeholder="searchPlaceholder">
+        <button class="search-clear" id="clear-search" type="button" aria-label="Suche leeren" data-i18n-aria="clearSearch" hidden>×</button>
         <kbd>F</kbd>
       </div>
 
@@ -83,7 +84,10 @@
 
       <div class="filter-summary" aria-live="polite">
         <span id="result-count">0 Ereignisse</span>
-        <button class="text-button" id="reset-filters" type="button" data-i18n="resetFilters">Filter zurücksetzen</button>
+        <span class="filter-actions">
+          <button class="text-button" id="fit-results" type="button" data-i18n="showResults">Treffer zeigen</button>
+          <button class="text-button" id="reset-filters" type="button" data-i18n="resetFilters">Filter zurücksetzen</button>
+        </span>
       </div>
 
       <div class="action-grid">

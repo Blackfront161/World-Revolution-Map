@@ -17,6 +17,8 @@ test('HTML verweist auf vorhandene lokale Kernressourcen', async () => {
   assert.match(html, /Content-Security-Policy/);
   assert.equal((html.match(/integrity="sha384-/g) || []).length, 3);
   assert.doesNotMatch(html, /targetOrigin="\*"/);
+  assert.match(html, /id="clear-search"/);
+  assert.match(html, /id="fit-results"/);
 });
 
 test('Fallback-Archiv enthält valide, eindeutige und belegte Ereignisse', async () => {
@@ -26,7 +28,7 @@ test('Fallback-Archiv enthält valide, eindeutige und belegte Ereignisse', async
   assert.equal(allRows.filter(event => event.category === 'Tiefe Geschichte').length, 0);
   const rows = allRows.filter(row => !row.archived);
   const events = rows.map(normalizeEvent);
-  assert.equal(events.length, 600);
+  assert.equal(events.length, 655);
   assert.equal(new Set(events.map(event => event.id)).size, events.length);
   assert.ok(events.every(isValidEvent));
   assert.ok(events.every(event => event.sourceUrl.startsWith('https://')));
@@ -38,6 +40,12 @@ test('Fallback-Archiv enthält valide, eindeutige und belegte Ereignisse', async
   assert.ok(events.filter(event => event.continent === 'Afrika').length >= 40);
   assert.ok(events.filter(event => event.continent === 'Asien').length >= 55);
   assert.ok(events.filter(event => event.continent === 'Ozeanien').length >= 18);
+  assert.ok(events.filter(event => event.country.includes('Kanada') && [event.category, ...event.tags].includes('Indigener Widerstand')).length >= 40);
+  assert.ok(events.filter(event => event.country.includes('Kanada') && [event.category, ...event.tags].includes('Indigener Widerstand') && event.yearStart < 1900).length >= 7);
+  assert.ok(events.filter(event => event.category === 'Soziale Errungenschaft').length >= 15);
+  for (const id of ['battle-of-seattle-wto-1999', 'rodney-king-beating-1991', 'baltimore-uprising-2015', 'black-lives-matter-toronto-pride-2016', 'breonna-taylor-louisville-protests']) {
+    assert.ok(events.some(event => event.id === id), `Erwarteter Eintrag fehlt: ${id}`);
+  }
 });
 
 test('Datenbankinhalte werden nicht über innerHTML in die Seite geschrieben', async () => {
@@ -46,6 +54,9 @@ test('Datenbankinhalte werden nicht über innerHTML in die Seite geschrieben', a
   assert.match(script, /setDOMContent/);
   assert.match(script, /sanitizeProgress/);
   assert.match(script, /safeWikipediaApiUrl/);
+  assert.match(script, /VIEW_STORAGE_KEY/);
+  assert.match(script, /eventShareUrl/);
+  assert.match(script, /fitFilteredEvents/);
 });
 
 test('Design berücksichtigt reduzierte Bewegung und mobile Ansichten', async () => {

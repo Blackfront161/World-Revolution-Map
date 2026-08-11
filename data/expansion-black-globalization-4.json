@@ -1,0 +1,122 @@
+[
+  {
+    "id": "rodney-king-beating-1991",
+    "title": "Die gefilmte Misshandlung Rodney Kings",
+    "location": "Lake View Terrace, Los Angeles",
+    "country": "USA",
+    "continent": "Nordamerika",
+    "category": "Antirassistischer Widerstand",
+    "tags": [
+      "Schwarze Befreiungsbewegung",
+      "Antirepression",
+      "Medienaktivismus"
+    ],
+    "yearStart": 1991,
+    "yearEnd": 1991,
+    "coordinates": [
+      -118.38,
+      34.28
+    ],
+    "description": "LAPD-Beamte schlugen Rodney King nach einer Verfolgungsfahrt brutal; George Holliday filmte den Angriff von seinem Balkon und gab die Aufnahme an die Medien.",
+    "significance": "King überlebte. Das Video machte alltägliche Polizeigewalt weltweit sichtbar; die Freisprüche der Beamten wurden 1992 zum unmittelbaren Auslöser des bereits separat erfassten Aufstands von Los Angeles.",
+    "clue": "Suche im San Fernando Valley – und achte auf die Kamera auf einem Balkon.",
+    "sourceUrl": "https://www.justice.gov/crt/criminal-section-selected-case-summaries#Koon",
+    "difficulty": 1
+  },
+  {
+    "id": "battle-of-seattle-wto-1999",
+    "title": "Battle of Seattle gegen die WTO",
+    "location": "Seattle, Washington",
+    "country": "USA",
+    "continent": "Nordamerika",
+    "category": "Globalisierungskritische Bewegung",
+    "tags": [
+      "Arbeiter*innenbewegung",
+      "Ökologischer Widerstand",
+      "Anarchistische Bewegung"
+    ],
+    "yearStart": 1999,
+    "yearEnd": 1999,
+    "coordinates": [
+      -122.33,
+      47.61
+    ],
+    "description": "Gewerkschaften, Umwelt-, Bauern-, indigene, anarchistische und internationale Gruppen blockierten die WTO-Ministerkonferenz mit Märschen, Bezugsgruppen und zivilem Ungehorsam.",
+    "significance": "Zehntausende brachten die Eröffnung zeitweise zum Stillstand; Polizei antwortete mit Tränengas, Massenfestnahmen, Ausgangssperre und einer absurden „No Protest Zone“ – fast schon ein unfreiwilliger Stadtplan-Witz.",
+    "clue": "Suche zwischen Westlake Park und Convention Center, dort wo Schildkröten auf Teamsters trafen.",
+    "sourceUrl": "https://historylink.org/File/9213",
+    "difficulty": 1
+  },
+  {
+    "id": "baltimore-uprising-2015",
+    "title": "Baltimore Uprising",
+    "location": "Baltimore, Maryland",
+    "country": "USA",
+    "continent": "Nordamerika",
+    "category": "Schwarze Befreiungsbewegung",
+    "tags": [
+      "Antirassistischer Widerstand",
+      "Antirepression",
+      "Gedächtnis der Besiegten"
+    ],
+    "yearStart": 2015,
+    "yearEnd": 2015,
+    "coordinates": [
+      -76.62,
+      39.3
+    ],
+    "description": "Nach dem Tod Freddie Grays infolge schwerer Verletzungen in Polizeigewahrsam demonstrierten Bewohner*innen gegen rassistische Polizeipraxis, Segregation und jahrzehntelange Vernachlässigung.",
+    "significance": "Die Bezeichnung Uprising rückt die strukturellen Ursachen in den Vordergrund, die hinter Bildern von brennenden Gebäuden und einer militarisierten Ausgangssperre verschwanden.",
+    "clue": "Suche in West Baltimore rund um Sandtown-Winchester.",
+    "sourceUrl": "https://apnews.com/article/f113e52548b6378ae9a1fbb3ea2dff03",
+    "difficulty": 1
+  },
+  {
+    "id": "black-lives-matter-toronto-pride-2016",
+    "title": "BLM-Toronto-Sit-in bei Pride",
+    "location": "Toronto, Ontario",
+    "country": "Kanada",
+    "continent": "Nordamerika",
+    "category": "Schwarze Befreiungsbewegung",
+    "tags": [
+      "Queerer Widerstand",
+      "Antirassistischer Widerstand",
+      "Antirepression"
+    ],
+    "yearStart": 2016,
+    "yearEnd": 2016,
+    "coordinates": [
+      -79.38,
+      43.66
+    ],
+    "description": "Black Lives Matter Toronto stoppte als eingeladene Ehrengruppe die Pride-Parade mit einem Sit-in und forderte Ressourcen für Schwarze queere Projekte, Barrierefreiheit und ein Ende institutioneller Polizeipräsenz.",
+    "significance": "Die Aktion zwang die queere Bewegung öffentlich zur Auseinandersetzung mit Anti-Schwarzem Rassismus, Polizeigewalt und der Frage, wer sich auf Pride sicher fühlen kann.",
+    "clue": "Suche an Yonge und College – ungefähr dort, wo eine Parade für 30 Minuten Denken lernte.",
+    "sourceUrl": "https://www.historymuseum.ca/teachers-zone/2slgbtqia-history-and-identities-in-canada/community-and-protest/black-lives-matter-toronto-sit-in/",
+    "difficulty": 1
+  },
+  {
+    "id": "breonna-taylor-louisville-protests",
+    "title": "Proteste für Breonna Taylor",
+    "location": "Louisville, Kentucky",
+    "country": "USA",
+    "continent": "Nordamerika",
+    "category": "Schwarze Befreiungsbewegung",
+    "tags": [
+      "Feministischer & antisexistischer Widerstand",
+      "Antirassistischer Widerstand",
+      "Antirepression"
+    ],
+    "yearStart": 2020,
+    "yearEnd": 2022,
+    "coordinates": [
+      -85.76,
+      38.25
+    ],
+    "description": "Nach der Tötung Breonna Taylors bei einem nächtlichen Polizeieinsatz besetzten Demonstrierende monatelang den Jefferson Square Park und forderten Verantwortung und ein Ende von No-Knock-Durchsuchungen.",
+    "significance": "Der Druck führte in Louisville zu Breonna’s Law gegen unangekündigte Durchsuchungsbefehle, während die Forderung nach voller Gerechtigkeit unerfüllt blieb.",
+    "clue": "Suche im von Aktivist*innen umbenannten Injustice Square Park.",
+    "sourceUrl": "https://apnews.com/article/f7f1564fdff1dd907ccf8b11093e96bc",
+    "difficulty": 1
+  }
+]
