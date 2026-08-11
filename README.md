@@ -6,7 +6,7 @@ Eine interaktive, spielerische Weltkarte historischer Bewegungen, Aufstände, St
 
 - interaktive MapLibre-Weltkarte mit Clustern und farbcodierten Kategorien
 - Volltextsuche sowie Kategorie- und Zeitraumfilter
-- 340 kuratierte Ereignisse aus allen Weltregionen
+- 500 kuratierte Ereignisse aus allen Weltregionen
 - Mehrfach-Tags für überlappende Spektren wie Anarchismus, indigener Widerstand, Antisexismus, Schwarze Befreiung, Antifaschismus, Antikolonialismus und Tierbefreiung
 - regional aufgeteilte, über `data/event-catalog.json` erweiterbare Datendateien
 - historische Spannweite vom frühesten ausführlich dokumentierten Streik in Deir el-Medina (ca. 1157 v. u. Z.) bis zu heutigen Bewegungen
@@ -64,7 +64,7 @@ Benötigt wird Node.js 20 oder neuer. Es müssen keine Pakete installiert werden
 
 ## Datenquellen
 
-Beim Start liest die Anwendung `data/event-catalog.json` und lädt daraus die drei Kernsammlungen sowie sechs regionale Erweiterungsdateien. Neue Sammlungen können durch eine zusätzliche JSON-Datei und einen Katalogeintrag ergänzt werden, ohne den JavaScript-Lader zu verändern. Wenn Supabase verfügbar ist, werden Datensätze aus `public.ereignisse` ergänzt beziehungsweise mit gleichnamigen Einträgen zusammengeführt. Dadurch bleibt die Karte auch bei einem Ausfall der Datenbank nutzbar.
+Beim Start liest die Anwendung `data/event-catalog.json` und lädt daraus die drei Kernsammlungen sowie zehn thematische und regionale Erweiterungsdateien. Neue Sammlungen können durch eine zusätzliche JSON-Datei und einen Katalogeintrag ergänzt werden, ohne den JavaScript-Lader zu verändern. Wenn Supabase verfügbar ist, werden Datensätze aus `public.ereignisse` ergänzt beziehungsweise mit gleichnamigen Einträgen zusammengeführt. Dadurch bleibt die Karte auch bei einem Ausfall der Datenbank nutzbar.
 
 Ein Eintrag besitzt eine primäre Kategorie und beliebig viele `tags`. Der Filter berücksichtigt beides. Negative Jahreswerte stehen für Jahre vor unserer Zeitrechnung; für ihre sichtbare Datierung wird zusätzlich `dateLabel` gepflegt. Paläontologische Fundorte gehören nicht in diesen Atlas: Der zeitliche Anfang folgt der frühesten belastbaren Überlieferung kollektiven sozialen Handelns. Moderne Begriffe werden in antiken und mittelalterlichen Einträgen nicht als Selbstbezeichnungen ausgegeben.
 

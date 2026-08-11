@@ -26,7 +26,7 @@ test('Fallback-Archiv enthält valide, eindeutige und belegte Ereignisse', async
   assert.equal(allRows.filter(event => event.category === 'Tiefe Geschichte').length, 0);
   const rows = allRows.filter(row => !row.archived);
   const events = rows.map(normalizeEvent);
-  assert.equal(events.length, 340);
+  assert.equal(events.length, 500);
   assert.equal(new Set(events.map(event => event.id)).size, events.length);
   assert.ok(events.every(isValidEvent));
   assert.ok(events.every(event => event.sourceUrl.startsWith('https://')));
