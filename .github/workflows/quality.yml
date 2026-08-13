@@ -1,0 +1,29 @@
+name: Atlas quality checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: UTF-8, controls and JSON parsing
+        run: npm run check:encoding
+      - name: JavaScript syntax
+        run: npm run check:js
+      - name: Data model and source URL validation
+        run: npm run validate:data
+      - name: Test suite
+        run: npm test
+      - name: Remote source availability
+        run: npm run check:sources

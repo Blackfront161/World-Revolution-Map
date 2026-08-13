@@ -6,10 +6,12 @@ import {
   filterEvents,
   formatYearRange,
   isValidEvent,
+  isSensitiveEvent,
   levelFromXp,
   levelProgress,
   normalizeEvent,
-  seededShuffle
+  seededShuffle,
+  validateEditorialFields
 } from '../src/game-core.js';
 
 const rows = [
@@ -63,4 +65,27 @@ test('mischt deterministisch und formatiert Zeiträume', () => {
   assert.equal(formatYearRange({ yearStart: 1918, yearEnd: 1921 }), '1918–1921');
   assert.equal(formatYearRange({ yearStart: null, yearEnd: null }), 'undatiert');
   assert.equal(formatYearRange({ yearStart: -1157, yearEnd: -1157, dateLabel: 'ca. 1157 v. u. Z.' }), 'ca. 1157 v. u. Z.');
+});
+
+test('normalisiert und validiert optionale Redaktionsfelder rückwärtskompatibel', () => {
+  const event = normalizeEvent({
+    title: 'Pilot', longitude: 7, latitude: 47, sourceUrl: 'https://de.wikipedia.org/wiki/Test',
+    demands: ['Land zurück'], participants: 'Nachbarschaften; Gewerkschaften', powerStructures: ['Staat'],
+    immediateConsequences: 'Eine konkrete Folge.', voices: [{ text: 'Eine Stimme.' }], sensitivity: 'Schwere Gewalt'
+  });
+  assert.deepEqual(event.demands, ['Land zurück']);
+  assert.deepEqual(event.participants, ['Nachbarschaften', 'Gewerkschaften']);
+  assert.equal(event.sourceType, 'Sekundär / weiterführend');
+  assert.equal(isSensitiveEvent(event), true);
+  assert.deepEqual(validateEditorialFields({ demands: 42 }), ['demands muss Text oder eine Textliste sein']);
+  assert.deepEqual(validateEditorialFields({ demands: ['ok'], reviewStatus: 'Pilot' }), []);
+});
+
+test('sensible Ereignisse werden nicht in Missionen aufgenommen', () => {
+  const pool = [
+    ...events,
+    normalizeEvent({ id: 's', title: 'Sensibel', category: 'A', longitude: 1, latitude: 1, yearStart: 2000, sensitivity: 'Massaker' })
+  ];
+  const mission = createMission(pool, 'safe-mission');
+  assert.equal(mission.targetIds.includes('s'), false);
 });

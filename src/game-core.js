@@ -32,6 +32,22 @@ export const CATEGORY_COLORS = {
 
 const clean = (value, maxLength = 600) => typeof value === 'string' ? value.trim().slice(0, maxLength) : value;
 
+const EDITORIAL_LIST_FIELDS = ['demands', 'participants', 'powerStructures', 'tactics', 'voices'];
+const EDITORIAL_TEXT_FIELDS = [
+  'immediateConsequences', 'longTermImpact', 'repression', 'humanCosts', 'aftermath',
+  'openQuestions', 'sourceType', 'sourceQuality', 'uncertainty', 'sensitivity', 'reviewStatus'
+];
+
+const cleanList = (value, itemLength = 500, maxItems = 24) => {
+  const list = Array.isArray(value) ? value : typeof value === 'string' ? value.split(/\s*;\s*/) : [];
+  return [...new Set(list.map(item => clean(typeof item === 'object' ? item?.text : item, itemLength)).filter(Boolean))].slice(0, maxItems);
+};
+
+export function isSensitiveEvent(event) {
+  const marker = String(event?.sensitivity || '').toLocaleLowerCase('de');
+  return Boolean(marker) && !['nein', 'none', 'keine', 'low', 'niedrig'].includes(marker);
+}
+
 export function extractYear(text = '') {
   const match = String(text).match(/(?:17|18|19|20)\d{2}/);
   return match ? Number(match[0]) : null;
@@ -51,7 +67,12 @@ export function normalizeEvent(row, index = 0) {
       ? row.tags.split(',').map(tag => clean(tag, 100)).filter(Boolean).slice(0, 24)
       : [];
 
-  return {
+  const sourceUrl = clean(row.source_url ?? row.sourceUrl, 1000) || '';
+  const sourceType = clean(row.source_type ?? row.sourceType, 120)
+    || (/wikipedia\.org/i.test(sourceUrl) ? 'Sekundär / weiterführend' : 'Weiterführende Quelle');
+  const sourceQuality = clean(row.source_quality ?? row.sourceQuality, 160) || 'Noch nicht redaktionell bewertet';
+
+  const event = {
     id: String(rawId).toLowerCase().replace(/[^a-z0-9äöüß]+/gi, '-').replace(/(^-|-$)/g, ''),
     title,
     location: clean(row.location, 180) || 'Ort unbekannt',
@@ -70,10 +91,39 @@ export function normalizeEvent(row, index = 0) {
     imageApiUrl: clean(row.image_api_url ?? row.imageApiUrl ?? row.image_url, 1000) || '',
     imageUrl: clean(row.image ?? row.imageUrl, 1000) || '',
     imageAlt: clean(row.image_alt ?? row.imageAlt, 240) || 'Historische Darstellung: ' + title,
-    sourceUrl: clean(row.source_url ?? row.sourceUrl, 1000) || '',
+    sourceUrl,
+    demands: cleanList(row.demands),
+    participants: cleanList(row.participants),
+    powerStructures: cleanList(row.power_structures ?? row.powerStructures),
+    tactics: cleanList(row.tactics),
+    immediateConsequences: clean(row.immediate_consequences ?? row.immediateConsequences, 2400) || '',
+    longTermImpact: clean(row.long_term_impact ?? row.longTermImpact, 2400) || '',
+    repression: clean(row.repression, 1800) || '',
+    humanCosts: clean(row.human_costs ?? row.humanCosts, 1800) || '',
+    aftermath: clean(row.aftermath, 2400) || '',
+    openQuestions: clean(row.open_questions ?? row.openQuestions, 1800) || '',
+    voices: cleanList(row.voices, 800, 12),
+    sourceType,
+    sourceQuality,
+    uncertainty: clean(row.uncertainty, 1200) || '',
+    sensitivity: clean(row.sensitivity, 240) || '',
+    reviewStatus: clean(row.review_status ?? row.reviewStatus, 120) || 'Ungeprüfter Bestandseintrag',
     difficulty: Math.min(3, Math.max(1, Number(row.difficulty) || 1)),
     featured: Boolean(row.featured)
   };
+  return event;
+}
+
+export function validateEditorialFields(row) {
+  const issues = [];
+  for (const field of EDITORIAL_LIST_FIELDS) {
+    if (row[field] !== undefined && !Array.isArray(row[field]) && typeof row[field] !== 'string') issues.push(`${field} muss Text oder eine Textliste sein`);
+  }
+  for (const field of EDITORIAL_TEXT_FIELDS) {
+    if (row[field] !== undefined && typeof row[field] !== 'string') issues.push(`${field} muss Text sein`);
+  }
+  if (Array.isArray(row.voices) && row.voices.some(item => typeof item !== 'string' && typeof item?.text !== 'string')) issues.push('voices enthält einen ungültigen Eintrag');
+  return issues;
 }
 
 export function isValidEvent(event) {
@@ -146,10 +196,11 @@ export function seededShuffle(items, seed = Date.now()) {
 }
 
 export function createMission(events, seed = Date.now()) {
-  const eligibleCategories = [...new Set(events.map(event => event.category))]
-    .filter(category => events.filter(event => event.category === category).length >= 3);
+  const playableEvents = events.filter(event => !isSensitiveEvent(event));
+  const eligibleCategories = [...new Set(playableEvents.map(event => event.category))]
+    .filter(category => playableEvents.filter(event => event.category === category).length >= 3);
   const category = seededShuffle(eligibleCategories, `${seed}-category`)[0];
-  const pool = category ? events.filter(event => event.category === category) : events;
+  const pool = category ? playableEvents.filter(event => event.category === category) : playableEvents;
   const targets = seededShuffle(pool, `${seed}-targets`).slice(0, Math.min(3, pool.length));
   return {
     id: `mission-${hashSeed(seed)}`,
