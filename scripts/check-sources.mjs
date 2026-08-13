@@ -11,22 +11,29 @@ const queue = [...sources];
 async function checkSource() {
   while (queue.length) {
     const [url, title] = queue.shift();
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 12000);
-    try {
-      const response = await fetch(url, {
-        method: 'GET',
-        redirect: 'follow',
-        signal: controller.signal,
-        headers: { 'User-Agent': 'World-Revolution-Map source checker' }
-      });
-      if ([401, 403, 429].includes(response.status)) botProtected.push({ title, url, status: response.status });
-      else if (response.status >= 400) failures.push({ title, url, status: response.status });
-      await response.body?.cancel();
-    } catch (error) {
-      failures.push({ title, url, status: error.name });
-    } finally {
-      clearTimeout(timeout);
+    for (let attempt = 1; attempt <= 3; attempt += 1) {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 12000);
+      try {
+        const response = await fetch(url, {
+          method: 'GET',
+          redirect: 'follow',
+          signal: controller.signal,
+          headers: { 'User-Agent': 'World-Revolution-Map source checker' }
+        });
+        const retryable = response.status >= 500 && attempt < 3;
+        if (!retryable) {
+          if ([401, 403, 429].includes(response.status)) botProtected.push({ title, url, status: response.status });
+          else if (response.status >= 400) failures.push({ title, url, status: response.status });
+        }
+        await response.body?.cancel();
+        if (!retryable) break;
+      } catch (error) {
+        if (attempt === 3) failures.push({ title, url, status: error.name });
+        else continue;
+      } finally {
+        clearTimeout(timeout);
+      }
     }
   }
 }
