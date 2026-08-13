@@ -51,6 +51,34 @@ test('Fallback-Archiv enthält valide, eindeutige und belegte Ereignisse', async
   }
 });
 
+test('Priorisierte Ereignisse besitzen vertiefte redaktionelle Angaben', async () => {
+  const catalog = JSON.parse(await readFile(new URL('data/event-catalog.json', root), 'utf8'));
+  const rows = (await Promise.all(catalog.map(file => readFile(new URL(`data/${file}`, root), 'utf8')))).flatMap(JSON.parse);
+  const byId = new Map(rows.filter(event => !event.archived).map(event => [event.id, event]));
+  const priorityIds = [
+    'tsilhqotin-war-1864', 'north-west-resistance-1885', 'nisgaa-land-committee-1887',
+    'white-paper-resistance-1969', 'james-bay-cree-hydro-resistance',
+    'anicinabe-park-occupation-1974', 'native-peoples-caravan-1974',
+    'constitution-express-1980', 'meares-island-blockade-1984', '1492-land-back-lane',
+    'haitianische-revolution', 'mau-mau', 'herero-nama-resistance', 'maji-maji-rebellion',
+    'rhodes-must-fall', 'haymarket', 'bread-and-roses', 'dakar-niger-railway-strike',
+    'durban-strikes-1973', 'winnipeg-general-strike'
+  ];
+  const requiredFields = [
+    'demands', 'participants', 'powerStructures', 'tactics',
+    'immediateConsequences', 'longTermImpact', 'sourceType', 'sourceQuality', 'reviewStatus'
+  ];
+
+  assert.equal(priorityIds.length, 20);
+  for (const id of priorityIds) {
+    const event = byId.get(id);
+    assert.ok(event, `Priorisiertes Ereignis fehlt: ${id}`);
+    for (const field of requiredFields) {
+      assert.ok(event[field]?.length, `${id}: ${field} fehlt oder ist leer`);
+    }
+  }
+});
+
 test('Datenbankinhalte werden nicht über innerHTML in die Seite geschrieben', async () => {
   const script = await readFile(new URL('script.js', root), 'utf8');
   assert.doesNotMatch(script, /\.innerHTML\s*=/);
