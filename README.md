@@ -16,6 +16,10 @@ Eine interaktive, spielerische Weltkarte historischer Bewegungen, Aufstände, St
 - soziale Errungenschaften als eigene Kategorie: erkämpfte Wahl-, Arbeits-, Gesundheits-, reproduktive und queere Rechte – jeweils mit ihren Grenzen und möglichen Rückschritten
 - Live-Daten aus Supabase, automatisch mit dem Fallback-Archiv zusammengeführt
 - Karten-Popups mit Einordnung, Bild und weiterführender Quelle
+- ausführliche, optionale Ergebnisfelder ohne Einteilung in „gewonnen“ oder „verloren“
+- sichtbare Quellenart, Quellenqualität, Prüfstatus, Unsicherheit und Hinweise zu sensiblen Inhalten
+- zugängliche, tastaturbedienbare Ereignistabelle als Alternative zur Karte
+- sichtbare aktive Filter, die einzeln entfernt werden können
 - lokales Fortschrittssystem mit XP, Levels und Entdeckungsarchiv
 - zufällige und tägliche Missionen
 - Wissensquiz, Solidaritäts-Combos und zehn freischaltbare Erfolge
@@ -46,6 +50,15 @@ Der Atlas kann als iframe, WebView oder Mikro-Frontend eingebunden werden. Query
 - Die CSP beschränkt Skripte, Netzwerkziele, Worker, Formulare und Plugins.
 - postMessage wird nur mit einer expliziten, validierten Empfänger-Origin aktiviert; `*` ist verboten.
 - Sprachwahl und Übersetzungen funktionieren offline; Atlas-Texte werden nicht an Übersetzungsdienste gesendet.
+- Ereignisdetails, Tabellenzeilen und Quellenhinweise entstehen ausschließlich mit DOM-Knoten und `textContent`.
+
+## Geschichte von unten und Methodik
+
+Die Karte beginnt bei Beteiligten, Betroffenen, Basisbewegungen und lokalen Gemeinschaften. Rechte werden nicht als Geschenke von Regierungen erzählt. Ergebnisse beschreiben unmittelbare Folgen, Repression, menschliche Kosten, langfristige Wirkungen und offene Forderungen konkret und dürfen nicht als „gewonnen“ oder „verloren“ verkürzt werden.
+
+Quellentyp, Quellenqualität und redaktioneller Prüfstand sind getrennte Felder. Ältere Wikipedia-Links bleiben transparent als sekundäre oder weiterführende Einstiege sichtbar; sie werden nicht nachträglich zu Primärquellen erklärt. Umstrittene Datierungen und Deutungen gehören in `uncertainty`. Ereignisse mit schwerer Gewalt nutzen den sachlichen Modus: keine XP, Missionen, Quizfragen, Solidaritäts-Combos oder satirischen Kommentare.
+
+Die Grundsätze sind direkt in der Anwendung über „Über diese Karte und Methodik“ erreichbar. Korrekturen und bessere Quellen können über GitHub Issues vorgeschlagen werden.
 
 Der Publishable Key im Browser ist bestimmungsgemäß öffentlich und kein Geheimnis. Die Sicherheit der Datenbank hängt davon ab, dass das dokumentierte RLS-/Grant-Schema tatsächlich in der produktiven Supabase-Instanz angewendet wird. Spiel-XP ist lokale UI-Daten und darf nie als serverseitige Berechtigung oder geldwerter Nachweis gelten.
 
@@ -63,6 +76,7 @@ Danach `http://localhost:4173` aufrufen.
 
 ```bash
 npm test
+npm run verify
 npm run check:sources
 ```
 
@@ -73,6 +87,8 @@ Benötigt wird Node.js 20 oder neuer. Es müssen keine Pakete installiert werden
 Beim Start liest die Anwendung `data/event-catalog.json` und lädt daraus die Kernsammlungen sowie thematische und regionale Erweiterungsdateien. Neue Sammlungen können durch eine zusätzliche JSON-Datei und einen Katalogeintrag ergänzt werden, ohne den JavaScript-Lader zu verändern. Wenn Supabase verfügbar ist, werden Datensätze aus `public.ereignisse` ergänzt beziehungsweise mit gleichnamigen Einträgen zusammengeführt. Dadurch bleibt die Karte auch bei einem Ausfall der Datenbank nutzbar.
 
 Ein Eintrag besitzt eine primäre Kategorie und beliebig viele `tags`. Der Filter berücksichtigt beides. Negative Jahreswerte stehen für Jahre vor unserer Zeitrechnung; für ihre sichtbare Datierung wird zusätzlich `dateLabel` gepflegt. Paläontologische Fundorte gehören nicht in diesen Atlas: Der zeitliche Anfang folgt der frühesten belastbaren Überlieferung kollektiven sozialen Handelns. Moderne Begriffe werden in antiken und mittelalterlichen Einträgen nicht als Selbstbezeichnungen ausgegeben.
+
+Das Datenmodell akzeptiert zusätzlich rückwärtskompatible optionale Felder: `demands`, `participants`, `powerStructures`, `tactics`, `immediateConsequences`, `longTermImpact`, `repression`, `humanCosts`, `aftermath`, `openQuestions`, `voices`, `sourceType`, `sourceQuality`, `uncertainty`, `sensitivity` und `reviewStatus`. Neue Einträge sollen diese Felder nur mit belegbaren Aussagen füllen; leere Felder dürfen leer bleiben.
 
 Das erweiterte Referenzschema einschließlich einer Nur-Lesen-RLS-Policy befindet sich unter `docs/supabase-schema.sql`. Der im Browser verwendete Supabase-Schlüssel ist ein öffentlicher Publishable Key. Schreibzugriffe müssen dennoch zwingend durch Row Level Security blockiert werden.
 

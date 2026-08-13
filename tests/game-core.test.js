@@ -77,6 +77,7 @@ test('normalisiert und validiert optionale Redaktionsfelder rückwärtskompatibe
   assert.deepEqual(event.participants, ['Nachbarschaften', 'Gewerkschaften']);
   assert.equal(event.sourceType, 'Sekundär / weiterführend');
   assert.equal(isSensitiveEvent(event), true);
+  assert.equal(isSensitiveEvent(normalizeEvent({ title: 'Massaker an Streikenden', longitude: 1, latitude: 1 })), true);
   assert.deepEqual(validateEditorialFields({ demands: 42 }), ['demands muss Text oder eine Textliste sein']);
   assert.deepEqual(validateEditorialFields({ demands: ['ok'], reviewStatus: 'Pilot' }), []);
 });

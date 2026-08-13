@@ -34,7 +34,7 @@ test('lokalisiert Kategorien und tiefe Jahresangaben ohne Netzzugriff', () => {
 test('lokalisiert die Komfortfunktionen in allen neun Sprachen', () => {
   for (const language of LANGUAGES.map(item => item.code)) {
     const i18n = createI18n({ search: `?lang=${language}` });
-    for (const key of ['clearSearch', 'showResults', 'copyEventLink', 'eventLinkCopied']) {
+    for (const key of ['clearSearch', 'showResults', 'copyEventLink', 'eventLinkCopied', 'aboutMap', 'eventList', 'sensitiveNotice', 'immediateConsequences']) {
       assert.notEqual(i18n.t(key), key);
     }
   }

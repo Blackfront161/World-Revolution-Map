@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de" data-atlas-version="2.5.0">
+<html lang="de" data-atlas-version="2.6.0">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,6 +19,7 @@
 </head>
 <body>
   <a class="skip-link" href="#map" data-i18n="skipMap">Direkt zur Karte</a>
+  <a class="skip-link skip-link-list" href="#event-list-drawer" data-i18n="skipList">Direkt zur Ereignisliste</a>
 
   <main class="app-shell" id="app">
     <div id="map" aria-label="Interaktive Weltkarte historischer Widerstandsereignisse" data-i18n-aria="mapAria"></div>
@@ -89,6 +90,7 @@
           <button class="text-button" id="reset-filters" type="button" data-i18n="resetFilters">Filter zurücksetzen</button>
         </span>
       </div>
+      <div class="active-filters" id="active-filters" aria-label="Aktive Filter" data-i18n-aria="activeFilters"></div>
 
       <div class="action-grid">
         <button class="primary-button" id="random-event" type="button"><span aria-hidden="true">⚄</span> <span data-i18n="surprise">Überrasch mich</span></button>
@@ -99,6 +101,7 @@
         <span class="status-dot"></span>
         <span data-i18n="loadingData">Daten werden geladen …</span>
       </div>
+      <button class="text-button about-map-link" id="about-map-button" type="button" data-i18n="aboutMap">Über diese Karte und Methodik</button>
     </aside>
 
     <section class="mission-card glass-panel" id="mission-card" aria-labelledby="mission-title">
@@ -117,10 +120,25 @@
     <nav class="bottom-nav glass-panel" aria-label="Spielbereiche">
       <button class="nav-button is-active" type="button" data-panel="map"><span>◉</span><span data-i18n="map">Karte</span></button>
       <button class="nav-button" type="button" data-panel="archive"><span>▤</span><span data-i18n="archive">Archiv</span> <b id="archive-count">0</b></button>
+      <button class="nav-button" type="button" data-panel="list"><span>☷</span><span data-i18n="listView">Liste</span></button>
       <button class="nav-button" type="button" data-panel="achievements"><span>◇</span><span data-i18n="achievements">Erfolge</span> <b id="achievement-count">0</b></button>
       <button class="nav-button" type="button" data-panel="connections"><span>⚡</span><span data-i18n="sparks">Funken</span></button>
       <button class="nav-button" id="quiz-button" type="button" data-panel="quiz"><span>?</span>Quiz</button>
     </nav>
+
+    <section class="drawer glass-panel event-list-drawer" id="event-list-drawer" role="dialog" aria-modal="false" aria-labelledby="event-list-title" tabindex="-1" hidden>
+      <div class="drawer-header">
+        <div><p class="eyebrow" data-i18n="accessibleAlternative">Zugängliche Kartenalternative</p><h2 id="event-list-title" data-i18n="eventList">Ereignisliste</h2></div>
+        <button class="icon-button drawer-close" type="button" aria-label="Ereignisliste schließen" data-i18n-aria="closeList">×</button>
+      </div>
+      <p class="drawer-intro" data-i18n="listIntro">Alle sichtbaren Kartentreffer als tastaturbedienbare Tabelle.</p>
+      <div class="table-scroll">
+        <table class="event-table">
+          <thead><tr><th scope="col" data-i18n="year">Jahr</th><th scope="col" data-i18n="event">Ereignis</th><th scope="col" data-i18n="place">Ort</th><th scope="col" data-i18n="movement">Bewegung</th></tr></thead>
+          <tbody id="event-list-body"></tbody>
+        </table>
+      </div>
+    </section>
 
     <section class="drawer glass-panel" id="archive-drawer" aria-labelledby="archive-title" hidden>
       <div class="drawer-header">
@@ -172,7 +190,22 @@
         <li><span>4</span><div><strong data-i18n="step4Title">Funken schlagen</strong><small data-i18n="step4Body">Verbinde Kämpfe über Zeiten und Kontinente hinweg. Bürokratische Genehmigung nicht erforderlich.</small></div></li>
       </ol>
       <button class="primary-button wide" id="begin-button" type="button" data-i18n="begin">Expedition beginnen</button>
+      <button class="text-button methodology-open" id="methodology-button" type="button" data-i18n="aboutMap">Über diese Karte und Methodik</button>
       <p class="editorial-note" data-i18n="editorial">Ein Bildungsprototyp: Die kurzen Texte ersetzen keine historische Quellenprüfung.</p>
+    </section>
+
+    <section class="modal glass-panel methodology-modal" id="methodology-modal" role="dialog" aria-modal="true" aria-labelledby="methodology-title" hidden>
+      <button class="icon-button modal-close" type="button" aria-label="Methodik schließen" data-i18n-aria="closeMethodology">×</button>
+      <p class="eyebrow" data-i18n="methodologyEyebrow">Geschichte von unten</p>
+      <h2 id="methodology-title" data-i18n="aboutMap">Über diese Karte und Methodik</h2>
+      <div class="methodology-content">
+        <section><h3 data-i18n="perspectiveTitle">Perspektive</h3><p data-i18n="perspectiveBody">Ausgangspunkt sind Beteiligte, Betroffene, Basisbewegungen und lokale Gemeinschaften. Rechte erscheinen nicht als Geschenke von oben.</p></section>
+        <section><h3 data-i18n="sourcesTitle">Quellenpolitik</h3><p data-i18n="sourcesBody">Quellenarten und redaktioneller Prüfstand werden sichtbar benannt. Eine weiterführende Quelle ist kein Beweis vollständiger oder neutraler Darstellung.</p></section>
+        <section><h3 data-i18n="uncertaintyTitle">Unsicherheit und Widerspruch</h3><p data-i18n="uncertaintyBody">Umstrittene Zahlen, Datierungen und Deutungen werden offengelegt. Ergebnisse werden konkret beschrieben, nicht als gewonnen oder verloren bewertet.</p></section>
+        <section><h3 data-i18n="sensitivityTitle">Sensible Inhalte</h3><p data-i18n="sensitivityBody">Massaker, Lynchmorde, Femizide und andere schwere Gewalt werden sachlich gezeigt. Spielerische Belohnungen und Satire sind dort deaktiviert.</p></section>
+        <section><h3 data-i18n="namesTitle">Namen und Selbstbezeichnungen</h3><p data-i18n="namesBody">Selbstbezeichnungen betroffener Gemeinschaften haben Vorrang. Historisch belastete Fremdbezeichnungen werden nur erklärt verwendet.</p></section>
+        <section><h3 data-i18n="contributeTitle">Korrekturen und Beiträge</h3><p data-i18n="contributeBody">Fehler, fehlende Perspektiven oder bessere Quellen können über den GitHub-Repository-Link gemeldet werden. Änderungen bleiben nachvollziehbar.</p><a class="source-link methodology-link" href="https://github.com/Blackfront161/World-Revolution-Map/issues" target="_blank" rel="noopener noreferrer" data-i18n="reportCorrection">Korrektur oder Ergänzung melden ↗</a></section>
+      </div>
     </section>
 
     <section class="modal glass-panel" id="quiz-modal" role="dialog" aria-modal="true" aria-labelledby="quiz-title" hidden>

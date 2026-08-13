@@ -45,7 +45,9 @@ const cleanList = (value, itemLength = 500, maxItems = 24) => {
 
 export function isSensitiveEvent(event) {
   const marker = String(event?.sensitivity || '').toLocaleLowerCase('de');
-  return Boolean(marker) && !['nein', 'none', 'keine', 'low', 'niedrig'].includes(marker);
+  if (marker && !['nein', 'none', 'keine', 'low', 'niedrig'].includes(marker)) return true;
+  const text = [event?.title, event?.description, event?.humanCosts].filter(Boolean).join(' ').toLocaleLowerCase('de');
+  return /massaker|massacre|lynch|femizid|femicide|genozid|genocide|tödlich|erschossen|tötung|mord|killing|death in (?:police )?custody/.test(text);
 }
 
 export function extractYear(text = '') {

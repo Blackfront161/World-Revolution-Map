@@ -19,6 +19,9 @@ test('HTML verweist auf vorhandene lokale Kernressourcen', async () => {
   assert.doesNotMatch(html, /targetOrigin="\*"/);
   assert.match(html, /id="clear-search"/);
   assert.match(html, /id="fit-results"/);
+  assert.match(html, /id="methodology-modal"/);
+  assert.match(html, /id="event-list-drawer"/);
+  assert.match(html, /id="active-filters"/);
 });
 
 test('Fallback-Archiv enthält valide, eindeutige und belegte Ereignisse', async () => {
@@ -57,6 +60,8 @@ test('Datenbankinhalte werden nicht über innerHTML in die Seite geschrieben', a
   assert.match(script, /VIEW_STORAGE_KEY/);
   assert.match(script, /eventShareUrl/);
   assert.match(script, /fitFilteredEvents/);
+  assert.match(script, /appendEventDetail/);
+  assert.match(script, /trapModalFocus/);
 });
 
 test('Design berücksichtigt reduzierte Bewegung und mobile Ansichten', async () => {

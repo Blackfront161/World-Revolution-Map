@@ -5,6 +5,7 @@ import {
   createPowerExcuse,
   createQuiz,
   filterEvents,
+  isSensitiveEvent,
   isValidEvent,
   levelProgress,
   normalizeEvent,
@@ -62,7 +63,8 @@ const app = {
   filters: loadViewFilters(),
   activeQuiz: null,
   activeConnection: null,
-  bridge: null
+  bridge: null,
+  lastFocus: null
 };
 
 document.addEventListener('DOMContentLoaded', start);
@@ -103,11 +105,13 @@ function bindUi() {
     'mission-progress-text', 'mission-progress-bar', 'archive-count', 'achievement-count',
     'archive-drawer', 'archive-list', 'achievements-drawer', 'achievement-list', 'connections-drawer',
     'connection-content', 'new-connection', 'copy-connection', 'power-excuse', 'power-counter', 'new-excuse', 'quiz-button',
-    'quiz-modal', 'quiz-title', 'quiz-content', 'welcome-modal', 'modal-backdrop', 'begin-button',
-    'help-button', 'toast-region', 'menu-toggle', 'menu-close', 'control-panel', 'language-select'
+    'quiz-modal', 'quiz-title', 'quiz-content', 'welcome-modal', 'methodology-modal', 'modal-backdrop', 'begin-button',
+    'methodology-button', 'about-map-button', 'help-button', 'toast-region', 'menu-toggle', 'menu-close', 'control-panel', 'language-select',
+    'active-filters', 'event-list-drawer', 'event-list-body'
   ];
   ids.forEach(id => { ui[toCamel(id)] = document.getElementById(id); });
   ui.navButtons = [...document.querySelectorAll('.nav-button')];
+  ui.skipList = document.querySelector('.skip-link-list');
   ui.drawerCloseButtons = [...document.querySelectorAll('.drawer-close')];
   ui.modalCloseButtons = [...document.querySelectorAll('.modal-close')];
 }
@@ -152,6 +156,7 @@ function changeLanguage(language) {
 
 function attachUiEvents() {
   ui.languageSelect.addEventListener('change', () => changeLanguage(ui.languageSelect.value));
+  ui.skipList.addEventListener('click', event => { event.preventDefault(); openPanel('list'); ui.eventListDrawer.focus(); });
   ui.searchInput.addEventListener('input', () => { app.filters.query = ui.searchInput.value; renderMapData(); });
   ui.clearSearch.addEventListener('click', () => {
     app.filters.query = '';
@@ -183,6 +188,8 @@ function attachUiEvents() {
     showToast(i18n.t('started'), i18n.t('startedBody'));
   });
   ui.helpButton.addEventListener('click', () => openModal(ui.welcomeModal));
+  ui.methodologyButton.addEventListener('click', () => openModal(ui.methodologyModal));
+  ui.aboutMapButton.addEventListener('click', () => openModal(ui.methodologyModal));
   ui.modalBackdrop.addEventListener('click', closeModals);
   ui.modalCloseButtons.forEach(button => button.addEventListener('click', closeModals));
   ui.drawerCloseButtons.forEach(button => button.addEventListener('click', closeDrawers));
@@ -192,6 +199,7 @@ function attachUiEvents() {
   ui.navButtons.forEach(button => button.addEventListener('click', () => {
     const panel = button.dataset.panel;
     if (panel === 'archive') toggleDrawer(ui.archiveDrawer, button);
+    if (panel === 'list') toggleDrawer(ui.eventListDrawer, button);
     if (panel === 'achievements') toggleDrawer(ui.achievementsDrawer, button);
     if (panel === 'connections') {
       toggleDrawer(ui.connectionsDrawer, button);
@@ -202,6 +210,7 @@ function attachUiEvents() {
 
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape') { closeModals(); closeDrawers(); toggleMobileMenu(false); }
+    if (event.key === 'Tab') trapModalFocus(event);
     if (isFormElement(document.activeElement)) return;
     if (event.key.toLowerCase() === 'f') { event.preventDefault(); ui.searchInput.focus(); toggleMobileMenu(true); }
     if (event.key.toLowerCase() === 'r') flyToRandomEvent(app.filteredEvents);
@@ -351,9 +360,60 @@ function renderMapData() {
   app.filteredEvents = filterEvents(app.events, app.filters, discovered);
   ui.resultCount.textContent = `${app.filteredEvents.length.toLocaleString(i18n.locale)} ${i18n.t(app.filteredEvents.length === 1 ? 'eventOne' : 'eventMany')}`;
   ui.clearSearch.hidden = !app.filters.query;
+  renderActiveFilters();
+  renderEventList();
   saveViewFilters();
   const source = app.map?.getSource('resistance-events');
   if (source) source.setData(toGeoJson(app.filteredEvents));
+}
+
+function renderActiveFilters() {
+  ui.activeFilters.replaceChildren();
+  const chips = [];
+  if (app.filters.query) chips.push({ label: `⌕ ${app.filters.query}`, clear: () => { app.filters.query = ''; ui.searchInput.value = ''; } });
+  if (app.filters.category !== 'all') chips.push({ label: translateCategory(app.filters.category, i18n.language), clear: () => { app.filters.category = 'all'; ui.categoryFilter.value = 'all'; } });
+  if (Number(app.filters.from) !== -1200 || Number(app.filters.to) !== 2030) chips.push({ label: `${app.filters.from}–${app.filters.to}`, clear: () => { app.filters.from = -1200; app.filters.to = 2030; ui.eraFrom.value = -1200; ui.eraTo.value = 2030; } });
+  if (app.filters.undiscoveredOnly) chips.push({ label: i18n.t('undiscovered'), clear: () => { app.filters.undiscoveredOnly = false; ui.undiscoveredOnly.checked = false; } });
+  chips.forEach(item => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'filter-chip';
+    button.textContent = item.label;
+    button.setAttribute('aria-label', `${i18n.t('removeFilter')}: ${item.label}`);
+    button.addEventListener('click', () => { item.clear(); renderMapData(); });
+    ui.activeFilters.append(button);
+  });
+}
+
+function renderEventList() {
+  ui.eventListBody.replaceChildren();
+  const fragment = document.createDocumentFragment();
+  [...app.filteredEvents].sort((a, b) => (a.yearStart ?? 9999) - (b.yearStart ?? 9999)).forEach(event => {
+    const row = document.createElement('tr');
+    const year = document.createElement('td');
+    year.textContent = formatLocalizedYear(event, i18n);
+    const titleCell = document.createElement('td');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = event.title;
+    button.addEventListener('click', () => { closeDrawers(); flyToEvent(event); });
+    titleCell.append(button);
+    const place = document.createElement('td');
+    place.textContent = event.location;
+    const movement = document.createElement('td');
+    movement.textContent = translateCategory(event.category, i18n.language);
+    row.append(year, titleCell, place, movement);
+    fragment.append(row);
+  });
+  ui.eventListBody.append(fragment);
+  if (!app.filteredEvents.length) {
+    const row = document.createElement('tr');
+    const cell = document.createElement('td');
+    cell.colSpan = 4;
+    cell.textContent = i18n.t('noResults');
+    row.append(cell);
+    ui.eventListBody.append(row);
+  }
 }
 
 function toGeoJson(events) {
@@ -380,6 +440,8 @@ async function openEventPopup(event, coordinates = [event.longitude, event.latit
   if (app.popup) app.popup.remove();
   const content = document.createElement('article');
   content.className = 'event-popup';
+  const sensitive = isSensitiveEvent(event);
+  content.classList.toggle('is-sensitive', sensitive);
 
   const media = document.createElement('div');
   media.className = 'event-popup-placeholder';
@@ -406,6 +468,12 @@ async function openEventPopup(event, coordinates = [event.longitude, event.latit
   description.className = 'event-popup-description';
   description.textContent = event.description;
   body.append(meta, title, location, description);
+  if (sensitive) {
+    const notice = document.createElement('p');
+    notice.className = 'sensitivity-notice';
+    notice.textContent = `${i18n.t('sensitiveNotice')} ${event.sensitivity}`;
+    body.append(notice);
+  }
   if (i18n.language !== 'de') {
     const languageNote = document.createElement('small');
     languageNote.className = 'event-language-note';
@@ -424,13 +492,29 @@ async function openEventPopup(event, coordinates = [event.longitude, event.latit
     body.append(tags);
   }
 
+  const details = document.createElement('div');
+  details.className = 'event-detail-grid';
+  appendEventDetail(details, i18n.t('demands'), event.demands);
+  appendEventDetail(details, i18n.t('participants'), event.participants);
+  appendEventDetail(details, i18n.t('powerStructures'), event.powerStructures);
+  appendEventDetail(details, i18n.t('tactics'), event.tactics);
+  appendEventDetail(details, i18n.t('immediateConsequences'), event.immediateConsequences);
+  appendEventDetail(details, i18n.t('longTermImpact'), event.longTermImpact);
+  appendEventDetail(details, i18n.t('repression'), event.repression);
+  appendEventDetail(details, i18n.t('humanCosts'), event.humanCosts);
+  appendEventDetail(details, i18n.t('aftermath'), event.aftermath);
+  appendEventDetail(details, i18n.t('openQuestions'), event.openQuestions);
+  appendEventDetail(details, i18n.t('voices'), event.voices);
+  appendEventDetail(details, i18n.t('uncertainty'), event.uncertainty);
+  if (details.childElementCount) body.append(details);
+
   const actions = document.createElement('div');
   actions.className = 'event-popup-actions';
   const discoverButton = document.createElement('button');
   discoverButton.type = 'button';
   discoverButton.className = 'discover-button';
   const isDiscovered = app.progress.discoveredIds.includes(event.id);
-  discoverButton.textContent = isDiscovered ? i18n.t('inArchive') : i18n.t('saveTrace');
+  discoverButton.textContent = isDiscovered ? i18n.t('inArchive') : i18n.t(sensitive ? 'bookmarkEvent' : 'saveTrace');
   discoverButton.disabled = isDiscovered;
   discoverButton.addEventListener('click', () => discoverEvent(event, discoverButton));
   actions.append(discoverButton);
@@ -452,6 +536,16 @@ async function openEventPopup(event, coordinates = [event.longitude, event.latit
   share.addEventListener('click', () => copyEventLink(event));
   actions.append(share);
   body.append(actions);
+  const sourceMetadata = document.createElement('div');
+  sourceMetadata.className = 'source-metadata';
+  for (const value of [event.sourceType, event.sourceQuality, event.reviewStatus]) {
+    if (!value) continue;
+    const badge = document.createElement('span');
+    badge.className = 'source-badge';
+    badge.textContent = value;
+    sourceMetadata.append(badge);
+  }
+  if (sourceMetadata.childElementCount) body.append(sourceMetadata);
   if (event.significance) {
     const significance = document.createElement('p');
     significance.className = 'event-popup-description event-popup-significance';
@@ -481,22 +575,45 @@ async function openEventPopup(event, coordinates = [event.longitude, event.latit
   }
 }
 
+function appendEventDetail(container, label, value) {
+  const values = Array.isArray(value) ? value.filter(Boolean) : value ? [value] : [];
+  if (!values.length) return;
+  const section = document.createElement('section');
+  section.className = 'event-detail-section';
+  const heading = document.createElement('h4');
+  heading.textContent = label;
+  section.append(heading);
+  if (Array.isArray(value)) {
+    const list = document.createElement('ul');
+    values.forEach(item => { const entry = document.createElement('li'); entry.textContent = item; list.append(entry); });
+    section.append(list);
+  } else {
+    const paragraph = document.createElement('p');
+    paragraph.textContent = values[0];
+    section.append(paragraph);
+  }
+  container.append(section);
+}
+
 function discoverEvent(event, button) {
   if (app.progress.discoveredIds.includes(event.id)) return;
-  const previous = app.events.find(item => item.id === app.progress.lastDiscoveredId);
+  const sensitive = isSensitiveEvent(event);
+  const previous = sensitive ? null : app.events.find(item => item.id === app.progress.lastDiscoveredId);
   app.progress.discoveredIds.push(event.id);
-  const discoveryXp = 15 + (event.difficulty * 5);
-  awardXp(discoveryXp);
-  const solidarity = solidarityResult(previous, event, app.progress.solidarityCombo);
-  app.progress.solidarityCombo = solidarity.combo;
-  app.progress.bestSolidarityCombo = Math.max(app.progress.bestSolidarityCombo, solidarity.combo);
-  app.progress.lastDiscoveredId = event.id;
-  if (solidarity.bonusXp) awardXp(solidarity.bonusXp, false);
+  const discoveryXp = sensitive ? 0 : 15 + (event.difficulty * 5);
+  if (discoveryXp) awardXp(discoveryXp);
+  const solidarity = sensitive ? { combo: app.progress.solidarityCombo, bonusXp: 0, sharedTags: [] } : solidarityResult(previous, event, app.progress.solidarityCombo);
+  if (!sensitive) {
+    app.progress.solidarityCombo = solidarity.combo;
+    app.progress.bestSolidarityCombo = Math.max(app.progress.bestSolidarityCombo, solidarity.combo);
+    app.progress.lastDiscoveredId = event.id;
+    if (solidarity.bonusXp) awardXp(solidarity.bonusXp, false);
+  }
   button.textContent = i18n.t('inArchive');
   button.disabled = true;
 
   const mission = app.progress.mission;
-  if (mission && !mission.complete && mission.targetIds.includes(event.id) && !mission.completedIds.includes(event.id)) {
+  if (!sensitive && mission && !mission.complete && mission.targetIds.includes(event.id) && !mission.completedIds.includes(event.id)) {
     mission.completedIds.push(event.id);
     awardXp(10, false);
     if (mission.completedIds.length >= mission.goal) {
@@ -507,11 +624,13 @@ function discoverEvent(event, button) {
     }
   }
 
-  checkAchievements();
+  if (!sensitive) checkAchievements();
   saveProgress();
   updateGameUi();
   renderMapData();
-  if (solidarity.bonusXp) {
+  if (sensitive) {
+    showToast(i18n.t('bookmarked'), event.title);
+  } else if (solidarity.bonusXp) {
     showToast(`Solidarity combo ×${solidarity.combo}`, `${translateCategory(solidarity.sharedTags[0], i18n.language)} · +${solidarity.bonusXp} XP`);
   } else {
     showToast(i18n.t('newTrace'), `${event.title} · +${discoveryXp} XP`);
@@ -660,8 +779,8 @@ function renderAchievements() {
 }
 
 function drawConnection(rewardNew = true) {
-  const discovered = discoveredEvents();
-  const pool = discovered.length >= 2 ? discovered : app.events;
+  const discovered = discoveredEvents().filter(event => !isSensitiveEvent(event));
+  const pool = discovered.length >= 2 ? discovered : app.events.filter(event => !isSensitiveEvent(event));
   const connection = createConnection(pool, Date.now() + '-' + Math.random());
   if (!connection) {
     ui.connectionContent.textContent = i18n.t('noConnection');
@@ -739,7 +858,8 @@ function localizedConnectionHeadline(connection, events) {
 }
 
 function renderPowerExcuse() {
-  const pool = discoveredEvents().length ? discoveredEvents() : app.events;
+  const discovered = discoveredEvents().filter(event => !isSensitiveEvent(event));
+  const pool = discovered.length ? discovered : app.events.filter(event => !isSensitiveEvent(event));
   const event = seededShuffle(pool, Date.now() + '-counter')[0];
   const item = createPowerExcuse(event, Date.now() + '-' + Math.random());
   ui.powerExcuse.textContent = i18n.language === 'de' ? item.excuse : i18n.t('defaultExcuse');
@@ -759,7 +879,8 @@ async function copyConnection() {
 }
 
 function openQuiz() {
-  const pool = discoveredEvents().length ? discoveredEvents() : app.events;
+  const discovered = discoveredEvents().filter(event => !isSensitiveEvent(event));
+  const pool = discovered.length ? discovered : app.events.filter(event => !isSensitiveEvent(event));
   if (!pool.length) return;
   const event = seededShuffle(pool, `${Date.now()}-quiz`)[0];
   app.activeQuiz = { event, ...createQuiz(event, app.events, Date.now()), answered: false };
@@ -970,8 +1091,10 @@ function toggleDrawer(drawer, activeButton) {
   const shouldOpen = drawer.hidden;
   closeDrawers();
   if (shouldOpen) {
+    app.lastFocus = activeButton;
     drawer.hidden = false;
     ui.navButtons.forEach(button => button.classList.toggle('is-active', button === activeButton));
+    drawer.focus();
   }
 }
 
@@ -980,6 +1103,7 @@ function openPanel(panel) {
   if (panel === 'map') { closeDrawers(); return true; }
   const drawers = {
     archive: ui.archiveDrawer,
+    list: ui.eventListDrawer,
     achievements: ui.achievementsDrawer,
     connections: ui.connectionsDrawer
   };
@@ -994,22 +1118,38 @@ function openPanel(panel) {
 
 function closeDrawers() {
   ui.archiveDrawer.hidden = true;
+  ui.eventListDrawer.hidden = true;
   ui.achievementsDrawer.hidden = true;
   ui.connectionsDrawer.hidden = true;
   ui.navButtons.forEach(button => button.classList.toggle('is-active', button.dataset.panel === 'map'));
 }
 
 function openModal(modal) {
-  closeModals();
+  closeModals(false);
+  app.lastFocus = document.activeElement;
   ui.modalBackdrop.hidden = false;
   modal.hidden = false;
   modal.querySelector('button, [href], input')?.focus();
 }
 
-function closeModals() {
+function closeModals(restoreFocus = true) {
+  const hadOpenModal = !ui.welcomeModal.hidden || !ui.quizModal.hidden || !ui.methodologyModal.hidden;
   ui.modalBackdrop.hidden = true;
   ui.welcomeModal.hidden = true;
   ui.quizModal.hidden = true;
+  ui.methodologyModal.hidden = true;
+  if (restoreFocus && hadOpenModal && app.lastFocus?.isConnected) app.lastFocus.focus();
+}
+
+function trapModalFocus(event) {
+  const modal = [ui.welcomeModal, ui.quizModal, ui.methodologyModal].find(item => !item.hidden);
+  if (!modal) return;
+  const focusable = [...modal.querySelectorAll('button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])')];
+  if (!focusable.length) return;
+  const first = focusable[0];
+  const last = focusable.at(-1);
+  if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+  else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
 }
 
 function toggleMobileMenu(open) {
