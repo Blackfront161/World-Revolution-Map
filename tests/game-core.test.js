@@ -80,6 +80,10 @@ test('normalisiert und validiert optionale Redaktionsfelder rückwärtskompatibe
   assert.equal(isSensitiveEvent(normalizeEvent({ title: 'Massaker an Streikenden', longitude: 1, latitude: 1 })), true);
   assert.deepEqual(validateEditorialFields({ demands: 42 }), ['demands muss Text oder eine Textliste sein']);
   assert.deepEqual(validateEditorialFields({ demands: ['ok'], reviewStatus: 'Pilot' }), []);
+  assert.deepEqual(validateEditorialFields({ voices: ['Belegte Perspektive'] }), ['voices benötigt eine belegende sourceUrl']);
+  assert.deepEqual(validateEditorialFields({ sourceType: 'Archiv' }), ['sourceType und sourceQuality müssen gemeinsam gepflegt werden']);
+  assert.deepEqual(validateEditorialFields({ reviewStatus: 'Redaktioneller Pilotstand' }), ['Redaktioneller Pilotstand benötigt sourceType und sourceQuality']);
+  assert.deepEqual(validateEditorialFields({ demands: [''] }), ['demands enthält einen leeren oder ungültigen Eintrag']);
 });
 
 test('sensible Ereignisse werden nicht in Missionen aufgenommen', () => {

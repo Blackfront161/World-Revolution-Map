@@ -17,7 +17,8 @@ Eine interaktive, spielerische Weltkarte historischer Bewegungen, Aufstände, St
 - Live-Daten aus Supabase, automatisch mit dem Fallback-Archiv zusammengeführt
 - Karten-Popups mit Einordnung, Bild und weiterführender Quelle
 - ausführliche, optionale Ergebnisfelder ohne Einteilung in „gewonnen“ oder „verloren“
-- sichtbare Quellenart, Quellenqualität, Prüfstatus, Unsicherheit und Hinweise zu sensiblen Inhalten
+- sichtbare und in allen neun UI-Sprachen beschriftete Quellenart, Quellenqualität, Prüfstatus, Unsicherheit und Hinweise zu sensiblen Inhalten
+- 47 vertiefte redaktionelle Pilotereignisse; die jüngste Runde umfasst 22 Einträge mit Nicht-Wikipedia-Quellen aus Bewegungs-, Community-, Forschungs-, Museums-, Gewerkschafts-, Menschenrechts- oder öffentlichen Archiven
 - zugängliche, tastaturbedienbare Ereignistabelle als Alternative zur Karte
 - sichtbare aktive Filter, die einzeln entfernt werden können
 - lokales Fortschrittssystem mit XP, Levels und Entdeckungsarchiv
@@ -34,7 +35,7 @@ Eine interaktive, spielerische Weltkarte historischer Bewegungen, Aufstände, St
 
 Der Spielfortschritt wird ausschließlich im lokalen Browser gespeichert. Es gibt weder Tracking noch ein Benutzerkonto. Die Integrations-API kann diesen validierten Spielstand exportieren, damit eine Host-App ihn freiwillig synchronisieren kann.
 
-Die Sprache kann im Kopfbereich oder mit `?lang=de|en|es|fr|it|pt|ru|el|tr` gewählt werden. Oberfläche, Filterbegriffe, Zeitangaben, Missionen, Quiz und Funkenlabor werden vollständig lokal übersetzt. Historische Eigennamen bleiben unverändert; die kuratierten Langtexte sind vorerst als gekennzeichnete deutsche Originalfassungen enthalten. Es wird kein Text an externe Übersetzungsdienste übertragen.
+Die Sprache kann im Kopfbereich oder mit `?lang=de|en|es|fr|it|pt|ru|el|tr` gewählt werden. Oberfläche, Filterbegriffe, Zeitangaben, Missionen, Quiz, Funkenlabor und die Beschriftungen der redaktionellen Quellenfelder werden vollständig lokal übersetzt. Historische Eigennamen bleiben unverändert; die kuratierten Langtexte und ereignisspezifischen Redaktionsfelder sind vorerst als gekennzeichnete deutsche Originalfassungen enthalten. Eine fachlich geprüfte Übersetzung dieser historischen Inhalte in die acht weiteren Sprachen bleibt redaktionell offen. Es wird kein Text an externe Übersetzungsdienste übertragen.
 
 ## In eine andere App einbetten
 

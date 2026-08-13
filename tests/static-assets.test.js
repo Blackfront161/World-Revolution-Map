@@ -79,6 +79,34 @@ test('Priorisierte Ereignisse besitzen vertiefte redaktionelle Angaben', async (
   }
 });
 
+test('Zweite Redaktionsrunde ist vertieft und nutzt keine Wikipedia-Einzelquelle', async () => {
+  const catalog = JSON.parse(await readFile(new URL('data/event-catalog.json', root), 'utf8'));
+  const rows = (await Promise.all(catalog.map(file => readFile(new URL(`data/${file}`, root), 'utf8')))).flatMap(JSON.parse);
+  const byId = new Map(rows.filter(event => !event.archived).map(event => [event.id, event]));
+  const priorityIds = [
+    'mica-bay-incident-1849', 'red-river-resistance-1869', 'cranmer-potlatch-resistance-1921',
+    'six-nations-council-resistance-1924', 'lubicon-spirit-sings-boycott-1988',
+    'ardoch-uranium-blockade', 'muskrat-falls-land-protectors', 'camp-morgan-landfill-search',
+    'day-of-mourning-1938', 'montgomery-bus-boycott', 'selma-marches', 'act-up-wall-street',
+    'natal-indian-strike-1913', 'niger-delta-womens-protests', 'enmore-martyrs-strike',
+    'ecuador-indigenous-uprising-1990', 'togo-general-strike-1992', 'swaziland-general-strike-1996',
+    'shutitall-down-namibia', 'trinidad-oilfield-strike', 'jamaica-labour-rebellion-1938',
+    'black-trans-liberation-march'
+  ];
+  const requiredFields = [
+    'demands', 'participants', 'powerStructures', 'tactics',
+    'immediateConsequences', 'longTermImpact', 'sourceType', 'sourceQuality', 'reviewStatus'
+  ];
+
+  assert.equal(priorityIds.length, 22);
+  for (const id of priorityIds) {
+    const event = byId.get(id);
+    assert.ok(event, `Priorisiertes Ereignis fehlt: ${id}`);
+    for (const field of requiredFields) assert.ok(event[field]?.length, `${id}: ${field} fehlt oder ist leer`);
+    assert.doesNotMatch(event.sourceUrl, /wikipedia\.org/i, `${id}: Wikipedia darf nicht die einzige verlinkte Quelle sein`);
+  }
+});
+
 test('Datenbankinhalte werden nicht über innerHTML in die Seite geschrieben', async () => {
   const script = await readFile(new URL('script.js', root), 'utf8');
   assert.doesNotMatch(script, /\.innerHTML\s*=/);

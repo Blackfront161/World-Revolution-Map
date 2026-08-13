@@ -120,11 +120,21 @@ export function validateEditorialFields(row) {
   const issues = [];
   for (const field of EDITORIAL_LIST_FIELDS) {
     if (row[field] !== undefined && !Array.isArray(row[field]) && typeof row[field] !== 'string') issues.push(`${field} muss Text oder eine Textliste sein`);
+    if (Array.isArray(row[field]) && row[field].some(item => {
+      const value = typeof item === 'string' ? item : item?.text;
+      return typeof value !== 'string' || !value.trim();
+    })) issues.push(`${field} enthält einen leeren oder ungültigen Eintrag`);
   }
   for (const field of EDITORIAL_TEXT_FIELDS) {
     if (row[field] !== undefined && typeof row[field] !== 'string') issues.push(`${field} muss Text sein`);
+    if (typeof row[field] === 'string' && !row[field].trim()) issues.push(`${field} darf nicht leer sein`);
   }
-  if (Array.isArray(row.voices) && row.voices.some(item => typeof item !== 'string' && typeof item?.text !== 'string')) issues.push('voices enthält einen ungültigen Eintrag');
+  const sourceType = row.sourceType ?? row.source_type;
+  const sourceQuality = row.sourceQuality ?? row.source_quality;
+  const reviewStatus = row.reviewStatus ?? row.review_status;
+  if (Boolean(sourceType) !== Boolean(sourceQuality)) issues.push('sourceType und sourceQuality müssen gemeinsam gepflegt werden');
+  if (row.voices !== undefined && !(row.sourceUrl ?? row.source_url)) issues.push('voices benötigt eine belegende sourceUrl');
+  if (reviewStatus === 'Redaktioneller Pilotstand' && (!sourceType || !sourceQuality)) issues.push('Redaktioneller Pilotstand benötigt sourceType und sourceQuality');
   return issues;
 }
 

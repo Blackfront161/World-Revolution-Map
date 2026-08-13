@@ -543,11 +543,15 @@ async function openEventPopup(event, coordinates = [event.longitude, event.latit
   body.append(actions);
   const sourceMetadata = document.createElement('div');
   sourceMetadata.className = 'source-metadata';
-  for (const value of [event.sourceType, event.sourceQuality, event.reviewStatus]) {
+  for (const [label, value] of [
+    [i18n.t('sourceTypeLabel'), event.sourceType],
+    [i18n.t('sourceQualityLabel'), event.sourceQuality],
+    [i18n.t('reviewStatusLabel'), event.reviewStatus]
+  ]) {
     if (!value) continue;
     const badge = document.createElement('span');
     badge.className = 'source-badge';
-    badge.textContent = value;
+    badge.textContent = `${label}: ${value}`;
     sourceMetadata.append(badge);
   }
   if (sourceMetadata.childElementCount) body.append(sourceMetadata);
