@@ -440,6 +440,8 @@ async function openEventPopup(event, coordinates = [event.longitude, event.latit
   if (app.popup) app.popup.remove();
   const content = document.createElement('article');
   content.className = 'event-popup';
+  content.setAttribute('role', 'dialog');
+  content.setAttribute('aria-modal', 'false');
   const sensitive = isSensitiveEvent(event);
   content.classList.toggle('is-sensitive', sensitive);
 
@@ -460,7 +462,10 @@ async function openEventPopup(event, coordinates = [event.longitude, event.latit
   meta.append(category, year);
 
   const title = document.createElement('h3');
+  title.id = `event-title-${event.id}`;
+  title.tabIndex = -1;
   title.textContent = event.title;
+  content.setAttribute('aria-labelledby', title.id);
   const location = document.createElement('p');
   location.className = 'event-popup-location';
   location.textContent = `⌖ ${event.location}`;
@@ -556,10 +561,12 @@ async function openEventPopup(event, coordinates = [event.longitude, event.latit
   }
   content.append(body);
 
-  app.popup = new window.maplibregl.Popup({ offset: 14, closeButton: true })
+  app.popup = new window.maplibregl.Popup({ offset: 14, closeButton: true, focusAfterOpen: false })
     .setLngLat(coordinates)
     .setDOMContent(content)
     .addTo(app.map);
+  content.closest('.maplibregl-popup-content')?.scrollTo({ top: 0 });
+  title.focus({ preventScroll: true });
   setEventInUrl(event.id);
   app.popup.on('close', () => clearEventFromUrl(event.id));
 
@@ -1126,7 +1133,11 @@ function closeDrawers() {
 
 function openModal(modal) {
   closeModals(false);
-  app.lastFocus = document.activeElement;
+  app.lastFocus = window.matchMedia('(max-width: 820px)').matches && ui.controlPanel.contains(document.activeElement)
+    ? ui.menuToggle
+    : document.activeElement;
+  closeDrawers();
+  toggleMobileMenu(false);
   ui.modalBackdrop.hidden = false;
   modal.hidden = false;
   modal.querySelector('button, [href], input')?.focus();

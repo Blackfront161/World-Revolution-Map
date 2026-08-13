@@ -409,9 +409,20 @@ kbd {
 .maplibregl-ctrl-top-right { top: 98px; right: 10px; }
 .maplibregl-ctrl-group { overflow: hidden; border: 1px solid var(--line) !important; border-radius: 10px !important; background: var(--panel-solid) !important; }
 .maplibregl-ctrl button .maplibregl-ctrl-icon { filter: invert(1); }
-.maplibregl-popup { max-width: 340px !important; }
+.maplibregl-popup {
+  position: fixed;
+  z-index: 20;
+  top: 104px;
+  right: 16px;
+  bottom: 80px;
+  left: auto;
+  width: min(380px, calc(100vw - 32px));
+  max-width: none !important;
+  transform: none !important;
+}
 .maplibregl-popup-content {
-  max-height: calc(100vh - 190px);
+  height: 100%;
+  max-height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
   scrollbar-color: var(--accent) var(--panel-solid);
@@ -423,7 +434,7 @@ kbd {
   box-shadow: var(--shadow);
 }
 .maplibregl-popup-close-button { z-index: 3; top: 7px; right: 7px; width: 30px; height: 30px; border-radius: 50%; background: rgba(0,0,0,.55); color: white; font-size: 20px; }
-.maplibregl-popup-tip { border-top-color: #071711 !important; }
+.maplibregl-popup-tip { display: none; }
 .event-popup-image { width: 100%; height: 150px; object-fit: cover; background: #0a261b; }
 .event-popup-placeholder { display: grid; place-items: center; width: 100%; height: 92px; background: radial-gradient(circle, rgba(101,243,166,.18), transparent 60%); color: var(--accent); font-size: 28px; }
 .event-popup-body { padding: 17px; }
@@ -469,25 +480,26 @@ kbd {
   .mission-card { top: 86px; left: 10px; right: 10px; width: auto; padding: 12px 14px; }
   .mission-card h2 { font-size: 16px; }
   .mission-card p { display: none; }
-  .bottom-nav { left: 10px; right: 10px; bottom: 10px; transform: none; justify-content: space-around; }
-  .nav-button { flex-direction: column; gap: 1px; padding: 5px 9px; font-size: 9px; }
+  .bottom-nav { left: 10px; right: 10px; bottom: 10px; transform: none; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1px; }
+  .nav-button { min-width: 0; flex-direction: column; gap: 1px; padding: 5px 2px; font-size: 9px; }
   .nav-button b { display: none; }
   .drawer { top: 86px; left: 10px; right: 10px; bottom: 72px; width: auto; }
   .event-list-drawer { width: auto; }
   .maplibregl-ctrl-top-right { top: 158px; }
   .toast-region { left: 10px; right: 10px; bottom: 76px; }
   .toast { max-width: none; }
-  .maplibregl-popup-content { max-height: calc(100vh - 245px); }
+  .maplibregl-popup { top: 86px; right: 10px; bottom: 72px; left: 10px; width: auto; }
+  .maplibregl-popup-content { height: 100%; max-height: 100%; }
 }
 
 @media (max-width: 470px) {
   .brand-mark { display: none; }
   .hud-label { display: none; }
   .language-picker > span, .hud-stat { display: none; }
-  .language-picker select { min-width: 92px; max-width: 102px; }
+  .language-picker select { min-width: 104px; max-width: 110px; padding-right: 22px; font-size: 11px; }
   .modal { padding: 24px 20px; }
   .achievement-grid { grid-template-columns: 1fr; }
-  .maplibregl-popup { max-width: min(310px, calc(100vw - 30px)) !important; }
+  .maplibregl-popup { max-width: none !important; }
   .connection-grid { grid-template-columns: 1fr; }
   .methodology-content { grid-template-columns: 1fr; }
   .connection-bolt { min-height: 22px; transform: rotate(90deg); }
