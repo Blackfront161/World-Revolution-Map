@@ -515,8 +515,42 @@
     "description": "Indigene Gemeinden blockierten Straßen gegen Dekrete, die Extraktion im Amazonasgebiet erleichterten; eine Räumung endete tödlich.",
     "significance": "Der Kampf erzwang die Rücknahme von Gesetzen und machte freie, vorherige Zustimmung zentral.",
     "clue": "Suche an der Teufelskurve im Norden Perus.",
-    "sourceUrl": "https://en.wikipedia.org/wiki/2009_Peruvian_political_crisis",
-    "difficulty": 1
+    "sourceUrl": "https://www.oas.org/en/iachr/reports/pdfs/panamazonia2019-en.pdf",
+    "difficulty": 1,
+    "demands": [
+      "Rücknahme von Dekreten, die indigene Land- und Territorialrechte gefährdeten",
+      "Achtung kollektiver Eigentums- und Konsultationsrechte",
+      "Aufklärung und Wiedergutmachung nach der Gewalt"
+    ],
+    "participants": [
+      "Indigene Völker des peruanischen Amazonasgebiets",
+      "Indigene Führungspersonen und Protestierende",
+      "Polizeikräfte"
+    ],
+    "powerStructures": [
+      "Peruanische Regierung und Gesetzgebung",
+      "Nationale Polizei",
+      "Extraktive Interessen an Amazonas-Territorien"
+    ],
+    "tactics": [
+      "Längerer Straßenblockade",
+      "Regionale Mobilisierung und Protest",
+      "Menschenrechtliche und gerichtliche Forderungen nach Aufklärung"
+    ],
+    "immediateConsequences": "Am 5. Juni 2009 räumte die Polizei die Blockade bei Bagua; laut IACHR starben mindestens 30 Menschen und weitere wurden verletzt.",
+    "longTermImpact": "Bagua wurde zu einem zentralen Bezugspunkt für indigene Konsultations-, Land- und Menschenrechte in Peru und der Pan-Amazonas-Region.",
+    "repression": "Die Nationale Polizei setzte eine Operation zur Auflösung der Blockade ein; die IACHR verlangte gerichtliche Untersuchung und Wiedergutmachung.",
+    "humanCosts": "Mindestens 30 Tote sowie weitere Verletzte, darunter indigene Führungspersonen und Angehörige der Sicherheitskräfte; Gesundheitseinrichtungen waren überfordert.",
+    "aftermath": "Die Verantwortung, genaue Opferbilanz und strafrechtliche Aufarbeitung blieben Gegenstand langjähriger Konflikte.",
+    "openQuestions": "Opferzahlen, Verantwortungsanteile und der Umfang späterer Wiedergutmachung werden unterschiedlich bewertet.",
+    "voices": [
+      "Die IACHR beschreibt den Protest als Reaktion indigener Amazonasvölker auf Dekrete, die ihre Land- und Territorialrechte berührten (paraphrasiert nach der verlinkten Quelle)."
+    ],
+    "sourceType": "Menschenrechtsdokumentation",
+    "sourceQuality": "Hoch – direkte oder kuratierte Quelle",
+    "uncertainty": "Die IACHR verwendete 2009 vorläufige Mindestzahlen; spätere Berichte können differenziertere Bilanzen enthalten.",
+    "sensitivity": "Tödliche Polizeigewalt und Verletzungen",
+    "reviewStatus": "Redaktioneller Pilotstand"
   },
   {
     "id": "guadeloupe-general-strike",

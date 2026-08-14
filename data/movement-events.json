@@ -57,15 +57,58 @@
     "country": "Spanien",
     "continent": "Europa",
     "category": "Feministischer & antisexistischer Widerstand",
-    "tags": ["Anarchistische Bewegung", "Libertärer Kommunismus", "Antifaschistischer Widerstand"],
+    "tags": [
+      "Anarchistische Bewegung",
+      "Libertärer Kommunismus",
+      "Antifaschistischer Widerstand"
+    ],
     "yearStart": 1936,
     "yearEnd": 1939,
-    "coordinates": [2.173, 41.385],
+    "coordinates": [
+      2.173,
+      41.385
+    ],
     "description": "Die anarchistische Frauenorganisation verband Alphabetisierung, ökonomische Selbstständigkeit und den Kampf gegen patriarchale Strukturen.",
     "significance": "Mujeres Libres kritisierte Sexismus auch innerhalb revolutionärer Bewegungen und organisierte zehntausende Frauen.",
     "clue": "Suche im revolutionären Barcelona der 1930er Jahre.",
-    "sourceUrl": "https://en.wikipedia.org/wiki/Mujeres_Libres",
-    "difficulty": 1
+    "sourceUrl": "https://www.museoreinasofia.es/coleccion/proyectos-investigacion/mujeres-guerra-civil-espanola/asociacionismo-mujeres-libres-ama/",
+    "difficulty": 1,
+    "demands": [
+      "Selbstemanzipation von Arbeiterinnen",
+      "Überwindung von Unwissenheit, ökonomischer Ausbeutung und patriarchaler Unterordnung",
+      "Gleichberechtigte Beteiligung an sozialer Revolution und Antifaschismus"
+    ],
+    "participants": [
+      "Überwiegend anarchistische Arbeiterinnen",
+      "Lokale Gruppen der Federación Mujeres Libres",
+      "Gründerinnen und Redakteurinnen wie Lucía Sánchez Saornil, Mercedes Comaposada und Amparo Poch"
+    ],
+    "powerStructures": [
+      "Patriarchale Arbeitsteilung",
+      "Kapitalistische Ausbeutung",
+      "Sexismus auch in libertären Organisationen",
+      "Faschistische und militärische Gewalt"
+    ],
+    "tactics": [
+      "Eigene Zeitschrift und politische Bildung",
+      "Alphabetisierung und Berufsausbildung",
+      "Kinderbetreuung, Gesundheits- und Sozialarbeit",
+      "Eigenständige Frauenorganisation"
+    ],
+    "immediateConsequences": "Ab 1936 entstand eine landesweite Föderation mit zahlreichen lokalen Gruppen und Zehntausenden Mitgliedern, die soziale Versorgung und politische Bildung organisierte.",
+    "longTermImpact": "Mujeres Libres wurde zu einem grundlegenden Bezugspunkt anarchafeministischer Organisierung und der Verbindung von Klassen- und Geschlechterbefreiung.",
+    "repression": "Der Sieg des Franco-Regimes zerstörte die legalen Organisationsräume; Mitglieder waren Exil, Haft und politischer Verfolgung ausgesetzt.",
+    "humanCosts": "Krieg, faschistische Repression, Exil und Verlust aufgebauter Strukturen trafen die Mitglieder; die Museumsquelle nennt keine Gesamtbilanz.",
+    "aftermath": "Erfahrungen und Zeitschriftenbestände überlebten in Exilnetzwerken und Archiven, während die Organisation in Spanien zerschlagen wurde.",
+    "openQuestions": "Mitgliederzahlen und lokale Praxis unterscheiden sich je nach Quelle; Stimmen von weniger bekannten Arbeiterinnen sind archivalisch ungleich überliefert.",
+    "voices": [
+      "Mujeres Libres verband die Befreiung von patriarchaler Unterordnung, Unwissenheit und ökonomischer Ausbeutung in einem gemeinsamen Projekt (paraphrasiert nach der verlinkten Quelle)."
+    ],
+    "sourceType": "Archiv / Museum",
+    "sourceQuality": "Hoch – direkte oder kuratierte Quelle",
+    "uncertainty": "Das Museum nennt mehr als 25.000 Mitglieder und 147 Gruppen; andere Forschungen verwenden abweichende Schätzungen.",
+    "sensitivity": "Krieg, faschistische Repression und Exil",
+    "reviewStatus": "Redaktioneller Pilotstand"
   },
   {
     "id": "mai-1968-paris",
@@ -91,15 +134,57 @@
     "country": "Frankreich",
     "continent": "Europa",
     "category": "Arbeiter*innenbewegung",
-    "tags": ["Libertärer Kommunismus", "Anarchistische Bewegung", "Antiautoritäre Revolution"],
+    "tags": [
+      "Libertärer Kommunismus",
+      "Anarchistische Bewegung",
+      "Antiautoritäre Revolution"
+    ],
     "yearStart": 1973,
     "yearEnd": 1974,
-    "coordinates": [6.025, 47.238],
+    "coordinates": [
+      6.025,
+      47.238
+    ],
     "description": "Beschäftigte besetzten die Uhrenfabrik LIP, nahmen die Produktion selbst auf und verkauften Uhren zur Finanzierung ihres Kampfes.",
     "significance": "Der Konflikt wurde zu einem Symbol für Arbeiter*innenselbstverwaltung und die Kritik an privater Verfügungsgewalt.",
     "clue": "Suche in der französischen Uhrenstadt Besançon.",
-    "sourceUrl": "https://en.wikipedia.org/wiki/LIP_(company)",
-    "difficulty": 2
+    "sourceUrl": "https://catalogue.ina.fr/doc/TV-RADIO/TV_5443371.001/syndicats-histoire-d-un-contre-pouvoir-1884-1981-1ere-partie",
+    "difficulty": 2,
+    "demands": [
+      "Erhalt der Arbeitsplätze",
+      "Auszahlung ausstehender Löhne",
+      "Entscheidungsmacht der Belegschaft über Produktion und Zukunft des Betriebs"
+    ],
+    "participants": [
+      "LIP-Arbeiter*innen in Besançon",
+      "Betriebliche Gewerkschaftsgruppen",
+      "Solidarische Unterstützer*innen"
+    ],
+    "powerStructures": [
+      "Unternehmensleitung und Eigentümer",
+      "Gläubiger und Restrukturierungspläne",
+      "Französische Regierung und Arbeitgeberverbände"
+    ],
+    "tactics": [
+      "Betriebsbesetzung",
+      "Sicherung des Uhrenbestands als Verhandlungsmittel",
+      "Selbstverwaltete Produktion und Verkauf",
+      "Versammlungen und landesweite Solidarität"
+    ],
+    "immediateConsequences": "Nach der angekündigten Restrukturierung besetzte die Belegschaft 1973 das Werk, übernahm Uhrenbestände und organisierte Produktion in Selbstverwaltung.",
+    "longTermImpact": "LIP wurde zu einem international bekannten Beispiel für Arbeiter*innenselbstverwaltung und für die Frage, wer über Produktion verfügt.",
+    "repression": "Regierung und Arbeitgeberseite behandelten die Selbstverwaltung als subversiv; spätere politische und wirtschaftliche Entscheidungen führten zur Liquidation und Schließung.",
+    "humanCosts": "Arbeitsplatzverlust, Einkommensunsicherheit und jahrelange Auseinandersetzungen belasteten die Belegschaft; körperliche Opfer stehen nicht im Mittelpunkt der Quelle.",
+    "aftermath": "Zwischen Wiederaufnahmeversuchen, politischem Druck und Kooperativen blieb die langfristige wirtschaftliche Stabilisierung aus.",
+    "openQuestions": "Unterschiede zwischen Gewerkschaften, Geschlechterverhältnisse in der Belegschaft und die verschiedenen Phasen 1973–1977 verlangen vertiefende Oral History.",
+    "voices": [
+      "Zeitzeug*innen und Historiker*innen im INA-Archiv ordnen LIP als prägende Erfahrung betrieblicher Selbstverwaltung ein (paraphrasiert nach der verlinkten Quelle)."
+    ],
+    "sourceType": "Archiv / Museum",
+    "sourceQuality": "Hoch – direkte oder kuratierte Quelle",
+    "uncertainty": "Der audiovisuelle Überblick bündelt mehrere Jahre; einzelne Entscheidungen und Konflikte sind darin stark verdichtet.",
+    "sensitivity": "Arbeitsplatzverlust und staatlich-wirtschaftlicher Druck",
+    "reviewStatus": "Redaktioneller Pilotstand"
   },
   {
     "id": "oaxaca-kommune",
@@ -143,15 +228,56 @@
     "country": "USA",
     "continent": "Nordamerika",
     "category": "Indigener Widerstand",
-    "tags": ["Antikolonialer Widerstand", "Antiimperialistischer Widerstand", "Gedächtnis der Besiegten"],
+    "tags": [
+      "Antikolonialer Widerstand",
+      "Antiimperialistischer Widerstand",
+      "Gedächtnis der Besiegten"
+    ],
     "yearStart": 1680,
     "yearEnd": 1692,
-    "coordinates": [-105.937, 35.687],
+    "coordinates": [
+      -105.937,
+      35.687
+    ],
     "description": "Mehrere Pueblo-Gemeinschaften vertrieben die spanische Kolonialmacht für zwölf Jahre aus dem Gebiet.",
     "significance": "Der koordinierte Aufstand zählt zu den erfolgreichsten indigenen Erhebungen gegen europäische Kolonisierung in Nordamerika.",
     "clue": "Suche im heutigen New Mexico.",
-    "sourceUrl": "https://en.wikipedia.org/wiki/Pueblo_Revolt",
-    "difficulty": 2
+    "sourceUrl": "https://www.nps.gov/subjects/travelspanishmissions/san-jose-de-los-jemez-mission-and-giusewa-pueblo-site.htm",
+    "difficulty": 2,
+    "demands": [
+      "Ende religiöser und wirtschaftlicher Unterdrückung",
+      "Vertreibung der spanischen Kolonialmacht",
+      "Wiedergewinnung politischer und kultureller Selbstbestimmung"
+    ],
+    "participants": [
+      "Pueblo-Gemeinschaften in New Mexico",
+      "Po’pay aus Ohkay Owingeh",
+      "Kämpfer aus mehreren Pueblos"
+    ],
+    "powerStructures": [
+      "Spanische Kolonialverwaltung",
+      "Franziskanische Missionen",
+      "Tribut- und Zwangsarbeitssysteme"
+    ],
+    "tactics": [
+      "Überregional koordinierter Aufstand",
+      "Angriffe auf koloniale Einrichtungen",
+      "Belagerung von Santa Fe und erzwungener Rückzug der Kolonisten"
+    ],
+    "immediateConsequences": "1680 wurden die spanischen Kolonisten aus New Mexico verdrängt; die koloniale Herrschaft war dort zwölf Jahre unterbrochen.",
+    "longTermImpact": "Der Aufstand blieb ein zentraler Bezugspunkt indigener Selbstbehauptung und gilt als außergewöhnlich weitreichende Niederlage einer europäischen Kolonialmacht in Nordamerika.",
+    "repression": "Spanien eroberte das Gebiet ab 1692 erneut; Jémez-Gemeinschaften leisteten bis 1696 Widerstand und Überlebende wurden teils vertrieben.",
+    "humanCosts": "Der Aufstand und die spätere Rückeroberung waren von Tötungen, Krieg und Vertreibung auf indigener wie kolonialer Seite geprägt; belastbare Gesamtzahlen nennt die verlinkte Quelle nicht.",
+    "aftermath": "Die zwölf Jahre ohne spanische Herrschaft ermöglichten eine zeitweilige Wiederherstellung indigener politischer und religiöser Praxis, bevor die Rekolonisierung neue Gewalt und Umsiedlungen brachte.",
+    "openQuestions": "Die Erfahrungen unterschieden sich zwischen den beteiligten Pueblos; koloniale Archive bilden indigene Motive und Verluste nur unvollständig ab.",
+    "voices": [
+      "Die Pueblo-Perspektive verbindet den Aufstand mit der Abwehr kultureller Repression und kolonialer Führung (paraphrasiert nach der verlinkten Quelle)."
+    ],
+    "sourceType": "Behördenarchiv",
+    "sourceQuality": "Hoch – direkte oder kuratierte Quelle",
+    "uncertainty": "Opferzahlen und einzelne Abläufe variieren in der Forschung; hier werden nur die vom National Park Service belegten Eckpunkte verwendet.",
+    "sensitivity": "Koloniale Gewalt, Tötungen und Vertreibung",
+    "reviewStatus": "Redaktioneller Pilotstand"
   },
   {
     "id": "tupac-amaru-ii",
@@ -259,15 +385,56 @@
     "country": "USA",
     "continent": "Nordamerika",
     "category": "Indigener Widerstand",
-    "tags": ["Ökologischer Widerstand", "Antikolonialer Widerstand", "Antiimperialistischer Widerstand"],
+    "tags": [
+      "Ökologischer Widerstand",
+      "Antikolonialer Widerstand",
+      "Antiimperialistischer Widerstand"
+    ],
     "yearStart": 2016,
     "yearEnd": 2017,
-    "coordinates": [-100.630, 46.280],
+    "coordinates": [
+      -100.63,
+      46.28
+    ],
     "description": "Von Standing Rock Sioux getragene Camps widersetzten sich einer Ölpipeline und verteidigten Wasser, Land und heilige Stätten.",
     "significance": "Der Protest vereinte indigene Nationen in seltener Breite und machte „Water is Life“ international bekannt.",
     "clue": "Suche am Missouri River in North Dakota.",
-    "sourceUrl": "https://en.wikipedia.org/wiki/Dakota_Access_Pipeline_protests",
-    "difficulty": 1
+    "sourceUrl": "https://standingrock.org/topics/dakota-water-wars-series/",
+    "difficulty": 1,
+    "demands": [
+      "Stopp der Dakota Access Pipeline",
+      "Schutz des Missouri River und des Trinkwassers",
+      "Achtung von Vertragsrechten und kulturellen Stätten"
+    ],
+    "participants": [
+      "Standing Rock Sioux Tribe",
+      "Oceti Sakowin",
+      "Indigene Water Protectors und solidarische Unterstützer*innen"
+    ],
+    "powerStructures": [
+      "Energy Transfer und Pipeline-Konsortium",
+      "US Army Corps of Engineers",
+      "Bundes-, Staats- und lokale Behörden"
+    ],
+    "tactics": [
+      "Schutzcamps und Zeremonien",
+      "Gebete, Märsche und direkte Aktionen",
+      "Gerichtsverfahren und Eingaben zur Umweltprüfung"
+    ],
+    "immediateConsequences": "Die Camps machten den Konflikt 2016 weltweit sichtbar; Genehmigungen, Umweltprüfung und Betrieb der Pipeline blieben Gegenstand langjähriger Verfahren.",
+    "longTermImpact": "Standing Rock stärkte internationale Netzwerke indigener Land- und Wasserverteidigung und verband Vertragsrechte, Klimagerechtigkeit und Umweltschutz.",
+    "repression": "Water Protectors waren Räumungen, Massenfestnahmen, Überwachung und militarisiertem Polizeieinsatz ausgesetzt.",
+    "humanCosts": "Viele Beteiligte erlitten Verletzungen, Festnahmen und gesundheitliche Belastungen; eine einheitliche Gesamtbilanz liegt nicht vor.",
+    "aftermath": "Die Pipeline ging in Betrieb, doch der Tribe setzt rechtliche und politische Gegenwehr fort und dokumentiert die Auseinandersetzung aus eigener Perspektive.",
+    "openQuestions": "Umweltprüfung, Betriebssicherheit und Vertragsverletzungen bleiben rechtlich und politisch umstritten.",
+    "voices": [
+      "Die Standing-Rock-Dokumentation beschreibt den Konflikt als gemeinsame Mission der Oceti Sakowin zum Schutz des Wassers und gegen DAPL (paraphrasiert nach der verlinkten Quelle)."
+    ],
+    "sourceType": "Community-Quelle",
+    "sourceQuality": "Hoch – direkte oder kuratierte Quelle",
+    "uncertainty": "Der Konflikt dauert an; rechtliche Zwischenstände dürfen nicht als endgültiges Ergebnis gelesen werden.",
+    "sensitivity": "Polizeigewalt, Verletzungen und koloniale Kontinuitäten",
+    "reviewStatus": "Redaktioneller Pilotstand"
   },
   {
     "id": "kanak-revolt-1878",
@@ -375,15 +542,56 @@
     "country": "USA",
     "continent": "Nordamerika",
     "category": "Schwarze Befreiungsbewegung",
-    "tags": ["Feministischer & antisexistischer Widerstand", "Queerer Widerstand", "Antirassistischer Widerstand"],
+    "tags": [
+      "Feministischer & antisexistischer Widerstand",
+      "Queerer Widerstand",
+      "Antirassistischer Widerstand"
+    ],
     "yearStart": 1974,
     "yearEnd": 1980,
-    "coordinates": [-71.059, 42.360],
+    "coordinates": [
+      -71.059,
+      42.36
+    ],
     "description": "Schwarze lesbische Feministinnen entwickelten eine Politik gegen gleichzeitig wirkende rassistische, patriarchale, heterosexistische und ökonomische Unterdrückung.",
     "significance": "Das Kollektiv prägte den Begriff Identitätspolitik in einem solidarischen, antikapitalistischen Sinn und beeinflusste intersektionales Denken.",
     "clue": "Suche in Boston in den 1970er Jahren.",
-    "sourceUrl": "https://en.wikipedia.org/wiki/Combahee_River_Collective",
-    "difficulty": 2
+    "sourceUrl": "https://careprogram.ucla.edu/education/readings/Combahee1977",
+    "difficulty": 2,
+    "demands": [
+      "Befreiung Schwarzer Frauen von rassistischer, sexistischer, heterosexistischer und Klassenunterdrückung",
+      "Eigenständige Schwarze feministische Organisierung",
+      "Solidarische Politik ohne Ausblendung ineinandergreifender Herrschaftsverhältnisse"
+    ],
+    "participants": [
+      "Schwarze feministische und lesbische Aktivistinnen",
+      "Barbara Smith, Beverly Smith, Demita Frazier und weitere Kollektivmitglieder",
+      "Verbündete in antirassistischen, feministischen und sozialistischen Bewegungen"
+    ],
+    "powerStructures": [
+      "Rassismus in Gesellschaft und weißen feministischen Räumen",
+      "Sexismus und Heterosexismus auch in Schwarzen Bewegungen",
+      "Kapitalistische Klassenverhältnisse"
+    ],
+    "tactics": [
+      "Bewusstseinsarbeit und Studiengruppen",
+      "Kollektive politische Erklärung",
+      "Koalitionen und Organisierung zu konkreten Schwarzen feministischen Themen"
+    ],
+    "immediateConsequences": "Die Erklärung von 1977 formulierte eine eigenständige Schwarze feministische Analyse und machte die Gleichzeitigkeit mehrerer Unterdrückungsverhältnisse politisch greifbar.",
+    "longTermImpact": "Der Text prägte Schwarze feministische Theorie, den ursprünglichen emanzipatorischen Begriff von Identitätspolitik und spätere intersektionale Analysen.",
+    "repression": "Das Kollektiv beschrieb strukturelle rassistische, patriarchale, heterosexistische und ökonomische Gewalt sowie Isolation innerhalb sozialer Bewegungen.",
+    "humanCosts": "Die Erklärung thematisiert kumulative Unterdrückung und Gewalt gegen Schwarze Frauen, liefert aber keine quantitative Bilanz.",
+    "aftermath": "Das Kollektiv bestand nicht dauerhaft fort; Erklärung und Organisierungspraxis wurden jedoch zu einem langfristigen Bezugspunkt.",
+    "openQuestions": "Heutige Verwendungen von „Identitätspolitik“ weichen oft stark von der materiellen, kollektiven und sozialistischen Bedeutung im Originaltext ab.",
+    "voices": [
+      "Das Kollektiv verstand seine Politik aus den eigenen materiellen Erfahrungen Schwarzer Frauen und zugleich als solidarisch mit anderen Befreiungskämpfen (paraphrasiert nach der verlinkten Quelle)."
+    ],
+    "sourceType": "Primärquelle / Archiv",
+    "sourceQuality": "Hoch – direkte oder kuratierte Quelle",
+    "uncertainty": "Der Primärtext belegt die politische Selbstbeschreibung; Rezeptionsgeschichte und interne Entwicklung benötigen zusätzliche Oral History.",
+    "sensitivity": "Rassistische, sexistische und homophobe Gewalt",
+    "reviewStatus": "Redaktioneller Pilotstand"
   },
   {
     "id": "greenham-common",
@@ -392,15 +600,57 @@
     "country": "Großbritannien",
     "continent": "Europa",
     "category": "Feministischer & antisexistischer Widerstand",
-    "tags": ["Antimilitarismus", "Antiimperialistischer Widerstand", "Ökologischer Widerstand"],
+    "tags": [
+      "Antimilitarismus",
+      "Antiimperialistischer Widerstand",
+      "Ökologischer Widerstand"
+    ],
     "yearStart": 1981,
     "yearEnd": 2000,
-    "coordinates": [-1.278, 51.377],
+    "coordinates": [
+      -1.278,
+      51.377
+    ],
     "description": "Frauen errichteten ein dauerhaftes Friedenscamp gegen die Stationierung US-amerikanischer Atomraketen.",
     "significance": "Blockaden, Umarmungsaktionen und dezentrale Camps verbanden feministische Praxis mit internationalem Antimilitarismus.",
     "clue": "Suche an einem ehemaligen Luftwaffenstützpunkt westlich von London.",
-    "sourceUrl": "https://en.wikipedia.org/wiki/Greenham_Common_Women%27s_Peace_Camp",
-    "difficulty": 1
+    "sourceUrl": "https://www.iwm.org.uk/history/cold-war/the-women-who-took-on-the-british-governments-nuclear-programme",
+    "difficulty": 1,
+    "demands": [
+      "Keine Stationierung US-amerikanischer Cruise Missiles in Großbritannien",
+      "Nukleare Abrüstung",
+      "Frauenbestimmte Friedenspolitik und öffentliche Mitsprache"
+    ],
+    "participants": [
+      "Frauen aus Wales und ganz Großbritannien",
+      "Bewohnerinnen des Greenham Common Women’s Peace Camp",
+      "Internationale Friedens- und Antiatomnetzwerke"
+    ],
+    "powerStructures": [
+      "Britische Regierung",
+      "US-amerikanisches Militär und NATO-Nuklearstrategie",
+      "RAF/USAF-Basis Greenham Common"
+    ],
+    "tactics": [
+      "Dauerhaftes Friedenscamp",
+      "Blockaden und Durchtrennen von Zäunen",
+      "Gewaltfreie direkte Aktion, Lieder und symbolische Protestformen",
+      "„Embrace the Base“ mit über 30.000 Frauen"
+    ],
+    "immediateConsequences": "Das ab 1981 bestehende Camp machte die Stationierung von Cruise Missiles zu einem dauerhaft sichtbaren politischen Konflikt und störte zeitweise Bau- und Basisbetrieb.",
+    "longTermImpact": "Greenham prägte feministische Friedensbewegungen, basisdemokratische Organisierung und internationale Protestcamps weit über Großbritannien hinaus.",
+    "repression": "Teilnehmerinnen wurden wiederholt festgenommen, geräumt und juristisch verfolgt; Zäune und Sicherheitskräfte sollten den Zugang zur Basis verhindern.",
+    "humanCosts": "Haft, Räumungen, Kälte und langjährige prekäre Campbedingungen belasteten Beteiligte; die verlinkte Darstellung enthält keine Gesamtbilanz.",
+    "aftermath": "Die Cruise Missiles wurden infolge des INF-Vertrags entfernt; das Camp und seine Erinnerungsarbeit bestanden über diesen Zeitpunkt hinaus.",
+    "openQuestions": "Die Bewegung war nicht homogen; Konflikte um Klasse, race, Sexualität, Mutterschaft und Ausschlüsse benötigen zusätzliche Stimmenarchive.",
+    "voices": [
+      "Zeitzeuginnen beschreiben die führungslose Struktur als Stärke: Verantwortung blieb verteilt und Ausfälle konnten kollektiv aufgefangen werden (paraphrasiert nach der verlinkten Quelle)."
+    ],
+    "sourceType": "Archiv / Museum",
+    "sourceQuality": "Hoch – direkte oder kuratierte Quelle",
+    "uncertainty": "Die Museumsdarstellung verdichtet eine fast zwei Jahrzehnte lange, vielstimmige Bewegung.",
+    "sensitivity": "Nukleare Bedrohung, Festnahmen und Räumungen",
+    "reviewStatus": "Redaktioneller Pilotstand"
   },
   {
     "id": "women-liberia-peace",
@@ -825,15 +1075,56 @@
     "country": "Indien",
     "continent": "Asien",
     "category": "Antikolonialer Widerstand",
-    "tags": ["Antiimperialistischer Widerstand", "Antimilitarismus", "Antiautoritäre Revolution"],
+    "tags": [
+      "Antiimperialistischer Widerstand",
+      "Antimilitarismus",
+      "Antiautoritäre Revolution"
+    ],
     "yearStart": 1930,
     "yearEnd": 1930,
-    "coordinates": [72.892, 20.886],
+    "coordinates": [
+      72.892,
+      20.886
+    ],
     "description": "Ein 385 Kilometer langer Marsch brach demonstrativ das britische Salzmonopol und mobilisierte massenhaften zivilen Ungehorsam.",
     "significance": "Die Aktion zeigte, wie ein alltägliches Gut zum Ansatzpunkt einer breiten antikolonialen Kampagne werden konnte.",
     "clue": "Die Spur endet an der Küste Gujarats.",
-    "sourceUrl": "https://en.wikipedia.org/wiki/Salt_March",
-    "difficulty": 1
+    "sourceUrl": "https://gandhiheritageportal.org/background-to-the-salt-satyagraha",
+    "difficulty": 1,
+    "demands": [
+      "Aufhebung des kolonialen Salzgesetzes und der Salzsteuer",
+      "Indische Selbstbestimmung",
+      "Breiter ziviler Ungehorsam gegen britische Kolonialherrschaft"
+    ],
+    "participants": [
+      "Mahatma Gandhi und die anfängliche Marschgruppe",
+      "Lokale Dorfgemeinschaften und Freiwillige",
+      "Frauen und weitere Satyagraha-Gruppen in vielen Regionen"
+    ],
+    "powerStructures": [
+      "Britischer Raj",
+      "Koloniales Salzmonopol",
+      "Polizei, Gerichte und Gefängnissystem"
+    ],
+    "tactics": [
+      "385 Kilometer langer Marsch",
+      "Öffentliche Verletzung des Salzgesetzes",
+      "Boykott, Massenaktionen und gewaltfreier ziviler Ungehorsam"
+    ],
+    "immediateConsequences": "Der Marsch begann am 12. März 1930 und weitete sich zu landesweiten Salz-Satyagrahas, Demonstrationen und Aktionen gegen Salzwerke aus.",
+    "longTermImpact": "Die Kampagne machte ein alltägliches Gut zum Symbol kolonialer Ausbeutung und verbreiterte die indische Unabhängigkeitsbewegung.",
+    "repression": "Kolonialbehörden verhafteten Gandhi und zahlreiche Freiwillige, reaktivierten Pressebeschränkungen und räumten bzw. zerstörten Aktionslager.",
+    "humanCosts": "Viele Beteiligte wurden festgenommen und bei Aktionen verletzt; der verlinkte Zeitstrahl enthält keine vollständige Gesamtbilanz.",
+    "aftermath": "Der Salz-Satyagraha beendete die Kolonialherrschaft nicht unmittelbar, veränderte aber Reichweite und internationale Wahrnehmung des Unabhängigkeitskampfs.",
+    "openQuestions": "Die Rolle lokaler Initiativen, von Frauen und von Strömungen außerhalb der Gandhi-zentrierten Erzählung verlangt zusätzliche Quellen.",
+    "voices": [
+      "Die Bewegung stellte das Salzgesetz als ungerechte koloniale Belastung dar, die öffentlich gebrochen werden müsse (paraphrasiert nach der verlinkten Quelle)."
+    ],
+    "sourceType": "Primärquelle / Archiv",
+    "sourceQuality": "Hoch – direkte oder kuratierte Quelle",
+    "uncertainty": "Der Gandhi Heritage Portal fokussiert Gandhi; die vielfältigen regionalen Akteur*innen sind dort nicht vollständig abgebildet.",
+    "sensitivity": "Koloniale Repression und Verletzungen",
+    "reviewStatus": "Redaktioneller Pilotstand"
   },
   {
     "id": "quit-india",
@@ -842,15 +1133,56 @@
     "country": "Indien",
     "continent": "Asien",
     "category": "Antikolonialer Widerstand",
-    "tags": ["Antiimperialistischer Widerstand", "Antimilitarismus", "Arbeiter*innenbewegung"],
+    "tags": [
+      "Antiimperialistischer Widerstand",
+      "Antimilitarismus",
+      "Arbeiter*innenbewegung"
+    ],
     "yearStart": 1942,
     "yearEnd": 1945,
-    "coordinates": [72.878, 19.076],
+    "coordinates": [
+      72.878,
+      19.076
+    ],
     "description": "Die Forderung nach sofortigem Ende britischer Herrschaft löste landesweite Streiks, Proteste und harte Repression aus.",
     "significance": "Trotz Verhaftung der Führung blieb die Bewegung dezentral aktiv und erhöhte den Druck zur Dekolonisierung.",
     "clue": "Die Kampagne wurde in der heutigen Metropole Mumbai ausgerufen.",
-    "sourceUrl": "https://en.wikipedia.org/wiki/Quit_India_Movement",
-    "difficulty": 1
+    "sourceUrl": "https://amritmahotsav.nic.in/blogdetail.htm?7%2FQuit_India_Movement=",
+    "difficulty": 1,
+    "demands": [
+      "Sofortiges Ende der britischen Herrschaft",
+      "Indische Unabhängigkeit und Selbstregierung",
+      "Freilassung politischer Gefangener"
+    ],
+    "participants": [
+      "Lokale Aktivist*innen, Studierende, Arbeiter*innen und Bäuer*innen",
+      "Indian National Congress und Gandhi",
+      "Untergrundnetzwerke nach Verhaftung der Führung"
+    ],
+    "powerStructures": [
+      "Britischer Raj",
+      "Kolonialpolizei, Armee und Gefängnisse",
+      "Zensur- und Notstandsapparate"
+    ],
+    "tactics": [
+      "Satyagraha und Massenproteste",
+      "Streiks und Boykotte",
+      "Dezentrale Untergrundkommunikation und lokale Aktionen"
+    ],
+    "immediateConsequences": "Nach dem Aufruf im August 1942 wurde die Kongressführung rasch verhaftet; dennoch entstanden in vielen Regionen dezentrale Proteste und Untergrundstrukturen.",
+    "longTermImpact": "Die Bewegung zeigte die schwindende Regierbarkeit der Kolonie ohne breite Zustimmung und verstärkte den Druck auf die britische Herrschaft.",
+    "repression": "Kolonialbehörden reagierten mit Massenverhaftungen, Zensur, Schusswaffengebrauch und langjähriger Internierung politischer Führungspersonen.",
+    "humanCosts": "Tote, Verletzte und sehr viele Inhaftierte sind belegt, doch Gesamtzahlen unterscheiden sich je nach Quelle und Region.",
+    "aftermath": "Die Bewegung wurde militärisch und polizeilich zurückgedrängt; Unabhängigkeit folgte 1947 unter den zugleich gewaltsamen Bedingungen der Teilung.",
+    "openQuestions": "Regionale Initiativen, Kasten-, Klassen- und Geschlechterverhältnisse sowie Gewalt innerhalb der Mobilisierung benötigen differenzierte Lokalstudien.",
+    "voices": [
+      "Der überlieferte Aufruf verband Satyagraha mit der unmittelbaren Forderung nach dem Ende der Kolonialherrschaft (paraphrasiert nach der verlinkten Quelle)."
+    ],
+    "sourceType": "Behördenarchiv",
+    "sourceQuality": "Mittel – belastbare Sekundärquelle",
+    "uncertainty": "Die Regierungs-Gedenkseite bietet einen Überblick; Opferzahlen und lokale Dynamiken erfordern zusätzliche Forschung.",
+    "sensitivity": "Koloniale Gewalt, Tötungen, Haft und Teilung",
+    "reviewStatus": "Redaktioneller Pilotstand"
   },
   {
     "id": "algerian-war",

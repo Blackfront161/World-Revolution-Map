@@ -107,13 +107,50 @@
     "category": "Antikolonialer Widerstand",
     "yearStart": 1913,
     "yearEnd": 1918,
-    "coordinates": [-122.4312, 37.7739],
+    "coordinates": [
+      -122.4312,
+      37.7739
+    ],
     "description": "Indische Aktivist*innen im Exil organisierten von Nordamerika aus den Widerstand gegen die britische Kolonialherrschaft.",
     "significance": "Ghadar zeigt, wie global vernetzt antikoloniale Bewegungen bereits zu Beginn des 20. Jahrhunderts waren.",
     "clue": "Diese indische Bewegung hatte ein wichtiges Zentrum an der US-Westküste.",
     "imageApiUrl": "https://en.wikipedia.org/api/rest_v1/page/summary/Ghadar_Movement",
-    "sourceUrl": "https://en.wikipedia.org/wiki/Ghadar_Movement",
-    "difficulty": 3
+    "sourceUrl": "https://www.saada.org/explore/publications/tides/articles/archives-of-anticolonialism-surveillance-and-solidarities",
+    "difficulty": 3,
+    "demands": [
+      "Ende der britischen Kolonialherrschaft in Indien",
+      "Selbstbestimmung und soziale Gleichheit",
+      "Widerstand gegen rassistische Einwanderungsregime und weiße Vorherrschaft"
+    ],
+    "participants": [
+      "Südasiatische Land- und Sägewerksarbeiter an der Pazifikküste",
+      "Punjabi und bengalische Intellektuelle und Studierende",
+      "Transnationale Ghadar-Netzwerke"
+    ],
+    "powerStructures": [
+      "Britisches Empire und Raj",
+      "Rassistische Einwanderungsbehörden in Siedlerkolonien",
+      "Polizei-, Geheimdienst- und Justizapparate"
+    ],
+    "tactics": [
+      "Mehrsprachige Zeitungen, Flugschriften und politische Bildung",
+      "Transnationale Organisierung und Solidaritätsnetzwerke",
+      "Rückkehr von Aktivisten nach Indien mit revolutionärer Absicht"
+    ],
+    "immediateConsequences": "Ab 1913 entstand von San Francisco aus ein weit verzweigtes antikoloniales Netzwerk; im Ersten Weltkrieg kehrten Tausende Aktivisten nach Indien zurück.",
+    "longTermImpact": "Ghadar verband antikoloniale Befreiung mit Kämpfen gegen Rassismus und Migrationseinschränkungen und hinterließ ein globales Diaspora-Archiv.",
+    "repression": "Aktivisten wurden überwacht, festgenommen, vor Gericht gestellt und deportiert; ihre Publikationen und Netzwerke gerieten in den Fokus mehrerer Staaten.",
+    "humanCosts": "Haft, Deportation, familiäre Trennung und staatliche Verfolgung prägten die Bewegung; der verlinkte Überblick liefert keine vollständige Opferbilanz.",
+    "aftermath": "Die unmittelbaren Revolutionspläne wurden niedergeschlagen, doch Ideen, Publikationen und Netzwerke wirkten in späteren Unabhängigkeits- und Diasporabewegungen weiter.",
+    "openQuestions": "Koloniale Überwachungsakten müssen gegen Selbstzeugnisse der Bewegung gelesen werden; interne Differenzen und regionale Erfahrungen bleiben vielfältig.",
+    "voices": [
+      "Das Community-Archiv beschreibt Ghadar als Kampf gegen Kolonialherrschaft und rassistische Ausgrenzung innerhalb derselben globalen Ordnung (paraphrasiert nach der verlinkten Quelle)."
+    ],
+    "sourceType": "Community-Quelle",
+    "sourceQuality": "Hoch – direkte oder kuratierte Quelle",
+    "uncertainty": "Der Beitrag stützt sich auf vielfältige Archivtypen und macht zugleich die Perspektive kolonialer Überwachungsakten sichtbar.",
+    "sensitivity": "Koloniale Repression, Haft und Deportation",
+    "reviewStatus": "Redaktioneller Pilotstand"
   },
   {
     "id": "landesstreik-schweiz",
@@ -259,14 +296,51 @@
     "category": "Queerer Widerstand",
     "yearStart": 1969,
     "yearEnd": 1969,
-    "coordinates": [-74.0021, 40.7338],
+    "coordinates": [
+      -74.0021,
+      40.7338
+    ],
     "description": "Nach einer Polizeirazzia leisteten queere Menschen mehrere Tage Widerstand im New Yorker Greenwich Village.",
     "significance": "Stonewall wurde zu einem internationalen Bezugspunkt der modernen LGBTQIA+-Bewegung.",
     "clue": "Die Spur liegt in Greenwich Village.",
     "imageApiUrl": "https://de.wikipedia.org/api/rest_v1/page/summary/Stonewall",
-    "sourceUrl": "https://de.wikipedia.org/wiki/Stonewall",
+    "sourceUrl": "https://www.nps.gov/subjects/civilrights/secondrevolution.htm",
     "difficulty": 1,
-    "featured": true
+    "featured": true,
+    "demands": [
+      "Ende von Polizeirazzien und öffentlicher Demütigung",
+      "Sicherer öffentlicher Raum für queere Menschen",
+      "Rechtliche und gesellschaftliche Gleichheit"
+    ],
+    "participants": [
+      "Gäste des Stonewall Inn",
+      "Queere Straßenjugend und Nachbarschaft",
+      "Lesbische, schwule, bisexuelle, trans und gendernonkonforme Beteiligte"
+    ],
+    "powerStructures": [
+      "New York City Police Department",
+      "Gesetze und Regeln gegen offen queeres Leben",
+      "Mafia-kontrollierte Barökonomie und Erpressbarkeit"
+    ],
+    "tactics": [
+      "Spontane Gegenwehr gegen eine Polizeirazzia",
+      "Blockieren von Polizeifahrzeugen und Straßenprotest",
+      "Mehrnächtige Demonstrationen im Umfeld von Christopher Park"
+    ],
+    "immediateConsequences": "Am 28. Juni 1969 zwang die Gegenwehr die Polizei zeitweise zum Rückzug; Proteste dauerten mehrere Nächte an.",
+    "longTermImpact": "Stonewall gab neuen Gay-Liberation-Organisationen und öffentlichen Pride-Mobilisierungen starken Auftrieb, war aber nicht der alleinige Beginn queerer Befreiung.",
+    "repression": "Polizeirazzien, Festnahmen, Fotografieren und öffentliche Demütigung queerer Gäste waren Teil des unmittelbaren Kontexts.",
+    "humanCosts": "Beteiligte waren Polizeigewalt, Festnahmen, Obdachlosigkeit und sozialer Ausgrenzung ausgesetzt; eine vollständige Verletztenbilanz existiert nicht.",
+    "aftermath": "Nach Stonewall entstanden rasch neue Gay-Liberation-Gruppen; zugleich setzten sich Konflikte um Rassismus, Geschlecht, Klasse und Repräsentation fort.",
+    "openQuestions": "Erinnerungen an einzelne Personen und den ersten Widerstand widersprechen sich; der kollektive Charakter darf nicht auf wenige Ikonen reduziert werden.",
+    "voices": [
+      "Die Park-Service-Darstellung betont, dass Menschen bei einer sonst routinemäßigen Razzia diesmal gemeinsam zurückschlugen (paraphrasiert nach der verlinkten Quelle)."
+    ],
+    "sourceType": "Behördenarchiv",
+    "sourceQuality": "Hoch – direkte oder kuratierte Quelle",
+    "uncertainty": "Stonewall ist gut belegt, doch genaue Abfolgen und individuelle Zuschreibungen bleiben in Zeitzeugnissen umstritten.",
+    "sensitivity": "Polizeigewalt, queerfeindliche Verfolgung und Obdachlosigkeit",
+    "reviewStatus": "Redaktioneller Pilotstand"
   },
   {
     "id": "aboriginal-tent-embassy",
