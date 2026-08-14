@@ -8,6 +8,7 @@ import {
   isSensitiveEvent,
   isValidEvent,
   levelProgress,
+  localizeEvent,
   normalizeEvent,
   seededShuffle,
   solidarityResult
@@ -15,7 +16,7 @@ import {
 import { createAtlasApi } from './src/atlas-api.js';
 import { readRuntimeConfig } from './src/atlas-config.js';
 import { parseStoredProgress, reconcileProgress, sanitizeProgress } from './src/progress-store.js';
-import { LANGUAGES, createI18n, formatLocalizedYear, translateCategory } from './src/i18n.js';
+import { LANGUAGES, createI18n, formatLocalizedYear, translateCategory, translateEditorialMetadata } from './src/i18n.js';
 
 const SUPABASE_URL = 'https://pixafxinyydzwplirrnm.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_cAh2ZxD6aaXREXhMIVyvyA_C_yeFxRd';
@@ -77,6 +78,12 @@ async function start() {
   applyLanguage();
   updateVisitStreak();
   attachUiEvents();
+  syncMobileMenuAccessibility();
+  window.matchMedia('(max-width: 820px)').addEventListener?.('change', () => {
+    ui.controlPanel.classList.remove('is-open');
+    ui.menuToggle.setAttribute('aria-expanded', 'false');
+    syncMobileMenuAccessibility();
+  });
   setupHostApi();
 
   try {
@@ -437,6 +444,7 @@ function toGeoJson(events) {
 }
 
 async function openEventPopup(event, coordinates = [event.longitude, event.latitude]) {
+  event = localizeEvent(event, i18n.language);
   if (app.popup) app.popup.remove();
   const content = document.createElement('article');
   content.className = 'event-popup';
@@ -479,10 +487,12 @@ async function openEventPopup(event, coordinates = [event.longitude, event.latit
     notice.textContent = `${i18n.t('sensitiveNotice')} ${event.sensitivity}`;
     body.append(notice);
   }
-  if (i18n.language !== 'de') {
+  if (event.localization.usesGermanOriginal) {
     const languageNote = document.createElement('small');
     languageNote.className = 'event-language-note';
-    languageNote.textContent = i18n.t('originalGerman');
+    languageNote.textContent = event.localization.translatedFields.length
+      ? i18n.t('partialEventTranslation')
+      : i18n.t('eventTextGermanNotice');
     description.before(languageNote);
   }
 
@@ -544,9 +554,9 @@ async function openEventPopup(event, coordinates = [event.longitude, event.latit
   const sourceMetadata = document.createElement('div');
   sourceMetadata.className = 'source-metadata';
   for (const [label, value] of [
-    [i18n.t('sourceTypeLabel'), event.sourceType],
-    [i18n.t('sourceQualityLabel'), event.sourceQuality],
-    [i18n.t('reviewStatusLabel'), event.reviewStatus]
+    [i18n.t('sourceTypeLabel'), translateEditorialMetadata(event.sourceType, i18n.language)],
+    [i18n.t('sourceQualityLabel'), translateEditorialMetadata(event.sourceQuality, i18n.language)],
+    [i18n.t('reviewStatusLabel'), translateEditorialMetadata(event.reviewStatus, i18n.language)]
   ]) {
     if (!value) continue;
     const badge = document.createElement('span');
@@ -1170,6 +1180,18 @@ function trapModalFocus(event) {
 function toggleMobileMenu(open) {
   ui.controlPanel.classList.toggle('is-open', open);
   ui.menuToggle.setAttribute('aria-expanded', String(open));
+  syncMobileMenuAccessibility();
+  if (!open && window.matchMedia('(max-width: 820px)').matches && ui.controlPanel.contains(document.activeElement)) {
+    ui.menuToggle.focus();
+  }
+}
+
+function syncMobileMenuAccessibility() {
+  const mobile = window.matchMedia('(max-width: 820px)').matches;
+  const open = ui.controlPanel.classList.contains('is-open');
+  ui.controlPanel.toggleAttribute('inert', mobile && !open);
+  if (mobile) ui.controlPanel.setAttribute('aria-hidden', String(!open));
+  else ui.controlPanel.removeAttribute('aria-hidden');
 }
 
 function setupHostApi() {

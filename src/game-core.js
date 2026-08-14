@@ -37,11 +37,54 @@ const EDITORIAL_TEXT_FIELDS = [
   'immediateConsequences', 'longTermImpact', 'repression', 'humanCosts', 'aftermath',
   'openQuestions', 'sourceType', 'sourceQuality', 'uncertainty', 'sensitivity', 'reviewStatus'
 ];
+const EVENT_TRANSLATION_FIELDS = new Set([
+  'title', 'location', 'description', 'significance', 'clue',
+  ...EDITORIAL_LIST_FIELDS, ...EDITORIAL_TEXT_FIELDS
+]);
+const EVENT_TRANSLATION_LANGUAGES = new Set(['en', 'es', 'fr', 'it', 'pt', 'ru', 'el', 'tr']);
 
 const cleanList = (value, itemLength = 500, maxItems = 24) => {
   const list = Array.isArray(value) ? value : typeof value === 'string' ? value.split(/\s*;\s*/) : [];
   return [...new Set(list.map(item => clean(typeof item === 'object' ? item?.text : item, itemLength)).filter(Boolean))].slice(0, maxItems);
 };
+
+export function normalizeEventTranslations(value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return {};
+  const translations = {};
+  for (const [language, fields] of Object.entries(value)) {
+    if (!EVENT_TRANSLATION_LANGUAGES.has(language) || !fields || typeof fields !== 'object' || Array.isArray(fields)) continue;
+    const reviewed = {};
+    for (const [field, entry] of Object.entries(fields)) {
+      if (!EVENT_TRANSLATION_FIELDS.has(field) || !entry || typeof entry !== 'object' || Array.isArray(entry)) continue;
+      if (entry.status !== 'reviewed') continue;
+      const text = Array.isArray(entry.text) ? cleanList(entry.text, 800) : clean(entry.text, 2400);
+      if ((Array.isArray(text) && text.length) || (typeof text === 'string' && text)) reviewed[field] = { text, status: 'reviewed' };
+    }
+    if (Object.keys(reviewed).length) translations[language] = reviewed;
+  }
+  return translations;
+}
+
+export function localizeEvent(event, language = 'de') {
+  const localized = { ...event };
+  const reviewed = event?.translations?.[language] || {};
+  const translatedFields = [];
+  const originalFields = [...EVENT_TRANSLATION_FIELDS].filter(field => {
+    const value = event?.[field];
+    return Array.isArray(value) ? value.length > 0 : Boolean(value);
+  });
+  for (const [field, entry] of Object.entries(reviewed)) {
+    if (entry?.status !== 'reviewed' || !EVENT_TRANSLATION_FIELDS.has(field)) continue;
+    localized[field] = Array.isArray(entry.text) ? [...entry.text] : entry.text;
+    translatedFields.push(field);
+  }
+  localized.localization = {
+    language,
+    translatedFields,
+    usesGermanOriginal: language !== 'de' && originalFields.some(field => !translatedFields.includes(field))
+  };
+  return localized;
+}
 
 export function isSensitiveEvent(event) {
   const marker = String(event?.sensitivity || '').toLocaleLowerCase('de');
@@ -110,6 +153,7 @@ export function normalizeEvent(row, index = 0) {
     uncertainty: clean(row.uncertainty, 1200) || '',
     sensitivity: clean(row.sensitivity, 240) || '',
     reviewStatus: clean(row.review_status ?? row.reviewStatus, 120) || 'Ungeprüfter Bestandseintrag',
+    translations: normalizeEventTranslations(row.translations),
     difficulty: Math.min(3, Math.max(1, Number(row.difficulty) || 1)),
     featured: Boolean(row.featured)
   };
@@ -135,6 +179,28 @@ export function validateEditorialFields(row) {
   if (Boolean(sourceType) !== Boolean(sourceQuality)) issues.push('sourceType und sourceQuality müssen gemeinsam gepflegt werden');
   if (row.voices !== undefined && !(row.sourceUrl ?? row.source_url)) issues.push('voices benötigt eine belegende sourceUrl');
   if (reviewStatus === 'Redaktioneller Pilotstand' && (!sourceType || !sourceQuality)) issues.push('Redaktioneller Pilotstand benötigt sourceType und sourceQuality');
+  if (row.translations !== undefined) {
+    if (!row.translations || typeof row.translations !== 'object' || Array.isArray(row.translations)) {
+      issues.push('translations muss ein Sprachobjekt sein');
+    } else {
+      for (const [language, fields] of Object.entries(row.translations)) {
+        if (!EVENT_TRANSLATION_LANGUAGES.has(language)) issues.push(`translations enthält eine nicht unterstützte Sprache: ${language}`);
+        if (!fields || typeof fields !== 'object' || Array.isArray(fields)) {
+          issues.push(`translations.${language} muss ein Feldobjekt sein`);
+          continue;
+        }
+        for (const [field, entry] of Object.entries(fields)) {
+          if (!EVENT_TRANSLATION_FIELDS.has(field)) issues.push(`translations.${language}.${field} ist kein übersetzbares Feld`);
+          if (!entry || typeof entry !== 'object' || Array.isArray(entry) || entry.status !== 'reviewed') {
+            issues.push(`translations.${language}.${field} benötigt status \"reviewed\"`);
+            continue;
+          }
+          const validText = typeof entry.text === 'string' ? Boolean(entry.text.trim()) : Array.isArray(entry.text) && entry.text.length > 0 && entry.text.every(item => typeof item === 'string' && item.trim());
+          if (!validText) issues.push(`translations.${language}.${field} benötigt geprüften Text`);
+        }
+      }
+    }
+  }
   return issues;
 }
 

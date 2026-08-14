@@ -18,7 +18,7 @@ Eine interaktive, spielerische Weltkarte historischer Bewegungen, Aufstände, St
 - Karten-Popups mit Einordnung, Bild und weiterführender Quelle
 - ausführliche, optionale Ergebnisfelder ohne Einteilung in „gewonnen“ oder „verloren“
 - sichtbare und in allen neun UI-Sprachen beschriftete Quellenart, Quellenqualität, Prüfstatus, Unsicherheit und Hinweise zu sensiblen Inhalten
-- 47 vertiefte redaktionelle Pilotereignisse; die jüngste Runde umfasst 22 Einträge mit Nicht-Wikipedia-Quellen aus Bewegungs-, Community-, Forschungs-, Museums-, Gewerkschafts-, Menschenrechts- oder öffentlichen Archiven
+- 67 vertiefte redaktionelle Pilotereignisse; die jüngste Runde umfasst 20 Einträge mit Nicht-Wikipedia-Quellen aus Community-, Forschungs-, Museums-, Menschenrechts- oder öffentlichen Archiven
 - zugängliche, tastaturbedienbare Ereignistabelle als Alternative zur Karte
 - sichtbare aktive Filter, die einzeln entfernt werden können
 - lokales Fortschrittssystem mit XP, Levels und Entdeckungsarchiv
@@ -35,7 +35,7 @@ Eine interaktive, spielerische Weltkarte historischer Bewegungen, Aufstände, St
 
 Der Spielfortschritt wird ausschließlich im lokalen Browser gespeichert. Es gibt weder Tracking noch ein Benutzerkonto. Die Integrations-API kann diesen validierten Spielstand exportieren, damit eine Host-App ihn freiwillig synchronisieren kann.
 
-Die Sprache kann im Kopfbereich oder mit `?lang=de|en|es|fr|it|pt|ru|el|tr` gewählt werden. Oberfläche, Filterbegriffe, Zeitangaben, Missionen, Quiz, Funkenlabor und die Beschriftungen der redaktionellen Quellenfelder werden vollständig lokal übersetzt. Historische Eigennamen bleiben unverändert; die kuratierten Langtexte und ereignisspezifischen Redaktionsfelder sind vorerst als gekennzeichnete deutsche Originalfassungen enthalten. Eine fachlich geprüfte Übersetzung dieser historischen Inhalte in die acht weiteren Sprachen bleibt redaktionell offen. Es wird kein Text an externe Übersetzungsdienste übertragen.
+Die Sprache kann im Kopfbereich oder mit `?lang=de|en|es|fr|it|pt|ru|el|tr` gewählt werden. Oberfläche, Filterbegriffe, Zeitangaben, Missionen, Quiz, Funkenlabor sowie die Beschriftungen und standardisierten Kurzwerte der redaktionellen Quellenfelder werden vollständig lokal übersetzt. Historische Eigennamen bleiben unverändert; die kuratierten Langtexte und ereignisspezifischen Redaktionsfelder sind vorerst als gekennzeichnete deutsche Originalfassungen enthalten. Eine fachlich geprüfte Übersetzung dieser historischen Inhalte in die acht weiteren Sprachen bleibt redaktionell offen. Es wird kein Text an externe Übersetzungsdienste übertragen.
 
 ## In eine andere App einbetten
 
@@ -90,6 +90,8 @@ Beim Start liest die Anwendung `data/event-catalog.json` und lädt daraus die Ke
 Ein Eintrag besitzt eine primäre Kategorie und beliebig viele `tags`. Der Filter berücksichtigt beides. Negative Jahreswerte stehen für Jahre vor unserer Zeitrechnung; für ihre sichtbare Datierung wird zusätzlich `dateLabel` gepflegt. Paläontologische Fundorte gehören nicht in diesen Atlas: Der zeitliche Anfang folgt der frühesten belastbaren Überlieferung kollektiven sozialen Handelns. Moderne Begriffe werden in antiken und mittelalterlichen Einträgen nicht als Selbstbezeichnungen ausgegeben.
 
 Das Datenmodell akzeptiert zusätzlich rückwärtskompatible optionale Felder: `demands`, `participants`, `powerStructures`, `tactics`, `immediateConsequences`, `longTermImpact`, `repression`, `humanCosts`, `aftermath`, `openQuestions`, `voices`, `sourceType`, `sourceQuality`, `uncertainty`, `sensitivity` und `reviewStatus`. Neue Einträge sollen diese Felder nur mit belegbaren Aussagen füllen; leere Felder dürfen leer bleiben.
+
+Geprüfte Ereignisübersetzungen werden optional und feldweise unter `translations` gespeichert. Jede Sprachfassung muss pro Feld die Form `{ "text": "…", "status": "reviewed" }` verwenden. Nur so markierte Felder überschreiben das deutsche Original; Entwürfe oder fehlende Felder werden nicht als Übersetzung ausgegeben. Die Oberfläche kennzeichnet deshalb auch teilweise übersetzte Einträge ausdrücklich. Für die 67 Pilotereignisse liegen derzeit noch keine fachlich geprüften historischen Langtextübersetzungen vor.
 
 Das erweiterte Referenzschema einschließlich einer Nur-Lesen-RLS-Policy befindet sich unter `docs/supabase-schema.sql`. Der im Browser verwendete Supabase-Schlüssel ist ein öffentlicher Publishable Key. Schreibzugriffe müssen dennoch zwingend durch Row Level Security blockiert werden.
 

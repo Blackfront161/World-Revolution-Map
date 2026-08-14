@@ -68,6 +68,33 @@ Object.assign(ru, { sourceTypeLabel:'Тип источника', sourceQualityLa
 Object.assign(el, { sourceTypeLabel:'Τύπος πηγής', sourceQualityLabel:'Ποιότητα πηγής', reviewStatusLabel:'Κατάσταση ελέγχου' });
 Object.assign(tr, { sourceTypeLabel:'Kaynak türü', sourceQualityLabel:'Kaynak kalitesi', reviewStatusLabel:'İnceleme durumu' });
 
+Object.assign(de, { eventTextGermanNotice:'Historischer Langtext: deutsches Original; noch keine geprüfte Übersetzung.', partialEventTranslation:'Teilweise geprüft übersetzt; nicht übersetzte Felder bleiben als deutsches Original sichtbar.' });
+Object.assign(en, { eventTextGermanNotice:'Historical long text: German original; no reviewed translation yet.', partialEventTranslation:'Partly translated and reviewed; untranslated fields remain visibly in German.' });
+Object.assign(es, { eventTextGermanNotice:'Texto histórico extenso: original alemán; aún sin traducción revisada.', partialEventTranslation:'Traducción parcial revisada; los campos no traducidos permanecen visiblemente en alemán.' });
+Object.assign(fr, { eventTextGermanNotice:'Texte historique long : original allemand ; aucune traduction révisée pour le moment.', partialEventTranslation:'Traduction partielle révisée ; les champs non traduits restent visiblement en allemand.' });
+Object.assign(it, { eventTextGermanNotice:'Testo storico esteso: originale tedesco; traduzione revisionata non ancora disponibile.', partialEventTranslation:'Traduzione parziale revisionata; i campi non tradotti restano visibilmente in tedesco.' });
+Object.assign(pt, { eventTextGermanNotice:'Texto histórico longo: original alemão; ainda sem tradução revista.', partialEventTranslation:'Tradução parcial revista; os campos não traduzidos permanecem visivelmente em alemão.' });
+Object.assign(ru, { eventTextGermanNotice:'Исторический развернутый текст: оригинал на немецком; проверенного перевода пока нет.', partialEventTranslation:'Частичный проверенный перевод; непереведённые поля остаются явно на немецком.' });
+Object.assign(el, { eventTextGermanNotice:'Εκτενές ιστορικό κείμενο: γερμανικό πρωτότυπο· δεν υπάρχει ακόμη ελεγμένη μετάφραση.', partialEventTranslation:'Μερική ελεγμένη μετάφραση· τα αμετάφραστα πεδία παραμένουν εμφανώς στα γερμανικά.' });
+Object.assign(tr, { eventTextGermanNotice:'Uzun tarihsel metin: Almanca özgün metin; henüz gözden geçirilmiş çeviri yok.', partialEventTranslation:'Kısmen çevrilmiş ve incelenmiş; çevrilmemiş alanlar açıkça Almanca kalır.' });
+
+const EDITORIAL_METADATA = {
+  'Redaktioneller Pilotstand': { en:'Editorial pilot', es:'Piloto editorial', fr:'Version pilote éditoriale', it:'Versione pilota editoriale', pt:'Versão-piloto editorial', ru:'Редакционный пилот', el:'Συντακτική πιλοτική έκδοση', tr:'Editoryal pilot' },
+  'Community-Quelle': { en:'Community source', es:'Fuente comunitaria', fr:'Source communautaire', it:'Fonte della comunità', pt:'Fonte comunitária', ru:'Источник сообщества', el:'Κοινοτική πηγή', tr:'Topluluk kaynağı' },
+  'Archiv / Museum': { en:'Archive / museum', es:'Archivo / museo', fr:'Archives / musée', it:'Archivio / museo', pt:'Arquivo / museu', ru:'Архив / музей', el:'Αρχείο / μουσείο', tr:'Arşiv / müze' },
+  'Primärquelle / Archiv': { en:'Primary source / archive', es:'Fuente primaria / archivo', fr:'Source primaire / archives', it:'Fonte primaria / archivio', pt:'Fonte primária / arquivo', ru:'Первичный источник / архив', el:'Πρωτογενής πηγή / αρχείο', tr:'Birincil kaynak / arşiv' },
+  'Wissenschaftliche Arbeit': { en:'Academic work', es:'Trabajo académico', fr:'Travail scientifique', it:'Studio accademico', pt:'Trabalho académico', ru:'Научная работа', el:'Επιστημονική εργασία', tr:'Akademik çalışma' },
+  'Menschenrechtsdokumentation': { en:'Human-rights documentation', es:'Documentación de derechos humanos', fr:'Documentation sur les droits humains', it:'Documentazione sui diritti umani', pt:'Documentação de direitos humanos', ru:'Правозащитная документация', el:'Τεκμηρίωση ανθρωπίνων δικαιωμάτων', tr:'İnsan hakları belgelemesi' },
+  'Behördenarchiv': { en:'Public archive', es:'Archivo público', fr:'Archives publiques', it:'Archivio pubblico', pt:'Arquivo público', ru:'Государственный архив', el:'Δημόσιο αρχείο', tr:'Kamu arşivi' },
+  'Hoch – direkte oder kuratierte Quelle': { en:'High — direct or curated source', es:'Alta — fuente directa o curada', fr:'Élevée — source directe ou documentée', it:'Alta — fonte diretta o curata', pt:'Alta — fonte direta ou curada', ru:'Высокое — прямой или курируемый источник', el:'Υψηλή — άμεση ή επιμελημένη πηγή', tr:'Yüksek — doğrudan veya küratörlü kaynak' },
+  'Mittel – belastbare Sekundärquelle': { en:'Medium — reliable secondary source', es:'Media — fuente secundaria fiable', fr:'Moyenne — source secondaire fiable', it:'Media — fonte secondaria affidabile', pt:'Média — fonte secundária fiável', ru:'Среднее — надёжный вторичный источник', el:'Μέτρια — αξιόπιστη δευτερογενής πηγή', tr:'Orta — güvenilir ikincil kaynak' }
+};
+
+export function translateEditorialMetadata(value, language = 'de') {
+  if (language === 'de' || !value) return value;
+  return EDITORIAL_METADATA[value]?.[language] || value;
+}
+
 const TEXTS = { de, en, es, fr, it, pt, ru, el, tr };
 const CATEGORY_TEXT = {
   en:{'Arbeiter*innenbewegung':'Labour movement','Antiautoritäre Revolution':'Anti-authoritarian revolution','Antikolonialer Widerstand':'Anti-colonial resistance','Feministischer Widerstand':'Feminist resistance','Antifaschistischer Widerstand':'Anti-fascist resistance','Demokratische Erhebung':'Democratic uprising','Ökologischer Widerstand':'Ecological resistance','Queerer Widerstand':'Queer resistance','Anarchistische Bewegung':'Anarchist movement','Libertärer Kommunismus':'Libertarian communism','Indigener Widerstand':'Indigenous resistance','Feministischer & antisexistischer Widerstand':'Feminist & anti-sexist resistance','Schwarze Befreiungsbewegung':'Black liberation movement','Antirassistischer Widerstand':'Anti-racist resistance','Antiimperialistischer Widerstand':'Anti-imperialist resistance','Gedächtnis der Besiegten':'Memory of the defeated','Frühe soziale Revolten':'Early social revolts','Sklav*innenwiderstand':'Resistance to slavery','Antifeudaler Widerstand':'Anti-feudal resistance','Commons-Bewegung':'Commons movement','Rätebewegung':'Council movement','Tierbefreiung':'Animal liberation','Behindertenbewegung':'Disability movement','Gefängnisabolitionismus':'Prison abolition','Migrantischer Widerstand':'Migrant resistance','Antimilitarismus':'Anti-militarism','Bäuerlicher Widerstand':'Peasant resistance','Studierendenbewegung':'Student movement'},

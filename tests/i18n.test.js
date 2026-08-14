@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { LANGUAGES, createI18n, formatLocalizedYear, normalizeLanguage, translateCategory } from '../src/i18n.js';
+import { LANGUAGES, createI18n, formatLocalizedYear, normalizeLanguage, translateCategory, translateEditorialMetadata } from '../src/i18n.js';
 
 const expected = ['de', 'en', 'es', 'fr', 'it', 'pt', 'ru', 'el', 'tr'];
 
@@ -34,8 +34,9 @@ test('lokalisiert Kategorien und tiefe Jahresangaben ohne Netzzugriff', () => {
 test('lokalisiert die Komfortfunktionen in allen neun Sprachen', () => {
   for (const language of LANGUAGES.map(item => item.code)) {
     const i18n = createI18n({ search: `?lang=${language}` });
-    for (const key of ['clearSearch', 'showResults', 'copyEventLink', 'eventLinkCopied', 'aboutMap', 'eventList', 'sensitiveNotice', 'immediateConsequences', 'sourceTypeLabel', 'sourceQualityLabel', 'reviewStatusLabel']) {
+    for (const key of ['clearSearch', 'showResults', 'copyEventLink', 'eventLinkCopied', 'aboutMap', 'eventList', 'sensitiveNotice', 'immediateConsequences', 'sourceTypeLabel', 'sourceQualityLabel', 'reviewStatusLabel', 'eventTextGermanNotice', 'partialEventTranslation']) {
       assert.notEqual(i18n.t(key), key);
     }
   }
+  assert.equal(translateEditorialMetadata('Redaktioneller Pilotstand', 'en'), 'Editorial pilot');
 });

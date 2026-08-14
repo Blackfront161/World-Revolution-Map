@@ -9,7 +9,9 @@ import {
   isSensitiveEvent,
   levelFromXp,
   levelProgress,
+  localizeEvent,
   normalizeEvent,
+  normalizeEventTranslations,
   seededShuffle,
   validateEditorialFields
 } from '../src/game-core.js';
@@ -65,6 +67,25 @@ test('mischt deterministisch und formatiert Zeiträume', () => {
   assert.equal(formatYearRange({ yearStart: 1918, yearEnd: 1921 }), '1918–1921');
   assert.equal(formatYearRange({ yearStart: null, yearEnd: null }), 'undatiert');
   assert.equal(formatYearRange({ yearStart: -1157, yearEnd: -1157, dateLabel: 'ca. 1157 v. u. Z.' }), 'ca. 1157 v. u. Z.');
+});
+
+test('Ereignisübersetzungen werden feldweise und nur nach Prüfung übernommen', () => {
+  const translations = {
+    en: {
+      title: { text: 'Reviewed title', status: 'reviewed' },
+      description: { text: 'Unreviewed text', status: 'draft' }
+    }
+  };
+  assert.deepEqual(normalizeEventTranslations(translations), {
+    en: { title: { text: 'Reviewed title', status: 'reviewed' } }
+  });
+  const localized = localizeEvent(normalizeEvent({ title: 'Deutsch', description: 'Deutscher Text', longitude: 1, latitude: 1, translations }), 'en');
+  assert.equal(localized.title, 'Reviewed title');
+  assert.equal(localized.description, 'Deutscher Text');
+  assert.equal(localized.localization.usesGermanOriginal, true);
+  assert.deepEqual(validateEditorialFields({ translations: { en: { title: { text: 'Draft', status: 'draft' } } } }), [
+    'translations.en.title benötigt status "reviewed"'
+  ]);
 });
 
 test('normalisiert und validiert optionale Redaktionsfelder rückwärtskompatibel', () => {

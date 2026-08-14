@@ -107,6 +107,34 @@ test('Zweite Redaktionsrunde ist vertieft und nutzt keine Wikipedia-Einzelquelle
   }
 });
 
+test('Dritte Redaktionsrunde ist vertieft und nutzt belastbare Nicht-Wikipedia-Quellen', async () => {
+  const catalog = JSON.parse(await readFile(new URL('data/event-catalog.json', root), 'utf8'));
+  const rows = (await Promise.all(catalog.map(file => readFile(new URL(`data/${file}`, root), 'utf8')))).flatMap(JSON.parse);
+  const byId = new Map(rows.filter(event => !event.archived).map(event => [event.id, event]));
+  const priorityIds = [
+    'pueblo-revolt', 'standing-rock', 'bastion-point-occupation', 'maori-language-petition',
+    'foreshore-seabed-hikoi', 'bagua-protests', 'ghadar-bewegung', 'salt-march', 'quit-india',
+    'fifth-pan-african-congress', 'lip-selbstverwaltung', 'cochabamba-water-war',
+    'narmada-bachao-andolan', 'justice-for-janitors', 'tebhaga-movement',
+    'combahee-river-collective', 'mujeres-libres', 'greenham-common', 'stonewall',
+    'comptons-cafeteria-riot'
+  ];
+  const requiredFields = [
+    'demands', 'participants', 'powerStructures', 'tactics', 'immediateConsequences',
+    'longTermImpact', 'repression', 'humanCosts', 'aftermath', 'openQuestions', 'voices',
+    'sourceType', 'sourceQuality', 'uncertainty', 'sensitivity', 'reviewStatus'
+  ];
+
+  assert.equal(priorityIds.length, 20);
+  for (const id of priorityIds) {
+    const event = byId.get(id);
+    assert.ok(event, `Priorisiertes Ereignis fehlt: ${id}`);
+    for (const field of requiredFields) assert.ok(event[field]?.length, `${id}: ${field} fehlt oder ist leer`);
+    assert.doesNotMatch(event.sourceUrl, /wikipedia\.org/i, `${id}: Wikipedia darf nicht die einzige verlinkte Quelle sein`);
+    assert.match(event.sourceUrl, /^https:\/\//, `${id}: Quelle muss HTTPS verwenden`);
+  }
+});
+
 test('Datenbankinhalte werden nicht über innerHTML in die Seite geschrieben', async () => {
   const script = await readFile(new URL('script.js', root), 'utf8');
   assert.doesNotMatch(script, /\.innerHTML\s*=/);
@@ -118,6 +146,8 @@ test('Datenbankinhalte werden nicht über innerHTML in die Seite geschrieben', a
   assert.match(script, /fitFilteredEvents/);
   assert.match(script, /appendEventDetail/);
   assert.match(script, /trapModalFocus/);
+  assert.match(script, /syncMobileMenuAccessibility/);
+  assert.match(script, /toggleAttribute\('inert'/);
 });
 
 test('Design berücksichtigt reduzierte Bewegung und mobile Ansichten', async () => {
