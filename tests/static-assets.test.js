@@ -179,3 +179,10 @@ test('Design berücksichtigt reduzierte Bewegung und mobile Ansichten', async ()
   assert.match(css, /prefers-reduced-motion/);
   assert.match(css, /@media \(max-width: 820px\)/);
 });
+
+test('Quellenprüfung trennt definitive Fehler von Netzwerkunsicherheit', async () => {
+  const sourceCheck = await readFile(new URL('scripts/check-sources.mjs', root), 'utf8');
+  assert.match(sourceCheck, /const unresolved = \[\]/);
+  assert.match(sourceCheck, /UNENTSCHIEDEN/);
+  assert.match(sourceCheck, /if \(failures\.length\) process\.exitCode = 1/);
+});
