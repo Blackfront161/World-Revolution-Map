@@ -322,7 +322,7 @@
       "license": { "status": "rights-unclear" }
     },
     "march-first-movement": {
-      "sourceUrl": "https://contents.history.go.kr/resources/common/pdf/A%20History%20of%20Korea_The%20Understanding%20Korea%20Series.pdf",
+      "sourceUrl": "https://exhibitions.library.columbia.edu/exhibits/show/kio",
       "demands": ["Koreanische Unabhängigkeit", "Ende japanischer Kolonialherrschaft", "Nationale Selbstbestimmung"],
       "participants": ["Studierende", "Religiöse Netzwerke", "Bäuerliche und städtische Bevölkerung", "Koreanische Diaspora"],
       "powerStructures": ["Japanische Kolonialverwaltung", "Kolonialpolizei und Militär"],
@@ -333,12 +333,12 @@
       "humanCosts": "Die verwendete Darstellung nennt hohe Zahlen Getöteter, Verletzter und Verhafteter; historische Statistiken variieren, deshalb werden sie nicht als unstrittige Gesamtbilanz wiederholt.",
       "aftermath": "Kolonialherrschaft blieb bestehen, doch Organisierung, Exilpolitik und internationale Unabhängigkeitsarbeit wurden neu gebündelt.",
       "openQuestions": "Opfer- und Teilnehmendenzahlen sowie lokale Chronologien unterscheiden sich zwischen kolonialen, koreanischen und späteren Quellen.",
-      "sourceType": "Behördenarchiv",
-      "sourceQuality": "Mittel – belastbare Sekundärquelle",
-      "uncertainty": "Die Quelle ist eine staatlich herausgegebene historische Gesamtdarstellung; Zahlen werden als quellenabhängig behandelt.",
+      "sourceType": "Universitätsarchiv / Primärquellensammlung",
+      "sourceQuality": "Hoch – kuratierte zeitgenössische Berichte und Bildquellen",
+      "uncertainty": "Die Archivsammlung dokumentiert den Ausbruch und die koloniale Gewalt; Zahlen und lokale Chronologien werden weiterhin als quellenabhängig behandelt.",
       "sensitivity": "Koloniale Massengewalt, Tötungen, Verletzungen und Massenhaft",
       "reviewStatus": "Redaktionell vertieft",
-      "provenance": { "sourceUrls": ["https://contents.history.go.kr/resources/common/pdf/A%20History%20of%20Korea_The%20Understanding%20Korea%20Series.pdf"], "checkedAt": "2026-08-23" },
+      "provenance": { "sourceUrls": ["https://exhibitions.library.columbia.edu/exhibits/show/kio"], "checkedAt": "2026-08-23" },
       "license": { "status": "rights-unclear" }
     },
     "palestinian-general-strike-1936": {
