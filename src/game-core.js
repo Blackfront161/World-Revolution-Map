@@ -42,6 +42,9 @@ const EVENT_TRANSLATION_FIELDS = new Set([
   ...EDITORIAL_LIST_FIELDS, ...EDITORIAL_TEXT_FIELDS
 ]);
 const EVENT_TRANSLATION_LANGUAGES = new Set(['en', 'es', 'fr', 'it', 'pt', 'ru', 'el', 'tr']);
+export const EVENT_ID_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+export const COORDINATE_PRECISION_VALUES = new Set(['exact', 'approximate', 'region', 'hidden']);
+export const LICENSE_STATUS_VALUES = new Set(['rights-unclear', 'per-item', 'third-party-terms', 'public-domain', 'licensed']);
 
 const cleanList = (value, itemLength = 500, maxItems = 24) => {
   const list = Array.isArray(value) ? value : typeof value === 'string' ? value.split(/\s*;\s*/) : [];
@@ -137,6 +140,11 @@ export function normalizeEvent(row, index = 0) {
     imageUrl: clean(row.image ?? row.imageUrl, 1000) || '',
     imageAlt: clean(row.image_alt ?? row.imageAlt, 240) || 'Historische Darstellung: ' + title,
     sourceUrl,
+    schemaVersion: Number.isInteger(Number(row.schemaVersion)) && Number(row.schemaVersion) > 0 ? Number(row.schemaVersion) : 1,
+    aliases: cleanList(row.aliases, 120, 16).map(alias => alias.toLowerCase()),
+    coordinatePrecision: COORDINATE_PRECISION_VALUES.has(row.coordinatePrecision) ? row.coordinatePrecision : '',
+    provenance: normalizeProvenance(row.provenance),
+    license: normalizeLicense(row.license),
     demands: cleanList(row.demands),
     participants: cleanList(row.participants),
     powerStructures: cleanList(row.power_structures ?? row.powerStructures),
@@ -160,8 +168,86 @@ export function normalizeEvent(row, index = 0) {
   return event;
 }
 
-export function validateEditorialFields(row) {
+function normalizeProvenance(value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+  return {
+    sourceUrls: cleanList(value.sourceUrls, 1000, 12),
+    checkedAt: clean(value.checkedAt, 20) || '',
+    note: clean(value.note, 600) || ''
+  };
+}
+
+function normalizeLicense(value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+  return {
+    status: LICENSE_STATUS_VALUES.has(value.status) ? value.status : 'rights-unclear',
+    note: clean(value.note, 600) || ''
+  };
+}
+
+export function resolveEventId(events, value) {
+  const id = String(value || '').trim().toLowerCase();
+  if (!id) return null;
+  return events.find(event => event.id === id || event.aliases?.includes(id)) || null;
+}
+
+export function validateContractFields(row) {
   const issues = [];
+  const schemaVersion = row.schemaVersion === undefined ? 1 : Number(row.schemaVersion);
+  if (!Number.isInteger(schemaVersion) || schemaVersion < 1) issues.push('schemaVersion muss eine positive Ganzzahl sein');
+  if (row.id !== undefined && !EVENT_ID_PATTERN.test(String(row.id))) issues.push('id muss dem stabilen ID-Format entsprechen');
+  if (row.aliases !== undefined) {
+    if (!Array.isArray(row.aliases)) issues.push('aliases muss eine Liste sein');
+    else {
+      const aliases = row.aliases.map(String);
+      if (aliases.some(alias => !EVENT_ID_PATTERN.test(alias))) issues.push('aliases enthält eine ungültige ID');
+      if (new Set(aliases).size !== aliases.length) issues.push('aliases enthält Duplikate');
+      if (aliases.includes(String(row.id))) issues.push('aliases darf die kanonische ID nicht enthalten');
+    }
+  }
+  if (row.coordinatePrecision !== undefined && !COORDINATE_PRECISION_VALUES.has(row.coordinatePrecision)) {
+    issues.push('coordinatePrecision ist ungültig');
+  }
+  if (row.provenance !== undefined) {
+    const value = row.provenance;
+    if (!value || typeof value !== 'object' || Array.isArray(value)) issues.push('provenance muss ein Objekt sein');
+    else {
+      if (!Array.isArray(value.sourceUrls) || !value.sourceUrls.length) issues.push('provenance.sourceUrls muss eine nichtleere Liste sein');
+      else if (value.sourceUrls.some(url => typeof url !== 'string' || !/^https:\/\//.test(url))) issues.push('provenance.sourceUrls muss HTTPS verwenden');
+      if (value.checkedAt && !/^\d{4}-\d{2}-\d{2}$/.test(value.checkedAt)) issues.push('provenance.checkedAt muss YYYY-MM-DD verwenden');
+    }
+  }
+  if (row.license !== undefined) {
+    if (!row.license || typeof row.license !== 'object' || Array.isArray(row.license)) issues.push('license muss ein Objekt sein');
+    else if (!LICENSE_STATUS_VALUES.has(row.license.status)) issues.push('license.status ist ungültig');
+  }
+  if (row.reviewStatus === 'Redaktionell vertieft' && (!row.provenance || !row.license)) {
+    issues.push('Redaktionell vertieft benötigt provenance und license');
+  }
+  return issues;
+}
+
+export function validateRoutes(raw, canonicalIds) {
+  const issues = [];
+  const routeIds = new Set();
+  for (const [index, route] of (raw?.routes || []).entries()) {
+    const label = `routes[${index}]`;
+    if (!EVENT_ID_PATTERN.test(String(route.id || ''))) issues.push(`${label}: ungültige ID`);
+    if (routeIds.has(route.id)) issues.push(`${label}: doppelte ID`);
+    routeIds.add(route.id);
+    if (!route.title || !route.description || !route.sourceNote) issues.push(`${label}: Titel, Beschreibung und Quellenhinweis sind erforderlich`);
+    if (!Array.isArray(route.eventIds) || route.eventIds.length < 3) issues.push(`${label}: mindestens drei Stopps erforderlich`);
+    else {
+      if (new Set(route.eventIds).size !== route.eventIds.length) issues.push(`${label}: doppelte Stopps`);
+      for (const eventId of route.eventIds) if (!canonicalIds.has(eventId)) issues.push(`${label}: unbekannte oder nicht-kanonische Event-ID ${eventId}`);
+    }
+    if (route.sensitivityMode !== 'neutral-progress') issues.push(`${label}: sensible Routen benötigen neutral-progress`);
+  }
+  return issues;
+}
+
+export function validateEditorialFields(row) {
+  const issues = [...validateContractFields(row)];
   for (const field of EDITORIAL_LIST_FIELDS) {
     if (row[field] !== undefined && !Array.isArray(row[field]) && typeof row[field] !== 'string') issues.push(`${field} muss Text oder eine Textliste sein`);
     if (Array.isArray(row[field]) && row[field].some(item => {

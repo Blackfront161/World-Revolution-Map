@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "datasetId": "world-revolution-map-events",
+  "idPolicy": {
+    "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+    "stability": "Eine veröffentlichte kanonische ID wird nicht wiederverwendet oder still umbenannt.",
+    "aliases": "Frühere oder alternative IDs werden als Alias auf genau eine kanonische ID aufgelöst."
+  },
+  "coordinatePrecisionValues": [
+    "exact",
+    "approximate",
+    "region",
+    "hidden"
+  ],
+  "provenance": {
+    "method": "Redaktionelle Kurztexte werden aus den je Ereignis verlinkten Quellen zusammengefasst; Quellenrechte werden dadurch nicht übertragen.",
+    "sourcePolicy": "Community-, Primär-, Archiv-, Museums-, wissenschaftliche, ILO/UN- und Menschenrechtsquellen werden bevorzugt; Unsicherheit wird sichtbar benannt.",
+    "lastContractReview": "2026-08-23"
+  },
+  "license": {
+    "code": "rights-unclear",
+    "data": "rights-unclear",
+    "images": "per-item",
+    "mapData": "third-party-terms",
+    "notice": "Dieses Manifest erteilt keine pauschale Nutzungslizenz. Details stehen in docs/licensing-and-attribution.md."
+  },
+  "sensitivityPolicy": {
+    "noReward": true,
+    "locationRule": "Aktuelle Treffpunkte, Schutzräume und gefährdete Gemeinschaften werden nicht punktgenau veröffentlicht.",
+    "reviewStatuses": [
+      "Ungeprüfter Bestandseintrag",
+      "Redaktioneller Pilotstand",
+      "Redaktionell vertieft"
+    ]
+  }
+}

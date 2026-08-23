@@ -13,7 +13,10 @@ import {
   normalizeEvent,
   normalizeEventTranslations,
   seededShuffle,
-  validateEditorialFields
+  resolveEventId,
+  validateContractFields,
+  validateEditorialFields,
+  validateRoutes
 } from '../src/game-core.js';
 
 const rows = [
@@ -114,4 +117,23 @@ test('sensible Ereignisse werden nicht in Missionen aufgenommen', () => {
   ];
   const mission = createMission(pool, 'safe-mission');
   assert.equal(mission.targetIds.includes('s'), false);
+});
+
+test('validiert Datenvertrag, Aliase, Provenance und Lizenzstatus', () => {
+  const contracted = normalizeEvent({
+    id: 'canonical-event', aliases: ['former-event'], title: 'Vertrag', longitude: 1, latitude: 2,
+    coordinatePrecision: 'region', provenance: { sourceUrls: ['https://example.org/source'], checkedAt: '2026-08-23' },
+    license: { status: 'rights-unclear' }
+  });
+  assert.equal(resolveEventId([contracted], 'former-event')?.id, 'canonical-event');
+  assert.deepEqual(validateContractFields(contracted), []);
+  assert.ok(validateContractFields({ id: 'Bad ID', coordinatePrecision: 'pinpoint' }).length >= 2);
+  assert.deepEqual(validateContractFields({ id: 'same', aliases: ['same'] }), ['aliases darf die kanonische ID nicht enthalten']);
+  assert.ok(validateContractFields({ reviewStatus: 'Redaktionell vertieft' }).includes('Redaktionell vertieft benötigt provenance und license'));
+});
+
+test('Routen akzeptieren nur kanonische bekannte Stopps und neutralen Fortschritt', () => {
+  const route = { routes: [{ id: 'route-one', title: 'Route', description: 'Beschreibung', sourceNote: 'Hinweis', eventIds: ['one', 'two', 'three'], sensitivityMode: 'neutral-progress' }] };
+  assert.deepEqual(validateRoutes(route, new Set(['one', 'two', 'three'])), []);
+  assert.ok(validateRoutes({ routes: [{ ...route.routes[0], eventIds: ['one', 'alias', 'three'] }] }, new Set(['one', 'two', 'three'])).some(issue => issue.includes('alias')));
 });

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "routes": [
+    {
+      "id": "land-water-autonomy",
+      "title": "Land, Wasser und Autonomie",
+      "description": "Von Pueblo-Gemeinschaften bis zu heutigen Land- und Wasserverteidigungen: eine Route durch sehr unterschiedliche Kämpfe gegen Enteignung.",
+      "eventIds": ["pueblo-revolt", "chipko", "alta-konflikt", "standing-rock", "narmada-bachao-andolan", "cochabamba-water-war"],
+      "sourceNote": "Jeder Stopp besitzt eine eigene Quellen- und Unsicherheitsangabe. Regionale Punkte sind keine Treffpunktangaben.",
+      "sensitivityMode": "neutral-progress"
+    },
+    {
+      "id": "anticolonial-networks",
+      "title": "Antikoloniale Netze",
+      "description": "Aufstände, Streiks, Kongresse und Langzeitorganisierung zeigen, wie Unabhängigkeit von unten über Kontinente hinweg erkämpft wurde.",
+      "eventIds": ["haitianische-revolution", "ghadar-bewegung", "march-first-movement", "palestinian-general-strike-1936", "fifth-pan-african-congress", "wave-hill-walk-off"],
+      "sourceNote": "Die Route setzt keine Kämpfe gleich; sie lädt zum Vergleich von Taktiken, Herrschaftsformen und offenen Folgen ein.",
+      "sensitivityMode": "neutral-progress"
+    },
+    {
+      "id": "workplace-power",
+      "title": "Arbeit unter eigener Regie",
+      "description": "Streik, Besetzung, migrantische Selbstorganisierung und Selbstverwaltung – sechs Stationen über Macht am Arbeitsplatz.",
+      "eventIds": ["bread-and-roses", "winnipeg-general-strike", "ford-strike-cologne-1973", "grunwick-strike", "lip-selbstverwaltung", "justice-for-janitors"],
+      "sourceNote": "Fortschritt bedeutet gelesen oder gespeichert, nicht gewonnen. Ergebnisse bleiben konkret und widersprüchlich.",
+      "sensitivityMode": "neutral-progress"
+    },
+    {
+      "id": "care-bodies-solidarity",
+      "title": "Körper, Sorge und Solidarität",
+      "description": "Feministische, Schwarze, queere und Behindertenbewegungen verbinden Schutz, Versorgung, Sichtbarkeit und kollektive Handlungsfähigkeit.",
+      "eventIds": ["women-liberia-peace", "combahee-river-collective", "section-504-sit-in", "ni-una-menos", "black-trans-liberation-march"],
+      "sourceNote": "Schwere Gewalt wird sachlich dargestellt. Für sensible Stopps gibt es weder XP noch satirische Kommentare.",
+      "sensitivityMode": "neutral-progress"
+    }
+  ]
+}
