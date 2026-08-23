@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de" data-atlas-version="2.7.0">
+<html lang="de" data-atlas-version="2.8.0">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -76,7 +76,39 @@
           <input id="era-to" type="number" inputmode="numeric" min="-1200" max="2030" value="2030">
         </div>
       </div>
+      <div class="time-range-controls" aria-labelledby="time-range-label">
+        <span class="field-label" id="time-range-label" data-i18n="timeRange">Zeitraumregler</span>
+        <label for="era-from-range"><span data-i18n="from">Von</span><input id="era-from-range" type="range" min="-1200" max="2030" value="-1200" step="1"></label>
+        <label for="era-to-range"><span data-i18n="to">Bis</span><input id="era-to-range" type="range" min="-1200" max="2030" value="2030" step="1"></label>
+      </div>
       <small class="field-hint" id="deep-time-hint" data-i18n="deepTime">Negative Zahlen stehen für Jahre vor unserer Zeitrechnung; der Atlas beginnt 1157 v. u. Z.</small>
+
+      <label class="check-row compact-check" for="include-undated">
+        <input id="include-undated" type="checkbox" checked>
+        <span data-i18n="includeUndated">Undatierte Einträge einschließen</span>
+      </label>
+
+      <fieldset class="layer-fieldset">
+        <legend data-i18n="thematicLayers">Thematische Ebenen</legend>
+        <p class="field-hint" data-i18n="layerHint">Mehrere Ebenen wirken gemeinsam als Oder-Filter.</p>
+        <div class="layer-filter-grid" id="layer-filters"></div>
+        <button class="text-button" id="reset-layers" type="button" data-i18n="resetLayers">Ebenen zurücksetzen</button>
+      </fieldset>
+
+      <label class="field-label" for="map-style-select" data-i18n="mapStyle">Kartenstil</label>
+      <select id="map-style-select"></select>
+
+      <details class="map-legend">
+        <summary data-i18n="mapLegend">Kartenlegende</summary>
+        <p class="field-hint" data-i18n="legendNotColorOnly">Buchstaben kennzeichnen Taktiken zusätzlich zur Farbe; Ringformen erklären die Ortspräzision.</p>
+        <div class="tactic-legend" id="tactic-legend"></div>
+        <ul class="precision-legend">
+          <li><i class="precision-sample is-exact"></i><span data-i18n="coordinatePrecisionExact">Historisch genauer öffentlicher Ort</span></li>
+          <li><i class="precision-sample is-approximate"></i><span data-i18n="coordinatePrecisionApproximate">Ungefährer Ort</span></li>
+          <li><i class="precision-sample is-region"></i><span data-i18n="coordinatePrecisionRegion">Regionaler Kartenpunkt</span></li>
+          <li><i class="precision-sample is-hidden"></i><span data-i18n="coordinatePrecisionHidden">Absichtlich grobe Ortsangabe</span></li>
+        </ul>
+      </details>
 
       <label class="check-row" for="undiscovered-only">
         <input id="undiscovered-only" type="checkbox">
@@ -120,8 +152,10 @@
     <nav class="bottom-nav glass-panel" aria-label="Spielbereiche">
       <button class="nav-button is-active" type="button" data-panel="map"><span>◉</span><span data-i18n="map">Karte</span></button>
       <button class="nav-button" type="button" data-panel="archive"><span>▤</span><span data-i18n="archive">Archiv</span> <b id="archive-count">0</b></button>
+      <button class="nav-button" type="button" data-panel="timeline"><span>⌛</span><span data-i18n="timeline">Zeitleiste</span></button>
       <button class="nav-button" type="button" data-panel="routes"><span>↝</span><span data-i18n="routes">Routen</span></button>
       <button class="nav-button" type="button" data-panel="list"><span>☷</span><span data-i18n="listView">Liste</span></button>
+      <button class="nav-button" type="button" data-panel="network"><span>⌘</span><span data-i18n="network">Netzwerk</span></button>
       <button class="nav-button" type="button" data-panel="achievements"><span>◇</span><span data-i18n="achievements">Erfolge</span> <b id="achievement-count">0</b></button>
       <button class="nav-button" type="button" data-panel="connections"><span>⚡</span><span data-i18n="sparks">Funken</span></button>
       <button class="nav-button" id="quiz-button" type="button" data-panel="quiz"><span>?</span>Quiz</button>
@@ -135,10 +169,24 @@
       <p class="drawer-intro" data-i18n="listIntro">Alle sichtbaren Kartentreffer als tastaturbedienbare Tabelle.</p>
       <div class="table-scroll">
         <table class="event-table">
-          <thead><tr><th scope="col" data-i18n="year">Jahr</th><th scope="col" data-i18n="event">Ereignis</th><th scope="col" data-i18n="place">Ort</th><th scope="col" data-i18n="movement">Bewegung</th></tr></thead>
+          <thead><tr><th scope="col" data-i18n="year">Jahr</th><th scope="col" data-i18n="event">Ereignis</th><th scope="col" data-i18n="place">Ort</th><th scope="col" data-i18n="movement">Bewegung</th><th scope="col" data-i18n="tactics">Taktiken</th><th scope="col" data-i18n="locationProtection">Ortsschutz</th></tr></thead>
           <tbody id="event-list-body"></tbody>
         </table>
       </div>
+    </section>
+
+    <section class="drawer glass-panel timeline-drawer" id="timeline-drawer" role="dialog" aria-modal="false" aria-labelledby="timeline-title" tabindex="-1" hidden>
+      <div class="drawer-header">
+        <div><p class="eyebrow" data-i18n="timeTravel">Optionale Zeitreise</p><h2 id="timeline-title" data-i18n="timeline">Zeitleiste</h2></div>
+        <button class="icon-button drawer-close" type="button" aria-label="Zeitleiste schließen" data-i18n-aria="closeTimeline">×</button>
+      </div>
+      <p class="drawer-intro" data-i18n="timelineIntro">Die Zeitleiste zeigt die aktuell gefilterten Ereignisse. Abspielen verändert nur das Endjahr und behauptet keine exakte Datierung.</p>
+      <div class="timeline-actions">
+        <button class="primary-button" id="time-play" type="button" aria-pressed="false"><span aria-hidden="true">▶</span> <span data-i18n="playTime">Zeitreise abspielen</span></button>
+        <button class="secondary-button" id="time-reset" type="button" data-i18n="resetTime">Gesamten Zeitraum zeigen</button>
+      </div>
+      <p class="motion-note" id="motion-note" role="status"></p>
+      <ol class="timeline-list" id="timeline-list"></ol>
     </section>
 
     <section class="drawer glass-panel" id="archive-drawer" role="dialog" aria-modal="false" aria-labelledby="archive-title" tabindex="-1" hidden>
@@ -157,6 +205,19 @@
       <p class="drawer-intro" data-i18n="routesIntro">Folge belegten Ereignissen in einer vorgeschlagenen Reihenfolge. Fortschritt bedeutet gelesen oder gespeichert – nicht gewonnen.</p>
       <p class="event-language-note" data-i18n="routeLanguageNotice">Routentitel und Einordnungen liegen derzeit als deutsches Original vor; Ereignisübersetzungen werden separat gekennzeichnet.</p>
       <div class="routes-list" id="routes-list"></div>
+    </section>
+
+    <section class="drawer glass-panel network-drawer" id="network-drawer" role="dialog" aria-modal="false" aria-labelledby="network-title" tabindex="-1" hidden>
+      <div class="drawer-header">
+        <div><p class="eyebrow" data-i18n="relationArchive">Belegte und gekennzeichnete Ähnlichkeiten</p><h2 id="network-title" data-i18n="network">Netzwerk</h2></div>
+        <button class="icon-button drawer-close" type="button" aria-label="Netzwerk schließen" data-i18n-aria="closeNetwork">×</button>
+      </div>
+      <p class="drawer-intro" data-i18n="networkIntro">Linien bedeuten gemeinsame Route oder ausdrücklich als ähnlich gekennzeichnete Taktik beziehungsweise Bewegung – keine automatisch behauptete historische Beeinflussung.</p>
+      <p class="network-summary" id="network-summary" aria-live="polite"></p>
+      <div class="network-legend" id="network-legend" aria-label="Legende der Beziehungstypen" data-i18n-aria="relationLegend"></div>
+      <div class="network-visual" id="network-visual" role="img" aria-label="Visuelle Netzwerkansicht" data-i18n-aria="networkVisual"></div>
+      <h3 data-i18n="relationList">Zugängliche Beziehungsliste</h3>
+      <ul class="relation-list" id="relation-list"></ul>
     </section>
 
     <section class="drawer glass-panel" id="achievements-drawer" role="dialog" aria-modal="false" aria-labelledby="achievements-title" tabindex="-1" hidden>

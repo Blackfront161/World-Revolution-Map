@@ -37,6 +37,9 @@ test('lokalisiert die Komfortfunktionen in allen neun Sprachen', () => {
     for (const key of ['clearSearch', 'showResults', 'copyEventLink', 'eventLinkCopied', 'aboutMap', 'eventList', 'sensitiveNotice', 'immediateConsequences', 'sourceTypeLabel', 'sourceQualityLabel', 'reviewStatusLabel', 'eventTextGermanNotice', 'partialEventTranslation', 'routes', 'guidedRoutes', 'routesIntro', 'routeProgress', 'routeSensitive', 'routeSource', 'coordinatePrecisionLabel', 'coordinatePrecisionHidden']) {
       assert.notEqual(i18n.t(key), key);
     }
+    for (const key of ['timeRange', 'includeUndated', 'thematicLayers', 'mapStyle', 'timeline', 'playTime', 'motionDisabled', 'network', 'networkIntro', 'relationList', 'relationSimilarTactic', 'heuristicSimilarity', 'layerIndigenous', 'layerLabour', 'layerAnticolonial', 'layerFeminist', 'layerQueer', 'layerBlack', 'layerEcological', 'layerCommons', 'layerAbolition', 'layerMutualAid', 'tacticStrike', 'tacticOccupation', 'tacticBlockade', 'tacticBoycott', 'tacticUprising', 'tacticLandDefence', 'tacticMutualAid', 'tacticArtsMedia', 'tacticSelfGovernance', 'tacticPrisonStrike', 'styleDark', 'styleMono', 'stylePaper', 'precisionExactReason', 'precisionApproximateReason', 'precisionRegionReason', 'precisionHiddenReason', 'previousEvent', 'nextEvent', 'backToWorld', 'mapLegend']) {
+      assert.notEqual(i18n.t(key), key);
+    }
   }
   assert.equal(translateEditorialMetadata('Redaktioneller Pilotstand', 'en'), 'Editorial pilot');
   assert.equal(translateEditorialMetadata('Redaktionell vertieft', 'en'), 'Editorially deepened');

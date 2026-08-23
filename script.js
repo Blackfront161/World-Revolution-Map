@@ -1,5 +1,8 @@
 import {
   CATEGORY_COLORS,
+  buildNetworkModel,
+  classifyEventLayers,
+  classifyEventTactics,
   createConnection,
   createMission,
   createPowerExcuse,
@@ -10,6 +13,7 @@ import {
   levelProgress,
   localizeEvent,
   normalizeEvent,
+  normalizeTimeRange,
   resolveEventId,
   seededShuffle,
   solidarityResult
@@ -22,7 +26,9 @@ import { LANGUAGES, createI18n, formatLocalizedYear, translateCategory, translat
 const SUPABASE_URL = 'https://pixafxinyydzwplirrnm.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_cAh2ZxD6aaXREXhMIVyvyA_C_yeFxRd';
 const STORAGE_KEY = 'atlas-des-widerstands-progress-v2';
-const VIEW_STORAGE_KEY = 'atlas-des-widerstands-view-v1';
+const VIEW_STORAGE_KEY = 'atlas-des-widerstands-view-v2';
+const STYLE_STORAGE_KEY = 'atlas-map-style-v1';
+const DEFAULT_TIME = { minimum: -1200, maximum: 2030, defaultFrom: -1200, defaultTo: 2030 };
 const runtimeConfig = readRuntimeConfig(window.location.search, document.documentElement.dataset, window.location.href);
 const i18n = createI18n({ search: window.location.search, storage: window.localStorage, navigatorLanguage: navigator.language });
 
@@ -61,13 +67,17 @@ const app = {
   popup: null,
   events: [],
   routes: [],
+  relations: [],
+  taxonomy: { time: DEFAULT_TIME, layers: [], tactics: [], mapStyles: [], network: { maximumNodes: 72, maximumEdges: 140 } },
   filteredEvents: [],
   progress: loadProgress(),
   filters: loadViewFilters(),
   activeQuiz: null,
   activeConnection: null,
   bridge: null,
-  lastFocus: null
+  lastFocus: null,
+  mapStyle: loadMapStyle(),
+  timeTimer: null
 };
 
 document.addEventListener('DOMContentLoaded', start);
@@ -86,6 +96,8 @@ async function start() {
     ui.menuToggle.setAttribute('aria-expanded', 'false');
     syncMobileMenuAccessibility();
   });
+  window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener?.('change', syncMotionPreference);
+  syncMotionPreference();
   setupHostApi();
 
   try {
@@ -93,11 +105,16 @@ async function start() {
     app.events = await loadEvents();
     app.progress = reconcileProgress(app.progress, new Set(app.events.map(event => event.id)));
     populateCategories();
+    populateLayerFilters();
+    populateMapStyles();
+    populateTacticLegend();
     applyFiltersToUi();
+    applyMapStyle();
     ensureMission();
     initializeMap();
     updateGameUi();
-    if (runtimeConfig.showWelcome && !app.progress.seenWelcome) openModal(ui.welcomeModal);
+    const hasEventDeepLink = new URLSearchParams(window.location.search).has('event');
+    if (runtimeConfig.showWelcome && !app.progress.seenWelcome && !hasEventDeepLink) openModal(ui.welcomeModal);
     emitAtlasEvent('ready', { eventCount: app.events.length, embedded: runtimeConfig.embed });
   } catch (error) {
     console.error('Atlas konnte nicht gestartet werden:', error);
@@ -108,15 +125,15 @@ async function start() {
 
 function bindUi() {
   const ids = [
-    'search-input', 'category-filter', 'era-from', 'era-to', 'undiscovered-only', 'result-count',
-    'reset-filters', 'fit-results', 'clear-search', 'random-event', 'start-mission', 'data-status', 'level-value', 'xp-value',
+    'search-input', 'category-filter', 'era-from', 'era-to', 'era-from-range', 'era-to-range', 'include-undated', 'undiscovered-only', 'result-count',
+    'reset-filters', 'reset-layers', 'fit-results', 'clear-search', 'random-event', 'start-mission', 'data-status', 'level-value', 'xp-value',
     'xp-progress', 'mission-card', 'mission-title', 'mission-description', 'mission-reward',
     'mission-progress-text', 'mission-progress-bar', 'archive-count', 'achievement-count',
-    'archive-drawer', 'archive-list', 'routes-drawer', 'routes-list', 'achievements-drawer', 'achievement-list', 'connections-drawer',
+    'archive-drawer', 'archive-list', 'timeline-drawer', 'timeline-list', 'time-play', 'time-reset', 'motion-note', 'routes-drawer', 'routes-list', 'network-drawer', 'network-summary', 'network-legend', 'network-visual', 'relation-list', 'achievements-drawer', 'achievement-list', 'connections-drawer',
     'connection-content', 'new-connection', 'copy-connection', 'power-excuse', 'power-counter', 'new-excuse', 'quiz-button',
     'quiz-modal', 'quiz-title', 'quiz-content', 'welcome-modal', 'methodology-modal', 'modal-backdrop', 'begin-button',
     'methodology-button', 'about-map-button', 'help-button', 'toast-region', 'menu-toggle', 'menu-close', 'control-panel', 'language-select',
-    'active-filters', 'event-list-drawer', 'event-list-body'
+    'active-filters', 'event-list-drawer', 'event-list-body', 'layer-filters', 'map-style-select', 'tactic-legend'
   ];
   ids.forEach(id => { ui[toCamel(id)] = document.getElementById(id); });
   ui.navButtons = [...document.querySelectorAll('.nav-button')];
@@ -152,6 +169,9 @@ function changeLanguage(language) {
   applyLanguage();
   if (app.events.length) {
     populateCategories();
+    populateLayerFilters();
+    populateMapStyles();
+    populateTacticLegend();
     updateGameUi();
     renderMapData();
     if (app.activeConnection) renderConnection(app.activeConnection);
@@ -174,8 +194,13 @@ function attachUiEvents() {
     renderMapData();
   });
   ui.categoryFilter.addEventListener('change', () => { app.filters.category = ui.categoryFilter.value; renderMapData(); });
-  ui.eraFrom.addEventListener('change', updateEraFilter);
-  ui.eraTo.addEventListener('change', updateEraFilter);
+  ui.eraFrom.addEventListener('input', updateEraFilter);
+  ui.eraTo.addEventListener('input', updateEraFilter);
+  ui.eraFromRange.addEventListener('input', updateEraFilterFromRange);
+  ui.eraToRange.addEventListener('input', updateEraFilterFromRange);
+  ui.includeUndated.addEventListener('change', () => { app.filters.includeUndated = ui.includeUndated.checked; renderMapData(); });
+  ui.resetLayers.addEventListener('click', () => { app.filters.layers = []; populateLayerFilters(); renderMapData(); });
+  ui.mapStyleSelect.addEventListener('change', () => setMapStyle(ui.mapStyleSelect.value));
   ui.undiscoveredOnly.addEventListener('change', () => { app.filters.undiscoveredOnly = ui.undiscoveredOnly.checked; renderMapData(); });
   ui.resetFilters.addEventListener('click', resetFilters);
   ui.fitResults.addEventListener('click', fitFilteredEvents);
@@ -204,12 +229,16 @@ function attachUiEvents() {
   ui.drawerCloseButtons.forEach(button => button.addEventListener('click', closeDrawers));
   ui.menuToggle.addEventListener('click', () => toggleMobileMenu(true, true));
   ui.menuClose.addEventListener('click', () => toggleMobileMenu(false));
+  ui.timePlay.addEventListener('click', toggleTimeTravel);
+  ui.timeReset.addEventListener('click', resetTimeRange);
 
   ui.navButtons.forEach(button => button.addEventListener('click', () => {
     const panel = button.dataset.panel;
     if (panel === 'archive') toggleDrawer(ui.archiveDrawer, button);
+    if (panel === 'timeline') { toggleDrawer(ui.timelineDrawer, button); if (!ui.timelineDrawer.hidden) renderTimeline(); }
     if (panel === 'routes') toggleDrawer(ui.routesDrawer, button);
     if (panel === 'list') toggleDrawer(ui.eventListDrawer, button);
+    if (panel === 'network') { toggleDrawer(ui.networkDrawer, button); if (!ui.networkDrawer.hidden) renderNetwork(); }
     if (panel === 'achievements') toggleDrawer(ui.achievementsDrawer, button);
     if (panel === 'connections') {
       toggleDrawer(ui.connectionsDrawer, button);
@@ -231,15 +260,17 @@ function attachUiEvents() {
 }
 
 async function loadEvents() {
-  const [catalogResponse, metadataResponse, overridesResponse, routesResponse] = await Promise.all([
+  const [catalogResponse, metadataResponse, overridesResponse, routesResponse, taxonomyResponse, relationsResponse] = await Promise.all([
     fetch('./data/event-catalog.json'),
     fetch('./data/event-metadata.json'),
     fetch('./data/event-editorial-overrides.json'),
-    fetch('./data/routes.json')
+    fetch('./data/routes.json'),
+    fetch('./data/map-taxonomy.json'),
+    fetch('./data/relations.json')
   ]);
-  if (!catalogResponse.ok || !metadataResponse.ok || !overridesResponse.ok || !routesResponse.ok) throw new Error('Archivdaten fehlen.');
-  const [catalog, metadata, overrides, routes] = await Promise.all([
-    catalogResponse.json(), metadataResponse.json(), overridesResponse.json(), routesResponse.json()
+  if (!catalogResponse.ok || !metadataResponse.ok || !overridesResponse.ok || !routesResponse.ok || !taxonomyResponse.ok || !relationsResponse.ok) throw new Error('Archivdaten fehlen.');
+  const [catalog, metadata, overrides, routes, taxonomy, relations] = await Promise.all([
+    catalogResponse.json(), metadataResponse.json(), overridesResponse.json(), routesResponse.json(), taxonomyResponse.json(), relationsResponse.json()
   ]);
   if (!Array.isArray(catalog) || !catalog.length || catalog.some(file => typeof file !== 'string' || !/^[a-z0-9-]+\.json$/i.test(file))) {
     throw new Error('Datenkatalog ist ungültig.');
@@ -250,12 +281,20 @@ async function loadEvents() {
   const editorialById = overrides.events || {};
   const enrichRow = row => ({ ...row, ...(editorialById[row.id] || {}), ...(metadataById.get(row.id) || {}), schemaVersion: metadata.schemaVersion || 1 });
   app.routes = Array.isArray(routes.routes) ? routes.routes : [];
+  app.taxonomy = taxonomy;
+  app.relations = Array.isArray(relations.relations) ? relations.relations : [];
+  app.filters = sanitizeViewFilters(app.filters);
+  const annotateEvent = event => ({
+    ...event,
+    layerIds: classifyEventLayers(event, app.taxonomy.layers),
+    tacticIds: classifyEventTactics(event, app.taxonomy.tactics)
+  });
   const fallbackRows = (await Promise.all(fallbackResponses.map(response => response.json())))
     .flat()
     .filter(row => !row.archived)
     .map(enrichRow)
     .slice(0, 5000);
-  const fallback = fallbackRows.map(normalizeEvent).filter(isValidEvent);
+  const fallback = fallbackRows.map(normalizeEvent).filter(isValidEvent).map(annotateEvent);
 
   if (!runtimeConfig.useSupabase || !window.supabase?.createClient) {
     setDataStatus(i18n.t('offlineStatus', { count: fallback.length }), 'fallback');
@@ -266,7 +305,7 @@ async function loadEvents() {
     const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
     const { data, error } = await client.from('ereignisse').select('*').limit(runtimeConfig.maxRemoteEvents);
     if (error) throw error;
-    const remote = (data || []).map(enrichRow).map(normalizeEvent).filter(isValidEvent);
+    const remote = (data || []).map(enrichRow).map(normalizeEvent).filter(isValidEvent).map(annotateEvent);
     const merged = mergeEvents(fallback, remote);
     setDataStatus(i18n.t('liveStatus', { count: merged.length }), 'online');
     return merged;
@@ -347,10 +386,39 @@ function initializeMap() {
     });
 
     app.map.addLayer({
+      id: 'event-regions',
+      type: 'circle',
+      source: 'resistance-events',
+      filter: ['all', ['!', ['has', 'point_count']], ['==', ['get', 'coordinatePrecision'], 'region']],
+      paint: {
+        'circle-color': categoryColorExpression(),
+        'circle-radius': ['interpolate', ['linear'], ['zoom'], 1, 16, 6, 34],
+        'circle-opacity': .14,
+        'circle-stroke-width': 2,
+        'circle-stroke-color': categoryColorExpression()
+      }
+    });
+
+    app.map.addLayer({
+      id: 'event-approximate-rings',
+      type: 'circle',
+      source: 'resistance-events',
+      filter: ['all', ['!', ['has', 'point_count']], ['==', ['get', 'coordinatePrecision'], 'approximate']],
+      paint: {
+        'circle-radius': 14,
+        'circle-color': 'rgba(255,255,255,0)',
+        'circle-stroke-width': 3,
+        'circle-stroke-color': '#ffffff',
+        'circle-stroke-opacity': .55,
+        'circle-blur': .45
+      }
+    });
+
+    app.map.addLayer({
       id: 'event-points',
       type: 'circle',
       source: 'resistance-events',
-      filter: ['!', ['has', 'point_count']],
+      filter: ['all', ['!', ['has', 'point_count']], ['!=', ['get', 'coordinatePrecision'], 'region']],
       paint: {
         'circle-color': categoryColorExpression(),
         'circle-radius': ['case', ['==', ['get', 'discovered'], true], 6, 8],
@@ -360,12 +428,26 @@ function initializeMap() {
       }
     });
 
+    app.map.addLayer({
+      id: 'event-symbols',
+      type: 'symbol',
+      source: 'resistance-events',
+      filter: ['!', ['has', 'point_count']],
+      layout: {
+        'text-field': ['get', 'tacticSymbol'],
+        'text-size': 9,
+        'text-font': ['Open Sans Bold'],
+        'text-allow-overlap': true
+      },
+      paint: { 'text-color': '#07130f', 'text-halo-color': '#ffffff', 'text-halo-width': .5 }
+    });
+
     app.map.on('click', 'clusters', expandCluster);
-    app.map.on('click', 'event-points', event => {
+    ['event-points', 'event-regions'].forEach(layer => app.map.on('click', layer, event => {
       const selected = app.events.find(item => item.id === event.features?.[0]?.properties?.id);
       if (selected) openEventPopup(selected, event.features[0].geometry.coordinates);
-    });
-    ['clusters', 'event-points'].forEach(layer => {
+    }));
+    ['clusters', 'event-points', 'event-regions'].forEach(layer => {
       app.map.on('mouseenter', layer, () => { app.map.getCanvas().style.cursor = 'pointer'; });
       app.map.on('mouseleave', layer, () => { app.map.getCanvas().style.cursor = ''; });
     });
@@ -384,6 +466,9 @@ function renderMapData() {
   ui.clearSearch.hidden = !app.filters.query;
   renderActiveFilters();
   renderEventList();
+  renderRoutes();
+  renderTimeline();
+  if (!ui.networkDrawer.hidden) renderNetwork();
   saveViewFilters();
   const source = app.map?.getSource('resistance-events');
   if (source) source.setData(toGeoJson(app.filteredEvents));
@@ -394,7 +479,13 @@ function renderActiveFilters() {
   const chips = [];
   if (app.filters.query) chips.push({ label: `⌕ ${app.filters.query}`, clear: () => { app.filters.query = ''; ui.searchInput.value = ''; } });
   if (app.filters.category !== 'all') chips.push({ label: translateCategory(app.filters.category, i18n.language), clear: () => { app.filters.category = 'all'; ui.categoryFilter.value = 'all'; } });
-  if (Number(app.filters.from) !== -1200 || Number(app.filters.to) !== 2030) chips.push({ label: `${app.filters.from}–${app.filters.to}`, clear: () => { app.filters.from = -1200; app.filters.to = 2030; ui.eraFrom.value = -1200; ui.eraTo.value = 2030; } });
+  const time = app.taxonomy.time || DEFAULT_TIME;
+  if (Number(app.filters.from) !== time.defaultFrom || Number(app.filters.to) !== time.defaultTo) chips.push({ label: `${formatFilterYear(app.filters.from)}–${formatFilterYear(app.filters.to)}`, clear: resetTimeRange });
+  if (!app.filters.includeUndated) chips.push({ label: i18n.t('undatedExcluded'), clear: () => { app.filters.includeUndated = true; ui.includeUndated.checked = true; } });
+  app.filters.layers.forEach(layerId => {
+    const layer = app.taxonomy.layers.find(item => item.id === layerId);
+    if (layer) chips.push({ label: i18n.t(layer.labelKey), clear: () => { app.filters.layers = app.filters.layers.filter(id => id !== layerId); populateLayerFilters(); } });
+  });
   if (app.filters.undiscoveredOnly) chips.push({ label: i18n.t('undiscovered'), clear: () => { app.filters.undiscoveredOnly = false; ui.undiscoveredOnly.checked = false; } });
   chips.forEach(item => {
     const button = document.createElement('button');
@@ -424,14 +515,18 @@ function renderEventList() {
     place.textContent = event.location;
     const movement = document.createElement('td');
     movement.textContent = translateCategory(event.category, i18n.language);
-    row.append(year, titleCell, place, movement);
+    const tactics = document.createElement('td');
+    renderTacticBadges(tactics, event, true);
+    const precision = document.createElement('td');
+    precision.textContent = precisionExplanation(event);
+    row.append(year, titleCell, place, movement, tactics, precision);
     fragment.append(row);
   });
   ui.eventListBody.append(fragment);
   if (!app.filteredEvents.length) {
     const row = document.createElement('tr');
     const cell = document.createElement('td');
-    cell.colSpan = 4;
+    cell.colSpan = 6;
     cell.textContent = i18n.t('noResults');
     row.append(cell);
     ui.eventListBody.append(row);
@@ -443,7 +538,7 @@ function toGeoJson(events) {
   const missionTargets = new Set(currentMissionTargets().map(event => event.id));
   return {
     type: 'FeatureCollection',
-    features: events.map(event => ({
+    features: events.filter(event => event.coordinatePrecision !== 'hidden').map(event => ({
       type: 'Feature',
       geometry: { type: 'Point', coordinates: [event.longitude, event.latitude] },
       properties: {
@@ -451,6 +546,8 @@ function toGeoJson(events) {
         title: event.title,
         category: event.category,
         yearStart: event.yearStart || 0,
+        coordinatePrecision: event.coordinatePrecision || 'exact',
+        tacticSymbol: primaryTactic(event)?.symbol || '·',
         discovered: discovered.has(event.id),
         missionTarget: missionTargets.has(event.id) && !app.progress.mission?.completedIds?.includes(event.id)
       }
@@ -458,7 +555,7 @@ function toGeoJson(events) {
   };
 }
 
-async function openEventPopup(event, coordinates = [event.longitude, event.latitude]) {
+async function openEventPopup(event, coordinates = safeDisplayCoordinates(event)) {
   event = localizeEvent(event, i18n.language);
   if (app.popup) app.popup.remove();
   const content = document.createElement('article');
@@ -502,6 +599,10 @@ async function openEventPopup(event, coordinates = [event.longitude, event.latit
     notice.textContent = `${i18n.t('sensitiveNotice')} ${event.sensitivity}`;
     body.append(notice);
   }
+  const precisionNotice = document.createElement('p');
+  precisionNotice.className = `precision-notice is-${event.coordinatePrecision || 'exact'}`;
+  precisionNotice.textContent = `${i18n.t('coordinatePrecisionLabel')}: ${precisionExplanation(event)}`;
+  body.append(precisionNotice);
   if (event.localization.usesGermanOriginal) {
     const languageNote = document.createElement('small');
     languageNote.className = 'event-language-note';
@@ -521,6 +622,12 @@ async function openEventPopup(event, coordinates = [event.longitude, event.latit
     });
     body.append(tags);
   }
+
+  const tacticBadges = document.createElement('div');
+  tacticBadges.className = 'tactic-badges';
+  tacticBadges.setAttribute('aria-label', i18n.t('tactics'));
+  renderTacticBadges(tacticBadges, event);
+  body.append(tacticBadges);
 
   const details = document.createElement('div');
   details.className = 'event-detail-grid';
@@ -566,6 +673,23 @@ async function openEventPopup(event, coordinates = [event.longitude, event.latit
   share.addEventListener('click', () => copyEventLink(event));
   actions.append(share);
   body.append(actions);
+  const navigation = document.createElement('div');
+  navigation.className = 'event-navigation';
+  const visibleIndex = app.filteredEvents.findIndex(item => item.id === event.id);
+  const previous = visibleIndex > 0 ? app.filteredEvents[visibleIndex - 1] : null;
+  const next = visibleIndex >= 0 && visibleIndex < app.filteredEvents.length - 1 ? app.filteredEvents[visibleIndex + 1] : null;
+  for (const [label, target] of [[i18n.t('previousEvent'), previous], [i18n.t('backToWorld'), null], [i18n.t('nextEvent'), next]]) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = label;
+    if (label === i18n.t('backToWorld')) button.addEventListener('click', () => { app.popup?.remove(); fitFilteredEvents(); });
+    else {
+      button.disabled = !target;
+      button.addEventListener('click', () => target && flyToEvent(target));
+    }
+    navigation.append(button);
+  }
+  body.append(navigation);
   const sourceMetadata = document.createElement('div');
   sourceMetadata.className = 'source-metadata';
   for (const [label, value] of [
@@ -684,7 +808,7 @@ function awardXp(amount, show = true) {
 
 function ensureMission() {
   const mission = app.progress.mission;
-  const validTargets = new Set(app.events.map(event => event.id));
+  const validTargets = new Set(app.events.filter(event => !isSensitiveEvent(event)).map(event => event.id));
   const missionIsUsable = mission
     && Array.isArray(mission.targetIds)
     && mission.targetIds.length > 0
@@ -737,8 +861,11 @@ function updateGameUi() {
 function renderRoutes() {
   ui.routesList.replaceChildren();
   const discovered = new Set(app.progress.discoveredIds);
+  const visibleIds = new Set(app.filteredEvents.map(event => event.id));
   app.routes.forEach(route => {
-    const events = route.eventIds.map(id => resolveEventId(app.events, id)).filter(Boolean);
+    const allEvents = route.eventIds.map(id => resolveEventId(app.events, id)).filter(Boolean);
+    const events = allEvents.filter(event => visibleIds.has(event.id));
+    if (!events.length) return;
     const completed = events.filter(event => discovered.has(event.id)).length;
     const card = document.createElement('article');
     card.className = 'route-card';
@@ -749,6 +876,9 @@ function renderRoutes() {
     const progressLabel = document.createElement('p');
     progressLabel.className = 'route-progress-label';
     progressLabel.textContent = i18n.t('routeProgress', { completed, total: events.length });
+    const visibleNote = document.createElement('small');
+    visibleNote.className = 'route-visible-note';
+    visibleNote.textContent = i18n.t('routeVisible', { visible: events.length, total: allEvents.length });
     const progress = document.createElement('progress');
     progress.max = Math.max(1, events.length);
     progress.value = completed;
@@ -784,9 +914,188 @@ function renderRoutes() {
     const sourceNote = document.createElement('small');
     sourceNote.className = 'route-source-note';
     sourceNote.textContent = `${i18n.t('routeSourceHint')} ${route.sourceNote}`;
-    card.append(heading, description, progressLabel, progress, list, sourceNote);
+    card.append(heading, description, visibleNote, progressLabel, progress, list, sourceNote);
     ui.routesList.append(card);
   });
+  if (!ui.routesList.childElementCount) {
+    const empty = document.createElement('p');
+    empty.className = 'archive-empty';
+    empty.textContent = i18n.t('noRoutesInFilter');
+    ui.routesList.append(empty);
+  }
+}
+
+function renderTimeline() {
+  if (!ui.timelineList) return;
+  ui.timelineList.replaceChildren();
+  const sorted = [...app.filteredEvents].sort((a, b) => (a.yearStart ?? Infinity) - (b.yearStart ?? Infinity));
+  const visible = sorted.slice(0, 160);
+  visible.forEach(event => {
+    const item = document.createElement('li');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'timeline-event';
+    const year = document.createElement('strong');
+    year.textContent = formatLocalizedYear(event, i18n);
+    const title = document.createElement('span');
+    title.textContent = event.title;
+    const tactic = document.createElement('small');
+    tactic.textContent = tacticSummary(event);
+    button.append(year, title, tactic);
+    button.addEventListener('click', () => { closeDrawers(); flyToEvent(event); });
+    item.append(button);
+    ui.timelineList.append(item);
+  });
+  if (!visible.length) {
+    const item = document.createElement('li');
+    item.textContent = i18n.t('noResults');
+    ui.timelineList.append(item);
+  } else if (sorted.length > visible.length) {
+    const item = document.createElement('li');
+    item.className = 'timeline-limit-note';
+    item.textContent = i18n.t('timelineLimited', { shown: visible.length, total: sorted.length });
+    ui.timelineList.append(item);
+  }
+  syncMotionPreference();
+}
+
+function toggleTimeTravel() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    stopTimeTravel();
+    ui.motionNote.textContent = i18n.t('motionDisabled');
+    return;
+  }
+  if (app.timeTimer) { stopTimeTravel(); return; }
+  const time = app.taxonomy.time || DEFAULT_TIME;
+  if (app.filters.to >= time.maximum) {
+    app.filters.from = time.minimum;
+    app.filters.to = time.minimum;
+  }
+  ui.timePlay.setAttribute('aria-pressed', 'true');
+  ui.timePlay.lastElementChild.textContent = i18n.t('pauseTime');
+  const step = Math.max(1, Math.ceil((time.maximum - time.minimum) / 120));
+  app.timeTimer = window.setInterval(() => {
+    app.filters.to = Math.min(time.maximum, app.filters.to + step);
+    syncTimeInputs();
+    renderMapData();
+    if (app.filters.to >= time.maximum) stopTimeTravel();
+  }, 160);
+}
+
+function stopTimeTravel() {
+  if (app.timeTimer) window.clearInterval(app.timeTimer);
+  app.timeTimer = null;
+  if (ui.timePlay) {
+    ui.timePlay.setAttribute('aria-pressed', 'false');
+    ui.timePlay.lastElementChild.textContent = i18n.t('playTime');
+  }
+}
+
+function syncMotionPreference() {
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) stopTimeTravel();
+  ui.timePlay.disabled = reduced;
+  ui.motionNote.textContent = reduced ? i18n.t('motionDisabled') : i18n.t('motionOptional');
+}
+
+function renderNetwork() {
+  if (!ui.networkVisual) return;
+  const limits = app.taxonomy.network || { maximumNodes: 72, maximumEdges: 140 };
+  const model = buildNetworkModel(app.filteredEvents, app.relations, limits.maximumNodes, limits.maximumEdges);
+  ui.networkSummary.textContent = i18n.t('networkSummary', {
+    nodes: model.nodes.length,
+    edges: model.edges.length,
+    total: model.totalEvents
+  }) + (model.truncated ? ` ${i18n.t('networkLimited', { limit: limits.maximumNodes })}` : '');
+  renderNetworkLegend();
+  ui.networkVisual.replaceChildren();
+  ui.relationList.replaceChildren();
+  if (!model.nodes.length) {
+    ui.networkVisual.textContent = i18n.t('noResults');
+    return;
+  }
+  const ns = 'http://www.w3.org/2000/svg';
+  const width = 680;
+  const height = 440;
+  const svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+  svg.setAttribute('aria-hidden', 'true');
+  const positions = new Map();
+  model.nodes.forEach((event, index) => {
+    const ring = index < 24 ? 138 : 198;
+    const ringIndex = index < 24 ? index : index - 24;
+    const ringTotal = index < 24 ? Math.min(24, model.nodes.length) : Math.max(1, model.nodes.length - 24);
+    const angle = (Math.PI * 2 * ringIndex / ringTotal) - Math.PI / 2;
+    positions.set(event.id, { x: width / 2 + Math.cos(angle) * ring, y: height / 2 + Math.sin(angle) * ring });
+  });
+  model.edges.forEach(relation => {
+    const from = positions.get(relation.from);
+    const to = positions.get(relation.to);
+    if (!from || !to) return;
+    const line = document.createElementNS(ns, 'line');
+    line.setAttribute('x1', from.x); line.setAttribute('y1', from.y);
+    line.setAttribute('x2', to.x); line.setAttribute('y2', to.y);
+    line.setAttribute('class', `network-edge is-${relation.relationType}`);
+    svg.append(line);
+  });
+  model.nodes.forEach(event => {
+    const position = positions.get(event.id);
+    const group = document.createElementNS(ns, 'g');
+    group.setAttribute('class', 'network-node');
+    const circle = document.createElementNS(ns, 'circle');
+    circle.setAttribute('cx', position.x); circle.setAttribute('cy', position.y); circle.setAttribute('r', 10);
+    circle.setAttribute('fill', CATEGORY_COLORS[event.category] || '#c7d8cf');
+    const label = document.createElementNS(ns, 'text');
+    label.setAttribute('x', position.x); label.setAttribute('y', position.y + 3);
+    label.textContent = primaryTactic(event)?.symbol || '·';
+    group.append(circle, label);
+    svg.append(group);
+  });
+  ui.networkVisual.append(svg);
+  model.edges.forEach(relation => renderRelationListItem(relation));
+  if (!model.edges.length) {
+    const item = document.createElement('li');
+    item.textContent = i18n.t('noRelationsInFilter');
+    ui.relationList.append(item);
+  }
+}
+
+function renderNetworkLegend() {
+  ui.networkLegend.replaceChildren();
+  for (const type of ['same-route', 'similar-tactic', 'shared-movement']) {
+    const item = document.createElement('span');
+    const line = document.createElement('i');
+    line.className = `network-line-sample is-${type}`;
+    const label = document.createElement('span');
+    label.textContent = relationTypeLabel(type);
+    item.append(line, label);
+    ui.networkLegend.append(item);
+  }
+}
+
+function renderRelationListItem(relation) {
+  const first = resolveEventId(app.events, relation.from);
+  const second = resolveEventId(app.events, relation.to);
+  if (!first || !second) return;
+  const item = document.createElement('li');
+  const firstButton = document.createElement('button');
+  firstButton.type = 'button'; firstButton.textContent = first.title;
+  firstButton.addEventListener('click', () => { closeDrawers(); flyToEvent(first); });
+  const relationText = document.createElement('span');
+  relationText.textContent = `— ${relationTypeLabel(relation.relationType)} · ${relationEvidenceLabel(relation.evidenceMode)} —`;
+  const secondButton = document.createElement('button');
+  secondButton.type = 'button'; secondButton.textContent = second.title;
+  secondButton.addEventListener('click', () => { closeDrawers(); flyToEvent(second); });
+  item.append(firstButton, relationText, secondButton);
+  ui.relationList.append(item);
+}
+
+function relationTypeLabel(type) {
+  return i18n.t({ 'same-route': 'relationSameRoute', 'similar-tactic': 'relationSimilarTactic', 'shared-movement': 'relationSharedMovement', 'editorial-relation': 'relationEditorial' }[type] || 'relationEditorial');
+}
+
+function relationEvidenceLabel(mode) {
+  return i18n.t(mode === 'heuristic-similarity' ? 'heuristicSimilarity' : mode === 'sourced-relation' ? 'sourcedRelation' : 'curatedContext');
 }
 
 function updateMissionUi() {
@@ -1048,8 +1357,13 @@ function fitFilteredEvents() {
     flyToEvent(app.filteredEvents[0]);
     return;
   }
+  const mappable = app.filteredEvents.filter(event => event.coordinatePrecision !== 'hidden');
+  if (!mappable.length) {
+    showToast(i18n.t('protectedLocations'), i18n.t('hiddenMapNotice'));
+    return;
+  }
   const bounds = new window.maplibregl.LngLatBounds();
-  app.filteredEvents.forEach(event => bounds.extend([event.longitude, event.latitude]));
+  mappable.forEach(event => bounds.extend([event.longitude, event.latitude]));
   app.map.fitBounds(bounds, {
     padding: { top: 110, right: 80, bottom: 110, left: window.innerWidth > 820 ? 390 : 60 },
     maxZoom: 6,
@@ -1061,14 +1375,16 @@ function flyToEvent(event, openPopup = true) {
   if (!app.map) return;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const duration = reducedMotion ? 0 : 1200;
+  const hidden = event.coordinatePrecision === 'hidden';
+  const coordinates = safeDisplayCoordinates(event);
   app.map.flyTo({
-    center: [event.longitude, event.latitude],
-    zoom: Math.max(app.map.getZoom(), 5),
+    center: coordinates,
+    zoom: hidden ? 1.7 : Math.max(app.map.getZoom(), event.coordinatePrecision === 'region' ? 3 : 5),
     offset: [0, Math.min(160, window.innerHeight * 0.18)],
     essential: false,
     duration
   });
-  if (openPopup) window.setTimeout(() => openEventPopup(event), duration + 100);
+  if (openPopup) window.setTimeout(() => openEventPopup(event, coordinates), duration + 100);
 }
 
 async function expandCluster(event) {
@@ -1099,48 +1415,192 @@ function populateCategories() {
   ui.categoryFilter.value = app.filters.category;
 }
 
+function populateLayerFilters() {
+  ui.layerFilters.replaceChildren();
+  const allowed = new Set(app.taxonomy.layers.map(layer => layer.id));
+  app.filters.layers = app.filters.layers.filter(id => allowed.has(id));
+  app.taxonomy.layers.forEach(layer => {
+    const label = document.createElement('label');
+    label.className = 'layer-toggle';
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+    input.value = layer.id;
+    input.checked = app.filters.layers.includes(layer.id);
+    input.addEventListener('change', () => {
+      app.filters.layers = input.checked
+        ? [...new Set([...app.filters.layers, layer.id])]
+        : app.filters.layers.filter(id => id !== layer.id);
+      renderMapData();
+    });
+    const text = document.createElement('span');
+    text.textContent = i18n.t(layer.labelKey);
+    label.append(input, text);
+    ui.layerFilters.append(label);
+  });
+}
+
+function populateMapStyles() {
+  ui.mapStyleSelect.replaceChildren();
+  app.taxonomy.mapStyles.forEach(style => {
+    const option = document.createElement('option');
+    option.value = style.id;
+    option.textContent = i18n.t(style.labelKey);
+    ui.mapStyleSelect.append(option);
+  });
+  ui.mapStyleSelect.value = app.mapStyle;
+}
+
+function populateTacticLegend() {
+  ui.tacticLegend.replaceChildren();
+  app.taxonomy.tactics.forEach(tactic => {
+    const item = document.createElement('span');
+    const symbol = document.createElement('b');
+    symbol.textContent = tactic.symbol;
+    const label = document.createElement('span');
+    label.textContent = i18n.t(tactic.labelKey);
+    item.append(symbol, label);
+    ui.tacticLegend.append(item);
+  });
+}
+
+function loadMapStyle() {
+  const query = new URLSearchParams(window.location.search).get('style');
+  let stored = '';
+  try { stored = window.localStorage.getItem(STYLE_STORAGE_KEY) || ''; } catch { /* private mode */ }
+  return ['dark', 'mono', 'paper'].includes(query) ? query : ['dark', 'mono', 'paper'].includes(stored) ? stored : 'dark';
+}
+
+function setMapStyle(value) {
+  app.mapStyle = app.taxonomy.mapStyles.some(style => style.id === value) ? value : 'dark';
+  applyMapStyle();
+  try { window.localStorage.setItem(STYLE_STORAGE_KEY, app.mapStyle); } catch { /* private mode */ }
+  syncShareableViewUrl();
+}
+
+function applyMapStyle() {
+  document.documentElement.dataset.mapStyle = app.mapStyle;
+  document.documentElement.style.setProperty('--accent', app.mapStyle === 'mono' ? '#ffffff' : app.mapStyle === 'paper' ? '#6d2f1d' : runtimeConfig.accent);
+  if (ui.mapStyleSelect) ui.mapStyleSelect.value = app.mapStyle;
+}
+
+function primaryTactic(event) {
+  const id = event.tacticIds?.[0];
+  return app.taxonomy.tactics.find(tactic => tactic.id === id) || null;
+}
+
+function tacticSummary(event) {
+  if (!event.tacticIds?.length) return i18n.t('tacticUnknown');
+  return event.tacticIds.map(id => {
+    const tactic = app.taxonomy.tactics.find(item => item.id === id);
+    return tactic ? `${tactic.symbol} ${i18n.t(tactic.labelKey)}` : '';
+  }).filter(Boolean).join(' · ');
+}
+
+function renderTacticBadges(container, event, compact = false) {
+  const ids = event.tacticIds?.length ? event.tacticIds : [null];
+  ids.forEach(id => {
+    const tactic = app.taxonomy.tactics.find(item => item.id === id);
+    const badge = document.createElement('span');
+    badge.className = 'tactic-badge';
+    const label = tactic ? i18n.t(tactic.labelKey) : i18n.t('tacticUnknown');
+    badge.textContent = tactic ? `${tactic.symbol} ${compact ? label : label}` : `· ${label}`;
+    badge.setAttribute('aria-label', label);
+    container.append(badge);
+  });
+}
+
+function precisionExplanation(event) {
+  const precision = event.coordinatePrecision || 'exact';
+  return i18n.t({ exact: 'precisionExactReason', approximate: 'precisionApproximateReason', region: 'precisionRegionReason', hidden: 'precisionHiddenReason' }[precision]);
+}
+
+function safeDisplayCoordinates(event) {
+  if (event.coordinatePrecision === 'hidden') return [0, 20];
+  return [event.longitude, event.latitude];
+}
+
+function formatFilterYear(value) {
+  const year = Number(value);
+  if (year < 0) return i18n.t('yearBce', { year: Math.abs(year) });
+  return String(year);
+}
+
 function updateEraFilter() {
-  let from = Number(ui.eraFrom.value);
-  let to = Number(ui.eraTo.value);
-  if (!Number.isFinite(from)) from = -1200;
-  if (!Number.isFinite(to)) to = 2030;
-  if (from > to) [from, to] = [to, from];
-  ui.eraFrom.value = from;
-  ui.eraTo.value = to;
+  const time = app.taxonomy.time || DEFAULT_TIME;
+  const range = normalizeTimeRange(ui.eraFrom.value, ui.eraTo.value, time.minimum, time.maximum);
+  app.filters.from = range.from;
+  app.filters.to = range.to;
+  syncTimeInputs();
+  renderMapData();
+}
+
+function updateEraFilterFromRange() {
+  const sourceIsFrom = document.activeElement === ui.eraFromRange;
+  let from = Number(ui.eraFromRange.value);
+  let to = Number(ui.eraToRange.value);
+  if (from > to) {
+    if (sourceIsFrom) to = from;
+    else from = to;
+  }
   app.filters.from = from;
   app.filters.to = to;
+  syncTimeInputs();
+  renderMapData();
+}
+
+function syncTimeInputs() {
+  ui.eraFrom.value = app.filters.from;
+  ui.eraTo.value = app.filters.to;
+  ui.eraFromRange.value = app.filters.from;
+  ui.eraToRange.value = app.filters.to;
+}
+
+function resetTimeRange() {
+  const time = app.taxonomy.time || DEFAULT_TIME;
+  app.filters.from = time.defaultFrom;
+  app.filters.to = time.defaultTo;
+  stopTimeTravel();
+  syncTimeInputs();
   renderMapData();
 }
 
 function resetFilters() {
-  app.filters = { query: '', category: 'all', from: -1200, to: 2030, undiscoveredOnly: false };
+  const time = app.taxonomy.time || DEFAULT_TIME;
+  app.filters = { query: '', category: 'all', from: time.defaultFrom, to: time.defaultTo, includeUndated: true, layers: [], undiscoveredOnly: false };
   ui.searchInput.value = '';
   ui.categoryFilter.value = 'all';
-  ui.eraFrom.value = -1200;
-  ui.eraTo.value = 2030;
+  syncTimeInputs();
+  ui.includeUndated.checked = true;
   ui.undiscoveredOnly.checked = false;
+  populateLayerFilters();
+  stopTimeTravel();
   renderMapData();
 }
 
 function applyFiltersToUi() {
   ui.searchInput.value = app.filters.query;
   ui.categoryFilter.value = app.filters.category;
-  ui.eraFrom.value = app.filters.from;
-  ui.eraTo.value = app.filters.to;
+  syncTimeInputs();
+  ui.includeUndated.checked = app.filters.includeUndated;
   ui.undiscoveredOnly.checked = app.filters.undiscoveredOnly;
 }
 
 function loadViewFilters() {
-  const defaults = { query: '', category: 'all', from: -1200, to: 2030, undiscoveredOnly: false };
+  const defaults = { query: '', category: 'all', from: DEFAULT_TIME.defaultFrom, to: DEFAULT_TIME.defaultTo, includeUndated: true, layers: [], undiscoveredOnly: false };
   try {
     const stored = JSON.parse(window.sessionStorage.getItem(VIEW_STORAGE_KEY) || '{}');
-    const from = Number(stored.from);
-    const to = Number(stored.to);
+    const params = new URLSearchParams(window.location.search);
+    const from = Number(params.get('from') ?? stored.from);
+    const to = Number(params.get('to') ?? stored.to);
+    const range = normalizeTimeRange(from, to, DEFAULT_TIME.minimum, DEFAULT_TIME.maximum);
+    const layers = params.has('layers') ? params.get('layers').split(',') : stored.layers;
     return {
       query: typeof stored.query === 'string' ? stored.query.slice(0, 160) : defaults.query,
       category: typeof stored.category === 'string' ? stored.category.slice(0, 100) : defaults.category,
-      from: Number.isFinite(from) ? Math.max(-1200, Math.min(2030, from)) : defaults.from,
-      to: Number.isFinite(to) ? Math.max(-1200, Math.min(2030, to)) : defaults.to,
+      from: range.from,
+      to: range.to,
+      includeUndated: params.get('undated') === '0' ? false : stored.includeUndated !== false,
+      layers: Array.isArray(layers) ? layers.filter(id => typeof id === 'string').slice(0, 10) : defaults.layers,
       undiscoveredOnly: Boolean(stored.undiscoveredOnly)
     };
   } catch {
@@ -1150,6 +1610,33 @@ function loadViewFilters() {
 
 function saveViewFilters() {
   try { window.sessionStorage.setItem(VIEW_STORAGE_KEY, JSON.stringify(app.filters)); } catch { /* private mode */ }
+  syncShareableViewUrl();
+}
+
+function sanitizeViewFilters(filters) {
+  const time = app.taxonomy.time || DEFAULT_TIME;
+  const range = normalizeTimeRange(filters.from, filters.to, time.minimum, time.maximum);
+  const layerIds = new Set(app.taxonomy.layers.map(layer => layer.id));
+  return {
+    query: String(filters.query || '').slice(0, 160),
+    category: String(filters.category || 'all').slice(0, 100),
+    from: range.from,
+    to: range.to,
+    includeUndated: filters.includeUndated !== false,
+    layers: [...new Set((filters.layers || []).filter(id => layerIds.has(id)))],
+    undiscoveredOnly: Boolean(filters.undiscoveredOnly)
+  };
+}
+
+function syncShareableViewUrl() {
+  const url = new URL(window.location.href);
+  const time = app.taxonomy.time || DEFAULT_TIME;
+  if (app.filters.from === time.defaultFrom) url.searchParams.delete('from'); else url.searchParams.set('from', app.filters.from);
+  if (app.filters.to === time.defaultTo) url.searchParams.delete('to'); else url.searchParams.set('to', app.filters.to);
+  if (app.filters.includeUndated) url.searchParams.delete('undated'); else url.searchParams.set('undated', '0');
+  if (app.filters.layers.length) url.searchParams.set('layers', app.filters.layers.join(',')); else url.searchParams.delete('layers');
+  if (app.mapStyle === 'dark') url.searchParams.delete('style'); else url.searchParams.set('style', app.mapStyle);
+  window.history.replaceState(null, '', url);
 }
 
 function eventShareUrl(eventId) {
@@ -1199,30 +1686,38 @@ function openPanel(panel) {
   if (panel === 'map') { closeDrawers(); return true; }
   const drawers = {
     archive: ui.archiveDrawer,
+    timeline: ui.timelineDrawer,
     routes: ui.routesDrawer,
     list: ui.eventListDrawer,
+    network: ui.networkDrawer,
     achievements: ui.achievementsDrawer,
     connections: ui.connectionsDrawer
   };
   const drawer = drawers[panel];
   if (!drawer) return false;
   closeDrawers(false);
+  app.lastFocus = ui.navButtons.find(button => button.dataset.panel === panel) || document.activeElement;
   drawer.hidden = false;
   drawer.scrollTo({ top: 0 });
   ui.navButtons.forEach(button => button.classList.toggle('is-active', button.dataset.panel === panel));
   if (panel === 'connections') drawConnection(false);
+  if (panel === 'timeline') renderTimeline();
+  if (panel === 'network') renderNetwork();
   drawer.focus();
   return true;
 }
 
 function closeDrawers(restoreFocus = true) {
-  const hadOpenDrawer = [ui.archiveDrawer, ui.routesDrawer, ui.eventListDrawer, ui.achievementsDrawer, ui.connectionsDrawer]
+  const hadOpenDrawer = [ui.archiveDrawer, ui.timelineDrawer, ui.routesDrawer, ui.eventListDrawer, ui.networkDrawer, ui.achievementsDrawer, ui.connectionsDrawer]
     .some(drawer => !drawer.hidden);
   ui.archiveDrawer.hidden = true;
+  ui.timelineDrawer.hidden = true;
   ui.routesDrawer.hidden = true;
   ui.eventListDrawer.hidden = true;
+  ui.networkDrawer.hidden = true;
   ui.achievementsDrawer.hidden = true;
   ui.connectionsDrawer.hidden = true;
+  stopTimeTravel();
   ui.navButtons.forEach(button => button.classList.toggle('is-active', button.dataset.panel === 'map'));
   if (restoreFocus && hadOpenDrawer && app.lastFocus?.isConnected) app.lastFocus.focus();
 }
@@ -1336,22 +1831,25 @@ function setupHostApi() {
 
 function applyExternalFilters(filters = {}) {
   const allowedCategories = new Set(['all', ...app.events.flatMap(event => [event.category, ...event.tags])]);
-  const rawFrom = Number(filters.from ?? app.filters.from);
-  const rawTo = Number(filters.to ?? app.filters.to);
-  const from = Number.isFinite(rawFrom) ? Math.max(-1200, Math.min(2030, rawFrom)) : app.filters.from;
-  const to = Number.isFinite(rawTo) ? Math.max(-1200, Math.min(2030, rawTo)) : app.filters.to;
+  const time = app.taxonomy.time || DEFAULT_TIME;
+  const range = normalizeTimeRange(filters.from ?? app.filters.from, filters.to ?? app.filters.to, time.minimum, time.maximum);
+  const allowedLayers = new Set(app.taxonomy.layers.map(layer => layer.id));
+  const layers = Array.isArray(filters.layers) ? filters.layers.filter(id => allowedLayers.has(id)) : app.filters.layers;
   app.filters = {
     query: String(filters.query ?? app.filters.query).slice(0, 160),
     category: allowedCategories.has(filters.category) ? filters.category : app.filters.category,
-    from: Math.min(from, to),
-    to: Math.max(from, to),
+    from: range.from,
+    to: range.to,
+    includeUndated: Boolean(filters.includeUndated ?? app.filters.includeUndated),
+    layers: [...new Set(layers)],
     undiscoveredOnly: Boolean(filters.undiscoveredOnly ?? app.filters.undiscoveredOnly)
   };
   ui.searchInput.value = app.filters.query;
   ui.categoryFilter.value = app.filters.category;
-  ui.eraFrom.value = app.filters.from;
-  ui.eraTo.value = app.filters.to;
+  syncTimeInputs();
+  ui.includeUndated.checked = app.filters.includeUndated;
   ui.undiscoveredOnly.checked = app.filters.undiscoveredOnly;
+  populateLayerFilters();
   renderMapData();
   emitAtlasEvent('filters-changed', { filters: app.filters, resultCount: app.filteredEvents.length });
   return true;

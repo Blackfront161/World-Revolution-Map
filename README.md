@@ -4,10 +4,16 @@ Eine interaktive, spielerische Weltkarte historischer Bewegungen, Aufstände, St
 
 ## Was die Anwendung bietet
 
-- interaktive MapLibre-Weltkarte mit Clustern und farbcodierten Kategorien
-- Volltextsuche sowie Kategorie- und Zeitraumfilter
+- interaktive MapLibre-Weltkarte mit Clustern, beschrifteten Taktiksymbolen und erklärter Ortsgenauigkeit
+- zugänglicher Zeitraumregler mit Zahleneingaben, optionaler Zeitreise, Deep-Link und ausdrücklicher Behandlung undatierter Einträge
+- zehn mehrfach auswählbare Themenebenen mit aktiven Filterchips und gemeinsamem Filter für Karte, Liste, Routen, Zeitleiste und Ergebniszahl
+- zehn lokale Taktiksymbole für Streik, Besetzung, Blockade, Boykott, Aufstand, Landverteidigung, gegenseitige Hilfe, Kunst/Medien, Selbstverwaltung und Gefangenenstreik
+- optionale, begrenzte 2D-Netzwerkansicht mit zugänglicher Beziehungsliste und klarer Trennung von redaktionellen Routenbezügen und bloßen Ähnlichkeiten
+- drei lokal umgeschaltete Kartenstile – dunkles Archiv, kontrastreich monochrom und warmes Papierarchiv – auf derselben attribuierten Basiskarte
+- Volltextsuche sowie Kategorie-, Themen- und Zeitraumfilter
 - 655 kuratierte, aktive Ereignisse aus allen Weltregionen
 - vier geführte, quellengebundene Archiv-Routen mit neutralem Lesefortschritt und zugänglicher Stoppliste
+- 24 validierte Beziehungen zwischen stabilen Ereignis-IDs; heuristische Ähnlichkeiten behaupten ausdrücklich keinen historischen Einfluss
 - neun lokal gespeicherte Oberflächensprachen wie bei World Revolution News: Deutsch, Englisch, Spanisch, Französisch, Italienisch, Portugiesisch, Russisch, Griechisch und Türkisch
 - Mehrfach-Tags für überlappende Spektren wie Anarchismus, indigener Widerstand, Antisexismus, Schwarze Befreiung, Antifaschismus, Antikolonialismus und Tierbefreiung
 - regional aufgeteilte, über `data/event-catalog.json` erweiterbare Datendateien
@@ -22,6 +28,7 @@ Eine interaktive, spielerische Weltkarte historischer Bewegungen, Aufstände, St
 - 67 vertiefte redaktionelle Pilotereignisse plus 20 weitere Vertiefungen als nachvollziehbare Redaktionsebene mit Nicht-Wikipedia-Quellen aus Community-, Forschungs-, Museums-, UN-/UNESCO- oder öffentlichen Archiven
 - zugängliche, tastaturbedienbare Ereignistabelle als Alternative zur Karte
 - sichtbare aktive Filter, die einzeln entfernt werden können
+- Vorher-/Zurück-zur-Welt-/Nächster-Navigation, lokale Lesezeichen und reproduzierbare Ansichtsparameter in der URL
 - lokales Fortschrittssystem mit XP, Levels und Entdeckungsarchiv
 - zufällige und tägliche Missionen
 - Wissensquiz, Solidaritäts-Combos und zehn freischaltbare Erfolge
@@ -37,6 +44,8 @@ Eine interaktive, spielerische Weltkarte historischer Bewegungen, Aufstände, St
 Der Spielfortschritt wird ausschließlich im lokalen Browser gespeichert. Es gibt weder Tracking noch ein Benutzerkonto. Die Integrations-API kann diesen validierten Spielstand exportieren, damit eine Host-App ihn freiwillig synchronisieren kann.
 
 Die Sprache kann im Kopfbereich oder mit `?lang=de|en|es|fr|it|pt|ru|el|tr` gewählt werden. Oberfläche, Filterbegriffe, Zeitangaben, Missionen, Quiz, Funkenlabor sowie die Beschriftungen und standardisierten Kurzwerte der redaktionellen Quellenfelder werden vollständig lokal übersetzt. Historische Eigennamen bleiben unverändert; die kuratierten Langtexte und ereignisspezifischen Redaktionsfelder sind vorerst als gekennzeichnete deutsche Originalfassungen enthalten. Eine fachlich geprüfte Übersetzung dieser historischen Inhalte in die acht weiteren Sprachen bleibt redaktionell offen. Es wird kein Text an externe Übersetzungsdienste übertragen.
+
+Zeit, Themenebenen und Kartenstil können zusätzlich über `from`, `to`, `undated`, `layers` und `style` geteilt werden. Die URL enthält keine Ereigniskoordinaten. Eine automatische Zeitreise ist optional und wird bei aktivierter Betriebssystem-Einstellung für reduzierte Bewegung abgeschaltet.
 
 ## In eine andere App einbetten
 
@@ -63,6 +72,8 @@ Quellentyp, Quellenqualität und redaktioneller Prüfstand sind getrennte Felder
 Die Grundsätze sind direkt in der Anwendung über „Über diese Karte und Methodik“ erreichbar. Korrekturen und bessere Quellen können über GitHub Issues vorgeschlagen werden.
 
 Der stabile Datenvertrag ist in [`docs/data-contract.md`](docs/data-contract.md) und maschinenlesbar in [`data/archive-contract.json`](data/archive-contract.json) beschrieben. Die 53 zuvor als sensibel gekennzeichneten Ereignisse besitzen eine geprüfte Ortsgenauigkeitsklasse; aktuelle oder fortwirkende Schutzkontexte werden nur grob verortet. Rechte- und Attributionsstände für Code, Daten, Bilder und Kartendaten stehen getrennt in [`docs/licensing-and-attribution.md`](docs/licensing-and-attribution.md). Dieses Dokument erteilt ausdrücklich keine pauschale Gesamtprojektlizenz.
+
+Die Kartentaxonomie liegt in [`data/map-taxonomy.json`](data/map-taxonomy.json), die eigenständigen Beziehungen in [`data/relations.json`](data/relations.json). Verborgene Schutzorte werden nicht als Marker und nicht als numerische Koordinaten an DOM, öffentliche App-Snapshots oder Deep-Links ausgegeben. Die visuelle Netzwerkdarstellung ist auf 72 Knoten und 140 Kanten begrenzt; die relationale Liste bleibt die barrierearme Alternative. Ein 3D-Globus ist bewusst zurückgestellt, weil er gegenüber dieser Stufe zusätzliche Renderinglast und eine parallele zugängliche Bedienoberfläche erfordern würde, ohne den Quellenwert zu erhöhen.
 
 Der Publishable Key im Browser ist bestimmungsgemäß öffentlich und kein Geheimnis. Die Sicherheit der Datenbank hängt davon ab, dass das dokumentierte RLS-/Grant-Schema tatsächlich in der produktiven Supabase-Instanz angewendet wird. Spiel-XP ist lokale UI-Daten und darf nie als serverseitige Berechtigung oder geldwerter Nachweis gelten.
 
@@ -92,7 +103,7 @@ Beim Start liest die Anwendung `data/event-catalog.json` und lädt daraus die Ke
 
 Ein Eintrag besitzt eine primäre Kategorie und beliebig viele `tags`. Der Filter berücksichtigt beides. Negative Jahreswerte stehen für Jahre vor unserer Zeitrechnung; für ihre sichtbare Datierung wird zusätzlich `dateLabel` gepflegt. Paläontologische Fundorte gehören nicht in diesen Atlas: Der zeitliche Anfang folgt der frühesten belastbaren Überlieferung kollektiven sozialen Handelns. Moderne Begriffe werden in antiken und mittelalterlichen Einträgen nicht als Selbstbezeichnungen ausgegeben.
 
-Das Datenmodell akzeptiert zusätzlich rückwärtskompatible optionale Felder: `demands`, `participants`, `powerStructures`, `tactics`, `immediateConsequences`, `longTermImpact`, `repression`, `humanCosts`, `aftermath`, `openQuestions`, `voices`, `sourceType`, `sourceQuality`, `uncertainty`, `sensitivity`, `reviewStatus`, `schemaVersion`, `aliases`, `coordinatePrecision`, `provenance` und `license`. Neue Einträge sollen diese Felder nur mit belegbaren Aussagen füllen; leere Felder dürfen leer bleiben.
+Das Datenmodell akzeptiert zusätzlich rückwärtskompatible optionale Felder: `demands`, `participants`, `powerStructures`, `tactics`, `immediateConsequences`, `longTermImpact`, `repression`, `humanCosts`, `aftermath`, `openQuestions`, `voices`, `sourceType`, `sourceQuality`, `uncertainty`, `sensitivity`, `reviewStatus`, `schemaVersion`, `aliases`, `coordinatePrecision`, `provenance` und `license`. Neue Einträge sollen diese Felder nur mit belegbaren Aussagen füllen; leere Felder dürfen leer bleiben. Kontrollierte Themen-, Taktik-, Stil- und Zeitwerte stehen in `data/map-taxonomy.json`; Beziehungen mit stabiler ID, `relationType` und `evidenceMode` stehen getrennt in `data/relations.json`.
 
 Geprüfte Ereignisübersetzungen werden optional und feldweise unter `translations` gespeichert. Jede Sprachfassung muss pro Feld die Form `{ "text": "…", "status": "reviewed" }` verwenden. Nur so markierte Felder überschreiben das deutsche Original; Entwürfe oder fehlende Felder werden nicht als Übersetzung ausgegeben. Die Oberfläche kennzeichnet deshalb auch teilweise übersetzte Einträge ausdrücklich. Für die 67 Pilotereignisse liegen derzeit noch keine fachlich geprüften historischen Langtextübersetzungen vor.
 

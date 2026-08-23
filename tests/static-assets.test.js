@@ -22,6 +22,11 @@ test('HTML verweist auf vorhandene lokale Kernressourcen', async () => {
   assert.match(html, /id="methodology-modal"/);
   assert.match(html, /id="event-list-drawer"/);
   assert.match(html, /id="routes-drawer"/);
+  assert.match(html, /id="timeline-drawer"/);
+  assert.match(html, /id="network-drawer"/);
+  assert.match(html, /id="layer-filters"/);
+  assert.match(html, /id="tactic-legend"/);
+  assert.match(html, /id="map-style-select"/);
   assert.match(html, /id="active-filters"/);
 });
 
@@ -59,6 +64,8 @@ test('Datenvertrag, Koordinatenschutz, Vertiefungen und Routen bleiben konsisten
   const metadata = JSON.parse(await readFile(new URL('data/event-metadata.json', root), 'utf8'));
   const overrides = JSON.parse(await readFile(new URL('data/event-editorial-overrides.json', root), 'utf8'));
   const routes = JSON.parse(await readFile(new URL('data/routes.json', root), 'utf8'));
+  const taxonomy = JSON.parse(await readFile(new URL('data/map-taxonomy.json', root), 'utf8'));
+  const relations = JSON.parse(await readFile(new URL('data/relations.json', root), 'utf8'));
   const sensitiveIds = rows.filter(row => row.sensitivity && !['Niedrig', 'Nein', 'Keine'].includes(row.sensitivity)).map(row => row.id);
   const precisionById = new Map(metadata.events.map(row => [row.id, row.coordinatePrecision]));
 
@@ -67,6 +74,11 @@ test('Datenvertrag, Koordinatenschutz, Vertiefungen und Routen bleiben konsisten
   assert.equal(Object.keys(overrides.events).length, 20);
   assert.ok(Object.entries(overrides.events).every(([id, row]) => ids.has(id) && !/wikipedia\.org/i.test(row.sourceUrl) && row.reviewStatus === 'Redaktionell vertieft'));
   assert.equal(routes.routes.length, 4);
+  assert.equal(taxonomy.layers.length, 10);
+  assert.equal(taxonomy.tactics.length, 10);
+  assert.equal(taxonomy.mapStyles.length, 3);
+  assert.equal(taxonomy.network.maximumNodes, 72);
+  assert.equal(relations.relations.length, 24);
   assert.ok(routes.routes.every(route => route.eventIds.every(id => ids.has(id)) && route.sensitivityMode === 'neutral-progress'));
   for (const id of ['standing-rock', 'muskrat-falls-land-protectors', '1492-land-back-lane', 'camp-morgan-landfill-search', 'aboriginal-tent-embassy']) {
     assert.equal(precisionById.get(id), 'hidden');
@@ -172,12 +184,20 @@ test('Datenbankinhalte werden nicht über innerHTML in die Seite geschrieben', a
   assert.match(script, /toggleAttribute\('inert'/);
   assert.match(script, /resolveEventId/);
   assert.match(script, /renderRoutes/);
+  assert.match(script, /renderTimeline/);
+  assert.match(script, /renderNetwork/);
+  assert.match(script, /event\.coordinatePrecision !== 'hidden'/);
+  assert.match(script, /safeDisplayCoordinates/);
+  assert.match(script, /syncShareableViewUrl/);
 });
 
 test('Design berücksichtigt reduzierte Bewegung und mobile Ansichten', async () => {
   const css = await readFile(new URL('styles.css', root), 'utf8');
   assert.match(css, /prefers-reduced-motion/);
   assert.match(css, /@media \(max-width: 820px\)/);
+  assert.match(css, /data-map-style="mono"/);
+  assert.match(css, /data-map-style="paper"/);
+  assert.match(css, /event-approximate-rings|precision-sample\.is-approximate/);
 });
 
 test('Quellenprüfung trennt definitive Fehler von Netzwerkunsicherheit', async () => {
