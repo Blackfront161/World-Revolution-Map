@@ -21,9 +21,9 @@
     { "id": "route-care-03", "from": "section-504-sit-in", "to": "ni-una-menos", "relationType": "same-route", "contextId": "care-bodies-solidarity", "evidenceMode": "curated-context" },
     { "id": "route-care-04", "from": "ni-una-menos", "to": "black-trans-liberation-march", "relationType": "same-route", "contextId": "care-bodies-solidarity", "evidenceMode": "curated-context" },
     { "id": "similar-land-01", "from": "oka-crisis", "to": "standing-rock", "relationType": "similar-tactic", "contextId": "land-defence", "evidenceMode": "heuristic-similarity" },
-    { "id": "similar-strike-01", "from": "iceland-womens-strike-1975", "to": "women-liberia-peace", "relationType": "similar-tactic", "contextId": "strike", "evidenceMode": "heuristic-similarity" },
+    { "id": "similar-strike-01", "from": "iceland-womens-strike-1975", "to": "women-liberia-peace", "relationType": "similar-tactic", "contextId": "women-mass-action", "evidenceMode": "heuristic-similarity" },
     { "id": "similar-boycott-01", "from": "bristol-bus-boycott", "to": "montgomery-bus-boycott", "relationType": "similar-tactic", "contextId": "boycott", "evidenceMode": "heuristic-similarity" },
     { "id": "movement-black-01", "from": "greensboro-sit-ins", "to": "black-panther-party", "relationType": "shared-movement", "contextId": "black-liberation", "evidenceMode": "heuristic-similarity" },
-    { "id": "movement-self-rule-01", "from": "ezln", "to": "lip-selbstverwaltung", "relationType": "shared-movement", "contextId": "self-governance", "evidenceMode": "heuristic-similarity" }
+    { "id": "movement-self-rule-01", "from": "ezln", "to": "lip-selbstverwaltung", "relationType": "similar-tactic", "contextId": "self-governance", "evidenceMode": "heuristic-similarity" }
   ]
 }
