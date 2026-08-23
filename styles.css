@@ -270,7 +270,8 @@ kbd {
   font-size: 12px;
   font-weight: 700;
 }
-.nav-button span { color: var(--accent); font-size: 16px; }
+.nav-button > span:first-child { color: var(--accent); font-size: 16px; }
+.nav-button > span:not(:first-child) { color: inherit; font-size: 12px; }
 .nav-button b { min-width: 17px; padding: 2px 5px; border-radius: 99px; background: rgba(255,255,255,.07); font-size: 9px; }
 .nav-button.is-active, .nav-button:hover { background: var(--accent-soft); color: var(--ink); }
 
@@ -313,6 +314,19 @@ kbd {
 .archive-year { display: grid; place-items: center; width: 54px; height: 44px; border-radius: 8px; background: var(--accent-soft); color: var(--accent); font-weight: 900; font-size: 12px; }
 .archive-entry strong { display: block; font-family: var(--font-display); font-size: 15px; }
 .archive-entry small { color: var(--muted); }
+.routes-list { display: grid; gap: 14px; }
+.route-card { padding: 14px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.025); }
+.route-card h3 { margin: 0 0 6px; font-size: 18px; }
+.route-card > p { margin: 0 0 10px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.route-progress-label { color: var(--ink) !important; font-weight: 800; }
+.route-card progress { width: 100%; height: 8px; accent-color: var(--accent); }
+.route-stops { display: grid; gap: 8px; margin: 14px 0; padding-left: 22px; }
+.route-stops li { padding-left: 3px; }
+.route-stop { display: block; width: 100%; padding: 8px; border: 1px solid var(--line); border-radius: 9px; background: transparent; color: var(--ink); text-align: left; cursor: pointer; }
+.route-stop:hover, .route-stop:focus-visible { border-color: var(--accent); background: var(--accent-soft); }
+.route-stops a, .route-source-note { display: inline-block; margin: 5px 7px 0 0; color: var(--accent); font-size: 10px; }
+.route-sensitive { display: inline-block; margin-top: 5px; color: var(--warm); font-size: 10px; }
+.route-source-note { color: var(--muted); line-height: 1.45; }
 
 .achievement-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .achievement {
@@ -480,8 +494,9 @@ kbd {
   .mission-card { top: 86px; left: 10px; right: 10px; width: auto; padding: 12px 14px; }
   .mission-card h2 { font-size: 16px; }
   .mission-card p { display: none; }
-  .bottom-nav { left: 10px; right: 10px; bottom: 10px; transform: none; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1px; }
+  .bottom-nav { left: 10px; right: 10px; bottom: 10px; transform: none; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 1px; }
   .nav-button { min-width: 0; flex-direction: column; gap: 1px; padding: 5px 2px; font-size: 9px; }
+  .nav-button > span:not(:first-child) { font-size: 8px; }
   .nav-button b { display: none; }
   .drawer { top: 86px; left: 10px; right: 10px; bottom: 72px; width: auto; }
   .event-list-drawer { width: auto; }

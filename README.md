@@ -7,6 +7,7 @@ Eine interaktive, spielerische Weltkarte historischer Bewegungen, Aufstände, St
 - interaktive MapLibre-Weltkarte mit Clustern und farbcodierten Kategorien
 - Volltextsuche sowie Kategorie- und Zeitraumfilter
 - 655 kuratierte, aktive Ereignisse aus allen Weltregionen
+- vier geführte, quellengebundene Archiv-Routen mit neutralem Lesefortschritt und zugänglicher Stoppliste
 - neun lokal gespeicherte Oberflächensprachen wie bei World Revolution News: Deutsch, Englisch, Spanisch, Französisch, Italienisch, Portugiesisch, Russisch, Griechisch und Türkisch
 - Mehrfach-Tags für überlappende Spektren wie Anarchismus, indigener Widerstand, Antisexismus, Schwarze Befreiung, Antifaschismus, Antikolonialismus und Tierbefreiung
 - regional aufgeteilte, über `data/event-catalog.json` erweiterbare Datendateien
@@ -18,7 +19,7 @@ Eine interaktive, spielerische Weltkarte historischer Bewegungen, Aufstände, St
 - Karten-Popups mit Einordnung, Bild und weiterführender Quelle
 - ausführliche, optionale Ergebnisfelder ohne Einteilung in „gewonnen“ oder „verloren“
 - sichtbare und in allen neun UI-Sprachen beschriftete Quellenart, Quellenqualität, Prüfstatus, Unsicherheit und Hinweise zu sensiblen Inhalten
-- 67 vertiefte redaktionelle Pilotereignisse; die jüngste Runde umfasst 20 Einträge mit Nicht-Wikipedia-Quellen aus Community-, Forschungs-, Museums-, Menschenrechts- oder öffentlichen Archiven
+- 67 vertiefte redaktionelle Pilotereignisse plus 20 weitere Vertiefungen als nachvollziehbare Redaktionsebene mit Nicht-Wikipedia-Quellen aus Community-, Forschungs-, Museums-, UN-/UNESCO- oder öffentlichen Archiven
 - zugängliche, tastaturbedienbare Ereignistabelle als Alternative zur Karte
 - sichtbare aktive Filter, die einzeln entfernt werden können
 - lokales Fortschrittssystem mit XP, Levels und Entdeckungsarchiv
@@ -61,6 +62,8 @@ Quellentyp, Quellenqualität und redaktioneller Prüfstand sind getrennte Felder
 
 Die Grundsätze sind direkt in der Anwendung über „Über diese Karte und Methodik“ erreichbar. Korrekturen und bessere Quellen können über GitHub Issues vorgeschlagen werden.
 
+Der stabile Datenvertrag ist in [`docs/data-contract.md`](docs/data-contract.md) und maschinenlesbar in [`data/archive-contract.json`](data/archive-contract.json) beschrieben. Die 53 zuvor als sensibel gekennzeichneten Ereignisse besitzen eine geprüfte Ortsgenauigkeitsklasse; aktuelle oder fortwirkende Schutzkontexte werden nur grob verortet. Rechte- und Attributionsstände für Code, Daten, Bilder und Kartendaten stehen getrennt in [`docs/licensing-and-attribution.md`](docs/licensing-and-attribution.md). Dieses Dokument erteilt ausdrücklich keine pauschale Gesamtprojektlizenz.
+
 Der Publishable Key im Browser ist bestimmungsgemäß öffentlich und kein Geheimnis. Die Sicherheit der Datenbank hängt davon ab, dass das dokumentierte RLS-/Grant-Schema tatsächlich in der produktiven Supabase-Instanz angewendet wird. Spiel-XP ist lokale UI-Daten und darf nie als serverseitige Berechtigung oder geldwerter Nachweis gelten.
 
 ## Lokal starten
@@ -89,9 +92,11 @@ Beim Start liest die Anwendung `data/event-catalog.json` und lädt daraus die Ke
 
 Ein Eintrag besitzt eine primäre Kategorie und beliebig viele `tags`. Der Filter berücksichtigt beides. Negative Jahreswerte stehen für Jahre vor unserer Zeitrechnung; für ihre sichtbare Datierung wird zusätzlich `dateLabel` gepflegt. Paläontologische Fundorte gehören nicht in diesen Atlas: Der zeitliche Anfang folgt der frühesten belastbaren Überlieferung kollektiven sozialen Handelns. Moderne Begriffe werden in antiken und mittelalterlichen Einträgen nicht als Selbstbezeichnungen ausgegeben.
 
-Das Datenmodell akzeptiert zusätzlich rückwärtskompatible optionale Felder: `demands`, `participants`, `powerStructures`, `tactics`, `immediateConsequences`, `longTermImpact`, `repression`, `humanCosts`, `aftermath`, `openQuestions`, `voices`, `sourceType`, `sourceQuality`, `uncertainty`, `sensitivity` und `reviewStatus`. Neue Einträge sollen diese Felder nur mit belegbaren Aussagen füllen; leere Felder dürfen leer bleiben.
+Das Datenmodell akzeptiert zusätzlich rückwärtskompatible optionale Felder: `demands`, `participants`, `powerStructures`, `tactics`, `immediateConsequences`, `longTermImpact`, `repression`, `humanCosts`, `aftermath`, `openQuestions`, `voices`, `sourceType`, `sourceQuality`, `uncertainty`, `sensitivity`, `reviewStatus`, `schemaVersion`, `aliases`, `coordinatePrecision`, `provenance` und `license`. Neue Einträge sollen diese Felder nur mit belegbaren Aussagen füllen; leere Felder dürfen leer bleiben.
 
 Geprüfte Ereignisübersetzungen werden optional und feldweise unter `translations` gespeichert. Jede Sprachfassung muss pro Feld die Form `{ "text": "…", "status": "reviewed" }` verwenden. Nur so markierte Felder überschreiben das deutsche Original; Entwürfe oder fehlende Felder werden nicht als Übersetzung ausgegeben. Die Oberfläche kennzeichnet deshalb auch teilweise übersetzte Einträge ausdrücklich. Für die 67 Pilotereignisse liegen derzeit noch keine fachlich geprüften historischen Langtextübersetzungen vor.
+
+Für die 67 Pilotereignisse und die 20 neuen Vertiefungen liegen derzeit noch keine vollständigen fachlich geprüften historischen Langtextübersetzungen vor. Die neue Routen- und Koordinatenoberfläche ist in allen neun Sprachen übersetzt; Routentitel und -einordnungen bleiben sichtbar als deutsches Original gekennzeichnet.
 
 Das erweiterte Referenzschema einschließlich einer Nur-Lesen-RLS-Policy befindet sich unter `docs/supabase-schema.sql`. Der im Browser verwendete Supabase-Schlüssel ist ein öffentlicher Publishable Key. Schreibzugriffe müssen dennoch zwingend durch Row Level Security blockiert werden.
 

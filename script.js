@@ -10,6 +10,7 @@ import {
   levelProgress,
   localizeEvent,
   normalizeEvent,
+  resolveEventId,
   seededShuffle,
   solidarityResult
 } from './src/game-core.js';
@@ -59,6 +60,7 @@ const app = {
   map: null,
   popup: null,
   events: [],
+  routes: [],
   filteredEvents: [],
   progress: loadProgress(),
   filters: loadViewFilters(),
@@ -110,7 +112,7 @@ function bindUi() {
     'reset-filters', 'fit-results', 'clear-search', 'random-event', 'start-mission', 'data-status', 'level-value', 'xp-value',
     'xp-progress', 'mission-card', 'mission-title', 'mission-description', 'mission-reward',
     'mission-progress-text', 'mission-progress-bar', 'archive-count', 'achievement-count',
-    'archive-drawer', 'archive-list', 'achievements-drawer', 'achievement-list', 'connections-drawer',
+    'archive-drawer', 'archive-list', 'routes-drawer', 'routes-list', 'achievements-drawer', 'achievement-list', 'connections-drawer',
     'connection-content', 'new-connection', 'copy-connection', 'power-excuse', 'power-counter', 'new-excuse', 'quiz-button',
     'quiz-modal', 'quiz-title', 'quiz-content', 'welcome-modal', 'methodology-modal', 'modal-backdrop', 'begin-button',
     'methodology-button', 'about-map-button', 'help-button', 'toast-region', 'menu-toggle', 'menu-close', 'control-panel', 'language-select',
@@ -200,12 +202,13 @@ function attachUiEvents() {
   ui.modalBackdrop.addEventListener('click', closeModals);
   ui.modalCloseButtons.forEach(button => button.addEventListener('click', closeModals));
   ui.drawerCloseButtons.forEach(button => button.addEventListener('click', closeDrawers));
-  ui.menuToggle.addEventListener('click', () => toggleMobileMenu(true));
+  ui.menuToggle.addEventListener('click', () => toggleMobileMenu(true, true));
   ui.menuClose.addEventListener('click', () => toggleMobileMenu(false));
 
   ui.navButtons.forEach(button => button.addEventListener('click', () => {
     const panel = button.dataset.panel;
     if (panel === 'archive') toggleDrawer(ui.archiveDrawer, button);
+    if (panel === 'routes') toggleDrawer(ui.routesDrawer, button);
     if (panel === 'list') toggleDrawer(ui.eventListDrawer, button);
     if (panel === 'achievements') toggleDrawer(ui.achievementsDrawer, button);
     if (panel === 'connections') {
@@ -219,7 +222,7 @@ function attachUiEvents() {
     if (event.key === 'Escape') { closeModals(); closeDrawers(); toggleMobileMenu(false); }
     if (event.key === 'Tab') trapModalFocus(event);
     if (isFormElement(document.activeElement)) return;
-    if (event.key.toLowerCase() === 'f') { event.preventDefault(); ui.searchInput.focus(); toggleMobileMenu(true); }
+    if (event.key.toLowerCase() === 'f') { event.preventDefault(); toggleMobileMenu(true); ui.searchInput.focus(); }
     if (event.key.toLowerCase() === 'r') flyToRandomEvent(app.filteredEvents);
     if (event.key.toLowerCase() === 'm') startNewMission();
     if (event.key.toLowerCase() === 'v') openPanel('connections');
@@ -228,17 +231,29 @@ function attachUiEvents() {
 }
 
 async function loadEvents() {
-  const catalogResponse = await fetch('./data/event-catalog.json');
-  if (!catalogResponse.ok) throw new Error('Datenkatalog fehlt.');
-  const catalog = await catalogResponse.json();
+  const [catalogResponse, metadataResponse, overridesResponse, routesResponse] = await Promise.all([
+    fetch('./data/event-catalog.json'),
+    fetch('./data/event-metadata.json'),
+    fetch('./data/event-editorial-overrides.json'),
+    fetch('./data/routes.json')
+  ]);
+  if (!catalogResponse.ok || !metadataResponse.ok || !overridesResponse.ok || !routesResponse.ok) throw new Error('Archivdaten fehlen.');
+  const [catalog, metadata, overrides, routes] = await Promise.all([
+    catalogResponse.json(), metadataResponse.json(), overridesResponse.json(), routesResponse.json()
+  ]);
   if (!Array.isArray(catalog) || !catalog.length || catalog.some(file => typeof file !== 'string' || !/^[a-z0-9-]+\.json$/i.test(file))) {
     throw new Error('Datenkatalog ist ungültig.');
   }
   const fallbackResponses = await Promise.all(catalog.map(file => fetch(`./data/${file}`)));
   if (fallbackResponses.some(response => !response.ok)) throw new Error('Fallback-Daten fehlen.');
+  const metadataById = new Map((metadata.events || []).map(row => [row.id, row]));
+  const editorialById = overrides.events || {};
+  const enrichRow = row => ({ ...row, ...(editorialById[row.id] || {}), ...(metadataById.get(row.id) || {}), schemaVersion: metadata.schemaVersion || 1 });
+  app.routes = Array.isArray(routes.routes) ? routes.routes : [];
   const fallbackRows = (await Promise.all(fallbackResponses.map(response => response.json())))
     .flat()
     .filter(row => !row.archived)
+    .map(enrichRow)
     .slice(0, 5000);
   const fallback = fallbackRows.map(normalizeEvent).filter(isValidEvent);
 
@@ -251,7 +266,7 @@ async function loadEvents() {
     const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
     const { data, error } = await client.from('ereignisse').select('*').limit(runtimeConfig.maxRemoteEvents);
     if (error) throw error;
-    const remote = (data || []).map(normalizeEvent).filter(isValidEvent);
+    const remote = (data || []).map(enrichRow).map(normalizeEvent).filter(isValidEvent);
     const merged = mergeEvents(fallback, remote);
     setDataStatus(i18n.t('liveStatus', { count: merged.length }), 'online');
     return merged;
@@ -357,7 +372,7 @@ function initializeMap() {
 
     renderMapData();
     const eventId = new URLSearchParams(window.location.search).get('event');
-    const deepLinkedEvent = app.events.find(event => event.id === eventId);
+    const deepLinkedEvent = resolveEventId(app.events, eventId);
     if (deepLinkedEvent) window.setTimeout(() => flyToEvent(deepLinkedEvent), 150);
   });
 }
@@ -556,7 +571,8 @@ async function openEventPopup(event, coordinates = [event.longitude, event.latit
   for (const [label, value] of [
     [i18n.t('sourceTypeLabel'), translateEditorialMetadata(event.sourceType, i18n.language)],
     [i18n.t('sourceQualityLabel'), translateEditorialMetadata(event.sourceQuality, i18n.language)],
-    [i18n.t('reviewStatusLabel'), translateEditorialMetadata(event.reviewStatus, i18n.language)]
+    [i18n.t('reviewStatusLabel'), translateEditorialMetadata(event.reviewStatus, i18n.language)],
+    [i18n.t('coordinatePrecisionLabel'), event.coordinatePrecision ? i18n.t(`coordinatePrecision${event.coordinatePrecision[0].toUpperCase()}${event.coordinatePrecision.slice(1)}`) : '']
   ]) {
     if (!value) continue;
     const badge = document.createElement('span');
@@ -714,7 +730,63 @@ function updateGameUi() {
   ui.achievementCount.textContent = app.progress.unlockedAchievements.length;
   updateMissionUi();
   renderArchive(discovered);
+  renderRoutes();
   renderAchievements();
+}
+
+function renderRoutes() {
+  ui.routesList.replaceChildren();
+  const discovered = new Set(app.progress.discoveredIds);
+  app.routes.forEach(route => {
+    const events = route.eventIds.map(id => resolveEventId(app.events, id)).filter(Boolean);
+    const completed = events.filter(event => discovered.has(event.id)).length;
+    const card = document.createElement('article');
+    card.className = 'route-card';
+    const heading = document.createElement('h3');
+    heading.textContent = route.title;
+    const description = document.createElement('p');
+    description.textContent = route.description;
+    const progressLabel = document.createElement('p');
+    progressLabel.className = 'route-progress-label';
+    progressLabel.textContent = i18n.t('routeProgress', { completed, total: events.length });
+    const progress = document.createElement('progress');
+    progress.max = Math.max(1, events.length);
+    progress.value = completed;
+    progress.setAttribute('aria-label', progressLabel.textContent);
+    const list = document.createElement('ol');
+    list.className = 'route-stops';
+    events.forEach(event => {
+      const item = document.createElement('li');
+      const open = document.createElement('button');
+      open.type = 'button';
+      open.className = 'route-stop';
+      const status = discovered.has(event.id) ? `✓ ${i18n.t('routeRead')}` : i18n.t('routeOpen');
+      open.textContent = `${event.title} · ${formatLocalizedYear(event, i18n)} — ${status}`;
+      open.addEventListener('click', () => { closeDrawers(); flyToEvent(event); });
+      item.append(open);
+      if (isSensitiveEvent(event)) {
+        const sensitive = document.createElement('small');
+        sensitive.className = 'route-sensitive';
+        sensitive.textContent = i18n.t('routeSensitive');
+        item.append(sensitive);
+      }
+      const sourceUrl = safeExternalUrl(event.sourceUrl);
+      if (sourceUrl) {
+        const source = document.createElement('a');
+        source.href = sourceUrl;
+        source.target = '_blank';
+        source.rel = 'noopener noreferrer';
+        source.textContent = i18n.t('routeSource');
+        item.append(source);
+      }
+      list.append(item);
+    });
+    const sourceNote = document.createElement('small');
+    sourceNote.className = 'route-source-note';
+    sourceNote.textContent = `${i18n.t('routeSourceHint')} ${route.sourceNote}`;
+    card.append(heading, description, progressLabel, progress, list, sourceNote);
+    ui.routesList.append(card);
+  });
 }
 
 function updateMissionUi() {
@@ -1110,12 +1182,15 @@ async function copyEventLink(event) {
 
 function toggleDrawer(drawer, activeButton) {
   const shouldOpen = drawer.hidden;
-  closeDrawers();
+  closeDrawers(false);
   if (shouldOpen) {
     app.lastFocus = activeButton;
     drawer.hidden = false;
+    drawer.scrollTo({ top: 0 });
     ui.navButtons.forEach(button => button.classList.toggle('is-active', button === activeButton));
     drawer.focus();
+  } else if (app.lastFocus?.isConnected) {
+    app.lastFocus.focus();
   }
 }
 
@@ -1124,25 +1199,32 @@ function openPanel(panel) {
   if (panel === 'map') { closeDrawers(); return true; }
   const drawers = {
     archive: ui.archiveDrawer,
+    routes: ui.routesDrawer,
     list: ui.eventListDrawer,
     achievements: ui.achievementsDrawer,
     connections: ui.connectionsDrawer
   };
   const drawer = drawers[panel];
   if (!drawer) return false;
-  closeDrawers();
+  closeDrawers(false);
   drawer.hidden = false;
+  drawer.scrollTo({ top: 0 });
   ui.navButtons.forEach(button => button.classList.toggle('is-active', button.dataset.panel === panel));
   if (panel === 'connections') drawConnection(false);
+  drawer.focus();
   return true;
 }
 
-function closeDrawers() {
+function closeDrawers(restoreFocus = true) {
+  const hadOpenDrawer = [ui.archiveDrawer, ui.routesDrawer, ui.eventListDrawer, ui.achievementsDrawer, ui.connectionsDrawer]
+    .some(drawer => !drawer.hidden);
   ui.archiveDrawer.hidden = true;
+  ui.routesDrawer.hidden = true;
   ui.eventListDrawer.hidden = true;
   ui.achievementsDrawer.hidden = true;
   ui.connectionsDrawer.hidden = true;
   ui.navButtons.forEach(button => button.classList.toggle('is-active', button.dataset.panel === 'map'));
+  if (restoreFocus && hadOpenDrawer && app.lastFocus?.isConnected) app.lastFocus.focus();
 }
 
 function openModal(modal) {
@@ -1177,10 +1259,11 @@ function trapModalFocus(event) {
   else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
 }
 
-function toggleMobileMenu(open) {
+function toggleMobileMenu(open, focusPanel = false) {
   ui.controlPanel.classList.toggle('is-open', open);
   ui.menuToggle.setAttribute('aria-expanded', String(open));
   syncMobileMenuAccessibility();
+  if (open && focusPanel && window.matchMedia('(max-width: 820px)').matches) ui.menuClose.focus();
   if (!open && window.matchMedia('(max-width: 820px)').matches && ui.controlPanel.contains(document.activeElement)) {
     ui.menuToggle.focus();
   }
@@ -1217,7 +1300,7 @@ function setupHostApi() {
         return true;
       },
       focusEvent: id => {
-        const event = app.events.find(item => item.id === id);
+        const event = resolveEventId(app.events, id);
         if (!event) return false;
         flyToEvent(event);
         return true;

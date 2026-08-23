@@ -21,6 +21,7 @@ test('HTML verweist auf vorhandene lokale Kernressourcen', async () => {
   assert.match(html, /id="fit-results"/);
   assert.match(html, /id="methodology-modal"/);
   assert.match(html, /id="event-list-drawer"/);
+  assert.match(html, /id="routes-drawer"/);
   assert.match(html, /id="active-filters"/);
 });
 
@@ -48,6 +49,27 @@ test('Fallback-Archiv enthält valide, eindeutige und belegte Ereignisse', async
   assert.ok(events.filter(event => event.category === 'Soziale Errungenschaft').length >= 15);
   for (const id of ['battle-of-seattle-wto-1999', 'rodney-king-beating-1991', 'baltimore-uprising-2015', 'black-lives-matter-toronto-pride-2016', 'breonna-taylor-louisville-protests']) {
     assert.ok(events.some(event => event.id === id), `Erwarteter Eintrag fehlt: ${id}`);
+  }
+});
+
+test('Datenvertrag, Koordinatenschutz, Vertiefungen und Routen bleiben konsistent', async () => {
+  const catalog = JSON.parse(await readFile(new URL('data/event-catalog.json', root), 'utf8'));
+  const rows = (await Promise.all(catalog.map(file => readFile(new URL(`data/${file}`, root), 'utf8')))).flatMap(JSON.parse).filter(row => !row.archived);
+  const ids = new Set(rows.map(row => row.id));
+  const metadata = JSON.parse(await readFile(new URL('data/event-metadata.json', root), 'utf8'));
+  const overrides = JSON.parse(await readFile(new URL('data/event-editorial-overrides.json', root), 'utf8'));
+  const routes = JSON.parse(await readFile(new URL('data/routes.json', root), 'utf8'));
+  const sensitiveIds = rows.filter(row => row.sensitivity && !['Niedrig', 'Nein', 'Keine'].includes(row.sensitivity)).map(row => row.id);
+  const precisionById = new Map(metadata.events.map(row => [row.id, row.coordinatePrecision]));
+
+  assert.equal(sensitiveIds.length, 53);
+  assert.ok(sensitiveIds.every(id => precisionById.has(id)));
+  assert.equal(Object.keys(overrides.events).length, 20);
+  assert.ok(Object.entries(overrides.events).every(([id, row]) => ids.has(id) && !/wikipedia\.org/i.test(row.sourceUrl) && row.reviewStatus === 'Redaktionell vertieft'));
+  assert.equal(routes.routes.length, 4);
+  assert.ok(routes.routes.every(route => route.eventIds.every(id => ids.has(id)) && route.sensitivityMode === 'neutral-progress'));
+  for (const id of ['standing-rock', 'muskrat-falls-land-protectors', '1492-land-back-lane', 'camp-morgan-landfill-search', 'aboriginal-tent-embassy']) {
+    assert.equal(precisionById.get(id), 'hidden');
   }
 });
 
@@ -148,6 +170,8 @@ test('Datenbankinhalte werden nicht über innerHTML in die Seite geschrieben', a
   assert.match(script, /trapModalFocus/);
   assert.match(script, /syncMobileMenuAccessibility/);
   assert.match(script, /toggleAttribute\('inert'/);
+  assert.match(script, /resolveEventId/);
+  assert.match(script, /renderRoutes/);
 });
 
 test('Design berücksichtigt reduzierte Bewegung und mobile Ansichten', async () => {

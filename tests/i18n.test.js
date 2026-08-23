@@ -34,9 +34,10 @@ test('lokalisiert Kategorien und tiefe Jahresangaben ohne Netzzugriff', () => {
 test('lokalisiert die Komfortfunktionen in allen neun Sprachen', () => {
   for (const language of LANGUAGES.map(item => item.code)) {
     const i18n = createI18n({ search: `?lang=${language}` });
-    for (const key of ['clearSearch', 'showResults', 'copyEventLink', 'eventLinkCopied', 'aboutMap', 'eventList', 'sensitiveNotice', 'immediateConsequences', 'sourceTypeLabel', 'sourceQualityLabel', 'reviewStatusLabel', 'eventTextGermanNotice', 'partialEventTranslation']) {
+    for (const key of ['clearSearch', 'showResults', 'copyEventLink', 'eventLinkCopied', 'aboutMap', 'eventList', 'sensitiveNotice', 'immediateConsequences', 'sourceTypeLabel', 'sourceQualityLabel', 'reviewStatusLabel', 'eventTextGermanNotice', 'partialEventTranslation', 'routes', 'guidedRoutes', 'routesIntro', 'routeProgress', 'routeSensitive', 'routeSource', 'coordinatePrecisionLabel', 'coordinatePrecisionHidden']) {
       assert.notEqual(i18n.t(key), key);
     }
   }
   assert.equal(translateEditorialMetadata('Redaktioneller Pilotstand', 'en'), 'Editorial pilot');
+  assert.equal(translateEditorialMetadata('Redaktionell vertieft', 'en'), 'Editorially deepened');
 });

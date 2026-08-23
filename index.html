@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de" data-atlas-version="2.6.0">
+<html lang="de" data-atlas-version="2.7.0">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -120,6 +120,7 @@
     <nav class="bottom-nav glass-panel" aria-label="Spielbereiche">
       <button class="nav-button is-active" type="button" data-panel="map"><span>◉</span><span data-i18n="map">Karte</span></button>
       <button class="nav-button" type="button" data-panel="archive"><span>▤</span><span data-i18n="archive">Archiv</span> <b id="archive-count">0</b></button>
+      <button class="nav-button" type="button" data-panel="routes"><span>↝</span><span data-i18n="routes">Routen</span></button>
       <button class="nav-button" type="button" data-panel="list"><span>☷</span><span data-i18n="listView">Liste</span></button>
       <button class="nav-button" type="button" data-panel="achievements"><span>◇</span><span data-i18n="achievements">Erfolge</span> <b id="achievement-count">0</b></button>
       <button class="nav-button" type="button" data-panel="connections"><span>⚡</span><span data-i18n="sparks">Funken</span></button>
@@ -140,7 +141,7 @@
       </div>
     </section>
 
-    <section class="drawer glass-panel" id="archive-drawer" aria-labelledby="archive-title" hidden>
+    <section class="drawer glass-panel" id="archive-drawer" role="dialog" aria-modal="false" aria-labelledby="archive-title" tabindex="-1" hidden>
       <div class="drawer-header">
         <div><p class="eyebrow" data-i18n="collection">Deine Sammlung</p><h2 id="archive-title" data-i18n="discoveredArchive">Entdecktes Archiv</h2></div>
         <button class="icon-button drawer-close" type="button" aria-label="Archiv schließen" data-i18n-aria="closeArchive">×</button>
@@ -148,7 +149,17 @@
       <div class="archive-list" id="archive-list"></div>
     </section>
 
-    <section class="drawer glass-panel" id="achievements-drawer" aria-labelledby="achievements-title" hidden>
+    <section class="drawer glass-panel routes-drawer" id="routes-drawer" role="dialog" aria-modal="false" aria-labelledby="routes-title" tabindex="-1" hidden>
+      <div class="drawer-header">
+        <div><p class="eyebrow" data-i18n="guidedRoutes">Geführtes Archiv-Spiel</p><h2 id="routes-title" data-i18n="routes">Historische Routen</h2></div>
+        <button class="icon-button drawer-close" type="button" aria-label="Routen schließen" data-i18n-aria="closeRoutes">×</button>
+      </div>
+      <p class="drawer-intro" data-i18n="routesIntro">Folge belegten Ereignissen in einer vorgeschlagenen Reihenfolge. Fortschritt bedeutet gelesen oder gespeichert – nicht gewonnen.</p>
+      <p class="event-language-note" data-i18n="routeLanguageNotice">Routentitel und Einordnungen liegen derzeit als deutsches Original vor; Ereignisübersetzungen werden separat gekennzeichnet.</p>
+      <div class="routes-list" id="routes-list"></div>
+    </section>
+
+    <section class="drawer glass-panel" id="achievements-drawer" role="dialog" aria-modal="false" aria-labelledby="achievements-title" tabindex="-1" hidden>
       <div class="drawer-header">
         <div><p class="eyebrow" data-i18n="milestones">Meilensteine</p><h2 id="achievements-title" data-i18n="achievements">Erfolge</h2></div>
         <button class="icon-button drawer-close" type="button" aria-label="Erfolge schließen" data-i18n-aria="closeAchievements">×</button>
@@ -156,7 +167,7 @@
       <div class="achievement-grid" id="achievement-list"></div>
     </section>
 
-    <section class="drawer glass-panel connections-drawer" id="connections-drawer" aria-labelledby="connections-title" hidden>
+    <section class="drawer glass-panel connections-drawer" id="connections-drawer" role="dialog" aria-modal="false" aria-labelledby="connections-title" tabindex="-1" hidden>
       <div class="drawer-header">
         <div><p class="eyebrow" data-i18n="connectionsLab">Labor für historische Funken</p><h2 id="connections-title" data-i18n="unlikelyAlliances">Unwahrscheinliche Allianzen</h2></div>
         <button class="icon-button drawer-close" type="button" aria-label="Funkenlabor schließen" data-i18n-aria="closeConnections">×</button>
