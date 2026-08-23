@@ -1,6 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
+  buildNetworkModel,
+  classifyEventLayers,
+  classifyEventTactics,
   createMission,
   createQuiz,
   filterEvents,
@@ -12,10 +15,13 @@ import {
   localizeEvent,
   normalizeEvent,
   normalizeEventTranslations,
+  normalizeTimeRange,
   seededShuffle,
   resolveEventId,
   validateContractFields,
   validateEditorialFields,
+  validateMapTaxonomy,
+  validateRelations,
   validateRoutes
 } from '../src/game-core.js';
 
@@ -70,6 +76,19 @@ test('mischt deterministisch und formatiert Zeiträume', () => {
   assert.equal(formatYearRange({ yearStart: 1918, yearEnd: 1921 }), '1918–1921');
   assert.equal(formatYearRange({ yearStart: null, yearEnd: null }), 'undatiert');
   assert.equal(formatYearRange({ yearStart: -1157, yearEnd: -1157, dateLabel: 'ca. 1157 v. u. Z.' }), 'ca. 1157 v. u. Z.');
+});
+
+test('filtert mehrere Themenebenen als ODER und behandelt undatierte Einträge ausdrücklich', () => {
+  const layered = [
+    { ...events[0], layerIds: ['labour'] },
+    { ...events[1], layerIds: ['indigenous'] },
+    { ...events[2], layerIds: ['feminist'] },
+    { ...normalizeEvent({ id: 'undated', title: 'Undatiert', category: 'A', longitude: 1, latitude: 1 }), layerIds: ['labour'] }
+  ];
+  const filters = { query: '', category: 'all', from: 1800, to: 2000, includeUndated: true, layers: ['labour', 'indigenous'], undiscoveredOnly: false };
+  assert.deepEqual(filterEvents(layered, filters).map(event => event.id), ['1', '2', 'undated']);
+  assert.deepEqual(filterEvents(layered, { ...filters, includeUndated: false }).map(event => event.id), ['1', '2']);
+  assert.deepEqual(normalizeTimeRange(2100, -2000), { from: -1200, to: 2030 });
 });
 
 test('Ereignisübersetzungen werden feldweise und nur nach Prüfung übernommen', () => {
@@ -136,4 +155,31 @@ test('Routen akzeptieren nur kanonische bekannte Stopps und neutralen Fortschrit
   const route = { routes: [{ id: 'route-one', title: 'Route', description: 'Beschreibung', sourceNote: 'Hinweis', eventIds: ['one', 'two', 'three'], sensitivityMode: 'neutral-progress' }] };
   assert.deepEqual(validateRoutes(route, new Set(['one', 'two', 'three'])), []);
   assert.ok(validateRoutes({ routes: [{ ...route.routes[0], eventIds: ['one', 'alias', 'three'] }] }, new Set(['one', 'two', 'three'])).some(issue => issue.includes('alias')));
+});
+
+test('validiert Kartentaxonomie, Relationsdaten und Netzwerkgrenze', () => {
+  const taxonomy = {
+    schemaVersion: 1,
+    time: { minimum: -1200, maximum: 2030, defaultFrom: -1200, defaultTo: 2030 },
+    layers: [{ id: 'labour', labelKey: 'layerLabour', terms: ['A'] }],
+    tactics: [{ id: 'strike', labelKey: 'tacticStrike', symbol: 'S', terms: ['streik'] }],
+    mapStyles: [
+      { id: 'dark', labelKey: 'styleDark', basemap: 'carto-dark' },
+      { id: 'mono', labelKey: 'styleMono', basemap: 'carto-dark' },
+      { id: 'paper', labelKey: 'stylePaper', basemap: 'carto-dark' }
+    ],
+    network: { maximumNodes: 72, maximumEdges: 140 }
+  };
+  assert.deepEqual(validateMapTaxonomy(taxonomy), []);
+  const relationData = { schemaVersion: 1, relations: [{ id: 'rel-one', from: '1', to: '2', relationType: 'similar-tactic', contextId: 'strike', evidenceMode: 'heuristic-similarity' }] };
+  assert.deepEqual(validateRelations(relationData, new Set(['1', '2'])), []);
+  const unsourcedEditorial = { schemaVersion: 1, relations: [{ ...relationData.relations[0], relationType: 'editorial-relation' }] };
+  assert.ok(validateRelations(unsourcedEditorial, new Set(['1', '2'])).some(issue => issue.includes('sourced-relation')));
+  assert.equal(classifyEventLayers(events[0], taxonomy.layers)[0], 'labour');
+  const strikeEvent = { ...events[0], tactics: ['Generalstreik'] };
+  assert.equal(classifyEventTactics(strikeEvent, taxonomy.tactics)[0], 'strike');
+  const model = buildNetworkModel([...events, ...events.map((event, index) => ({ ...event, id: `copy-${index}` }))], relationData.relations, 3, 4);
+  assert.equal(model.nodes.length, 3);
+  assert.equal(model.edges.length, 1);
+  assert.equal(model.truncated, true);
 });

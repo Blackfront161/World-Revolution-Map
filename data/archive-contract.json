@@ -12,6 +12,16 @@
     "region",
     "hidden"
   ],
+  "mapModel": {
+    "timeParameters": ["from", "to", "undated"],
+    "layerMode": "multi-select-or",
+    "taxonomyFile": "data/map-taxonomy.json",
+    "relationsFile": "data/relations.json",
+    "relationTypes": ["same-route", "similar-tactic", "shared-movement", "editorial-relation"],
+    "relationEvidenceModes": ["curated-context", "heuristic-similarity", "sourced-relation"],
+    "mapStyles": ["dark", "mono", "paper"],
+    "hiddenCoordinateRule": "Verborgene Koordinaten werden weder als Marker noch über DOM, öffentliche API oder URL ausgegeben."
+  },
   "provenance": {
     "method": "Redaktionelle Kurztexte werden aus den je Ereignis verlinkten Quellen zusammengefasst; Quellenrechte werden dadurch nicht übertragen.",
     "sourcePolicy": "Community-, Primär-, Archiv-, Museums-, wissenschaftliche, ILO/UN- und Menschenrechtsquellen werden bevorzugt; Unsicherheit wird sichtbar benannt.",

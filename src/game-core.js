@@ -45,6 +45,9 @@ const EVENT_TRANSLATION_LANGUAGES = new Set(['en', 'es', 'fr', 'it', 'pt', 'ru',
 export const EVENT_ID_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 export const COORDINATE_PRECISION_VALUES = new Set(['exact', 'approximate', 'region', 'hidden']);
 export const LICENSE_STATUS_VALUES = new Set(['rights-unclear', 'per-item', 'third-party-terms', 'public-domain', 'licensed']);
+export const RELATION_TYPE_VALUES = new Set(['same-route', 'similar-tactic', 'shared-movement', 'editorial-relation']);
+export const RELATION_EVIDENCE_VALUES = new Set(['curated-context', 'heuristic-similarity', 'sourced-relation']);
+export const MAP_STYLE_VALUES = new Set(['dark', 'mono', 'paper']);
 
 const cleanList = (value, itemLength = 500, maxItems = 24) => {
   const list = Array.isArray(value) ? value : typeof value === 'string' ? value.split(/\s*;\s*/) : [];
@@ -106,8 +109,10 @@ export function normalizeEvent(row, index = 0) {
   const latitude = Number(row.latitude ?? row.lat ?? row.coordinates?.[1]);
   const title = clean(row.title, 160) || 'Unbekanntes Ereignis';
   const description = clean(row.description, 1400) || 'Für diesen Eintrag liegt noch kein Kurztext vor.';
-  const yearStart = Number(row.year_start ?? row.yearStart ?? row.year ?? extractYear(description));
-  const yearEnd = Number(row.year_end ?? row.yearEnd ?? yearStart);
+  const rawYearStart = row.year_start ?? row.yearStart ?? row.year ?? extractYear(description);
+  const yearStart = rawYearStart === null || rawYearStart === undefined || rawYearStart === '' ? Number.NaN : Number(rawYearStart);
+  const rawYearEnd = row.year_end ?? row.yearEnd;
+  const yearEnd = rawYearEnd === null || rawYearEnd === undefined || rawYearEnd === '' ? yearStart : Number(rawYearEnd);
   const rawId = row.id ?? `${title}-${yearStart || 'undatiert'}-${index}`;
   const tags = Array.isArray(row.tags)
     ? row.tags.map(tag => clean(tag, 100)).filter(Boolean).slice(0, 24)
@@ -246,6 +251,82 @@ export function validateRoutes(raw, canonicalIds) {
   return issues;
 }
 
+export function validateMapTaxonomy(raw) {
+  const issues = [];
+  if (raw?.schemaVersion !== 1) issues.push('map-taxonomy: schemaVersion muss 1 sein');
+  const time = raw?.time || {};
+  if (![time.minimum, time.maximum, time.defaultFrom, time.defaultTo].every(Number.isFinite)) issues.push('map-taxonomy: Zeitgrenzen fehlen');
+  else if (!(time.minimum <= time.defaultFrom && time.defaultFrom <= time.defaultTo && time.defaultTo <= time.maximum)) issues.push('map-taxonomy: Zeitgrenzen sind inkonsistent');
+  for (const [kind, rows] of [['layers', raw?.layers], ['tactics', raw?.tactics], ['mapStyles', raw?.mapStyles]]) {
+    if (!Array.isArray(rows) || !rows.length) { issues.push(`map-taxonomy: ${kind} fehlt`); continue; }
+    const ids = rows.map(row => row?.id);
+    if (ids.some(id => !EVENT_ID_PATTERN.test(String(id || ''))) || new Set(ids).size !== ids.length) issues.push(`map-taxonomy: ${kind} enthält ungültige oder doppelte IDs`);
+  }
+  if (raw?.layers?.some(row => !row.labelKey || !Array.isArray(row.terms) || !row.terms.length)) issues.push('map-taxonomy: Layer benötigen labelKey und terms');
+  if (raw?.tactics?.some(row => !row.labelKey || !row.symbol || !Array.isArray(row.terms) || !row.terms.length)) issues.push('map-taxonomy: Taktiken benötigen labelKey, symbol und terms');
+  if (raw?.mapStyles?.some(row => !MAP_STYLE_VALUES.has(row.id) || row.basemap !== 'carto-dark' || !row.labelKey)) issues.push('map-taxonomy: Kartenstile sind ungültig');
+  if (!Number.isInteger(raw?.network?.maximumNodes) || raw.network.maximumNodes < 1 || raw.network.maximumNodes > 100) issues.push('map-taxonomy: Knotengrenze muss eine positive Ganzzahl bis 100 sein');
+  if (!Number.isInteger(raw?.network?.maximumEdges) || raw.network.maximumEdges < 1 || raw.network.maximumEdges > 250) issues.push('map-taxonomy: Kantengrenze muss eine positive Ganzzahl bis 250 sein');
+  return issues;
+}
+
+export function validateRelations(raw, canonicalIds, routeIds = new Set()) {
+  const issues = [];
+  const ids = new Set();
+  const relationKeys = new Set();
+  if (raw?.schemaVersion !== 1 || !Array.isArray(raw?.relations)) return ['relations.json: ungültige Struktur'];
+  raw.relations.forEach((relation, index) => {
+    const label = `relations[${index}]`;
+    if (!EVENT_ID_PATTERN.test(String(relation.id || '')) || ids.has(relation.id)) issues.push(`${label}: ungültige oder doppelte ID`);
+    ids.add(relation.id);
+    const endpoints = [relation.from, relation.to].sort().join('|');
+    const relationKey = `${endpoints}|${relation.relationType}|${relation.contextId}`;
+    if (relationKeys.has(relationKey)) issues.push(`${label}: doppelte Beziehung`);
+    relationKeys.add(relationKey);
+    if (!canonicalIds.has(relation.from) || !canonicalIds.has(relation.to) || relation.from === relation.to) issues.push(`${label}: ungültige Event-Referenz`);
+    if (!RELATION_TYPE_VALUES.has(relation.relationType)) issues.push(`${label}: ungültiger relationType`);
+    if (!RELATION_EVIDENCE_VALUES.has(relation.evidenceMode)) issues.push(`${label}: ungültiger evidenceMode`);
+    if (!EVENT_ID_PATTERN.test(String(relation.contextId || ''))) issues.push(`${label}: contextId fehlt`);
+    if (relation.relationType === 'same-route' && !routeIds.has(relation.contextId)) issues.push(`${label}: unbekannte Route`);
+    if (relation.evidenceMode === 'sourced-relation' && !/^https:\/\//.test(relation.sourceUrl || '')) issues.push(`${label}: sourced-relation benötigt sourceUrl`);
+    if (relation.relationType === 'editorial-relation' && relation.evidenceMode !== 'sourced-relation') issues.push(`${label}: editorial-relation benötigt sourced-relation`);
+  });
+  return issues;
+}
+
+export function classifyEventLayers(event, definitions = []) {
+  const terms = new Set([event.category, ...(event.tags || [])].filter(Boolean).map(value => String(value).toLocaleLowerCase('de')));
+  return definitions.filter(layer => layer.terms.some(term => terms.has(String(term).toLocaleLowerCase('de')))).map(layer => layer.id);
+}
+
+export function classifyEventTactics(event, definitions = []) {
+  const haystack = [event.title, event.category, ...(event.tags || []), ...(event.tactics || []), event.description]
+    .filter(Boolean).join(' ').toLocaleLowerCase('de');
+  return definitions.filter(tactic => tactic.terms.some(term => haystack.includes(String(term).toLocaleLowerCase('de')))).map(tactic => tactic.id);
+}
+
+export function normalizeTimeRange(from, to, minimum = -1200, maximum = 2030) {
+  const rawFrom = Number(from);
+  const rawTo = Number(to);
+  const safeFrom = Number.isFinite(rawFrom) ? Math.max(minimum, Math.min(maximum, rawFrom)) : minimum;
+  const safeTo = Number.isFinite(rawTo) ? Math.max(minimum, Math.min(maximum, rawTo)) : maximum;
+  return { from: Math.min(safeFrom, safeTo), to: Math.max(safeFrom, safeTo) };
+}
+
+export function buildNetworkModel(events, relations, maximumNodes = 72, maximumEdges = 140) {
+  const eventById = new Map(events.map(event => [event.id, event]));
+  const eligibleEdges = relations.filter(relation => eventById.has(relation.from) && eventById.has(relation.to)).slice(0, maximumEdges);
+  const connectedIds = [...new Set(eligibleEdges.flatMap(relation => [relation.from, relation.to]))];
+  const remainingIds = events.map(event => event.id).filter(id => !connectedIds.includes(id));
+  const selectedIds = new Set([...connectedIds, ...remainingIds].slice(0, maximumNodes));
+  return {
+    nodes: [...selectedIds].map(id => eventById.get(id)).filter(Boolean),
+    edges: eligibleEdges.filter(relation => selectedIds.has(relation.from) && selectedIds.has(relation.to)),
+    truncated: events.length > selectedIds.size,
+    totalEvents: events.length
+  };
+}
+
 export function validateEditorialFields(row) {
   const issues = [...validateContractFields(row)];
   for (const field of EDITORIAL_LIST_FIELDS) {
@@ -298,20 +379,24 @@ export function isValidEvent(event) {
 
 export function filterEvents(events, filters, discoveredIds = new Set()) {
   const query = String(filters.query || '').trim().toLocaleLowerCase('de');
-  const from = Number(filters.from) || -Infinity;
-  const to = Number(filters.to) || Infinity;
+  const fromValue = Number(filters.from);
+  const toValue = Number(filters.to);
+  const from = Number.isFinite(fromValue) ? fromValue : -Infinity;
+  const to = Number.isFinite(toValue) ? toValue : Infinity;
+  const selectedLayers = new Set(Array.isArray(filters.layers) ? filters.layers : []);
 
   return events.filter(event => {
     const haystack = [event.title, event.location, event.country, event.category, ...event.tags, event.description, event.significance, event.yearStart, event.yearEnd]
       .join(' ')
       .toLocaleLowerCase('de');
-    const eventStart = event.yearStart ?? -Infinity;
-    const eventEnd = event.yearEnd ?? eventStart;
+    const undated = !Number.isFinite(event.yearStart);
+    const eventStart = undated ? null : event.yearStart;
+    const eventEnd = undated ? null : (event.yearEnd ?? eventStart);
 
     return (!query || haystack.includes(query))
       && (filters.category === 'all' || event.category === filters.category || event.tags.includes(filters.category))
-      && eventStart <= to
-      && eventEnd >= from
+      && (!selectedLayers.size || event.layerIds?.some(id => selectedLayers.has(id)))
+      && (undated ? filters.includeUndated !== false : eventStart <= to && eventEnd >= from)
       && (!filters.undiscoveredOnly || !discoveredIds.has(event.id));
   });
 }

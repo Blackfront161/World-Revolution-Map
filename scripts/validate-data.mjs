@@ -5,6 +5,8 @@ import {
   normalizeEvent,
   validateContractFields,
   validateEditorialFields,
+  validateMapTaxonomy,
+  validateRelations,
   validateRoutes
 } from '../src/game-core.js';
 
@@ -41,6 +43,7 @@ if (!contract.provenance?.method || !contract.provenance?.sourcePolicy) throw ne
 for (const field of ['code', 'data', 'images', 'mapData', 'notice']) {
   if (!contract.license?.[field]) throw new Error(`archive-contract.json: license.${field} fehlt.`);
 }
+if (!contract.mapModel?.hiddenCoordinateRule || contract.mapModel.layerMode !== 'multi-select-or') throw new Error('archive-contract.json: Kartenmodell fehlt.');
 
 const metadata = JSON.parse(await readFile('data/event-metadata.json', 'utf8'));
 if (metadata.schemaVersion !== contract.schemaVersion || !Array.isArray(metadata.events)) throw new Error('event-metadata.json: ungültige Struktur.');
@@ -88,4 +91,16 @@ if (routes.schemaVersion !== contract.schemaVersion) throw new Error('routes.jso
 const routeIssues = validateRoutes(routes, ids);
 if (routeIssues.length) throw new Error(routeIssues.join('; '));
 
-console.log(`${catalog.length} Datendateien, ${activeCount} aktive Ereignisse, ${deepenedCount} Vertiefungen, ${metadataIds.size} Koordinatenklassifikationen und ${routes.routes.length} Routen validiert.`);
+const taxonomy = JSON.parse(await readFile('data/map-taxonomy.json', 'utf8'));
+if (taxonomy.schemaVersion !== contract.schemaVersion) throw new Error('map-taxonomy.json: schemaVersion stimmt nicht.');
+const taxonomyIssues = validateMapTaxonomy(taxonomy);
+if (taxonomyIssues.length) throw new Error(taxonomyIssues.join('; '));
+if (taxonomy.layers.length !== 10 || taxonomy.tactics.length !== 10 || taxonomy.mapStyles.length !== 3) throw new Error('map-taxonomy.json: erwartet werden 10 Layer, 10 Taktiken und 3 Kartenstile.');
+
+const relations = JSON.parse(await readFile('data/relations.json', 'utf8'));
+if (relations.schemaVersion !== contract.schemaVersion) throw new Error('relations.json: schemaVersion stimmt nicht.');
+const relationIssues = validateRelations(relations, ids, new Set(routes.routes.map(route => route.id)));
+if (relationIssues.length) throw new Error(relationIssues.join('; '));
+if (relations.relations.length < 20) throw new Error('relations.json: mindestens 20 kuratierte Beziehungen erforderlich.');
+
+console.log(`${catalog.length} Datendateien, ${activeCount} aktive Ereignisse, ${deepenedCount} Vertiefungen, ${metadataIds.size} Koordinatenklassifikationen, ${routes.routes.length} Routen, ${taxonomy.layers.length} Layer, ${taxonomy.tactics.length} Taktiken, ${relations.relations.length} Beziehungen und ${taxonomy.mapStyles.length} Kartenstile validiert.`);

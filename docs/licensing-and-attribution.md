@@ -22,6 +22,8 @@ Die Basiskarte wird von CARTO bereitgestellt und enthält OpenStreetMap-Daten. D
 - CARTO: [Attributionsanforderungen](https://carto.com/attribution/)
 - Kartenrenderer: MapLibre GL JS, BSD-3-Clause (siehe oben)
 
+Die Darstellungen „Dunkles Archiv“, „Kontrastreich monochrom“ und „Warmes Papierarchiv“ sind ausschließlich lokale CSS-/Renderer-Varianten derselben CARTO-/OpenStreetMap-Basiskarte. Sie binden keinen weiteren Tileanbieter ein und verändern oder verdecken die Attribution nicht. Eine zusätzliche Datenschutz- oder Rechtebehauptung für neue Kartendienste ist damit nicht verbunden.
+
 ## Beiträge
 
 Wer Text, Daten oder Medien beiträgt, muss die Herkunft benennen und darf keine Rechte Dritter zusichern, die nicht nachweisbar sind. Unklarer Rechtezustand wird mit `rights-unclear`, Einzelmedien mit `per-item` und externe Kartendienste mit `third-party-terms` dokumentiert.

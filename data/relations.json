@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "relations": [
+    { "id": "route-land-01", "from": "pueblo-revolt", "to": "chipko", "relationType": "same-route", "contextId": "land-water-autonomy", "evidenceMode": "curated-context" },
+    { "id": "route-land-02", "from": "chipko", "to": "alta-konflikt", "relationType": "same-route", "contextId": "land-water-autonomy", "evidenceMode": "curated-context" },
+    { "id": "route-land-03", "from": "alta-konflikt", "to": "standing-rock", "relationType": "same-route", "contextId": "land-water-autonomy", "evidenceMode": "curated-context" },
+    { "id": "route-land-04", "from": "standing-rock", "to": "narmada-bachao-andolan", "relationType": "same-route", "contextId": "land-water-autonomy", "evidenceMode": "curated-context" },
+    { "id": "route-land-05", "from": "narmada-bachao-andolan", "to": "cochabamba-water-war", "relationType": "same-route", "contextId": "land-water-autonomy", "evidenceMode": "curated-context" },
+    { "id": "route-anti-01", "from": "haitianische-revolution", "to": "ghadar-bewegung", "relationType": "same-route", "contextId": "anticolonial-networks", "evidenceMode": "curated-context" },
+    { "id": "route-anti-02", "from": "ghadar-bewegung", "to": "march-first-movement", "relationType": "same-route", "contextId": "anticolonial-networks", "evidenceMode": "curated-context" },
+    { "id": "route-anti-03", "from": "march-first-movement", "to": "palestinian-general-strike-1936", "relationType": "same-route", "contextId": "anticolonial-networks", "evidenceMode": "curated-context" },
+    { "id": "route-anti-04", "from": "palestinian-general-strike-1936", "to": "fifth-pan-african-congress", "relationType": "same-route", "contextId": "anticolonial-networks", "evidenceMode": "curated-context" },
+    { "id": "route-anti-05", "from": "fifth-pan-african-congress", "to": "wave-hill-walk-off", "relationType": "same-route", "contextId": "anticolonial-networks", "evidenceMode": "curated-context" },
+    { "id": "route-work-01", "from": "bread-and-roses", "to": "winnipeg-general-strike", "relationType": "same-route", "contextId": "workplace-power", "evidenceMode": "curated-context" },
+    { "id": "route-work-02", "from": "winnipeg-general-strike", "to": "ford-strike-cologne-1973", "relationType": "same-route", "contextId": "workplace-power", "evidenceMode": "curated-context" },
+    { "id": "route-work-03", "from": "ford-strike-cologne-1973", "to": "grunwick-strike", "relationType": "same-route", "contextId": "workplace-power", "evidenceMode": "curated-context" },
+    { "id": "route-work-04", "from": "grunwick-strike", "to": "lip-selbstverwaltung", "relationType": "same-route", "contextId": "workplace-power", "evidenceMode": "curated-context" },
+    { "id": "route-work-05", "from": "lip-selbstverwaltung", "to": "justice-for-janitors", "relationType": "same-route", "contextId": "workplace-power", "evidenceMode": "curated-context" },
+    { "id": "route-care-01", "from": "women-liberia-peace", "to": "combahee-river-collective", "relationType": "same-route", "contextId": "care-bodies-solidarity", "evidenceMode": "curated-context" },
+    { "id": "route-care-02", "from": "combahee-river-collective", "to": "section-504-sit-in", "relationType": "same-route", "contextId": "care-bodies-solidarity", "evidenceMode": "curated-context" },
+    { "id": "route-care-03", "from": "section-504-sit-in", "to": "ni-una-menos", "relationType": "same-route", "contextId": "care-bodies-solidarity", "evidenceMode": "curated-context" },
+    { "id": "route-care-04", "from": "ni-una-menos", "to": "black-trans-liberation-march", "relationType": "same-route", "contextId": "care-bodies-solidarity", "evidenceMode": "curated-context" },
+    { "id": "similar-land-01", "from": "oka-crisis", "to": "standing-rock", "relationType": "similar-tactic", "contextId": "land-defence", "evidenceMode": "heuristic-similarity" },
+    { "id": "similar-strike-01", "from": "iceland-womens-strike-1975", "to": "women-liberia-peace", "relationType": "similar-tactic", "contextId": "strike", "evidenceMode": "heuristic-similarity" },
+    { "id": "similar-boycott-01", "from": "bristol-bus-boycott", "to": "montgomery-bus-boycott", "relationType": "similar-tactic", "contextId": "boycott", "evidenceMode": "heuristic-similarity" },
+    { "id": "movement-black-01", "from": "greensboro-sit-ins", "to": "black-panther-party", "relationType": "shared-movement", "contextId": "black-liberation", "evidenceMode": "heuristic-similarity" },
+    { "id": "movement-self-rule-01", "from": "ezln", "to": "lip-selbstverwaltung", "relationType": "shared-movement", "contextId": "self-governance", "evidenceMode": "heuristic-similarity" }
+  ]
+}
