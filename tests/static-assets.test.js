@@ -35,11 +35,13 @@ test('HTML verweist auf vorhandene lokale Kernressourcen', async () => {
 
 test('Fallback-Archiv enthält valide, eindeutige und belegte Ereignisse', async () => {
   const catalog = JSON.parse(await readFile(new URL('data/event-catalog.json', root), 'utf8'));
+  const metadata = JSON.parse(await readFile(new URL('data/event-metadata.json', root), 'utf8'));
+  const metadataById = new Map(metadata.events.map(row => [row.id, row]));
   const files = catalog.map(file => `data/${file}`);
   const allRows = (await Promise.all(files.map(file => readFile(new URL(file, root), 'utf8')))).flatMap(JSON.parse);
   assert.equal(allRows.filter(event => event.category === 'Tiefe Geschichte').length, 0);
   const rows = allRows.filter(row => !row.archived);
-  const events = rows.map(normalizeEvent);
+  const events = rows.map(row => normalizeEvent({ ...row, ...(metadataById.get(row.id) || {}) }));
   assert.equal(events.length, 668);
   assert.equal(new Set(events.map(event => event.id)).size, events.length);
   assert.ok(events.every(isValidEvent));
@@ -88,6 +90,9 @@ test('Datenvertrag, Koordinatenschutz, Vertiefungen und Routen bleiben konsisten
   assert.ok(routes.routes.every(route => route.eventIds.every(id => ids.has(id)) && route.sensitivityMode === 'neutral-progress'));
   for (const id of ['standing-rock', 'muskrat-falls-land-protectors', '1492-land-back-lane', 'camp-morgan-landfill-search', 'aboriginal-tent-embassy']) {
     assert.equal(precisionById.get(id), 'hidden');
+    const raw = rows.find(row => row.id === id);
+    assert.ok(raw);
+    assert.ok(!('coordinates' in raw) && !('latitude' in raw) && !('longitude' in raw) && !('lat' in raw) && !('lng' in raw));
   }
 });
 
@@ -193,6 +198,7 @@ test('Datenbankinhalte werden nicht über innerHTML in die Seite geschrieben', a
   assert.match(script, /renderTimeline/);
   assert.match(script, /renderNetwork/);
   assert.match(script, /event\.coordinatePrecision !== 'hidden'/);
+  assert.match(script, /function isRuntimeEventValid/);
   assert.match(script, /safeDisplayCoordinates/);
   assert.match(script, /syncShareableViewUrl/);
   assert.match(script, /loadBiographies/);
@@ -201,6 +207,7 @@ test('Datenbankinhalte werden nicht über innerHTML in die Seite geschrieben', a
   assert.match(script, /parseLibrary/);
   assert.doesNotMatch(script, /decodeURIComponent\(value\)/);
   assert.match(script, /navigator\.serviceWorker\.register/);
+  assert.match(script, /updateViaCache: 'none'/);
 });
 
 test('Biografiekatalog enthält 40 koordinatenfreie, belegte Lebenswege', async () => {
@@ -219,7 +226,8 @@ test('Biografiekatalog enthält 40 koordinatenfreie, belegte Lebenswege', async 
 
 test('Offline-Shell cachet ausschließlich lokale Ressourcen vorab', async () => {
   const worker = await readFile(new URL('service-worker.js', root), 'utf8');
-  assert.match(worker, /atlas-local-v2\.9\.0-r1/);
+  assert.match(worker, /atlas-local-v2\.9\.0-redacted-r1/);
+  assert.match(worker, /fetch\(request, \{ cache: 'no-cache' \}\)/);
   assert.match(worker, /fetch\(request\)[\s\S]+catch\(\(\) => caches\.match\(request\)\)/);
   assert.match(worker, /url\.origin !== self\.location\.origin/);
   assert.doesNotMatch(worker, /https:\/\/(?:api\.maptiler|tiles|carto|wikimedia)/i);

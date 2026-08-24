@@ -304,6 +304,13 @@ function attachUiEvents() {
   });
 }
 
+function isRuntimeEventValid(event) {
+  if (event.coordinatePrecision === 'hidden') {
+    return !Number.isFinite(event.longitude) && !Number.isFinite(event.latitude);
+  }
+  return isValidEvent(event);
+}
+
 async function loadEvents() {
   const [catalogResponse, metadataResponse, overridesResponse, routesResponse, taxonomyResponse, relationsResponse] = await Promise.all([
     fetch('./data/event-catalog.json'),
@@ -339,7 +346,7 @@ async function loadEvents() {
     .filter(row => !row.archived)
     .map(enrichRow)
     .slice(0, 5000);
-  const fallback = fallbackRows.map(normalizeEvent).filter(isValidEvent).map(annotateEvent);
+  const fallback = fallbackRows.map(normalizeEvent).filter(isRuntimeEventValid).map(annotateEvent);
 
   if (!runtimeConfig.useSupabase || !window.supabase?.createClient) {
     setDataStatus(i18n.t('offlineStatus', { count: fallback.length }), 'fallback');
@@ -350,7 +357,7 @@ async function loadEvents() {
     const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
     const { data, error } = await client.from('ereignisse').select('*').limit(runtimeConfig.maxRemoteEvents);
     if (error) throw error;
-    const remote = (data || []).map(enrichRow).map(normalizeEvent).filter(isValidEvent).map(annotateEvent);
+    const remote = (data || []).map(enrichRow).map(normalizeEvent).filter(isRuntimeEventValid).map(annotateEvent);
     const merged = mergeEvents(fallback, remote);
     setDataStatus(i18n.t('liveStatus', { count: merged.length }), 'online');
     return merged;
@@ -1350,7 +1357,8 @@ function setBiographyInUrl(id) {
 
 function registerServiceWorker() {
   if (!('serviceWorker' in navigator) || !(window.isSecureContext || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) return;
-  navigator.serviceWorker.register('./service-worker.js', { scope: './' }).catch(error => console.warn('Offline-Shell konnte nicht aktiviert werden:', error));
+  navigator.serviceWorker.register('./service-worker.js', { scope: './', updateViaCache: 'none' })
+    .catch(error => console.warn('Offline-Shell konnte nicht aktiviert werden:', error));
 }
 
 function discoverEvent(event, button) {

@@ -25,7 +25,7 @@ Der maschinenlesbare Vertrag steht in `data/archive-contract.json`. Er gilt für
 - `region`: ein räumlich verteilter Kampf; der Punkt dient nur als Kartenanker.
 - `hidden`: angezeigter Punkt ist absichtlich grob. Aktuelle Treffpunkte, Schutzräume oder gefährdete Gemeinschaften dürfen daraus nicht ableitbar sein.
 
-Die ursprünglichen 53 sensiblen Ereignisse stehen als `baselineSensitiveIds` im Vertrag und müssen dauerhaft sensibel sowie in `data/event-metadata.json` klassifiziert bleiben. Der Gesamtwert ist absichtlich nicht fest codiert: Neue sensible Ereignisse sind zulässig, benötigen aber ebenfalls Metadaten und eine übereinstimmende `coordinatePrecision`. Vier gegenwärtige bzw. fortwirkende Land-/Wasserschutzkontexte und die weiterhin bestehende Aboriginal Tent Embassy sind zusätzlich als `hidden` behandelt. Die Anwendung zeigt die Präzisionsstufe, aber keine numerischen Koordinaten in der Detailansicht.
+Die ursprünglichen 53 sensiblen Ereignisse stehen als `baselineSensitiveIds` im Vertrag und müssen dauerhaft sensibel sowie in `data/event-metadata.json` klassifiziert bleiben. Der Gesamtwert ist absichtlich nicht fest codiert: Neue sensible Ereignisse sind zulässig, benötigen aber ebenfalls Metadaten und eine übereinstimmende `coordinatePrecision`. Vier gegenwärtige bzw. fortwirkende Land-/Wasserschutzkontexte und die weiterhin bestehende Aboriginal Tent Embassy sind zusätzlich als `hidden` behandelt. Diese fünf Datensätze besitzen bereits in den öffentlich ausgelieferten Ereignis-JSONs keine Koordinatenfelder; Validator und Tests erzwingen diese Invariante. Die Anwendung zeigt die Präzisionsstufe, aber keine numerischen Koordinaten in der Detailansicht.
 
 ## Eigenständiges Biografiemodell
 

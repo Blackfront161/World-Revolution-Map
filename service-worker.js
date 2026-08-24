@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'atlas-local-v2.9.0-r1';
+const CACHE_VERSION = 'atlas-local-v2.9.0-redacted-r1';
 const SHELL = [
   './', './index.html', './styles.css', './script.js', './manifest.webmanifest', './icons/atlas-icon.svg',
   './src/game-core.js', './src/biography-core.js', './src/local-library.js', './src/i18n.js', './src/progress-store.js', './src/atlas-api.js', './src/atlas-config.js',
@@ -53,7 +53,7 @@ self.addEventListener('fetch', event => {
     }).catch(() => caches.match('./index.html')));
     return;
   }
-  event.respondWith(fetch(request).then(response => {
+  event.respondWith(fetch(request, { cache: 'no-cache' }).then(response => {
     if (response.ok) caches.open(CACHE_VERSION).then(cache => cache.put(request, response.clone()));
     return response;
   }).catch(() => caches.match(request)));

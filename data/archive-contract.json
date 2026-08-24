@@ -20,7 +20,7 @@
     "relationTypes": ["same-route", "similar-tactic", "shared-movement", "editorial-relation"],
     "relationEvidenceModes": ["curated-context", "heuristic-similarity", "sourced-relation"],
     "mapStyles": ["dark", "mono", "paper"],
-    "hiddenCoordinateRule": "Verborgene Koordinaten werden weder als Marker noch über DOM, öffentliche API oder URL ausgegeben."
+    "hiddenCoordinateRule": "Als hidden klassifizierte Ereignisse besitzen bereits in den ausgelieferten Rohdaten keine numerischen Koordinaten und werden weder als Marker noch über Cache, DOM, öffentliche API, GeoJSON oder URL ausgegeben."
   },
   "biographyModel": {
     "catalogFile": "data/biography-catalog.json",

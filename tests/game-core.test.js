@@ -40,6 +40,10 @@ test('normalisiert Datenbankfelder und extrahiert Jahreszahlen', () => {
   assert.equal(events[0].id, '1');
   assert.equal(isValidEvent(events[0]), true);
   assert.equal(isValidEvent(normalizeEvent({ title: 'Kaputt', longitude: 999, latitude: 0 })), false);
+  const hidden = normalizeEvent({ title: 'Geschützter Ort', coordinatePrecision: 'hidden', coordinates: [7.4, 46.9] });
+  assert.equal(isValidEvent(hidden), true);
+  assert.equal(hidden.longitude, null);
+  assert.equal(hidden.latitude, null);
 });
 
 test('filtert nach Suche, Kategorie, Zeitraum und Entdeckungsstatus', () => {

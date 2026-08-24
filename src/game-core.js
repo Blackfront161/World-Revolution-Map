@@ -141,8 +141,9 @@ export function extractYear(text = '') {
 }
 
 export function normalizeEvent(row, index = 0) {
-  const longitude = Number(row.longitude ?? row.lng ?? row.coordinates?.[0]);
-  const latitude = Number(row.latitude ?? row.lat ?? row.coordinates?.[1]);
+  const coordinatePrecision = COORDINATE_PRECISION_VALUES.has(row.coordinatePrecision) ? row.coordinatePrecision : '';
+  const longitude = coordinatePrecision === 'hidden' ? null : Number(row.longitude ?? row.lng ?? row.coordinates?.[0]);
+  const latitude = coordinatePrecision === 'hidden' ? null : Number(row.latitude ?? row.lat ?? row.coordinates?.[1]);
   const title = clean(row.title, 160) || 'Unbekanntes Ereignis';
   const description = clean(row.description, 1400) || 'Für diesen Eintrag liegt noch kein Kurztext vor.';
   const rawYearStart = row.year_start ?? row.yearStart ?? row.year ?? extractYear(description);
@@ -183,7 +184,7 @@ export function normalizeEvent(row, index = 0) {
     sourceUrl,
     schemaVersion: Number.isInteger(Number(row.schemaVersion)) && Number(row.schemaVersion) > 0 ? Number(row.schemaVersion) : 1,
     aliases: cleanList(row.aliases, 120, 16).map(alias => alias.toLowerCase()),
-    coordinatePrecision: COORDINATE_PRECISION_VALUES.has(row.coordinatePrecision) ? row.coordinatePrecision : '',
+    coordinatePrecision,
     provenance: normalizeProvenance(row.provenance),
     license: normalizeLicense(row.license),
     demands: cleanList(row.demands),
@@ -408,6 +409,9 @@ export function validateEditorialFields(row) {
 }
 
 export function isValidEvent(event) {
+  if (event.coordinatePrecision === 'hidden') {
+    return !Number.isFinite(event.longitude) && !Number.isFinite(event.latitude);
+  }
   return Number.isFinite(event.longitude) && Number.isFinite(event.latitude)
     && event.longitude >= -180 && event.longitude <= 180
     && event.latitude >= -90 && event.latitude <= 90;

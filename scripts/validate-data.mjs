@@ -13,6 +13,10 @@ import { BIOGRAPHY_ID_PATTERN, normalizeBiography, validateBiography } from '../
 
 const catalog = JSON.parse(await readFile('data/event-catalog.json', 'utf8'));
 if (!Array.isArray(catalog) || !catalog.length) throw new Error('event-catalog.json muss eine nichtleere Liste sein.');
+const contract = JSON.parse(await readFile('data/archive-contract.json', 'utf8'));
+const metadata = JSON.parse(await readFile('data/event-metadata.json', 'utf8'));
+const precisionById = new Map((metadata.events || []).map(row => [row.id, row.coordinatePrecision]));
+const rawCoordinateFields = ['coordinates', 'longitude', 'latitude', 'lng', 'lat'];
 
 const ids = new Set();
 const rawById = new Map();
@@ -26,7 +30,11 @@ for (const filename of catalog) {
     const editorialIssues = validateEditorialFields(row);
     if (editorialIssues.length) throw new Error(`${label}: ${editorialIssues.join('; ')}`);
     if (row.archived) return;
-    const event = normalizeEvent(row, index);
+    const coordinatePrecision = precisionById.get(row.id) || row.coordinatePrecision || '';
+    if (coordinatePrecision === 'hidden' && rawCoordinateFields.some(field => field in row)) {
+      throw new Error(`${label}: hidden-Ereignisse dürfen keine Rohkoordinaten enthalten.`);
+    }
+    const event = normalizeEvent({ ...row, coordinatePrecision }, index);
     if (!isValidEvent(event)) throw new Error(`${label}: ungültige Koordinaten.`);
     if (!event.id || ids.has(event.id)) throw new Error(`${label}: fehlende oder doppelte ID ${event.id}.`);
     ids.add(event.id);
@@ -37,7 +45,6 @@ for (const filename of catalog) {
   });
 }
 
-const contract = JSON.parse(await readFile('data/archive-contract.json', 'utf8'));
 if (contract.schemaVersion !== 1) throw new Error('archive-contract.json: nicht unterstützte schemaVersion.');
 if (!contract.idPolicy || contract.idPolicy.pattern !== EVENT_ID_PATTERN.source) throw new Error('archive-contract.json: ID-Policy stimmt nicht mit der Laufzeit überein.');
 if (!contract.provenance?.method || !contract.provenance?.sourcePolicy) throw new Error('archive-contract.json: Provenance-Policy fehlt.');
@@ -46,7 +53,6 @@ for (const field of ['code', 'data', 'images', 'mapData', 'notice']) {
 }
 if (!contract.mapModel?.hiddenCoordinateRule || contract.mapModel.layerMode !== 'multi-select-or') throw new Error('archive-contract.json: Kartenmodell fehlt.');
 
-const metadata = JSON.parse(await readFile('data/event-metadata.json', 'utf8'));
 if (metadata.schemaVersion !== contract.schemaVersion || !Array.isArray(metadata.events)) throw new Error('event-metadata.json: ungültige Struktur.');
 const metadataIds = new Set();
 const allAliases = new Map();
