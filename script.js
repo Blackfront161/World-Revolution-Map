@@ -28,6 +28,8 @@ import { LANGUAGES, createI18n, formatLocalizedYear, translateCategory, translat
 
 const SUPABASE_URL = 'https://pixafxinyydzwplirrnm.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_cAh2ZxD6aaXREXhMIVyvyA_C_yeFxRd';
+const SUPABASE_SDK_URL = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4';
+const SUPABASE_SDK_INTEGRITY = 'sha384-GFr3yTh5lJznCbZfpTtXnwboFsxqtTQoeTZCRHhE0579KrRmlCzen5AA8ohaB5ug';
 const STORAGE_KEY = 'atlas-des-widerstands-progress-v2';
 const VIEW_STORAGE_KEY = 'atlas-des-widerstands-view-v2';
 const STYLE_STORAGE_KEY = 'atlas-map-style-v1';
@@ -108,8 +110,8 @@ async function start() {
   setupHostApi();
 
   try {
-    app.events = await loadEvents();
-    app.biographies = await loadBiographies();
+    await registerServiceWorker();
+    [app.events, app.biographies] = await Promise.all([loadEvents(), loadBiographies()]);
     app.progress = reconcileProgress(app.progress, new Set(app.events.map(event => event.id)));
     populateCategories();
     populateLayerFilters();
@@ -135,7 +137,6 @@ async function start() {
     renderCollections();
     renderComparison();
     renderContinueReading();
-    registerServiceWorker();
     const hasEventDeepLink = new URLSearchParams(window.location.search).has('event');
     const biographyId = new URLSearchParams(window.location.search).get('bio');
     if (biographyId) openBiography(biographyId, true);
@@ -143,8 +144,7 @@ async function start() {
     emitAtlasEvent('ready', { eventCount: app.events.length, embedded: runtimeConfig.embed });
   } catch (error) {
     console.error('Atlas konnte nicht gestartet werden:', error);
-    setDataStatus(i18n.t('mapFailed'), 'fallback');
-    showToast(i18n.t('startFailed'), i18n.t('startFailedBody'));
+    showArchiveLoadFailure();
   }
 }
 
@@ -311,24 +311,33 @@ function isRuntimeEventValid(event) {
   return isValidEvent(event);
 }
 
+const LOCAL_DATA_TIMEOUT_MS = 8000;
+
+async function fetchLocalJson(url) {
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), LOCAL_DATA_TIMEOUT_MS);
+  try {
+    const response = await fetch(url, { signal: controller.signal, cache: 'no-cache' });
+    if (!response.ok) throw new Error(`Lokale Archivressource fehlt: ${url}`);
+    return await response.json();
+  } finally {
+    window.clearTimeout(timeout);
+  }
+}
+
 async function loadEvents() {
-  const [catalogResponse, metadataResponse, overridesResponse, routesResponse, taxonomyResponse, relationsResponse] = await Promise.all([
-    fetch('./data/event-catalog.json'),
-    fetch('./data/event-metadata.json'),
-    fetch('./data/event-editorial-overrides.json'),
-    fetch('./data/routes.json'),
-    fetch('./data/map-taxonomy.json'),
-    fetch('./data/relations.json')
-  ]);
-  if (!catalogResponse.ok || !metadataResponse.ok || !overridesResponse.ok || !routesResponse.ok || !taxonomyResponse.ok || !relationsResponse.ok) throw new Error('Archivdaten fehlen.');
   const [catalog, metadata, overrides, routes, taxonomy, relations] = await Promise.all([
-    catalogResponse.json(), metadataResponse.json(), overridesResponse.json(), routesResponse.json(), taxonomyResponse.json(), relationsResponse.json()
+    fetchLocalJson('./data/event-catalog.json'),
+    fetchLocalJson('./data/event-metadata.json'),
+    fetchLocalJson('./data/event-editorial-overrides.json'),
+    fetchLocalJson('./data/routes.json'),
+    fetchLocalJson('./data/map-taxonomy.json'),
+    fetchLocalJson('./data/relations.json')
   ]);
   if (!Array.isArray(catalog) || !catalog.length || catalog.some(file => typeof file !== 'string' || !/^[a-z0-9-]+\.json$/i.test(file))) {
     throw new Error('Datenkatalog ist ungültig.');
   }
-  const fallbackResponses = await Promise.all(catalog.map(file => fetch(`./data/${file}`)));
-  if (fallbackResponses.some(response => !response.ok)) throw new Error('Fallback-Daten fehlen.');
+  const fallbackPayloads = await Promise.all(catalog.map(file => fetchLocalJson(`./data/${file}`)));
   const metadataById = new Map((metadata.events || []).map(row => [row.id, row]));
   const editorialById = overrides.events || {};
   const enrichRow = row => ({ ...row, ...(editorialById[row.id] || {}), ...(metadataById.get(row.id) || {}), schemaVersion: metadata.schemaVersion || 1 });
@@ -341,19 +350,20 @@ async function loadEvents() {
     layerIds: classifyEventLayers(event, app.taxonomy.layers),
     tacticIds: classifyEventTactics(event, app.taxonomy.tactics)
   });
-  const fallbackRows = (await Promise.all(fallbackResponses.map(response => response.json())))
+  const fallbackRows = fallbackPayloads
     .flat()
     .filter(row => !row.archived)
     .map(enrichRow)
     .slice(0, 5000);
   const fallback = fallbackRows.map(normalizeEvent).filter(isRuntimeEventValid).map(annotateEvent);
 
-  if (!runtimeConfig.useSupabase || !window.supabase?.createClient) {
+  if (!runtimeConfig.useSupabase) {
     setDataStatus(i18n.t('offlineStatus', { count: fallback.length }), 'fallback');
     return fallback;
   }
 
   try {
+    await loadSupabaseSdk();
     const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
     const { data, error } = await client.from('ereignisse').select('*').limit(runtimeConfig.maxRemoteEvents);
     if (error) throw error;
@@ -369,24 +379,15 @@ async function loadEvents() {
 }
 
 async function loadBiographies() {
-  try {
-    const catalogResponse = await fetch('./data/biography-catalog.json');
-    if (!catalogResponse.ok) return [];
-    const catalog = await catalogResponse.json();
-    if (catalog?.schemaVersion !== 1 || !Array.isArray(catalog.files)) return [];
-    const entries = catalog.files.filter(entry => entry && typeof entry === 'object' && /^[a-z0-9-]+\.json$/i.test(entry.file));
-    const responses = await Promise.all(entries.map(entry => fetch(`./data/${entry.file}`)));
-    const available = responses.map((response, index) => ({ response, entry: entries[index] })).filter(item => item.response.ok);
-    if (available.length !== entries.length) console.warn('Noch nicht alle katalogisierten Biografiedateien sind verfügbar.');
-    const payloads = await Promise.all(available.map(async item => ({ payload: await item.response.json(), entry: item.entry })));
-    return payloads
-      .flatMap(({ payload, entry }) => (Array.isArray(payload) ? payload : Array.isArray(payload?.biographies) ? payload.biographies : []).map(row => normalizeBiography(row, entry)))
-      .filter(bio => bio.id && bio.name)
-      .sort((a, b) => a.name.localeCompare(b.name, i18n.locale));
-  } catch (error) {
-    console.warn('Lebenswege konnten nicht geladen werden:', error);
-    return [];
-  }
+  const catalog = await fetchLocalJson('./data/biography-catalog.json');
+  if (catalog?.schemaVersion !== 1 || !Array.isArray(catalog.files) || !catalog.files.length) throw new Error('Biografiekatalog ist ungültig.');
+  const entries = catalog.files.filter(entry => entry && typeof entry === 'object' && /^[a-z0-9-]+\.json$/i.test(entry.file));
+  if (entries.length !== catalog.files.length) throw new Error('Biografiekatalog enthält ungültige Einträge.');
+  const payloads = await Promise.all(entries.map(async entry => ({ payload: await fetchLocalJson(`./data/${entry.file}`), entry })));
+  return payloads
+    .flatMap(({ payload, entry }) => (Array.isArray(payload) ? payload : Array.isArray(payload?.biographies) ? payload.biographies : []).map(row => normalizeBiography(row, entry)))
+    .filter(bio => bio.id && bio.name)
+    .sort((a, b) => a.name.localeCompare(b.name, i18n.locale));
 }
 
 function mergeEvents(fallback, remote) {
@@ -806,16 +807,6 @@ async function openEventPopup(event, coordinates = safeDisplayCoordinates(event)
   setEventInUrl(event.id);
   app.popup.on('close', () => clearEventFromUrl(event.id));
 
-  const imageUrl = await resolveImageUrl(event);
-  if (imageUrl && content.isConnected) {
-    const image = document.createElement('img');
-    image.className = 'event-popup-image';
-    image.src = imageUrl;
-    image.alt = event.imageAlt;
-    image.loading = 'lazy';
-    image.addEventListener('error', () => image.replaceWith(media));
-    media.replaceWith(image);
-  }
 }
 
 function appendEventDetail(container, label, value) {
@@ -1355,10 +1346,44 @@ function setBiographyInUrl(id) {
   window.history.replaceState(null, '', url);
 }
 
-function registerServiceWorker() {
-  if (!('serviceWorker' in navigator) || !(window.isSecureContext || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) return;
-  navigator.serviceWorker.register('./service-worker.js', { scope: './', updateViaCache: 'none' })
-    .catch(error => console.warn('Offline-Shell konnte nicht aktiviert werden:', error));
+async function registerServiceWorker() {
+  document.documentElement.dataset.offlineReady = 'false';
+  if (!('serviceWorker' in navigator) || !(window.isSecureContext || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) return false;
+  try {
+    const registration = await navigator.serviceWorker.register('./service-worker.js', { scope: './', updateViaCache: 'none' });
+    const updatingWorker = registration.installing || registration.waiting;
+    if (updatingWorker && updatingWorker.state !== 'activated') await waitForServiceWorkerActivation(updatingWorker);
+    let readyTimeout = 0;
+    await Promise.race([
+      navigator.serviceWorker.ready,
+      new Promise((_, reject) => { readyTimeout = window.setTimeout(() => reject(new Error('Offline-Installation hat das Zeitlimit überschritten.')), 15000); })
+    ]);
+    window.clearTimeout(readyTimeout);
+    document.documentElement.dataset.offlineReady = 'true';
+    return true;
+  } catch (error) {
+    console.warn('Offline-Shell konnte nicht aktiviert werden:', error);
+    return false;
+  }
+}
+
+function waitForServiceWorkerActivation(worker) {
+  return new Promise((resolve, reject) => {
+    const timeout = window.setTimeout(() => reject(new Error('Offline-Aktualisierung hat das Zeitlimit überschritten.')), 15000);
+    const check = () => {
+      if (worker.state === 'activated') {
+        window.clearTimeout(timeout);
+        worker.removeEventListener('statechange', check);
+        resolve();
+      } else if (worker.state === 'redundant') {
+        window.clearTimeout(timeout);
+        worker.removeEventListener('statechange', check);
+        reject(new Error('Offline-Aktualisierung wurde verworfen.'));
+      }
+    };
+    worker.addEventListener('statechange', check);
+    check();
+  });
 }
 
 function discoverEvent(event, button) {
@@ -2493,6 +2518,14 @@ function setDataStatus(message, mode) {
   ui.dataStatus.lastElementChild.textContent = message;
 }
 
+function showArchiveLoadFailure() {
+  app.events = [];
+  app.filteredEvents = [];
+  ui.resultCount.textContent = i18n.t('archiveLoadFailed');
+  setDataStatus(i18n.t('archiveLoadFailed'), 'error');
+  showToast(i18n.t('startFailed'), i18n.t('archiveLoadFailedBody'));
+}
+
 function showToast(title, message) {
   const toast = document.createElement('div');
   toast.className = 'toast';
@@ -2505,23 +2538,25 @@ function showToast(title, message) {
   window.setTimeout(() => toast.remove(), 4200);
 }
 
-async function resolveImageUrl(event) {
-  const direct = safeImageUrl(event.imageUrl);
-  if (direct) return direct;
-  const apiUrl = safeWikipediaApiUrl(event.imageApiUrl);
-  if (!apiUrl) return '';
-  const controller = new AbortController();
-  const timeout = window.setTimeout(() => controller.abort(), 6000);
-  try {
-    const response = await fetch(apiUrl, { signal: controller.signal, credentials: 'omit', referrerPolicy: 'no-referrer' });
-    if (!response.ok) return '';
-    const data = await response.json();
-    return safeImageUrl(data.thumbnail?.source || data.originalimage?.source || '');
-  } catch {
-    return '';
-  } finally {
-    window.clearTimeout(timeout);
-  }
+function loadSupabaseSdk() {
+  if (window.supabase?.createClient) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const existing = document.querySelector('script[data-atlas-supabase]');
+    if (existing) {
+      existing.addEventListener('load', () => window.supabase?.createClient ? resolve() : reject(new Error('Supabase SDK ist ungültig.')), { once: true });
+      existing.addEventListener('error', () => reject(new Error('Supabase SDK konnte nicht geladen werden.')), { once: true });
+      return;
+    }
+    const sdk = document.createElement('script');
+    sdk.src = SUPABASE_SDK_URL;
+    sdk.integrity = SUPABASE_SDK_INTEGRITY;
+    sdk.crossOrigin = 'anonymous';
+    sdk.referrerPolicy = 'no-referrer';
+    sdk.dataset.atlasSupabase = 'opt-in';
+    sdk.addEventListener('load', () => window.supabase?.createClient ? resolve() : reject(new Error('Supabase SDK ist ungültig.')), { once: true });
+    sdk.addEventListener('error', () => reject(new Error('Supabase SDK konnte nicht geladen werden.')), { once: true });
+    document.head.append(sdk);
+  });
 }
 
 function loadProgress() {
@@ -2579,19 +2614,6 @@ function safeExternalUrl(value) {
     const url = new URL(value);
     return url.protocol === 'https:' ? url.href : '';
   } catch { return ''; }
-}
-
-function safeWikipediaApiUrl(value) {
-  const url = safeExternalUrl(value);
-  if (!url) return '';
-  const hostname = new URL(url).hostname;
-  return ['de.wikipedia.org', 'en.wikipedia.org'].includes(hostname) ? url : '';
-}
-
-function safeImageUrl(value) {
-  const url = safeExternalUrl(value);
-  if (!url) return '';
-  return new URL(url).hostname === 'upload.wikimedia.org' ? url : '';
 }
 
 function dailySeed() { return new Date().toISOString().slice(0, 10); }

@@ -52,6 +52,7 @@ export function normalizeBiography(row = {}, defaults = {}) {
     id: text(row.id, 120),
     name: text(row.name ?? row.displayName ?? row.personName, 180),
     selfName: text(row.selfName ?? row.selfDesignation, 180),
+    searchAliases: list(row.searchAliases, 16),
     birthYear: historicalYear(birthRaw),
     deathYear: historicalYear(deathRaw),
     dateLabel: text(row.dateLabel, 120) || (text(birthRaw, 80) || text(deathRaw, 80) ? `${text(birthRaw, 80) || 'unknown'}–${text(deathRaw, 80) || 'unknown'}` : ''),
@@ -99,6 +100,8 @@ export function validateBiography(row, canonicalEventIds = new Set(), defaults =
   if ('coordinates' in row || 'latitude' in row || 'longitude' in row || 'lat' in row || 'lng' in row) issues.push('Biografien dürfen keine Koordinaten enthalten');
   if ('quotes' in row || 'quote' in row || 'voices' in row) issues.push('Biografien führen keine unbelegten Zitatfelder');
   const bio = normalizeBiography(row, defaults);
+  if (row.searchAliases !== undefined && (!Array.isArray(row.searchAliases) || row.searchAliases.length > 16 || row.searchAliases.some(alias => typeof alias !== 'string' || !alias.trim() || alias.length > 180))) issues.push('searchAliases muss eine begrenzte Liste kuratierter Namen sein');
+  if (new Set(bio.searchAliases.map(alias => alias.toLocaleLowerCase())).size !== bio.searchAliases.length) issues.push('searchAliases enthält Duplikate');
   if (!BIOGRAPHY_ID_PATTERN.test(bio.id)) issues.push('id muss eine stabile bio-* ID sein');
   if (!bio.name) issues.push('name fehlt');
   if (!bio.summary) issues.push('summary fehlt');
@@ -114,6 +117,14 @@ export function validateBiography(row, canonicalEventIds = new Set(), defaults =
   if (!bio.sensitivityRule) issues.push('sensitivity.displayRule fehlt');
   if (!bio.provenance.method || !/^\d{4}-\d{2}-\d{2}$/.test(bio.provenance.checkedAt)) issues.push('provenance benötigt method und checkedAt');
   if (!bio.license) issues.push('license fehlt');
+  const licenseText = typeof row.license === 'string' ? row.license : [row.license?.status, row.license?.name].filter(Boolean).join(' ');
+  if (/\bcc\s*by\b/i.test(licenseText)) {
+    const completeClaim = row.license && typeof row.license === 'object'
+      && typeof row.license.licensor === 'string' && row.license.licensor.trim()
+      && /^https:\/\//.test(row.license.url || '')
+      && typeof row.license.scope === 'string' && row.license.scope.trim();
+    if (!completeClaim) issues.push('CC-BY-Behauptung benötigt Lizenzgeber, HTTPS-Link und eindeutigen Umfang');
+  }
   if (bio.birthYear !== null && bio.deathYear !== null && bio.birthYear > bio.deathYear) issues.push('Lebensdaten sind inkonsistent');
   if (bio.sources.length < 2) issues.push('mindestens zwei Quellen sind erforderlich');
   bio.sources.forEach((source, index) => {
@@ -128,7 +139,13 @@ export function validateBiography(row, canonicalEventIds = new Set(), defaults =
 }
 
 export function biographyYearLabel(bio, unknownLabel = 'nicht sicher überliefert') {
-  if (bio.dateLabel) return bio.dateLabel;
+  if (bio.dateLabel) {
+    const parts = bio.dateLabel.split(/\s*[–—]\s*/);
+    if (parts.length === 2) {
+      return parts.map(part => !part.trim() || /^unknown$/i.test(part.trim()) ? unknownLabel : part.trim()).join('–');
+    }
+    return /^unknown$/i.test(bio.dateLabel.trim()) ? unknownLabel : bio.dateLabel.replace(/\bunknown\b/gi, unknownLabel);
+  }
   if (bio.birthYear === null && bio.deathYear === null) return unknownLabel;
   const from = bio.birthYear ?? unknownLabel;
   const to = bio.deathYear ?? unknownLabel;
@@ -142,7 +159,7 @@ export function filterBiographies(biographies, filters = {}, normalize = value =
   const from = Number.isFinite(Number(filters.from)) ? Number(filters.from) : -Infinity;
   const to = Number.isFinite(Number(filters.to)) ? Number(filters.to) : Infinity;
   return biographies.filter(bio => {
-    const haystack = normalize([bio.name, bio.selfName, bio.summary, ...bio.regions, ...bio.communities, ...bio.traditions].join(' '));
+    const haystack = normalize([bio.name, bio.selfName, ...bio.searchAliases, bio.summary, ...bio.regions, ...bio.communities, ...bio.traditions].join(' '));
     const bioStart = bio.birthYear ?? -Infinity;
     const bioEnd = bio.deathYear ?? Infinity;
     return (!query || query.split(' ').filter(Boolean).every(token => haystack.includes(token)))

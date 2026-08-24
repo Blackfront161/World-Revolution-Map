@@ -270,6 +270,7 @@ kbd {
 .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--warm); box-shadow: 0 0 10px currentColor; }
 .data-status.is-online .status-dot { background: var(--accent); }
 .data-status.is-fallback .status-dot { background: var(--warm); }
+.data-status.is-error .status-dot { background: #ff6b6b; }
 
 .mission-card {
   position: absolute;

@@ -58,6 +58,7 @@
   {
     "id": "bio-pierre-joseph-proudhon",
     "personName": "Pierre-Joseph Proudhon",
+    "searchAliases": ["Proudon", "Joseph Proudon", "Pierre Joseph Proudon"],
     "birth": {"date": "1809-01-15", "place": "Besançon, Frankreich", "certainty": "belegt"},
     "death": {"date": "1865-01-19", "place": "Passy, Frankreich", "certainty": "belegt"},
     "places": ["Besançon", "Paris", "Brüssel"],
@@ -71,16 +72,18 @@
     "ideasAndPractices": ["Mutualismus", "Föderalismus", "Arbeiter*innenassoziationen", "Kritik an Privateigentum und Staatszentralismus", "Volksbank und gegenseitiger Kredit"],
     "organizingAndAchievements": ["prägte die frühe Selbstbezeichnung als Anarchist", "beeinflusste mutualistische Strömungen der Ersten Internationale", "formulierte ein dauerhaft einflussreiches föderalistisches Gegenmodell zum Zentralstaat"],
     "repressionAndRisks": ["Haft 1849–1852 wegen Presseangriffen auf Louis-Napoléon", "Exil in Belgien nach erneuter Verfolgung"],
-    "tensionsAndCritique": ["Proudhon schloss Frauen aus politischer und ökonomischer Gleichheit aus und verteidigte patriarchale Familienrollen; zeitgenössische Feministinnen und Joseph Déjacque widersprachen ihm.", "Seine privaten Notizbücher enthalten extremen Antisemitismus bis hin zu eliminatorischen Formulierungen; das ist kein nebensächlicher Zeitgeist, sondern eine zentrale Grenze seiner Emanzipationsvorstellung.", "Seine Eigentumskritik zielte nicht einheitlich auf Gemeineigentum: Er verteidigte später kleinteiligen Besitz als Gegengewicht zum Staat und blieb gegenüber Streiks und manchen Arbeiter*innenkämpfen ambivalent.", "Sein Föderalismus enthielt widersprüchliche Stellungnahmen zu Nationalität, Krieg und Sklaverei, die eine ungebrochene libertäre Heldenerzählung ausschließen."],
+    "tensionsAndCritique": ["Proudhon schloss Frauen aus politischer und ökonomischer Gleichheit aus und verteidigte patriarchale Familienrollen; die verlinkte Forschung rekonstruiert auch die zeitgenössischen feministischen Gegenpositionen.", "Seine privaten Notizbücher enthalten offen antisemitische und gewaltbezogene Aussagen. Die verlinkte Carnets-Ausgabe und Forschung belegen diesen Befund; die Aussagen werden hier bewusst nicht ausgeschrieben."],
     "legacy": "Proudhons Mutualismus und Föderalismus wirkten weit über Frankreich hinaus. Seine antisemitischen, sexistischen und patriarchalen Positionen begrenzen diesen Beitrag grundlegend und müssen gemeinsam mit ihm erinnert werden.",
     "relatedEventIds": [],
     "sourceRefs": [
-      {"title": "Pierre-Joseph Proudhon (1809–1865)", "url": "https://data.bnf.fr/11920705/pierre-joseph_proudhon/", "publisher": "Bibliothèque nationale de France", "language": "fr", "type": "Normdaten- und Werkarchiv", "accessedAt": "2026-08-24"},
-      {"title": "A Collection of Scattered Articles and Letters of Proudhon", "url": "https://philarchive.org/archive/PROACO-6", "publisher": "PhilArchive", "language": "en", "type": "Primärtextsammlung mit editorischen Hinweisen", "accessedAt": "2026-08-24"}
+      {"title": "Proudhon, Pierre-Joseph (1809–1865)", "url": "https://catalogue.bnf.fr/ark:/12148/cb11920705x", "publisher": "Bibliothèque nationale de France", "language": "fr", "type": "Normdaten- und Werkarchiv", "accessedAt": "2026-08-24"},
+      {"title": "The Straight Path That Leads to Sodom: Pierre-Joseph Proudhon’s Sexual Politics and 19th Century French Feminist Responses", "url": "https://dspace.library.uvic.ca/items/22df17ce-f26d-4139-aa7b-d8d20c7638a0", "publisher": "University of Victoria Libraries", "language": "en", "type": "Wissenschaftliche Dissertation", "accessedAt": "2026-08-24"},
+      {"title": "Anarchism and Gender", "url": "https://onlinelibrary.wiley.com/doi/abs/10.1002/9781405198073.wbierp0055", "publisher": "Wiley", "language": "en", "type": "Wissenschaftlicher Überblick", "accessedAt": "2026-08-24"},
+      {"title": "Carnets de P.-J. Proudhon, Pierre Haubtmann ed.", "url": "https://www.persee.fr/doc/ahess_0395-2649_1962_num_17_5_420910_t1_1015_0000_2", "publisher": "Persée / Annales. Histoire, Sciences Sociales", "language": "fr", "type": "Wissenschaftliche Editionsbesprechung mit Fundstellen", "accessedAt": "2026-08-24"}
     ],
     "review": {"status": "Redaktioneller Pilotstand", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "hoch", "displayRule": "Antisemitische und sexistische Positionen klar benennen, nicht ausschreiben oder reproduzieren; Kontext und Betroffenheit sichtbar machen."},
-    "provenance": {"method": "Redaktionelle Synthese aus Bibliotheksdaten, Primärtexten und editorischen Hinweisen; problematische Positionen paraphrasiert.", "editorialNote": "Keine isolierten berühmten Formeln ohne Entwicklungskontext."},
+    "provenance": {"method": "Redaktionelle Synthese aus BnF-Normdaten, einer Dissertation zur Sexualpolitik, einem wissenschaftlichen Überblick und der Editionsbesprechung der Carnets; problematische Positionen paraphrasiert.", "editorialNote": "Kritiklinien ohne punktgenauen Beleg wurden entfernt; belastende Passagen werden nicht ausgeschrieben."},
     "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Digitalisate und Editionen unterliegen eigenen Rechten."}
   },
   {

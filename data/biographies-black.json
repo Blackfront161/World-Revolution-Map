@@ -48,14 +48,6 @@
     "relatedEventIds": [],
     "sourceRefs": [
       {
-        "title": "National Heroes: Nanny of the Maroons",
-        "url": "https://beta.nlj.gov.jm/qcontentnational-heroes/",
-        "publisher": "National Library of Jamaica",
-        "language": "en",
-        "type": "Institutionelle Sekundärquelle",
-        "accessedAt": "2026-08-24"
-      },
-      {
         "title": "The Maroons",
         "url": "https://www.nlj.gov.jm/history-notes/The%20Maroons%20edited%20final.htm",
         "publisher": "National Library of Jamaica",
@@ -75,7 +67,7 @@
     "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "hoch", "displayRule": "Koloniale Gewalt, Versklavung und Tötungsgefahr sachlich darstellen; keine spielerische Belohnung oder exakte Verortung historisch unsicherer Rückzugsorte."},
     "provenance": {"method": "Deutschsprachige redaktionelle Synthese aus institutionellen Quellen; strittige Angaben ausdrücklich als unsicher markiert.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
-    "license": "Redaktioneller Text: CC BY 4.0; Rechte an verlinkten Quellen verbleiben bei den jeweiligen Herausgebern."
+    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweiligen Herausgebern."}
   },
   {
     "id": "bio-harriet-tubman",
@@ -153,7 +145,7 @@
     "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "hoch", "displayRule": "Sklaverei, körperliche Gewalt und Krieg sachlich benennen; keine Gamifizierung von Flucht, Verletzungen oder bewaffneten Operationen."},
     "provenance": {"method": "Deutschsprachige redaktionelle Synthese aus Bundesinstitutionen und deren Primärquellenführern; unsicheres Geburtsdatum nicht präzisiert.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
-    "license": "Redaktioneller Text: CC BY 4.0; Rechte an verlinkten Quellen verbleiben bei den jeweiligen Herausgebern."
+    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweiligen Herausgebern."}
   },
   {
     "id": "bio-robert-smalls",
@@ -231,7 +223,7 @@
     "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "hoch", "displayRule": "Sklaverei, Krieg und rassistische Wahlgewalt nüchtern darstellen; Schiffsübernahme nicht als spielerischen Coup inszenieren."},
     "provenance": {"method": "Deutschsprachige Synthese aus National Park Service, Kongress- und Marinegeschichte; umstrittene oder politisierte Punkte kontextualisiert.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
-    "license": "Redaktioneller Text: CC BY 4.0; Rechte an verlinkten Quellen verbleiben bei den jeweiligen Herausgebern."
+    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweiligen Herausgebern."}
   },
   {
     "id": "bio-yaa-asantewaa",
@@ -301,7 +293,7 @@
     "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "hoch", "displayRule": "Kolonialkrieg, Verluste und Deportation sachlich darstellen; keine Heroisierung von Gewalt und keine ungesicherten Reden als Zitate verwenden."},
     "provenance": {"method": "Redaktionelle Synthese aus Museums-, Provenienz- und Fachliteratur; unsicheres Geburtsdatum auf unknown gesetzt.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
-    "license": "Redaktioneller Text: CC BY 4.0; Rechte an verlinkten Quellen verbleiben bei den jeweiligen Herausgebern."
+    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweiligen Herausgebern."}
   },
   {
     "id": "bio-lamine-senghor",
@@ -379,7 +371,7 @@
     "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "mittel", "displayRule": "Kolonialkrieg, Krankheit und historische rassistische Organisationsnamen kontextualisieren; diskriminierende Begriffe nicht als heutige Kategorien verwenden."},
     "provenance": {"method": "Synthese aus Nationalbibliothek und peer-reviewter Forschung mit ausgewerteten Polizei- und Bewegungsquellen.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
-    "license": "Redaktioneller Text: CC BY 4.0; Rechte an verlinkten Quellen verbleiben bei den jeweiligen Herausgebern."
+    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweiligen Herausgebern."}
   },
   {
     "id": "bio-funmilayo-ransome-kuti",
@@ -444,20 +436,12 @@
         "language": "en",
         "type": "Institutionell archivierte UNESCO-Zusammenfassung",
         "accessedAt": "2026-08-24"
-      },
-      {
-        "title": "Funmilayo Ransome-Kuti and the Women's Union of Abeokuta",
-        "url": "https://web.classicistranieri.com/en-women-in-african-history/WAH_EN_Files/FunmilayoRansomeKuti.pdf",
-        "publisher": "UNESCO Series on Women in African History",
-        "language": "en",
-        "type": "Institutionelle Sekundärquelle mit Familienmaterial",
-        "accessedAt": "2026-08-24"
       }
     ],
     "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "hoch", "displayRule": "Koloniale Repression und den tödlichen Militärangriff sachlich darstellen; Tod nicht als dramatischen Schluss- oder Belohnungsmoment inszenieren."},
     "provenance": {"method": "Synthese aus UNESCO-/UN-Katalogen und institutionell archiviertem Lehrmaterial; kollektive Rolle der Abeokuta-Frauen ausdrücklich berücksichtigt.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
-    "license": "Redaktioneller Text: CC BY 4.0; Rechte an verlinkten Quellen verbleiben bei den jeweiligen Herausgebern."
+    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweiligen Herausgebern."}
   },
   {
     "id": "bio-ella-baker",
@@ -535,7 +519,7 @@
     "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "mittel", "displayRule": "Rassistische Gewalt und geschlechtsspezifische Abwertung kontextualisieren; Basisarbeit nicht in ein heroisches Punktesystem übersetzen."},
     "provenance": {"method": "Synthese aus National Park Service sowie Primärquellen-Findbüchern von NYPL und National Archives.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
-    "license": "Redaktioneller Text: CC BY 4.0; Rechte an verlinkten Quellen verbleiben bei den jeweiligen Herausgebern."
+    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweiligen Herausgebern."}
   },
   {
     "id": "bio-claudia-jones",
@@ -613,7 +597,7 @@
     "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "mittel", "displayRule": "Haft, Abschiebung und rassistische Gewalt sachlich darstellen; historische diskriminierende Begriffe nur in Quellentiteln und mit Kontext anzeigen."},
     "provenance": {"method": "Synthese aus britischem Nationalarchiv und digitalisierten Primärtexten; Zuschreibungen zur Carnival-Geschichte bewusst kollektiv formuliert.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
-    "license": "Redaktioneller Text: CC BY 4.0; Rechte an verlinkten Quellen verbleiben bei den jeweiligen Herausgebern."
+    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweiligen Herausgebern."}
   },
   {
     "id": "bio-andree-blouin",
@@ -665,10 +649,10 @@
     "sourceRefs": [
       {
         "title": "My Country, Africa: Autobiography of the Black Pasionaria",
-        "url": "https://www.si.edu/object/siris_sil_160551",
-        "publisher": "Smithsonian Institution Libraries",
+        "url": "https://search.worldcat.org/title/my-country-africa-autobiography-of-the-black-pasionaria/oclc/8907297",
+        "publisher": "OCLC WorldCat",
         "language": "en",
-        "type": "Institutioneller Katalog einer Primärquelle",
+        "type": "Bibliothekskatalog einer Primärquelle",
         "accessedAt": "2026-08-24"
       },
       {
@@ -691,7 +675,7 @@
     "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "hoch", "displayRule": "Kindesmisshandlung, rassistische Institutionen, Kolonialgewalt und Ausweisung zurückhaltend darstellen; keine unnötigen Details und keine Dramatisierung."},
     "provenance": {"method": "Quellenkritische Synthese aus Primärquellenkatalog, Universitätsressource und Fachkapitel; strittige Amtsbezeichnungen vermieden.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
-    "license": "Redaktioneller Text: CC BY 4.0; Rechte an verlinkten Quellen verbleiben bei den jeweiligen Herausgebern."
+    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweiligen Herausgebern."}
   },
   {
     "id": "bio-bayard-rustin",
@@ -769,7 +753,7 @@
     "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "mittel", "displayRule": "Homophobe Strafverfolgung und Diffamierung sachlich und ohne intime Details darstellen; keine Stigmatisierung durch historische Gesetzessprache."},
     "provenance": {"method": "Synthese aus NPS-Denkmalforschung und dem Primärquellen-Findbuch der Library of Congress.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
-    "license": "Redaktioneller Text: CC BY 4.0; Rechte an verlinkten Quellen verbleiben bei den jeweiligen Herausgebern."
+    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweiligen Herausgebern."}
   },
   {
     "id": "bio-wangari-maathai",
@@ -855,6 +839,6 @@
     "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "mittel", "displayRule": "Polizeigewalt und Repression sachlich darstellen; keine aktuellen Standorte gefährdeter Aktivist*innen oder Baumschulen nennen."},
     "provenance": {"method": "Synthese aus Nobel-Dokumentation, Maathais eigener Nobelvorlesung und institutioneller Umweltpreis-Biografie; Baumzahlen nicht absolut gesetzt.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
-    "license": "Redaktioneller Text: CC BY 4.0; Rechte an verlinkten Quellen verbleiben bei den jeweiligen Herausgebern."
+    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweiligen Herausgebern."}
   }
 ]

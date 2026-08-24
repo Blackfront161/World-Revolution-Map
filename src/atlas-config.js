@@ -31,7 +31,7 @@ export function readRuntimeConfig(search = '', dataset = {}, baseUrl = 'https://
   return Object.freeze({
     embed,
     showWelcome: parseBoolean(params.get('welcome') ?? dataset.welcome, !embed),
-    useSupabase: parseBoolean(params.get('supabase') ?? dataset.supabase, true),
+    useSupabase: parseBoolean(params.get('supabase') ?? dataset.supabase, false),
     parentOrigin: normalizeParentOrigin(params.get('parentOrigin') ?? dataset.parentOrigin, baseUrl),
     accent: normalizeAccent(params.get('accent') ?? dataset.accent),
     maxRemoteEvents: 2000

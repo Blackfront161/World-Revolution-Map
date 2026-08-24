@@ -15,6 +15,8 @@ test('Einbettungskonfiguration akzeptiert nur sichere Parent-Origins', () => {
   const config = readRuntimeConfig('?embed=1&welcome=0&supabase=false&accent=%23ff00aa&parentOrigin=https%3A%2F%2Fapp.example.org');
   assert.deepEqual({ embed: config.embed, welcome: config.showWelcome, supabase: config.useSupabase, accent: config.accent, parent: config.parentOrigin },
     { embed: true, welcome: false, supabase: false, accent: '#ff00aa', parent: 'https://app.example.org' });
+  assert.equal(readRuntimeConfig('').useSupabase, false);
+  assert.equal(readRuntimeConfig('?supabase=1').useSupabase, true);
 });
 
 test('Fortschrittsimporte werden begrenzt und mit dem Archiv abgeglichen', () => {

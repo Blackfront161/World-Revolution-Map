@@ -15,7 +15,9 @@ test('HTML verweist auf vorhandene lokale Kernressourcen', async () => {
   assert.match(html, /aria-label=/);
   assert.match(html, /skip-link/);
   assert.match(html, /Content-Security-Policy/);
-  assert.equal((html.match(/integrity="sha384-/g) || []).length, 3);
+  assert.equal((html.match(/integrity="sha384-/g) || []).length, 2);
+  assert.doesNotMatch(html, /supabase-js@2\.45\.4/);
+  assert.doesNotMatch(html, /wikipedia\.org/);
   assert.doesNotMatch(html, /targetOrigin="\*"/);
   assert.match(html, /id="clear-search"/);
   assert.match(html, /id="fit-results"/);
@@ -185,7 +187,7 @@ test('Datenbankinhalte werden nicht über innerHTML in die Seite geschrieben', a
   assert.doesNotMatch(script, /\.innerHTML\s*=/);
   assert.match(script, /setDOMContent/);
   assert.match(script, /sanitizeProgress/);
-  assert.match(script, /safeWikipediaApiUrl/);
+  assert.doesNotMatch(script, /safeWikipediaApiUrl|safeImageUrl|resolveImageUrl/);
   assert.match(script, /VIEW_STORAGE_KEY/);
   assert.match(script, /eventShareUrl/);
   assert.match(script, /fitFilteredEvents/);
@@ -208,6 +210,10 @@ test('Datenbankinhalte werden nicht über innerHTML in die Seite geschrieben', a
   assert.doesNotMatch(script, /decodeURIComponent\(value\)/);
   assert.match(script, /navigator\.serviceWorker\.register/);
   assert.match(script, /updateViaCache: 'none'/);
+  assert.match(script, /navigator\.serviceWorker\.ready/);
+  assert.match(script, /dataset\.offlineReady = 'true'/);
+  assert.match(script, /registration\.installing \|\| registration\.waiting/);
+  assert.match(script, /waitForServiceWorkerActivation/);
 });
 
 test('Biografiekatalog enthält 40 koordinatenfreie, belegte Lebenswege', async () => {
@@ -224,13 +230,49 @@ test('Biografiekatalog enthält 40 koordinatenfreie, belegte Lebenswege', async 
   assert.ok(sources.every(source => /^https:\/\//.test(source.url)));
 });
 
-test('Offline-Shell cachet ausschließlich lokale Ressourcen vorab', async () => {
+test('Offline-Shell aktiviert nur eine vollständige atomare lokale Generation', async () => {
   const worker = await readFile(new URL('service-worker.js', root), 'utf8');
-  assert.match(worker, /atlas-local-v2\.9\.0-redacted-r1/);
-  assert.match(worker, /fetch\(request, \{ cache: 'no-cache' \}\)/);
-  assert.match(worker, /fetch\(request\)[\s\S]+catch\(\(\) => caches\.match\(request\)\)/);
+  const eventCatalog = JSON.parse(await readFile(new URL('data/event-catalog.json', root), 'utf8'));
+  const biographyCatalog = JSON.parse(await readFile(new URL('data/biography-catalog.json', root), 'utf8'));
+  assert.equal(eventCatalog.length, 24);
+  assert.equal(biographyCatalog.files.length, 3);
+  assert.match(worker, /atlas-local-v2\.9\.0-rc2-r4/);
+  assert.match(worker, /STAGING_CACHE/);
+  assert.match(worker, /MANIFEST_URL/);
+  assert.match(worker, /catalogFileUrls\(eventCatalog\)/);
+  assert.match(worker, /catalogFileUrls\(biographyCatalog, 'files'\)/);
+  for (const resource of ['event-catalog.json', 'biography-catalog.json', 'archive-contract.json', 'event-metadata.json', 'event-editorial-overrides.json', 'routes.json', 'map-taxonomy.json', 'relations.json']) {
+    assert.match(worker, new RegExp(resource.replaceAll('.', '\\.')));
+  }
+  assert.match(worker, /verifyGeneration\(staging, resources\)/);
+  assert.match(worker, /verifyGeneration\(finalCache, \[\.\.\.resources, MANIFEST_URL\]\)/);
+  assert.doesNotMatch(worker, /Promise\.allSettled|cacheIfAvailable/);
+  assert.match(worker, /fetch\(request, \{ cache: 'no-cache', signal: controller\.signal \}\)/);
+  assert.match(worker, /controller\.abort\(\), 500/);
+  assert.match(worker, /cache\.match\(fallbackUrl\)/);
   assert.match(worker, /url\.origin !== self\.location\.origin/);
   assert.doesNotMatch(worker, /https:\/\/(?:api\.maptiler|tiles|carto|wikimedia)/i);
+  assert.ok(worker.indexOf('await verifyGeneration(cache') < worker.indexOf("keys.filter(key => key.startsWith('atlas-local-')"));
+});
+
+test('Fehlerhafte lokale Datenladung endet in einem sichtbaren, lokalisierten Zustand', async () => {
+  const script = await readFile(new URL('script.js', root), 'utf8');
+  const translations = await readFile(new URL('src/i18n.js', root), 'utf8');
+  assert.match(script, /LOCAL_DATA_TIMEOUT_MS = 8000/);
+  assert.match(script, /function showArchiveLoadFailure\(\)/);
+  assert.match(script, /ui\.resultCount\.textContent = i18n\.t\('archiveLoadFailed'\)/);
+  assert.match(script, /setDataStatus\(i18n\.t\('archiveLoadFailed'\), 'error'\)/);
+  assert.equal((translations.match(/archiveLoadFailed:/g) || []).length, 9);
+  assert.equal((translations.match(/archiveLoadFailedBody:/g) || []).length, 9);
+});
+
+test('Remote-Daten und -Bilder sind im RC standardmäßig deaktiviert', async () => {
+  const script = await readFile(new URL('script.js', root), 'utf8');
+  const config = await readFile(new URL('src/atlas-config.js', root), 'utf8');
+  assert.match(config, /useSupabase: parseBoolean\([^\n]+, false\)/);
+  assert.match(script, /SUPABASE_SDK_INTEGRITY/);
+  assert.match(script, /if \(!runtimeConfig\.useSupabase\)/);
+  assert.doesNotMatch(script, /upload\.wikimedia\.org|wikipedia\.org/);
 });
 
 test('Design berücksichtigt reduzierte Bewegung und mobile Ansichten', async () => {

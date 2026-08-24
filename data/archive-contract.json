@@ -26,6 +26,7 @@
     "catalogFile": "data/biography-catalog.json",
     "idPattern": "^bio-[a-z0-9]+(?:-[a-z0-9]+)*$",
     "identityRule": "Biografien sind eigenständige Archivobjekte und werden weder als Kartenereignisse noch mit künstlichen Koordinaten gespeichert.",
+    "searchAliasRule": "searchAliases enthält ausschließlich kuratierte Namensvarianten und häufige Schreibvarianten; es aktiviert keine unscharfe Ähnlichkeitssuche.",
     "requiredFields": ["personName", "shortDescription", "lifeStages", "ideasAndPractices", "organizingAndAchievements", "tensionsAndCritique", "legacy", "sourceRefs", "review", "sensitivity", "provenance", "license"],
     "minimumHttpsSources": 2,
     "relatedEventRule": "relatedEventIds referenzieren ausschließlich kanonische aktive Event-IDs.",

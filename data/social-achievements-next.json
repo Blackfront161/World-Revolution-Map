@@ -59,11 +59,11 @@
     "coordinatePrecision": "region",
     "description": "Nach mehr als zwei Jahrzehnten Verhandlungen unter starker Beteiligung indigener Organisationen verabschiedete die UN-Generalversammlung 2007 die UNDRIP. Sie formuliert kollektive Rechte auf Selbstbestimmung, Kultur, Land, Ressourcen und freie, vorherige und informierte Zustimmung.",
     "significance": "Die Erklärung machte indigene Völker zu Trägern kollektiver Rechte und setzte einen weltweiten Mindeststandard gegen koloniale Enteignung und Assimilation.",
-    "bottomUpPressure": "Mehr als hundert indigene Organisationen beteiligten sich regelmäßig an der UN-Arbeitsgruppe und hielten die Erklärung trotz jahrelanger Verzögerung auf der internationalen Agenda.",
+    "bottomUpPressure": "Zahlreiche indigene Organisationen beteiligten sich regelmäßig an der UN-Arbeitsgruppe und hielten die Erklärung trotz jahrelanger Verzögerung auf der internationalen Agenda.",
     "achievement": "Am 13. September 2007 nahm die Generalversammlung Resolution 61/295 mit 143 Ja-Stimmen an.",
     "limits": "UNDRIP ist als Erklärung nicht unmittelbar wie ein Vertrag bindend. Staaten bestritten besonders Land-, Ressourcen- und Zustimmungsrechte; die UN selbst dokumentiert große Umsetzungslücken und fortdauernde Enteignung und Gewalt.",
     "clue": "Suche in New York nach einem Text, an dem indigene Delegierte über zwanzig Jahre mitarbeiteten.",
-    "sourceUrl": "https://www.un.org/development/desa/indigenouspeoples/declaration-on-%20the-rights-of-indigenous-peoples.html",
+    "sourceUrl": "https://docs.un.org/A/RES/61/295",
     "demands": ["Selbstbestimmung", "Rechte auf Land, Territorien und Ressourcen", "Freie, vorherige und informierte Zustimmung", "Schutz vor Assimilation"],
     "participants": ["Indigene Organisationen aus allen Weltregionen", "Indigene Delegierte und Expert*innen", "Unterstützende Staaten und Menschenrechtsgremien"],
     "powerStructures": ["Koloniale und siedlerkoloniale Staaten", "Extraktive Land- und Ressourcenordnungen", "Assimilationspolitiken"],
@@ -82,7 +82,7 @@
     "reviewStatus": "Redaktioneller Pilotstand",
     "provenance": {
       "sourceUrls": [
-        "https://www.un.org/development/desa/indigenouspeoples/declaration-on-%20the-rights-of-indigenous-peoples.html",
+        "https://docs.un.org/A/RES/61/295",
         "https://www.un.org/development/desa/indigenouspeoples/about-us-html",
         "https://www.un.org/development/desa/indigenouspeoples/mandated-areas1/human-rights/recommendations-on-human-rights.html",
         "https://press.un.org/en/2007/ga10612.doc.htm"

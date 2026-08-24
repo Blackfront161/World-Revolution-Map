@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { filterBiographies, normalizeBiography, validateBiography } from '../src/biography-core.js';
+import { biographyYearLabel, filterBiographies, normalizeBiography, validateBiography } from '../src/biography-core.js';
 import { normalizeSearchText } from '../src/game-core.js';
 
 const raw = {
@@ -22,7 +22,7 @@ const raw = {
   reviewStatus: 'Redaktionell vertieft',
   sensitivity: { level: 'contextual', displayRule: 'Sachlich und ohne spielerische Belohnung darstellen.' },
   provenance: { method: 'Redaktionelle Synthese der aufgeführten Quellen.', checkedAt: '2026-08-24', quotationPolicy: 'Keine direkten Zitate.' },
-  license: 'Redaktioneller Text: CC BY 4.0; Quellenrechte verbleiben bei den Herausgebern.',
+  license: { status: 'rights-unclear', notice: 'Rechte werden noch geklärt.' },
   sources: [
     { url: 'https://archive.example/a', publisher: 'Archive', language: 'en', type: 'archive', accessedAt: '2026-08-24' },
     { url: 'https://museum.example/b', publisher: 'Museum', language: 'fr', type: 'museum', accessedAt: '2026-08-24' }
@@ -36,10 +36,31 @@ test('normalisiert und validiert eigenständige Biografien ohne Koordinaten', ()
   assert.ok(validateBiography({ ...raw, latitude: 1 }, new Set(['event-one'])).some(issue => issue.includes('Koordinaten')));
   assert.ok(validateBiography({ ...raw, sources: raw.sources.slice(0, 1) }, new Set(['event-one'])).some(issue => issue.includes('zwei Quellen')));
   assert.ok(validateBiography({ ...raw, quotes: ['unbelegt'] }, new Set(['event-one'])).some(issue => issue.includes('Zitatfelder')));
+  assert.ok(validateBiography({ ...raw, license: 'Redaktioneller Text: CC BY 4.0' }, new Set(['event-one'])).some(issue => issue.includes('Lizenzgeber')));
+  assert.deepEqual(validateBiography({ ...raw, license: { status: 'CC BY 4.0', licensor: 'Example Editorial Collective', url: 'https://creativecommons.org/licenses/by/4.0/', scope: 'summary and editorial fields' } }, new Set(['event-one'])), []);
 });
 
 test('filtert Lebenswege tolerant nach Region, Tradition und Zeitraum', () => {
   const bio = normalizeBiography(raw);
   assert.equal(filterBiographies([bio], { query: 'quebec', region: 'Québec', tradition: 'Libertärer Sozialismus', from: 1910, to: 1920 }, normalizeSearchText).length, 1);
   assert.equal(filterBiographies([bio], { from: 1981, to: 2000 }, normalizeSearchText).length, 0);
+});
+
+test('kuratierte Namensvarianten finden Proudhon ohne allgemeine Fuzzy-Suche', () => {
+  const proudhon = normalizeBiography({ ...raw, id: 'bio-pierre-joseph-proudhon', name: 'Pierre-Joseph Proudhon', searchAliases: ['Proudon', 'Joseph Proudon'] });
+  for (const query of ['Proudon', 'Joseph Proudon', 'pierre joseph proudon']) {
+    assert.equal(filterBiographies([proudhon], { query }, normalizeSearchText).length, 1, query);
+  }
+  assert.equal(filterBiographies([proudhon], { query: 'Proust' }, normalizeSearchText).length, 0);
+  assert.ok(validateBiography({ ...raw, searchAliases: 'Proudon' }, new Set(['event-one'])).some(issue => issue.includes('searchAliases')));
+});
+
+test('lokalisiert unbekannte und teilweise bekannte Lebensdaten ohne Rohsentinel', () => {
+  const unknownLabels = ['nicht sicher überliefert', 'not reliably known', 'no consta con certeza', 'non établi avec certitude', 'non noto con certezza', 'não é conhecido com segurança', 'достоверно не установлено', 'δεν είναι γνωστό με βεβαιότητα', 'güvenilir biçimde bilinmiyor'];
+  for (const label of unknownLabels) {
+    assert.equal(biographyYearLabel({ dateLabel: 'unknown–1782-09-05' }, label), `${label}–1782-09-05`);
+    assert.equal(biographyYearLabel({ dateLabel: '1944-09-12–unknown' }, label), `1944-09-12–${label}`);
+    assert.equal(biographyYearLabel({ dateLabel: 'unknown' }, label), label);
+    assert.doesNotMatch(biographyYearLabel({ dateLabel: 'unknown–1782-09-05' }, label), /unknown/i);
+  }
 });
