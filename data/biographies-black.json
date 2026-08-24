@@ -1,0 +1,860 @@
+[
+  {
+    "id": "bio-queen-nanny",
+    "personName": "Queen Nanny (Nanny of the Maroons)",
+    "birth": "unknown",
+    "death": "unknown",
+    "places": ["Nanny Town und Moore Town, Portland, Jamaika", "Blue and John Crow Mountains, Jamaika"],
+    "communities": ["Windward Maroons", "versklavte und selbstbefreite Afrikaner*innen in Jamaika", "Moore-Town-Gemeinschaft"],
+    "shortDescription": "Spirituelle, politische und militärische Führungspersönlichkeit der Windward Maroons, die im frühen 18. Jahrhundert autonome Gemeinschaften gegen die britische Kolonialmacht verteidigten.",
+    "lifeStages": [
+      {
+        "period": "vor den 1730er Jahren",
+        "title": "Überlieferte Herkunft und Führung",
+        "description": "Nannys Herkunft und frühes Leben sind nicht sicher dokumentiert. Maroon-Überlieferungen und institutionelle Darstellungen erinnern sie als Asante-stämmige Führungspersönlichkeit; koloniale Akten geben nur einen begrenzten und feindseligen Außenblick wieder."
+      },
+      {
+        "period": "ca. 1720er–1730er Jahre",
+        "title": "Verteidigung autonomer Maroon-Gemeinschaften",
+        "description": "Nanny verband politische Autorität, spirituelle Praxis, Versorgung und militärische Strategie. Die Windward Maroons nutzten schwer zugängliches Gelände, Nachrichtennetze und bewegliche Kriegsführung gegen britische Truppen und Plantagenherrschaft."
+      },
+      {
+        "period": "ab 1739",
+        "title": "Land, Erinnerung und fortdauernde Autonomie",
+        "description": "Eine Landzuteilung von 1740 an Nanny und ihre Gemeinschaft ist archivalisch belegt. Ihr weiteres Leben und Todesjahr bleiben unsicher; in Moore Town lebt ihre Erinnerung als Grundlage gemeinschaftlicher Identität und jamaikanischer Nationalgeschichte fort."
+      }
+    ],
+    "ideasAndPractices": [
+      "kollektive Selbstbefreiung und territoriale Autonomie",
+      "an Gelände angepasstes Wissen, dezentrale Verteidigung und Nachrichtennetze",
+      "Verbindung spiritueller, sozialer und militärischer Führung"
+    ],
+    "organizingAndAchievements": [
+      "stärkte die Windward-Maroons als dauerhafte autonome Gemeinschaft",
+      "organisierte Widerstand, Versorgung und Schutz in den Blue Mountains",
+      "wurde 1975 als einzige Frau unter Jamaikas Nationalheld*innen anerkannt"
+    ],
+    "repressionAndRisks": [
+      "britische Feldzüge, Zerstörung von Siedlungen und koloniale Verfolgung",
+      "ständige Gefahr erneuter Versklavung oder Tötung",
+      "koloniale Quellen verzerrten oder marginalisierten Maroon-Perspektiven"
+    ],
+    "tensionsAndCritique": [
+      "Geburtsort, Verwandtschaft, einzelne Schlachten und Todesjahr sind zwischen mündlicher Überlieferung und kolonialem Archiv nicht zuverlässig auflösbar.",
+      "Maroon-Verträge schützten Autonomie, verpflichteten Vertragsgemeinschaften aber später auch zur Rückführung geflohener Versklavter; Nannys eigene Position dazu ist nicht sicher belegt.",
+      "Eine nationalheroische Erzählung darf die kollektive Arbeit der Windward-Maroons und heutige Maroon-Selbstdeutungen nicht überdecken."
+    ],
+    "legacy": "Queen Nanny steht für Schwarze Selbstbefreiung, militärisch-politische Handlungsfähigkeit und die fortdauernde Souveränität von Maroon-Gemeinschaften. Ihre Geschichte verlangt, mündliche Überlieferung ernst zu nehmen und zugleich Unsicherheiten des kolonialen Archivs sichtbar zu lassen.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {
+        "title": "National Heroes: Nanny of the Maroons",
+        "url": "https://beta.nlj.gov.jm/qcontentnational-heroes/",
+        "publisher": "National Library of Jamaica",
+        "language": "en",
+        "type": "Institutionelle Sekundärquelle",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "The Maroons",
+        "url": "https://www.nlj.gov.jm/history-notes/The%20Maroons%20edited%20final.htm",
+        "publisher": "National Library of Jamaica",
+        "language": "en",
+        "type": "Institutionelle historische Übersicht",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Blue and John Crow Mountains: Nomination Dossier",
+        "url": "https://whc.unesco.org/uploads/nominations/1356rev.pdf",
+        "publisher": "UNESCO World Heritage Centre",
+        "language": "en",
+        "type": "Institutionelles Welterbe-Dossier",
+        "accessedAt": "2026-08-24"
+      }
+    ],
+    "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "hoch", "displayRule": "Koloniale Gewalt, Versklavung und Tötungsgefahr sachlich darstellen; keine spielerische Belohnung oder exakte Verortung historisch unsicherer Rückzugsorte."},
+    "provenance": {"method": "Deutschsprachige redaktionelle Synthese aus institutionellen Quellen; strittige Angaben ausdrücklich als unsicher markiert.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
+    "license": "Redaktioneller Text: CC BY 4.0; Rechte an verlinkten Quellen verbleiben bei den jeweiligen Herausgebern."
+  },
+  {
+    "id": "bio-harriet-tubman",
+    "personName": "Harriet Tubman",
+    "birth": "unknown",
+    "death": "1913-03-10",
+    "places": ["Dorchester County, Maryland, USA", "Philadelphia, Pennsylvania, USA", "Auburn, New York, USA", "Beaufort District und Combahee River, South Carolina, USA"],
+    "communities": ["versklavte und selbstbefreite Schwarze Menschen", "Underground-Railroad-Netzwerke", "Schwarze Unionssoldaten und Zivilbevölkerung", "Frauenwahlrechtsbewegung"],
+    "shortDescription": "Selbstbefreite Abolitionistin, Kundschafterin, Pflegerin und Organisatorin, die Menschen aus der Sklaverei führte, die Combahee-River-Operation unterstützte und später für Frauenwahlrecht und soziale Versorgung kämpfte.",
+    "lifeStages": [
+      {
+        "period": "ca. 1822–1849",
+        "title": "Leben unter Sklaverei und Selbstbefreiung",
+        "description": "Tubman wurde als Araminta Ross in Maryland versklavt. Gewalt und eine schwere Kopfverletzung prägten ihr Leben. 1849 befreite sie sich selbst und erreichte Philadelphia; ihr genaues Geburtsdatum ist nicht gesichert."
+      },
+      {
+        "period": "1850–1865",
+        "title": "Befreiungsnetzwerke und Bürgerkrieg",
+        "description": "Sie kehrte wiederholt nach Maryland zurück, um Angehörige und andere Menschen auf Fluchtrouten zu unterstützen. Im Bürgerkrieg arbeitete sie für die Union unter anderem als Pflegerin, Kundschafterin und Aufklärerin und war an der Vorbereitung des Combahee River Raid beteiligt, bei dem mehr als 700 versklavte Menschen befreit wurden."
+      },
+      {
+        "period": "1865–1913",
+        "title": "Versorgung, Wahlrecht und ein eigenes Zuhause",
+        "description": "In Auburn unterstützte Tubman Angehörige und Bedürftige, setzte sich für das Frauenwahlrecht ein und schuf ein Heim für ältere Schwarze Menschen. Für ihre Kriegsarbeit erhielt sie erst spät und nur unvollständig staatliche Anerkennung."
+      }
+    ],
+    "ideasAndPractices": [
+      "praktische gegenseitige Hilfe statt symbolischer Stellvertretung",
+      "Geheimhaltung, lokale Kenntnisse und Vertrauensnetzwerke",
+      "Verbindung von Abschaffung der Sklaverei, Frauenrechten und sozialer Fürsorge"
+    ],
+    "organizingAndAchievements": [
+      "führte Angehörige und weitere Versklavte über die Underground Railroad in die Freiheit",
+      "lieferte Aufklärung und Ortskenntnis für Unionsoperationen in South Carolina",
+      "unterstützte Frauenwahlrecht und gründete ein Heim für ältere Schwarze Menschen"
+    ],
+    "repressionAndRisks": [
+      "Sklaverei, körperliche Gewalt und lebenslange Folgen einer Kopfverletzung",
+      "Gefahr der Festnahme und erneuten Versklavung nach dem Fugitive Slave Act",
+      "militärische Gefahren sowie jahrzehntelange Verweigerung angemessener Entschädigung"
+    ],
+    "tensionsAndCritique": [
+      "Populäre Erzählungen über Zahl und Umfang ihrer Rettungsreisen sind häufig überhöht; die institutionelle Forschung unterscheidet belegte Reisen von späterer Legendenbildung.",
+      "Der Fokus auf eine einzelne Heldin kann die vielen freien und versklavten Schwarzen Helfer*innen sowie indigene und weiße Verbündete im Netzwerk unsichtbar machen.",
+      "Ihre Mitarbeit an einer bewaffneten Kriegsoperation zeigt, dass ihr Widerstand nicht auf eine vereinfachte Erzählung ausschließlich gewaltfreier Fluchthilfe reduziert werden kann."
+    ],
+    "legacy": "Tubmans Leben verbindet Selbstbefreiung, kollektive Fluchthilfe, militärische Aufklärung, Pflege und Frauenrechte. Ihre Bekanntheit sollte nicht zur Mythologisierung führen, sondern den Blick auf die von ihr aufgebauten Beziehungen und auf Schwarze Handlungsfähigkeit schärfen.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {
+        "title": "Harriet Tubman",
+        "url": "https://www.nps.gov/people/harriet-tubman.htm",
+        "publisher": "U.S. National Park Service",
+        "language": "en",
+        "type": "Institutionelle Sekundärquelle",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Harriet Tubman: A Resource Guide",
+        "url": "https://guides.loc.gov/harriet-tubman",
+        "publisher": "Library of Congress",
+        "language": "en",
+        "type": "Institutioneller Forschungsführer mit Primärquellen",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Harriet Tubman and the 54th Massachusetts",
+        "url": "https://www.nps.gov/articles/harriet-tubman-and-the-54th-massachusetts.htm",
+        "publisher": "U.S. National Park Service",
+        "language": "en",
+        "type": "Institutionelle historische Fallstudie",
+        "accessedAt": "2026-08-24"
+      }
+    ],
+    "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "hoch", "displayRule": "Sklaverei, körperliche Gewalt und Krieg sachlich benennen; keine Gamifizierung von Flucht, Verletzungen oder bewaffneten Operationen."},
+    "provenance": {"method": "Deutschsprachige redaktionelle Synthese aus Bundesinstitutionen und deren Primärquellenführern; unsicheres Geburtsdatum nicht präzisiert.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
+    "license": "Redaktioneller Text: CC BY 4.0; Rechte an verlinkten Quellen verbleiben bei den jeweiligen Herausgebern."
+  },
+  {
+    "id": "bio-robert-smalls",
+    "personName": "Robert Smalls",
+    "birth": "1839-04-05",
+    "death": "1915-02-23",
+    "places": ["Beaufort, South Carolina, USA", "Charleston, South Carolina, USA", "Washington, D.C., USA"],
+    "communities": ["versklavte und selbstbefreite Schwarze Menschen", "Schwarze Gemeinschaften der Sea Islands", "Unionsmarine", "Schwarze Wähler*innen in South Carolina"],
+    "shortDescription": "Aus der Sklaverei hervorgegangener Schiffspilot, Unionsveteran und Politiker der Reconstruction, der 1862 die CSS Planter mit Angehörigen und Crewmitgliedern in die Freiheit steuerte und später Schwarze Bürgerrechte verteidigte.",
+    "lifeStages": [
+      {
+        "period": "1839–1862",
+        "title": "Versklavter Hafenarbeiter und Pilot",
+        "description": "Smalls wurde in Beaufort versklavt geboren und arbeitete ab seiner Jugend im Hafen von Charleston. Seine nautischen Kenntnisse erwarb er unter Zwangsbedingungen, entwickelte daraus aber Handlungsspielraum und Kontakte."
+      },
+      {
+        "period": "1862–1865",
+        "title": "Die Planter und Dienst für die Union",
+        "description": "Am 13. Mai 1862 übernahm Smalls mit einer Schwarzen Crew die von der Konföderation eingesetzte Planter, nahm Familienmitglieder auf und übergab Schiff und militärische Informationen an die Union. Danach diente er als Pilot und später als Kapitän."
+      },
+      {
+        "period": "1865–1915",
+        "title": "Reconstruction, Parlament und Gegenrevolution",
+        "description": "Smalls baute wirtschaftliche und publizistische Projekte auf, wirkte an South Carolinas Verfassung von 1868 mit und gehörte Landesparlament sowie US-Repräsentantenhaus an. Er verteidigte öffentliches Bildungswesen und Wahlrechte gegen die gewaltsame Wiedererrichtung weißer Vorherrschaft."
+      }
+    ],
+    "ideasAndPractices": [
+      "Befreiung durch kollektive Planung und berufliches Wissen",
+      "politische Repräsentation als Schutz Schwarzer Bürger- und Wahlrechte",
+      "Verbindung von Bildung, wirtschaftlicher Infrastruktur und demokratischer Teilhabe"
+    ],
+    "organizingAndAchievements": [
+      "befreite sich, seine Familie und weitere Menschen mit der Planter",
+      "unterstützte die Union mit nautischem Wissen und setzte sich für die Aufnahme Schwarzer Soldaten ein",
+      "wirkte in Verfassungskonvent, Landespolitik und fünf Kongressen gegen Entrechtung"
+    ],
+    "repressionAndRisks": [
+      "Sklaverei und Zwangsarbeit",
+      "Todesrisiko bei der Übernahme der Planter und im Bürgerkrieg",
+      "Wahlgewalt, rassistische Gegenrevolution und systematische Entrechtung während und nach Reconstruction"
+    ],
+    "tensionsAndCritique": [
+      "Die spektakuläre Schiffsübernahme darf seine langfristige politische Arbeit und die Mitwirkung der gesamten Schwarzen Crew und ihrer Familien nicht verdrängen.",
+      "Smalls wurde 1877 wegen Bestechung verurteilt und 1879 begnadigt; der Fall stand in einem hochgradig parteipolitischen und rassistischen Umfeld und bleibt Teil einer kritischen Biografie.",
+      "Seine Strategie institutioneller Politik erzielte reale Erfolge, konnte den organisierten Abbau der Reconstruction-Rechte aber nicht aufhalten."
+    ],
+    "legacy": "Smalls macht sichtbar, wie unter Zwang erworbenes Wissen in kollektive Befreiung und später in demokratische Institutionen übersetzt wurde. Seine Laufbahn widerspricht Erzählungen einer führungslosen Reconstruction und zeigt zugleich deren gewaltsame Zerstörung.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {
+        "title": "Robert Smalls",
+        "url": "https://home.nps.gov/people/robert-smalls.htm",
+        "publisher": "U.S. National Park Service",
+        "language": "en",
+        "type": "Institutionelle Sekundärquelle",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "SMALLS, Robert",
+        "url": "https://history.house.gov/People/Detail/21764",
+        "publisher": "U.S. House of Representatives: History, Art & Archives",
+        "language": "en",
+        "type": "Institutionelle Parlamentsbiografie mit Quellenapparat",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Smalls, Robert",
+        "url": "https://www.history.navy.mil/our-collections/photography/us-people/s/smalls-robert.html",
+        "publisher": "Naval History and Heritage Command",
+        "language": "en",
+        "type": "Institutionelle Sammlungsquelle",
+        "accessedAt": "2026-08-24"
+      }
+    ],
+    "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "hoch", "displayRule": "Sklaverei, Krieg und rassistische Wahlgewalt nüchtern darstellen; Schiffsübernahme nicht als spielerischen Coup inszenieren."},
+    "provenance": {"method": "Deutschsprachige Synthese aus National Park Service, Kongress- und Marinegeschichte; umstrittene oder politisierte Punkte kontextualisiert.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
+    "license": "Redaktioneller Text: CC BY 4.0; Rechte an verlinkten Quellen verbleiben bei den jeweiligen Herausgebern."
+  },
+  {
+    "id": "bio-yaa-asantewaa",
+    "personName": "Yaa Asantewaa",
+    "birth": "unknown",
+    "death": "1921-10-17",
+    "places": ["Ejisu, Asante, heutiges Ghana", "Kumasi, heutiges Ghana", "Seychellen"],
+    "communities": ["Asante-Konföderation", "Ejisu", "antikoloniale Kämpfer*innen in Asante", "Asante-Exilgemeinschaft auf den Seychellen"],
+    "shortDescription": "Königinmutter und Regentin von Ejisu, die 1900 zu einer zentralen Führungspersönlichkeit des Asante-Widerstands gegen die britische Kolonisierung wurde und im Exil starb.",
+    "lifeStages": [
+      {
+        "period": "19. Jahrhundert–1896",
+        "title": "Königinmutter und politische Autorität in Ejisu",
+        "description": "Yaa Asantewaa wurde als Königinmutter Teil einer politischen Ordnung, in der weibliche Amtsinhaberinnen an Nachfolge, Beratung und regionaler Herrschaft beteiligt waren. Ihr genaues Geburtsdatum ist nicht verlässlich belegt."
+      },
+      {
+        "period": "1896–1900",
+        "title": "Kolonialer Druck und Exil der Asante-Führung",
+        "description": "Nach der britischen Gefangennahme und Verbannung von Asantehene Prempeh I und weiteren Amtsträgern übernahm sie als Regentin besondere Verantwortung in Ejisu. Die Forderung nach dem Goldenen Stuhl verschärfte 1900 die Konfrontation."
+      },
+      {
+        "period": "1900–1921",
+        "title": "Krieg, Gefangenschaft und Exil",
+        "description": "Yaa Asantewaa wurde zur führenden Figur des bewaffneten Aufstands von 1900. Nach der Niederlage nahmen britische Kräfte sie fest und deportierten sie auf die Seychellen, wo sie 1921 starb."
+      }
+    ],
+    "ideasAndPractices": [
+      "Verteidigung politischer und spiritueller Souveränität",
+      "Mobilisierung über regionale Ämter und Loyalitätsnetzwerke",
+      "weibliche Amtsautorität innerhalb der Asante-Politik"
+    ],
+    "organizingAndAchievements": [
+      "mobilisierte Widerstand gegen die endgültige britische Unterwerfung Asantes",
+      "führte als Königinmutter und Regentin politische und militärische Koordination mit",
+      "wurde zu einem dauerhaften Bezugspunkt ghanaischer antikolonialer Erinnerung"
+    ],
+    "repressionAndRisks": [
+      "Kolonialkrieg, Belagerung und hohe Verluste",
+      "Gefangennahme und lebenslange Deportation",
+      "Aneignung und Zerstreuung kulturell bedeutender Asante-Objekte durch Kolonialmächte"
+    ],
+    "tensionsAndCritique": [
+      "Viele ihr zugeschriebene Reden sind erst später überliefert; sie werden hier nicht als wörtliche Zitate wiedergegeben.",
+      "Koloniale Akten und spätere nationalistische Erinnerung setzen unterschiedliche Akzente; exakte Daten und individuelle Zuschreibungen sind daher vorsichtig zu behandeln.",
+      "Antikolonialer Widerstand innerhalb einer monarchischen Ordnung ist nicht automatisch mit egalitärer Politik gleichzusetzen."
+    ],
+    "legacy": "Yaa Asantewaa verkörpert die politische Autorität von Asante-Frauen und den Widerstand gegen koloniale Annexion. Ihre Erinnerung verbindet Ghana, Asante-Gemeinschaften und die Debatte um geraubte oder unter Zwang abgegebene Kulturgüter.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {
+        "title": "Yaa Asantewaa",
+        "url": "https://www.britishmuseum.org/collection/term/AUTH227870",
+        "publisher": "British Museum",
+        "language": "en",
+        "type": "Institutioneller Sammlungsdatensatz",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Asante Gold Regalia",
+        "url": "https://www.britishmuseum.org/about-us/british-museum-story/contested-objects-collection/asante-gold-regalia",
+        "publisher": "British Museum",
+        "language": "en",
+        "type": "Institutionelle Provenienz- und Kontextquelle",
+        "accessedAt": "2026-08-24"
+      }
+    ],
+    "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "hoch", "displayRule": "Kolonialkrieg, Verluste und Deportation sachlich darstellen; keine Heroisierung von Gewalt und keine ungesicherten Reden als Zitate verwenden."},
+    "provenance": {"method": "Redaktionelle Synthese aus Museums-, Provenienz- und Fachliteratur; unsicheres Geburtsdatum auf unknown gesetzt.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
+    "license": "Redaktioneller Text: CC BY 4.0; Rechte an verlinkten Quellen verbleiben bei den jeweiligen Herausgebern."
+  },
+  {
+    "id": "bio-lamine-senghor",
+    "personName": "Lamine Senghor",
+    "birth": "1889-09-15",
+    "death": "1927-11-25",
+    "places": ["Joal, Senegal", "Fréjus, Frankreich", "Paris, Frankreich", "Brüssel, Belgien"],
+    "communities": ["senegalesische Tirailleurs", "Schwarze Arbeiter*innen und Migrant*innen in Frankreich", "antikoloniale und panafrikanische Netzwerke", "Liga gegen Imperialismus"],
+    "shortDescription": "Senegalesischer Kriegsveteran, Postarbeiter, Autor und antikolonialer Organisator, der in den 1920er Jahren in Frankreich Schwarze Befreiung, Klassenpolitik und internationalen Antiimperialismus verband.",
+    "lifeStages": [
+      {
+        "period": "1889–1918",
+        "title": "Koloniale Herkunft und Weltkrieg",
+        "description": "Senghor wurde in Joal geboren und diente im Ersten Weltkrieg als französischer Kolonialsoldat. Verwundung, Kriegserfahrung und die Widersprüche französischer Gleichheitsversprechen prägten seine spätere Politik."
+      },
+      {
+        "period": "1919–1925",
+        "title": "Arbeit, Kommunismus und antikoloniale Politisierung",
+        "description": "In Frankreich arbeitete er unter anderem bei der Post, trat der Kommunistischen Partei bei und wurde zu einem Redner gegen Kolonialismus und rassistische Ungleichheit. Staatliche Stellen überwachten seine Aktivitäten."
+      },
+      {
+        "period": "1926–1927",
+        "title": "Schwarze Organisation und internationaler Durchbruch",
+        "description": "Senghor wirkte am Comité de défense de la race nègre und an der Ligue de défense de la race nègre mit, veröffentlichte antikoloniale Texte und sprach 1927 auf dem Brüsseler Kongress gegen koloniale Unterdrückung. Wenige Monate später starb er an Tuberkulose."
+      }
+    ],
+    "ideasAndPractices": [
+      "Verknüpfung Schwarzer Identität, Klassenkampf und Antikolonialismus",
+      "internationale Bündnisse zwischen Kolonisierten und Arbeiter*innen",
+      "Zeitungen, Broschüren und Kongresse als transnationale Organisierungsräume"
+    ],
+    "organizingAndAchievements": [
+      "machte radikalen Antikolonialismus in der französischen Öffentlichkeit sichtbar",
+      "baute Schwarze politische Organisationen und Presseprojekte mit auf",
+      "prägte den Kongress der Liga gegen Imperialismus 1927 mit einer international verbreiteten Rede"
+    ],
+    "repressionAndRisks": [
+      "Verwundung und gesundheitliche Folgen des Kriegsdienstes",
+      "polizeiliche Überwachung und kolonialstaatliche Berichterstattung",
+      "prekäre Arbeit und schwere Tuberkulose während intensiver Organisierung"
+    ],
+    "tensionsAndCritique": [
+      "Senghors Verhältnis zur Kommunistischen Partei verband Ressourcen und internationale Reichweite mit Konflikten über die Eigenständigkeit Schwarzer Politik.",
+      "Seine Organisationen nutzten historische Selbstbezeichnungen, die heute verletzend wirken; sie werden nur in Eigennamen und quellenkritischem Kontext wiedergegeben.",
+      "Seine kurze öffentliche Laufbahn und die starke Überlieferung durch Polizeiakten erschweren eine Biografie jenseits staatlicher Beobachtung."
+    ],
+    "legacy": "Senghor war ein früher Knotenpunkt des Roten und Schwarzen Atlantiks. Er zeigte, wie antikoloniale Bewegungen in Europa aus den Erfahrungen kolonialisierter Arbeiter*innen und Veteranen entstanden und internationale Plattformen eroberten.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {
+        "title": "Senghor, Lamine (1889–1927)",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb16650806b",
+        "publisher": "Bibliothèque nationale de France",
+        "language": "fr",
+        "type": "Institutioneller Norm- und Bibliografiedatensatz",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Pan-Africanism and Marxism in interwar France: the case of Lamine Senghor",
+        "url": "https://academic.oup.com/manchester-scholarship-online/book/45468/chapter-abstract/392031347",
+        "publisher": "Manchester University Press / Oxford Academic",
+        "language": "en",
+        "type": "Wissenschaftliche Sekundärquelle",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "No More Slaves! Lamine Senghor, Black Internationalism and the League Against Imperialism",
+        "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/10A59EC86C3380378F451526355E571C/9789400603707c8_p211-236_CBO.pdf/no-more-slaves-lamine-senghor-black-internationalism-and-the-league-against-imperialism.pdf",
+        "publisher": "Cambridge University Press",
+        "language": "en",
+        "type": "Wissenschaftliche Sekundärquelle mit Primärquellenauswertung",
+        "accessedAt": "2026-08-24"
+      }
+    ],
+    "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "mittel", "displayRule": "Kolonialkrieg, Krankheit und historische rassistische Organisationsnamen kontextualisieren; diskriminierende Begriffe nicht als heutige Kategorien verwenden."},
+    "provenance": {"method": "Synthese aus Nationalbibliothek und peer-reviewter Forschung mit ausgewerteten Polizei- und Bewegungsquellen.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
+    "license": "Redaktioneller Text: CC BY 4.0; Rechte an verlinkten Quellen verbleiben bei den jeweiligen Herausgebern."
+  },
+  {
+    "id": "bio-funmilayo-ransome-kuti",
+    "personName": "Funmilayo Ransome-Kuti",
+    "birth": "1900-10-25",
+    "death": "1978-04-13",
+    "places": ["Abeokuta, Nigeria", "Lagos, Nigeria", "London, Vereinigtes Königreich", "Westafrika und internationale panafrikanische Netzwerke"],
+    "communities": ["Egba- und Yoruba-Frauen", "Marktfrauen in Abeokuta", "Abeokuta Women’s Union", "nigerianische Unabhängigkeits- und Frauenbewegungen"],
+    "shortDescription": "Nigerianische Lehrerin, Gewerkschafterin, Frauenrechtlerin und Antikolonialistin, die mit der Abeokuta Women’s Union Massenproteste gegen Besteuerung und autoritäre Kolonialverwaltung organisierte.",
+    "lifeStages": [
+      {
+        "period": "1900–1930er Jahre",
+        "title": "Bildung und politische Netzwerke",
+        "description": "Ransome-Kuti wuchs in Abeokuta auf, gehörte zu den ersten Schülerinnen der Abeokuta Grammar School und studierte zeitweise in England. Als Lehrerin und Organisatorin verband sie Alphabetisierung mit wachsender politischer Arbeit."
+      },
+      {
+        "period": "1940er–1950er Jahre",
+        "title": "Abeokuta Women’s Union und Steuerrevolte",
+        "description": "Aus einem Frauenclub entwickelte sie mit Händlerinnen und Arbeiterinnen eine Massenorganisation. Petitionen, Boykotte, Versammlungen und anhaltende Proteste richteten sich gegen Frauensteuern, Marktregulierung und die kolonial gestützte Herrschaft des Alake."
+      },
+      {
+        "period": "1950er–1978",
+        "title": "Nationalismus, Panafrikanismus und Repression",
+        "description": "Sie arbeitete in nigerianischer Politik und internationalen Frauen- und Friedensnetzwerken, kritisierte aber die Marginalisierung von Frauen in der Unabhängigkeitsbewegung. 1977 verletzten Soldaten sie bei einem Angriff auf das Anwesen ihres Sohnes Fela Kuti schwer; sie starb 1978 an den Folgen."
+      }
+    ],
+    "ideasAndPractices": [
+      "politische Bildung und Alphabetisierung als Organisationsarbeit",
+      "Massenmitgliedschaft über Klassen- und Bildungsgrenzen hinweg",
+      "Verknüpfung von Frauenrechten, Antikolonialismus, Arbeit und Panafrikanismus"
+    ],
+    "organizingAndAchievements": [
+      "baute die Abeokuta Women’s Union zu einer breit getragenen Organisation aus",
+      "trug zur Aussetzung diskriminierender Frauensteuern und zur zeitweiligen Abdankung des Alake bei",
+      "förderte Frauenvertretung in nigerianischer und internationaler Politik"
+    ],
+    "repressionAndRisks": [
+      "koloniale Überwachung, Versammlungsverbote und polizeilicher Druck",
+      "patriarchale Ausgrenzung in nationalistischen Institutionen",
+      "schwere Verletzungen bei einem Militärangriff 1977 und Tod an deren Folgen"
+    ],
+    "tensionsAndCritique": [
+      "Ihre Bildung und familiäre Stellung ermöglichten Zugang zu Eliten; die Bewegung gewann ihre Stärke jedoch wesentlich durch Markt- und Arbeiterinnen, deren Beiträge eigenständig sichtbar bleiben müssen.",
+      "Nationalistische Bündnisse eröffneten Einfluss, reproduzierten aber häufig männliche Führung und stellten Frauenforderungen zurück.",
+      "Spätere Darstellungen reduzieren sie teils auf die Mutter Fela Kutis; ihre eigene organisatorische und theoretische Arbeit ist davon unabhängig zu behandeln."
+    ],
+    "legacy": "Ransome-Kutis Arbeit zeigt, wie Alphabetisierung, Marktorganisation, Steuerwiderstand und internationale Politik ineinandergreifen können. Sie gehört ins Zentrum nigerianischer Demokratie-, Frauen- und Unabhängigkeitsgeschichte.",
+    "relatedEventIds": ["abeokuta-womens-revolt"],
+    "sourceRefs": [
+      {
+        "title": "Funmilayo Ransome-Kuti and the Women's Union of Abeokuta",
+        "url": "https://digitallibrary.un.org/record/830152/",
+        "publisher": "United Nations Digital Library / UNESCO",
+        "language": "en",
+        "type": "Institutionelle Bildungs- und Biografiequelle",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Funmilayo Ransome-Kuti and the Women's Union of Abeokuta",
+        "url": "https://archive.ids.ac.uk/eldis/document/A74692.html",
+        "publisher": "Institute of Development Studies, Eldis Archive",
+        "language": "en",
+        "type": "Institutionell archivierte UNESCO-Zusammenfassung",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Funmilayo Ransome-Kuti and the Women's Union of Abeokuta",
+        "url": "https://web.classicistranieri.com/en-women-in-african-history/WAH_EN_Files/FunmilayoRansomeKuti.pdf",
+        "publisher": "UNESCO Series on Women in African History",
+        "language": "en",
+        "type": "Institutionelle Sekundärquelle mit Familienmaterial",
+        "accessedAt": "2026-08-24"
+      }
+    ],
+    "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "hoch", "displayRule": "Koloniale Repression und den tödlichen Militärangriff sachlich darstellen; Tod nicht als dramatischen Schluss- oder Belohnungsmoment inszenieren."},
+    "provenance": {"method": "Synthese aus UNESCO-/UN-Katalogen und institutionell archiviertem Lehrmaterial; kollektive Rolle der Abeokuta-Frauen ausdrücklich berücksichtigt.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
+    "license": "Redaktioneller Text: CC BY 4.0; Rechte an verlinkten Quellen verbleiben bei den jeweiligen Herausgebern."
+  },
+  {
+    "id": "bio-ella-baker",
+    "personName": "Ella Baker",
+    "birth": "1903-12-13",
+    "death": "1986-12-13",
+    "places": ["Norfolk, Virginia, USA", "Littleton, North Carolina, USA", "New York City, USA", "Atlanta, Georgia, USA", "Raleigh, North Carolina, USA"],
+    "communities": ["Schwarze Gemeinden im Süden der USA", "NAACP-Basisgruppen", "Southern Christian Leadership Conference", "Student Nonviolent Coordinating Committee"],
+    "shortDescription": "Schwarze Bürgerrechtsorganisatorin, deren jahrzehntelange Basisarbeit bei NAACP, SCLC und SNCC partizipative Führung, lokale Selbstorganisation und junge Aktivist*innen stärkte.",
+    "lifeStages": [
+      {
+        "period": "1903–1939",
+        "title": "Bildung, Genossenschaften und New Yorker Organisierung",
+        "description": "Baker wuchs in Virginia und North Carolina auf, schloss 1927 die Shaw University ab und arbeitete in New York in journalistischen, genossenschaftlichen und politischen Projekten. Sie half, die Young Negroes Cooperative League aufzubauen."
+      },
+      {
+        "period": "1940–1957",
+        "title": "NAACP von der Basis her",
+        "description": "Als Feldsekretärin und später Branch Director reiste Baker durch den Süden, unterstützte lokale Zweigstellen, Mitgliedschaft und politische Bildung. Sie setzte auf vorhandene Fähigkeiten in Gemeinden statt auf zentralisierte Anweisungen."
+      },
+      {
+        "period": "1957–1986",
+        "title": "SCLC, SNCC und generationsübergreifende Bewegung",
+        "description": "Baker half beim Aufbau der SCLC, kritisierte deren hierarchische Führung und organisierte 1960 das Treffen an der Shaw University, aus dem SNCC hervorging. Danach beriet sie Studierende und unterstützte zahlreiche Wahlrechts-, Friedens- und Solidaritätskampagnen."
+      }
+    ],
+    "ideasAndPractices": [
+      "partizipative Demokratie und Führung aus lokalen Gemeinschaften",
+      "politische Bildung durch gemeinsames Handeln",
+      "langfristige Beziehungsarbeit statt personenzentrierter Mobilisierung"
+    ],
+    "organizingAndAchievements": [
+      "stärkte und vernetzte NAACP-Zweigstellen im Süden",
+      "trug zum institutionellen Aufbau der SCLC bei",
+      "schuf den organisatorischen Raum, in dem SNCC als eigenständige Studierendenbewegung entstand"
+    ],
+    "repressionAndRisks": [
+      "Jim-Crow-Gewalt und Überwachung bei Reisen und lokaler Organisierung",
+      "geschlechtsspezifische Abwertung innerhalb männerdominierter Organisationen",
+      "prekäre Beschäftigung und geringe öffentliche Anerkennung trotz zentraler Verantwortung"
+    ],
+    "tensionsAndCritique": [
+      "Bakers Kritik an charismatischer Führung war keine Ablehnung von Leitung, sondern eine Forderung nach rechenschaftspflichtiger, breit verteilter Führung.",
+      "Sie arbeitete in hierarchischen Organisationen, obwohl sie deren Strukturen kritisierte; diese Spannung war Teil ihrer praktischen Strategie.",
+      "Die Bezeichnung als unsichtbare Mentorin kann ihre konkrete Entscheidungs-, Fundraising- und Organisationsarbeit erneut verkleinern."
+    ],
+    "legacy": "Baker hinterließ weniger eine nach ihr benannte Institution als eine politische Methode: Menschen nicht für eine Führungsperson zu mobilisieren, sondern ihre eigene kollektive Macht und Analyse auszubauen. Diese Praxis wirkt in basisdemokratischen Bewegungen weiter.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {
+        "title": "Women in the African American Civil Rights Movement: Ella Baker",
+        "url": "https://www.nps.gov/articles/women-in-the-african-american-civil-rights-movement-an-historic-context.htm",
+        "publisher": "U.S. National Park Service",
+        "language": "en",
+        "type": "Institutionelle Sekundärquelle",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Ella Baker papers",
+        "url": "https://archives.nypl.org/scm/20899",
+        "publisher": "Schomburg Center for Research in Black Culture, New York Public Library",
+        "language": "en",
+        "type": "Archivfindbuch / Primärquellensammlung",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "The Student Nonviolent Coordinating Committee (SNCC)",
+        "url": "https://www.archives.gov/research/african-americans/black-power/sncc",
+        "publisher": "U.S. National Archives and Records Administration",
+        "language": "en",
+        "type": "Institutioneller Forschungsführer mit Archivmaterial",
+        "accessedAt": "2026-08-24"
+      }
+    ],
+    "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "mittel", "displayRule": "Rassistische Gewalt und geschlechtsspezifische Abwertung kontextualisieren; Basisarbeit nicht in ein heroisches Punktesystem übersetzen."},
+    "provenance": {"method": "Synthese aus National Park Service sowie Primärquellen-Findbüchern von NYPL und National Archives.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
+    "license": "Redaktioneller Text: CC BY 4.0; Rechte an verlinkten Quellen verbleiben bei den jeweiligen Herausgebern."
+  },
+  {
+    "id": "bio-claudia-jones",
+    "personName": "Claudia Jones",
+    "birth": "1915-02-21",
+    "death": "1964-12-24",
+    "places": ["Port of Spain, Trinidad und Tobago", "Harlem, New York City, USA", "London, Vereinigtes Königreich"],
+    "communities": ["Schwarze Arbeiterinnen in den USA", "Communist Party USA", "karibische Diaspora in Großbritannien", "West Indian Gazette", "antirassistische und antikoloniale Bewegungen"],
+    "shortDescription": "Trinidadisch-US-amerikanisch-britische Kommunistin, Journalistin und Organisatorin, die Rassismus, Geschlecht und Klasse zusammendachte, in den USA inhaftiert und deportiert wurde und in London die West Indian Gazette sowie karibische Kulturveranstaltungen aufbaute.",
+    "lifeStages": [
+      {
+        "period": "1915–1936",
+        "title": "Migration, Arbeit und Politisierung in Harlem",
+        "description": "Claudia Cumberbatch kam als Kind aus Trinidad nach New York. Rassismus, Armut und schlechte Arbeitsbedingungen prägten ihre Jugend; 1936 schloss sie sich der Communist Party USA an und nahm den Namen Claudia Jones an."
+      },
+      {
+        "period": "1936–1955",
+        "title": "Schwarze feministische und kommunistische Organisierung",
+        "description": "Jones arbeitete als Redakteurin, Rednerin und Parteiorganisatorin. Sie analysierte die besondere Ausbeutung Schwarzer Frauen und forderte Gewerkschaften, Linke und die eigene Partei auf, deren Kämpfe ins Zentrum zu stellen. Antikommunistische Strafverfolgung führte zu Haft und 1955 zur Abschiebung."
+      },
+      {
+        "period": "1955–1964",
+        "title": "Schwarze Presse und karibische Politik in London",
+        "description": "In London gründete sie die West Indian Gazette, organisierte gegen Rassismus und Kolonialismus und trug nach den rassistischen Angriffen von 1958 zu karibischen Kulturveranstaltungen bei, die zu einer Vorgeschichte des Notting Hill Carnival wurden."
+      }
+    ],
+    "ideasAndPractices": [
+      "gemeinsame Analyse von Rassismus, Geschlecht und Klassenverhältnissen",
+      "Schwarze und karibische Presse als Infrastruktur politischer Gemeinschaft",
+      "Kultur, Internationalismus und Antikolonialismus als Teile derselben Organisierung"
+    ],
+    "organizingAndAchievements": [
+      "entwickelte eine frühe systematische Analyse der besonderen Unterdrückung Schwarzer Arbeiterinnen",
+      "gründete und redigierte die West Indian Gazette",
+      "organisierte antirassistische Bündnisse und karibische Kulturveranstaltungen in London"
+    ],
+    "repressionAndRisks": [
+      "Armut, rassistische Arbeitsbedingungen und schwere gesundheitliche Belastungen",
+      "Überwachung, Smith-Act-Verurteilung, Haft und Abschiebung aus den USA",
+      "rassistische Gewalt gegen die karibische Community in Großbritannien"
+    ],
+    "tensionsAndCritique": [
+      "Jones arbeitete innerhalb stalinistisch geprägter kommunistischer Parteien; ihre Politik muss sowohl in ihrem emanzipatorischen Gehalt als auch in diesen Loyalitäten historisch geprüft werden.",
+      "Sie kritisierte die Vernachlässigung Schwarzer Frauen auch in linken und gewerkschaftlichen Organisationen, denen sie selbst angehörte.",
+      "Sie als alleinige Mutter des Notting Hill Carnival zu bezeichnen verkürzt eine kollektive, mehrstufige Entstehungsgeschichte; ihr konkreter Beitrag bleibt dennoch zentral."
+    ],
+    "legacy": "Jones verband Schwarze feministische Analyse mit praktischer Medien- und Kulturarbeit auf beiden Seiten des Atlantiks. Ihre Biografie zeigt Deportation nicht als Ende politischer Zugehörigkeit, sondern als erzwungene Verschiebung eines weiterwirkenden Netzwerks.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {
+        "title": "Commonwealth migration since 1945",
+        "url": "https://www.nationalarchives.gov.uk/education/resources/commonwealth-migration-since-1945/",
+        "publisher": "The National Archives, United Kingdom",
+        "language": "en",
+        "type": "Institutionelle Archiv- und Bildungsquelle",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "An End to the Neglect of the Problems of the Negro Woman!",
+        "url": "https://www.marxists.org/history/usa/pubs/political-affairs/1949-06v28n6-political-affairs.pdf",
+        "publisher": "Political Affairs; digitalisiert im Marxists Internet Archive",
+        "language": "en",
+        "type": "Primärquelle",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Claudia Jones writings archive",
+        "url": "https://www.marxists.org/archive/jones-claudia/index.htm",
+        "publisher": "Marxists Internet Archive",
+        "language": "en",
+        "type": "Digitale Primärquellensammlung",
+        "accessedAt": "2026-08-24"
+      }
+    ],
+    "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "mittel", "displayRule": "Haft, Abschiebung und rassistische Gewalt sachlich darstellen; historische diskriminierende Begriffe nur in Quellentiteln und mit Kontext anzeigen."},
+    "provenance": {"method": "Synthese aus britischem Nationalarchiv und digitalisierten Primärtexten; Zuschreibungen zur Carnival-Geschichte bewusst kollektiv formuliert.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
+    "license": "Redaktioneller Text: CC BY 4.0; Rechte an verlinkten Quellen verbleiben bei den jeweiligen Herausgebern."
+  },
+  {
+    "id": "bio-andree-blouin",
+    "personName": "Andrée Blouin",
+    "birth": "1921-12-16",
+    "death": "1986-04-09",
+    "places": ["Oubangui-Chari, heutige Zentralafrikanische Republik", "Brazzaville, Republik Kongo", "Conakry, Guinea", "Léopoldville/Kinshasa, Demokratische Republik Kongo", "Paris, Frankreich"],
+    "communities": ["kolonial getrennte Kinder gemischter Herkunft", "Rassemblement Démocratique Africain", "Frauen in Guineas und Kongos Unabhängigkeitsbewegungen", "panafrikanische Netzwerke"],
+    "shortDescription": "Zentralafrikanische panafrikanische Organisatorin, Rednerin und politische Beraterin, die in Guinea und im Kongo Frauen für die Unabhängigkeit mobilisierte und männlich dominierte Befreiungsbewegungen von innen kritisierte.",
+    "lifeStages": [
+      {
+        "period": "1921–1940er Jahre",
+        "title": "Koloniale Trennung und frühes Erwachsenenleben",
+        "description": "Blouin wurde im kolonialen Oubangui-Chari als Tochter einer Schwarzen Mutter und eines französischen Vaters geboren. Als Kind wurde sie der Mutter entzogen und in einer katholischen Einrichtung für Kinder gemischter Herkunft in Brazzaville untergebracht; ihre Autobiografie beschreibt dort Misshandlung und rassistische Hierarchien."
+      },
+      {
+        "period": "1950er Jahre",
+        "title": "Antikoloniale Mobilisierung in Guinea und Zentralafrika",
+        "description": "Nach persönlicher Erfahrung diskriminierender Kolonialmedizin engagierte sich Blouin im Rassemblement Démocratique Africain. In Guinea unterstützte sie die Kampagne für ein Nein im französischen Verfassungsreferendum von 1958 und organisierte Frauen politisch."
+      },
+      {
+        "period": "1960–1986",
+        "title": "Kongolesische Unabhängigkeit, Ausweisung und Schreiben",
+        "description": "Im Kongo arbeitete Blouin in Wahlkampf, Frauenmobilisierung, Kommunikation und im Umfeld Patrice Lumumbas. Nach dem politischen Umsturz wurde sie ausgewiesen. Im europäischen Exil blieb sie panafrikanisch aktiv und veröffentlichte 1983 ihre Autobiografie My Country, Africa."
+      }
+    ],
+    "ideasAndPractices": [
+      "Panafrikanismus über koloniale Sprach- und Territorialgrenzen hinweg",
+      "eigenständige politische Organisierung von Frauen in Unabhängigkeitsbewegungen",
+      "öffentliche Rede, Kampagnenkommunikation und autobiografische Gegenarchive"
+    ],
+    "organizingAndAchievements": [
+      "mobilisierte Frauen für Guineas und Kongos Unabhängigkeitskampagnen",
+      "verband politische Akteure und Bewegungen über Zentral- und Westafrika hinweg",
+      "hinterließ mit ihrer Autobiografie eine seltene Innenperspektive einer Schwarzen Organisatorin der Dekolonisierung"
+    ],
+    "repressionAndRisks": [
+      "rassistische institutionelle Gewalt und Familientrennung in der Kindheit",
+      "Ausweisung und politische Verleumdung während der Kongokrise",
+      "Exil und Marginalisierung in männlich dominierten historischen Darstellungen"
+    ],
+    "tensionsAndCritique": [
+      "Ihre Autobiografie ist eine zentrale Primärquelle, aber eine rückblickende, gemeinsam redigierte Darstellung und muss mit Archiven und Forschung gegengelesen werden.",
+      "Formale Amtsbezeichnungen und der genaue Umfang ihrer Rolle in Lumumbas Umfeld werden in Darstellungen unterschiedlich angegeben; hier werden nur breit belegte Funktionen beschrieben.",
+      "Ihre Nähe zu politischen Führungsfiguren verschaffte Einfluss, während sie zugleich die Ausgrenzung von Frauen durch diese Bewegungen kritisierte."
+    ],
+    "legacy": "Blouins Leben verschiebt Dekolonisierungsgeschichte von Staatsmännern zu transnationaler Kampagnenarbeit, Frauenmobilisierung und Kommunikation. Ihre autobiografische Stimme ist zugleich Quelle und Aufforderung zu weiterer archivalischer Prüfung.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {
+        "title": "My Country, Africa: Autobiography of the Black Pasionaria",
+        "url": "https://www.si.edu/object/siris_sil_160551",
+        "publisher": "Smithsonian Institution Libraries",
+        "language": "en",
+        "type": "Institutioneller Katalog einer Primärquelle",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Andrée Blouin",
+        "url": "https://aflit.arts.uwa.edu.au/blouin10.html",
+        "publisher": "University of Western Australia, Francophone African Women Writers",
+        "language": "en",
+        "type": "Universitäre Literatur- und Biografiequelle",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Andrée Blouin: A Sister among Brothers in Struggle",
+        "url": "https://link.springer.com/chapter/10.1057/9780230110403_4",
+        "publisher": "Palgrave Macmillan",
+        "language": "en",
+        "type": "Wissenschaftliche Sekundärquelle",
+        "accessedAt": "2026-08-24"
+      }
+    ],
+    "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "hoch", "displayRule": "Kindesmisshandlung, rassistische Institutionen, Kolonialgewalt und Ausweisung zurückhaltend darstellen; keine unnötigen Details und keine Dramatisierung."},
+    "provenance": {"method": "Quellenkritische Synthese aus Primärquellenkatalog, Universitätsressource und Fachkapitel; strittige Amtsbezeichnungen vermieden.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
+    "license": "Redaktioneller Text: CC BY 4.0; Rechte an verlinkten Quellen verbleiben bei den jeweiligen Herausgebern."
+  },
+  {
+    "id": "bio-bayard-rustin",
+    "personName": "Bayard Rustin",
+    "birth": "1912-03-17",
+    "death": "1987-08-24",
+    "places": ["West Chester, Pennsylvania, USA", "New York City, USA", "Washington, D.C., USA", "Pasadena, California, USA"],
+    "communities": ["Schwarze Bürgerrechtsbewegung", "Quäker*innen und gewaltfreie Bewegungen", "Brotherhood of Sleeping Car Porters", "LGBTQ+-Gemeinschaften", "Gewerkschafts- und Menschenrechtsnetzwerke"],
+    "shortDescription": "Schwarzer, schwuler Quäker, Stratege gewaltfreier Aktion und Hauptorganisator des March on Washington for Jobs and Freedom 1963, dessen Arbeit durch Homophobie und antikommunistische Politik lange in den Hintergrund gedrängt wurde.",
+    "lifeStages": [
+      {
+        "period": "1912–1947",
+        "title": "Pazifismus, Kriegsdienstverweigerung und frühe direkte Aktion",
+        "description": "Rustin wuchs in einer Quäkerfamilie auf, arbeitete in pazifistischen und sozialistischen Netzwerken und verweigerte im Zweiten Weltkrieg den Militärdienst, wofür er inhaftiert wurde. 1947 beteiligte er sich am Journey of Reconciliation gegen Segregation im Fernverkehr."
+      },
+      {
+        "period": "1948–1963",
+        "title": "Strategie, Ausbildung und March on Washington",
+        "description": "Rustin vermittelte Methoden gewaltfreier Massenaktion, beriet Martin Luther King Jr. und andere Aktivist*innen und koordinierte 1963 die komplexe Logistik des March on Washington for Jobs and Freedom. Gegner nutzten seine Sexualität und frühere Parteiverbindungen zur Diffamierung."
+      },
+      {
+        "period": "1964–1987",
+        "title": "Von Protest zu Koalitionspolitik",
+        "description": "Rustin setzte stärker auf Gewerkschaften, Wahlen und sozialdemokratische Reformkoalitionen, unterstützte internationale Menschenrechtskampagnen und sprach in seinen letzten Jahren offener über Rechte schwuler und lesbischer Menschen."
+      }
+    ],
+    "ideasAndPractices": [
+      "strategische Gewaltfreiheit als trainierbare kollektive Praxis",
+      "Koalitionen zwischen Bürgerrechts-, Gewerkschafts- und Friedensbewegungen",
+      "präzise Logistik, Ordnerstrukturen und politische Bildung für Massenaktionen"
+    ],
+    "organizingAndAchievements": [
+      "half beim Aufbau gewaltfreier Aktionskompetenz in der Bürgerrechtsbewegung",
+      "organisierte den March on Washington 1963 operativ",
+      "verband Schwarze Bürgerrechte mit Arbeit, Frieden und später LGBTQ+-Rechten"
+    ],
+    "repressionAndRisks": [
+      "Haft als Kriegsdienstverweigerer und wegen Protest gegen Segregation",
+      "Verhaftung 1953 aufgrund einvernehmlicher gleichgeschlechtlicher Sexualität und folgende berufliche Ausgrenzung",
+      "homophobe Erpressungs- und Diffamierungsversuche sowie antikommunistische Überwachung"
+    ],
+    "tensionsAndCritique": [
+      "Rustins spätere Orientierung auf Demokratische Partei und Gewerkschaftsbürokratie wurde von Black-Power- und Antikriegsaktivist*innen als zu kompromissbereit kritisiert.",
+      "Sein Antikommunismus und einzelne außenpolitische Positionen standen in Spannung zu früheren radikalen und pazifistischen Bündnissen.",
+      "Die nachträgliche Würdigung als LGBTQ+-Ikone darf weder die erzwungene Vorsicht seiner Zeit noch seine kontroversen politischen Entscheidungen glätten."
+    ],
+    "legacy": "Rustin zeigt, dass historische Großereignisse von oft unsichtbar gemachter Planung, Ausbildung und Infrastruktur abhängen. Seine Biografie verbindet Schwarze und queere Geschichte, ohne politische Differenzen innerhalb dieser Bewegungen zu verwischen.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {
+        "title": "Bayard Rustin Residence",
+        "url": "https://www.nps.gov/places/bayard-rustin-residence.htm",
+        "publisher": "U.S. National Park Service",
+        "language": "en",
+        "type": "Institutionelle Denkmal- und Biografiequelle",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "The Places of Bayard Rustin",
+        "url": "https://home.nps.gov/articles/the-places-of-bayard-rustin.htm",
+        "publisher": "U.S. National Park Service",
+        "language": "en",
+        "type": "Institutionelle historische Übersicht",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Bayard Rustin Papers: A Finding Aid",
+        "url": "https://findingaids.loc.gov/repositories/19/resources/2209",
+        "publisher": "Library of Congress",
+        "language": "en",
+        "type": "Archivfindbuch / Primärquellensammlung",
+        "accessedAt": "2026-08-24"
+      }
+    ],
+    "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "mittel", "displayRule": "Homophobe Strafverfolgung und Diffamierung sachlich und ohne intime Details darstellen; keine Stigmatisierung durch historische Gesetzessprache."},
+    "provenance": {"method": "Synthese aus NPS-Denkmalforschung und dem Primärquellen-Findbuch der Library of Congress.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
+    "license": "Redaktioneller Text: CC BY 4.0; Rechte an verlinkten Quellen verbleiben bei den jeweiligen Herausgebern."
+  },
+  {
+    "id": "bio-wangari-maathai",
+    "personName": "Wangari Maathai",
+    "birth": "1940-04-01",
+    "death": "2011-09-25",
+    "places": ["Nyeri County, Kenia", "Nairobi, Kenia", "ländliche Gemeinden in Kenia", "internationale Umwelt- und Demokratieforen"],
+    "communities": ["ländliche Frauengruppen in Kenia", "Green Belt Movement", "National Council of Women of Kenya", "kenianische Demokratie- und Umweltbewegungen"],
+    "shortDescription": "Kenianische Biologin, Gründerin des Green Belt Movement und Demokratieaktivistin, die gemeinschaftliche Baumpflanzung mit Frauenrechten, Lebensgrundlagen, Landfragen und politischer Freiheit verband.",
+    "lifeStages": [
+      {
+        "period": "1940–1976",
+        "title": "Bildung, Wissenschaft und Frauenorganisation",
+        "description": "Maathai wuchs in Kenia auf, studierte in den USA, Deutschland und Nairobi und erwarb 1971 als erste Frau in Ost- und Zentralafrika einen Doktorgrad. An der Universität und im National Council of Women of Kenya kämpfte sie auch gegen geschlechtsspezifische Benachteiligung."
+      },
+      {
+        "period": "1977–1991",
+        "title": "Green Belt Movement als Basisorganisation",
+        "description": "Aus Gesprächen mit ländlichen Frauen über Brennholz, Wasser, Boden und Nahrung entwickelte Maathai ein System lokaler Baumschulen und entlohnter Pflanzarbeit. Das Green Belt Movement verband ökologische Wiederherstellung mit Wissen und Einkommen von Frauen."
+      },
+      {
+        "period": "1992–2011",
+        "title": "Demokratie, Landverteidigung und internationale Anerkennung",
+        "description": "Maathai protestierte gegen Landraub, Waldzerstörung und autoritäre Politik, unterstützte politische Gefangene, wurde ins Parlament gewählt und erhielt 2004 den Friedensnobelpreis. Sie blieb bis zu ihrem Tod international und in Kenia aktiv."
+      }
+    ],
+    "ideasAndPractices": [
+      "ökologische Wiederherstellung als soziale und demokratische Praxis",
+      "lokale Baumschulen, Frauenwissen und kleine materielle Anreize",
+      "Verbindung von Umwelt, Frieden, verantwortlicher Regierung und Menschenrechten"
+    ],
+    "organizingAndAchievements": [
+      "gründete das Green Belt Movement und skalierte gemeinschaftliche Baumpflanzung",
+      "verteidigte öffentliche Parks und Wälder gegen private Aneignung",
+      "machte den Zusammenhang von Umweltgerechtigkeit, Frauenrechten und Demokratie weltweit sichtbar"
+    ],
+    "repressionAndRisks": [
+      "Festnahmen, Schläge und öffentliche Diffamierung unter dem Moi-Regime",
+      "gewaltsame Angriffe auf Proteste zum Schutz von Wald- und Parkflächen",
+      "geschlechtsspezifische Abwertung in Universität und Politik"
+    ],
+    "tensionsAndCritique": [
+      "Internationale Erzählungen über eine einzelne Nobelpreisträgerin können die bezahlte und unbezahlte Arbeit tausender Frauengruppen im Green Belt Movement überdecken.",
+      "Zahlen gepflanzter Bäume unterscheiden sich nach Zeitpunkt, Zählweise und Überlebensrate; deshalb wird hier keine endgültige Gesamtzahl behauptet.",
+      "Die NGO-Form bot Ressourcen und Reichweite, blieb aber von Geberlogiken und der Frage abhängig, wie lokale Kontrolle langfristig gesichert wird."
+    ],
+    "legacy": "Maathai erweiterte Umweltpolitik um Alltagserfahrungen ländlicher Frauen und machte Baumpflanzung zu einer Schule demokratischer Handlungsmacht. Ihr Vermächtnis liegt ebenso in den dezentralen Gruppen wie in Preisen und Ämtern.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {
+        "title": "Wangari Maathai – Facts",
+        "url": "https://www.nobelprize.org/prizes/peace/2004/maathai/",
+        "publisher": "Nobel Prize Outreach",
+        "language": "en",
+        "type": "Institutionelle Biografie- und Preisdokumentation",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Wangari Maathai – Biographical",
+        "url": "https://www.nobelprize.org/prizes/peace/2004/maathai/biographical/",
+        "publisher": "Nobel Prize Outreach",
+        "language": "en",
+        "type": "Autorisierte autobiografische Quelle",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Wangari Maathai – Nobel Lecture",
+        "url": "https://www.nobelprize.org/prizes/peace/2004/maathai/lecture/",
+        "publisher": "Nobel Prize Outreach",
+        "language": "en",
+        "type": "Primärquelle",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Wangari Maathai",
+        "url": "https://www.goldmanprize.org/recipient/wangari-maathai/",
+        "publisher": "Goldman Environmental Prize",
+        "language": "en",
+        "type": "Institutionelle Sekundärquelle",
+        "accessedAt": "2026-08-24"
+      }
+    ],
+    "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "mittel", "displayRule": "Polizeigewalt und Repression sachlich darstellen; keine aktuellen Standorte gefährdeter Aktivist*innen oder Baumschulen nennen."},
+    "provenance": {"method": "Synthese aus Nobel-Dokumentation, Maathais eigener Nobelvorlesung und institutioneller Umweltpreis-Biografie; Baumzahlen nicht absolut gesetzt.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
+    "license": "Redaktioneller Text: CC BY 4.0; Rechte an verlinkten Quellen verbleiben bei den jeweiligen Herausgebern."
+  }
+]

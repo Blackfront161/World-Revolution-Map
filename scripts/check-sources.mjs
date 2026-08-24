@@ -5,7 +5,13 @@ const files = catalog.map(file => `data/${file}`);
 const rows = (await Promise.all(files.map(file => readFile(file, 'utf8')))).flatMap(JSON.parse).filter(row => !row.archived);
 const overrides = JSON.parse(await readFile('data/event-editorial-overrides.json', 'utf8'));
 const overrideRows = Object.entries(overrides.events || {}).map(([id, row]) => ({ ...row, title: id }));
-const sources = [...new Map([...rows, ...overrideRows].filter(row => row.sourceUrl).map(row => [row.sourceUrl, row.title])).entries()];
+const biographyCatalog = JSON.parse(await readFile('data/biography-catalog.json', 'utf8'));
+const biographyRows = (await Promise.all(biographyCatalog.files.map(entry => readFile(`data/${entry.file}`, 'utf8')))).flatMap(JSON.parse);
+const biographySources = biographyRows.flatMap(row => (row.sources ?? row.sourceRefs ?? []).map(source => ({
+  sourceUrl: source.url,
+  title: `${row.personName ?? row.name ?? row.id}: ${source.title ?? source.publisher ?? 'Biografiequelle'}`
+})));
+const sources = [...new Map([...rows, ...overrideRows, ...biographySources].filter(row => row.sourceUrl).map(row => [row.sourceUrl, row.title])).entries()];
 const failures = [];
 const botProtected = [];
 const unresolved = [];

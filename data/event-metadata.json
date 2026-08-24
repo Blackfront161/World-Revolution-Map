@@ -73,6 +73,19 @@
     { "id": "march-first-movement", "aliases": ["march-1-movement-1919"], "coordinatePrecision": "region" },
     { "id": "palestinian-general-strike-1936", "coordinatePrecision": "region" },
     { "id": "wave-hill-walk-off", "coordinatePrecision": "region" },
-    { "id": "section-504-sit-in", "coordinatePrecision": "exact" }
+    { "id": "section-504-sit-in", "coordinatePrecision": "exact" },
+    { "id": "ilo-domestic-workers-convention-189-2011", "coordinatePrecision": "region" },
+    { "id": "un-declaration-indigenous-rights-2007", "coordinatePrecision": "region" },
+    { "id": "ilo-collective-bargaining-convention-98-1949", "coordinatePrecision": "region" },
+    { "id": "un-human-right-water-sanitation-2010", "coordinatePrecision": "region" },
+    { "id": "us-fair-labor-standards-act-1938", "coordinatePrecision": "approximate" },
+    { "id": "brown-board-school-desegregation-1954", "coordinatePrecision": "approximate" },
+    { "id": "section-504-regulations-signed-1977", "coordinatePrecision": "exact" },
+    { "id": "bolivia-agrarian-reform-1953", "coordinatePrecision": "region" },
+    { "id": "brazil-sus-constitution-1988", "coordinatePrecision": "region" },
+    { "id": "india-cooked-midday-meal-entitlement-2001", "coordinatePrecision": "region" },
+    { "id": "south-africa-tac-nevirapine-judgment-2002", "coordinatePrecision": "region" },
+    { "id": "red-vienna-municipal-housing-1923", "coordinatePrecision": "region" },
+    { "id": "aboriginal-land-rights-nt-act-1976", "coordinatePrecision": "region" }
   ]
 }

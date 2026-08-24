@@ -22,6 +22,18 @@
     "mapStyles": ["dark", "mono", "paper"],
     "hiddenCoordinateRule": "Verborgene Koordinaten werden weder als Marker noch über DOM, öffentliche API oder URL ausgegeben."
   },
+  "biographyModel": {
+    "catalogFile": "data/biography-catalog.json",
+    "idPattern": "^bio-[a-z0-9]+(?:-[a-z0-9]+)*$",
+    "identityRule": "Biografien sind eigenständige Archivobjekte und werden weder als Kartenereignisse noch mit künstlichen Koordinaten gespeichert.",
+    "requiredFields": ["personName", "shortDescription", "lifeStages", "ideasAndPractices", "organizingAndAchievements", "tensionsAndCritique", "legacy", "sourceRefs", "review", "sensitivity", "provenance", "license"],
+    "minimumHttpsSources": 2,
+    "relatedEventRule": "relatedEventIds referenzieren ausschließlich kanonische aktive Event-IDs.",
+    "reviewValues": ["draft", "reviewed", "deep-reviewed"],
+    "sensitivityValues": ["standard", "contextual", "sensitive"],
+    "sourceTypes": ["primary", "community", "movement", "archive", "oral-history", "museum", "academic", "public-institution", "human-rights"],
+    "quotationRule": "Unbelegte direkte Zitate und eigenständige Zitatfelder sind unzulässig. Paraphrasen bleiben als redaktionelle Synthese gekennzeichnet."
+  },
   "provenance": {
     "method": "Redaktionelle Kurztexte werden aus den je Ereignis verlinkten Quellen zusammengefasst; Quellenrechte werden dadurch nicht übertragen.",
     "sourcePolicy": "Community-, Primär-, Archiv-, Museums-, wissenschaftliche, ILO/UN- und Menschenrechtsquellen werden bevorzugt; Unsicherheit wird sichtbar benannt.",
@@ -37,6 +49,9 @@
   "sensitivityPolicy": {
     "noReward": true,
     "locationRule": "Aktuelle Treffpunkte, Schutzräume und gefährdete Gemeinschaften werden nicht punktgenau veröffentlicht.",
+    "baselineSensitiveIds": [
+      "1492-land-back-lane", "act-up-wall-street", "ardoch-uranium-blockade", "bagua-protests", "baltimore-uprising-2015", "bastion-point-occupation", "black-trans-liberation-march", "bread-and-roses", "breonna-taylor-louisville-protests", "camp-morgan-landfill-search", "cochabamba-water-war", "combahee-river-collective", "comptons-cafeteria-riot", "cranmer-potlatch-resistance-1921", "day-of-mourning-1938", "enmore-martyrs-strike", "fifth-pan-african-congress", "foreshore-seabed-hikoi", "ghadar-bewegung", "greenham-common", "haitianische-revolution", "haymarket", "herero-nama-resistance", "jamaica-labour-rebellion-1938", "justice-for-janitors", "lip-selbstverwaltung", "maji-maji-rebellion", "maori-language-petition", "mau-mau", "montgomery-bus-boycott", "mujeres-libres", "muskrat-falls-land-protectors", "narmada-bachao-andolan", "natal-indian-strike-1913", "native-peoples-caravan-1974", "niger-delta-womens-protests", "north-west-resistance-1885", "pueblo-revolt", "quit-india", "red-river-resistance-1869", "rodney-king-beating-1991", "salt-march", "selma-marches", "shutitall-down-namibia", "six-nations-council-resistance-1924", "standing-rock", "stonewall", "swaziland-general-strike-1996", "tebhaga-movement", "togo-general-strike-1992", "trinidad-oilfield-strike", "tsilhqotin-war-1864", "winnipeg-general-strike"
+    ],
     "reviewStatuses": [
       "Ungeprüfter Bestandseintrag",
       "Redaktioneller Pilotstand",

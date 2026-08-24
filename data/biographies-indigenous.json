@@ -1,0 +1,858 @@
+[
+  {
+    "id": "bio-berta-caceres",
+    "personName": "Berta Cáceres",
+    "birth": "1971-03-04",
+    "death": "2016-03-02",
+    "places": ["La Esperanza, Intibucá, Honduras", "Río Blanco und der Río Gualcarque, Honduras"],
+    "communities": ["Lenca", "Consejo Cívico de Organizaciones Populares e Indígenas de Honduras (COPINH)"],
+    "shortDescription": "Lenca-Organisatorin, Feministin und Mitgründerin des COPINH, die gemeinschaftliche Land- und Wasserrechte gegen extraktive Großprojekte verteidigte.",
+    "lifeStages": [
+      {
+        "period": "1971–1992",
+        "title": "Politische Prägung und Bildungsarbeit",
+        "description": "Cáceres wuchs in La Esperanza in einem politisch engagierten Umfeld auf, ließ sich zur Lehrerin ausbilden und arbeitete nach Aufenthalten in El Salvador in der Volksbildung und Frauenorganisierung im Westen Honduras'."
+      },
+      {
+        "period": "1993–2012",
+        "title": "Aufbau des COPINH",
+        "description": "1993 gründete sie mit weiteren Aktivist*innen den COPINH. Die Organisation verband kommunale Infrastruktur, Lenca-Selbstbestimmung, Frauenbeteiligung, freie Radios und Widerstand gegen Holzeinschlag, Militarisierung und Freihandel."
+      },
+      {
+        "period": "2013–2016",
+        "title": "Widerstand gegen Agua Zarca",
+        "description": "Cáceres unterstützte die Gemeinde Río Blanco im Widerstand gegen das Wasserkraftprojekt Agua Zarca am Río Gualcarque. Nach anhaltenden Drohungen, Überwachung und Kriminalisierung wurde sie in ihrem Haus ermordet."
+      }
+    ],
+    "ideasAndPractices": [
+      "Territoriale Selbstbestimmung und gemeinschaftliche Kontrolle über Wasser, Wald und Land",
+      "Volksbildung, Community-Radio und transnationale Bündnisse als Organisierungsformen",
+      "Verbindung von Lenca-Rechten, Antipatriarchalismus, Antimilitarismus und Kritik am Extraktivismus"
+    ],
+    "organizingAndAchievements": [
+      "Mitgründung des COPINH 1993",
+      "Mitwirkung an Kampagnen für die Ratifizierung des ILO-Übereinkommens 169 durch Honduras",
+      "Stärkung der von Río Blanco getragenen Kampagne, nach der sich wichtige Bau- und Finanzpartner aus Agua Zarca zurückzogen",
+      "Goldman Environmental Prize 2015"
+    ],
+    "repressionAndRisks": [
+      "Gerichtsverfahren, zeitweilige Inhaftierung, Überwachung und wiederholte Todesdrohungen",
+      "Ermordung am 2. März 2016; Gerichte verurteilten mehrere Täter und den DESA-Manager David Castillo, während Forderungen nach vollständiger Aufklärung fortbestehen"
+    ],
+    "tensionsAndCritique": [
+      "Die Erfolge gegen Agua Zarca waren Ergebnisse gemeinschaftlicher Organisierung; eine reine Heldinnenerzählung würde die Rolle von Río Blanco und COPINH verdecken.",
+      "COPINH und internationale Beobachter*innen kritisieren, dass die strafrechtliche Aufarbeitung die Auftraggeber- und Finanzierungsstrukturen nicht vollständig erfasst habe.",
+      "Die genaue Verantwortung einzelner wirtschaftlicher Akteure ist nur entsprechend rechtskräftiger Urteile oder ausdrücklich als Vorwurf darzustellen."
+    ],
+    "legacy": "Cáceres ist ein internationaler Bezugspunkt für Lenca-Selbstbestimmung, feministische Organisierung und den Schutz von Flüssen. COPINH führt diese Arbeit fort und verbindet Erinnerung ausdrücklich mit der Forderung nach umfassender Gerechtigkeit.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {
+        "title": "Biografía de Berta Isabel Cáceres Flores",
+        "url": "https://berta.copinh.org/biografia-de-berta-isabel-caceres-flores/",
+        "publisher": "COPINH",
+        "language": "es",
+        "type": "indigene Bewegungsbiografie",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Berta Cáceres",
+        "url": "https://www.goldmanprize.org/recipient/berta-caceres/",
+        "publisher": "Goldman Environmental Prize",
+        "language": "en",
+        "type": "offizielle Preisbiografie",
+        "accessedAt": "2026-08-24"
+      }
+    ],
+    "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "hoch", "displayRule": "Hinweis auf Mord, Drohungen und staatlich-wirtschaftliche Repression vor der Detailansicht; keine Tatortdetails oder Bilder ohne gesonderte Prüfung."},
+    "provenance": {"method": "Redaktionelle Synthese und Gegenprüfung zweier kuratierter Quellen; strittige Verantwortungsfragen werden attribuiert.", "sourcePolicy": "Vorrang für bewegungseigene und institutionell kuratierte Quellen; keine Zitate übernommen."},
+    "license": "rights-unclear"
+  },
+  {
+    "id": "bio-wilma-mankiller",
+    "personName": "Wilma Mankiller",
+    "birth": "1945-11-18",
+    "death": "2010-04-06",
+    "places": ["Tahlequah und Mankiller Flats, Oklahoma, USA", "San Francisco Bay Area, Kalifornien, USA"],
+    "communities": ["Cherokee Nation", "Indigene Community-Organisierung in der San Francisco Bay Area"],
+    "shortDescription": "Cherokee-Community-Organisatorin und erste Frau, die zur Principal Chief der Cherokee Nation gewählt wurde.",
+    "lifeStages": [
+      {
+        "period": "1945–1976",
+        "title": "Umsiedlung und Aktivismus in Kalifornien",
+        "description": "Mankillers Familie wurde im Rahmen des bundesstaatlichen Urban-Relocation-Programms von Oklahoma nach San Francisco umgesiedelt. Dort prägten sie die Red-Power- und Bürgerrechtsbewegungen; sie unterstützte auch die Besetzung von Alcatraz."
+      },
+      {
+        "period": "1977–1984",
+        "title": "Rückkehr und gemeinschaftliche Entwicklung",
+        "description": "Nach ihrer Rückkehr nach Oklahoma arbeitete sie für die Cherokee Nation. Beim Bell Waterline Project organisierte die Gemeinde in gemeinsamer Arbeit eine Wasserleitung und Infrastruktur; dieser Ansatz wurde zum Modell ihrer Politik."
+      },
+      {
+        "period": "1985–1995",
+        "title": "Principal Chief der Cherokee Nation",
+        "description": "Nach einer Amtszeit als Deputy Chief wurde sie 1985 Principal Chief und anschließend zweimal gewählt. Ihre Verwaltung baute Gesundheitsversorgung, Bildung, Wohnungsbau und wirtschaftliche Programme aus und stärkte die Selbstregierung der Cherokee Nation."
+      },
+      {
+        "period": "1995–2010",
+        "title": "Autorin und nationale Fürsprecherin",
+        "description": "Nach dem Ausscheiden aus dem Amt schrieb und lehrte sie weiter zu indigener Souveränität, Frauenführung und Community-Entwicklung. 1998 erhielt sie die Presidential Medal of Freedom."
+      }
+    ],
+    "ideasAndPractices": [
+      "Gadugi: gemeinschaftliche Arbeit und wechselseitige Verantwortung",
+      "Tribal sovereignty als praktische Fähigkeit zur eigenen politischen und sozialen Gestaltung",
+      "Führung durch Beteiligung, lokale Kenntnisse und institutionellen Aufbau"
+    ],
+    "organizingAndAchievements": [
+      "Community-Entwicklungsarbeit beim Bell Waterline Project",
+      "Erste gewählte Frau im Amt der Principal Chief der Cherokee Nation",
+      "Ausbau von Gesundheits-, Bildungs-, Wohnungs- und Beschäftigungsprogrammen während ihrer Amtszeit",
+      "Presidential Medal of Freedom 1998"
+    ],
+    "repressionAndRisks": [
+      "Kindheitserfahrung einer assimilatorischen bundesstaatlichen Umsiedlungspolitik und von Armut sowie Rassismus im urbanen Umfeld",
+      "Sexistische Anfeindungen und Drohungen während ihrer Kandidaturen und Amtsführung"
+    ],
+    "tensionsAndCritique": [
+      "Die Formulierung 'erste Frau' darf nicht den falschen Eindruck erwecken, Frauen hätten vor 1985 keine politische Autorität in Cherokee-Gesellschaften ausgeübt.",
+      "Statistische Verbesserungen während ihrer Amtszeit sind institutionelle und kollektive Leistungen, nicht das Werk einer Einzelperson.",
+      "US-amerikanische Ehrungen stehen neben ihrer Kritik an bundesstaatlicher Assimilations- und Umsiedlungspolitik."
+    ],
+    "legacy": "Mankiller verband Cherokee-Souveränität mit alltagsnaher Infrastruktur und partizipativer Community-Entwicklung. Ihr politischer Weg erweiterte die öffentliche Vorstellung indigener und weiblicher Führung, ohne sich darauf reduzieren zu lassen.",
+    "relatedEventIds": ["occupation-of-alcatraz"],
+    "sourceRefs": [
+      {
+        "title": "Doing 'what I could,' Wilma Mankiller changed Native America",
+        "url": "https://americanindian.si.edu/collections-search/object/posts_afec77e51815a760af4967d5955e82fc",
+        "publisher": "National Museum of the American Indian",
+        "language": "en",
+        "type": "indigenes Museumsprofil",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Wilma Mankiller Led as the First Woman Principal Chief of the Cherokee Nation",
+        "url": "https://womenshistory.si.edu/blog/wilma-mankiller-led-first-woman-principal-chief-cherokee-nation",
+        "publisher": "Smithsonian American Women's History Museum",
+        "language": "en",
+        "type": "Museumsbiografie",
+        "accessedAt": "2026-08-24"
+      }
+    ],
+    "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "mittel", "displayRule": "Assimilationspolitik, Rassismus, Sexismus und Gesundheitsangaben sachlich kontextualisieren; keine privaten medizinischen Details ausweiten."},
+    "provenance": {"method": "Redaktionelle Synthese zweier Smithsonian-Quellen mit Fokus auf Cherokee-Souveränität und Community-Arbeit.", "sourcePolicy": "Institutionell kuratierte Biografien; Einzelheldinnen-Narrativ durch kollektiven Kontext begrenzt."},
+    "license": "rights-unclear"
+  },
+  {
+    "id": "bio-toypurina",
+    "personName": "Toypurina",
+    "birth": "unknown",
+    "death": "unknown",
+    "places": ["Tovaangar, heutiges Los-Angeles-Becken, USA", "Mission San Gabriel Arcángel, heutiges Kalifornien, USA", "Monterey, heutiges Kalifornien, USA"],
+    "communities": ["Tongva", "Dörfer im Umfeld von Japchivit und San Gabriel"],
+    "shortDescription": "Tongva-Frau und politische Organisatorin, die 1785 an einem Aufstand gegen das spanische Missionsregime von San Gabriel beteiligt war.",
+    "lifeStages": [
+      {
+        "period": "vor 1785",
+        "title": "Ansehen in Tongva-Gemeinschaften",
+        "description": "Die erhaltenen kolonialen Akten beschreiben Toypurina als junge Frau, die Verbindungen zwischen mehreren Tongva-Dörfern mobilisieren konnte. Ihr Leben und ihre gesellschaftliche Rolle vor dem Aufstand sind nur fragmentarisch und aus kolonialer Perspektive überliefert."
+      },
+      {
+        "period": "1785",
+        "title": "Aufstand von San Gabriel",
+        "description": "Toypurina unterstützte Nicolás José und weitere Organisatoren dabei, Menschen aus mehreren Dörfern gegen Gewalt, Zwangsarbeit, Krankheiten, religiöse Verfolgung und den Verlust von Land und Selbstbestimmung unter dem Missionssystem zusammenzubringen. Der Angriff wurde verraten und scheiterte."
+      },
+      {
+        "period": "1785–1788",
+        "title": "Haft, Verhör und Verbannung",
+        "description": "Spanische Behörden inhaftierten und verhörten sie. Koloniale Protokolle schreiben ihr eine deutliche Anklage gegen die Mission zu. Sie wurde aus ihrer Heimatregion nach Monterey verbannt."
+      },
+      {
+        "period": "nach 1788",
+        "title": "Leben unter kolonialer Kontrolle",
+        "description": "Quellen berichten von Taufe, Heirat und Kindern nach ihrer Verbannung. Die Überlieferung erlaubt keine sichere Aussage darüber, wie freiwillig diese Entscheidungen unter Missionsherrschaft waren; ihr genaues Todesdatum bleibt hier unbekannt."
+      }
+    ],
+    "ideasAndPractices": [
+      "Dorfübergreifende Organisierung gegen das Missionssystem",
+      "Verteidigung von Tongva-Land, religiöser Praxis und politischer Eigenständigkeit",
+      "Nutzung bestehender Verwandtschafts- und Kommunikationsnetze"
+    ],
+    "organizingAndAchievements": [
+      "Mitorganisation des Aufstands gegen Mission San Gabriel 1785",
+      "Mobilisierung mehrerer Tongva-Dörfer trotz kolonialer Überwachung",
+      "Fortdauernde Bedeutung als Bezugspunkt heutiger Tongva-Erinnerungsarbeit"
+    ],
+    "repressionAndRisks": [
+      "Gefangennahme, Verhör und langjährige Verbannung aus Tovaangar",
+      "Leben in einem Missionssystem, das mit Gewalt, Zwangsarbeit, Krankheit, Hunger und religiöser Verfolgung verbunden war"
+    ],
+    "tensionsAndCritique": [
+      "Fast alle biografischen Details stammen aus spanischen Straf- und Missionsakten; sie geben koloniale Interessen und Übersetzungen wieder, nicht Toypurinas ungebrochene eigene Stimme.",
+      "Spätere Darstellungen als 'Hexe', 'Prinzessin' oder kalifornische 'Jeanne d'Arc' verzerren Tongva-Kategorien und werden hier nicht übernommen.",
+      "Taufe und Heirat nach Haft und Verbannung dürfen nicht ohne Beleg als freiwillige kulturelle Assimilation gedeutet werden.",
+      "Schreibweisen und Sammelbezeichnungen für die Tongva variieren; 'Tongva' wird hier als heutige Eigenbezeichnung verwendet."
+    ],
+    "legacy": "Toypurina steht für Tongva-Widerstand gegen das spanische Missionssystem und für die Grenzen kolonialer Archive. Ihre Geschichte wird heute von Tongva-Gemeinschaften, Bildungsinstitutionen und Gedenkprojekten neu kontextualisiert.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {
+        "title": "Mission San Gabriel Arcángel",
+        "url": "https://www.nps.gov/places/mission-san-gabriel-archangel.htm",
+        "publisher": "U.S. National Park Service",
+        "language": "en",
+        "type": "öffentliche Geschichts- und Ortsdokumentation",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "The Rebellion Against the Mission of the Saintly Prince the Archangel, San Gabriel of the Temblors, 1785",
+        "url": "https://www.pbssocal.org/history-society/the-rebellion-against-the-mission-of-the-saintly-prince-the-archangel-san-gabriel-of-the-temblors-1785",
+        "publisher": "PBS SoCal",
+        "language": "en",
+        "type": "quellenbasierter historischer Essay",
+        "accessedAt": "2026-08-24"
+      }
+    ],
+    "review": {"status": "redaktionell geprüft mit Überlieferungsvorbehalt", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "hoch", "displayRule": "Koloniale Gewalt, Zwang und religiöse Verfolgung ankündigen; koloniale Verhörtexte nur attribuiert und nie als erfundene direkte Rede anzeigen."},
+    "provenance": {"method": "Kritische Synthese institutioneller Darstellungen; unsichere Lebensdaten bleiben unknown.", "sourcePolicy": "Koloniale Akten nur über kontextualisierte Sekundärdarstellungen; heutige Eigenbezeichnung Tongva bevorzugt."},
+    "license": "rights-unclear"
+  },
+  {
+    "id": "bio-oodgeroo-noonuccal",
+    "personName": "Oodgeroo Noonuccal",
+    "birth": "1920-11-03",
+    "death": "1993-09-16",
+    "places": ["Minjerribah, Queensland, Australien", "Brisbane, Queensland, Australien"],
+    "communities": ["Noonuccal", "Federal Council for the Advancement of Aborigines and Torres Strait Islanders", "Aboriginal Publications Foundation"],
+    "shortDescription": "Noonuccal-Dichterin, Pädagogin und politische Organisatorin, die Literatur, Landverteidigung und Kampagnen für Bürger- und Selbstbestimmungsrechte verband.",
+    "lifeStages": [
+      {
+        "period": "1920–1945",
+        "title": "Minjerribah, Arbeit und Kriegsdienst",
+        "description": "Als Kathleen Jean Mary Ruska wuchs sie auf Minjerribah auf. Nach begrenzter Schulbildung arbeitete sie in Haushalten und diente während des Zweiten Weltkriegs im Australian Women's Army Service."
+      },
+      {
+        "period": "1940er–1960er Jahre",
+        "title": "Politische und literarische Organisierung",
+        "description": "Sie engagierte sich in Gewerkschafts-, Frauen- und antirassistischen Zusammenhängen sowie im Federal Council for the Advancement of Aborigines and Torres Strait Islanders. 1964 erschien ihr Gedichtband We Are Going."
+      },
+      {
+        "period": "1970er Jahre",
+        "title": "Bildung auf Country und indigene Publizistik",
+        "description": "Auf Minjerribah gründete sie das Noonuccal-Nughie Education and Cultural Centre. Als Präsidentin der Aboriginal Publications Foundation half sie, mit der Zeitschrift Identity einen Raum für indigene Autor*innen und Debatten zu schaffen."
+      },
+      {
+        "period": "1980er–1993",
+        "title": "Name, Protest und spätes Wirken",
+        "description": "Sie nahm den Namen Oodgeroo Noonuccal an und gab 1987 aus Protest gegen die australischen Zweihundertjahrfeiern und fortdauernde Entrechtung ihren MBE zurück. Bis zu ihrem Tod blieb sie als Autorin, Lehrende und Gegnerin von Sand- und Uranabbau aktiv."
+      }
+    ],
+    "ideasAndPractices": [
+      "Literatur als öffentliche Intervention und als Raum indigener Selbstrepräsentation",
+      "Lernen auf Country und generationenübergreifende Wissensvermittlung",
+      "Verbindung von Landrechten, Antirassismus, Frieden und Umweltverteidigung"
+    ],
+    "organizingAndAchievements": [
+      "Führende Kampagnenarbeit im Vorfeld des australischen Referendums von 1967",
+      "We Are Going (1964), der erste veröffentlichte Gedichtband einer Aboriginal-Autorin in Australien",
+      "Gründung des Noonuccal-Nughie Education and Cultural Centre",
+      "Mitaufbau der Aboriginal Publications Foundation und ihrer Zeitschrift Identity",
+      "Rückgabe des MBE 1987 als antikolonialer Protest"
+    ],
+    "repressionAndRisks": [
+      "Rassistische Bildungs-, Arbeits- und Publikationsbarrieren",
+      "Koloniale Kontrolle und Enteignung auf Minjerribah sowie staatliche Assimilationspolitik gegenüber Aboriginal Communities"
+    ],
+    "tensionsAndCritique": [
+      "Frühe Werke erschienen unter dem Namen Kath Walker; ihr später gewählter Name Oodgeroo Noonuccal hat in der Darstellung Vorrang.",
+      "Die häufige Formel von der 'ersten Aboriginal-Dichterin' ist zu weit: Präziser ist, dass sie als erste Aboriginal-Autorin einen Gedichtband veröffentlichte.",
+      "Ihre politischen Positionen entwickelten sich über Jahrzehnte und lassen sich weder auf Literatur noch auf das Referendum von 1967 reduzieren.",
+      "Darstellungen verstorbener Aboriginal-Personen können für Community-Mitglieder kulturell sensibel sein."
+    ],
+    "legacy": "Oodgeroo erweiterte die australische Literatur und politische Öffentlichkeit um eine unverwechselbar Noonuccal-geprägte Stimme. Ihre Bildungsarbeit auf Minjerribah und ihr Beharren auf Selbstbenennung wirken in Literatur, Lehrplänen und Community-Archiven fort.",
+    "relatedEventIds": ["australian-bicentenary-protest"],
+    "sourceRefs": [
+      {
+        "title": "Identity",
+        "url": "https://aiatsis.gov.au/collection/featured-collections/identity",
+        "publisher": "Australian Institute of Aboriginal and Torres Strait Islander Studies (AIATSIS)",
+        "language": "en",
+        "type": "indigenes Archiv und Sammlungskontext",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Noonuccal, Oodgeroo (1920–1993)",
+        "url": "https://adb.anu.edu.au/biography/noonuccal-oodgeroo-18057",
+        "publisher": "Australian Dictionary of Biography, Australian National University",
+        "language": "en",
+        "type": "wissenschaftliche Biografie",
+        "accessedAt": "2026-08-24"
+      }
+    ],
+    "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "mittel", "displayRule": "Vor Namen, Bildern oder Stimmen Verstorbener einen kulturellen Hinweis für Aboriginal und Torres-Strait-Islander-Nutzer*innen anzeigen."},
+    "provenance": {"method": "Redaktionelle Synthese eines indigenen Sammlungsarchivs und einer wissenschaftlichen Biografie.", "sourcePolicy": "Selbstgewählten Namen und präzise Community-Zugehörigkeit bevorzugt; keine Gedichtzeilen übernommen."},
+    "license": "rights-unclear"
+  },
+  {
+    "id": "bio-rigoberta-menchu-tum",
+    "personName": "Rigoberta Menchú Tum",
+    "birth": "1959-01-09",
+    "death": "unknown",
+    "places": ["Laj Chimel, Uspantán, Guatemala", "Mexiko", "Guatemala-Stadt, Guatemala"],
+    "communities": ["K'iche' Maya", "Comité de Unidad Campesina", "Fundación Rigoberta Menchú Tum"],
+    "shortDescription": "K'iche'-Maya-Menschenrechtsverteidigerin, Organisatorin und Friedensnobelpreisträgerin, die Gewalt gegen indigene Gemeinschaften in Guatemala international sichtbar machte.",
+    "lifeStages": [
+      {
+        "period": "1959–1980",
+        "title": "Kindheit, Plantagenarbeit und Organisierung",
+        "description": "Menchú wuchs in einer K'iche'-Gemeinde auf und arbeitete zeitweise mit ihrer Familie auf Plantagen. Als Jugendliche beteiligte sie sich an kirchlicher Basisarbeit und an Organisierung für Land-, Arbeits- und Frauenrechte."
+      },
+      {
+        "period": "1980–1983",
+        "title": "Staatsgewalt, Exil und testimonio",
+        "description": "Mehrere Angehörige ihrer Familie wurden im guatemaltekischen Bürgerkrieg durch staatliche Gewalt getötet. Menchú ging nach Mexiko ins Exil und erzählte ihre Lebens- und Gemeinschaftserfahrungen für das 1983 veröffentlichte testimonio Me llamo Rigoberta Menchú y así me nació la conciencia."
+      },
+      {
+        "period": "1984–1996",
+        "title": "Internationale Menschenrechtsarbeit",
+        "description": "Sie arbeitete in internationalen Foren für indigene Rechte und eine Verhandlungslösung des Krieges. 1992 erhielt sie den Friedensnobelpreis für ihren Einsatz für soziale Gerechtigkeit und ethnokulturelle Verständigung."
+      },
+      {
+        "period": "1993–heute",
+        "title": "Stiftung, Justiz und politische Beteiligung",
+        "description": "Sie gründete die Fundación Rigoberta Menchú Tum, unterstützte Bildungs- und Menschenrechtsarbeit sowie Verfahren gegen schwere Menschenrechtsverbrechen und kandidierte 2007 und 2011 für das Präsidentenamt Guatemalas."
+      }
+    ],
+    "ideasAndPractices": [
+      "Kollektives testimonio als Verbindung persönlicher Erfahrung und gemeinschaftlicher Geschichte",
+      "Indigene Rechte, soziale Gerechtigkeit und interkulturelle Verständigung",
+      "Internationale Öffentlichkeit, Rechtsverfahren und Bildung als komplementäre Strategien"
+    ],
+    "organizingAndAchievements": [
+      "Internationale Sichtbarmachung der Verfolgung indigener Gemeinschaften im guatemaltekischen Bürgerkrieg",
+      "Friedensnobelpreis 1992",
+      "Gründung der Fundación Rigoberta Menchú Tum",
+      "Unterstützung transnationaler Justizverfahren und indigener politischer Beteiligung"
+    ],
+    "repressionAndRisks": [
+      "Verlust naher Angehöriger durch staatliche Verfolgung und Massengewalt",
+      "Exil infolge politischer Verfolgung",
+      "Anhaltende rassistische und politische Angriffe gegen ihre Glaubwürdigkeit und Arbeit"
+    ],
+    "tensionsAndCritique": [
+      "Einzelne Angaben des 1983 erschienenen testimonio wurden ab den 1990er Jahren bestritten; das Genre verbindet persönliche, familiäre und kollektive Erfahrungen und ist keine neutrale Gerichtsakte.",
+      "Die Nobel-Institution hielt fest, dass die Auszeichnung nicht allein oder hauptsächlich auf dem Buch beruhte.",
+      "Die Kontroverse darf weder konkrete Fehler immunisieren noch als Vorwand dienen, gut dokumentierte staatliche Gewalt gegen Maya-Gemeinschaften zu leugnen.",
+      "Ihre späteren Wahlkandidaturen erzielten geringe Stimmenanteile und zeigen die Grenzen symbolischer internationaler Anerkennung in der nationalen Politik."
+    ],
+    "legacy": "Menchú machte die Erfahrungen von K'iche' Maya und anderer indigener Gemeinschaften während des guatemaltekischen Bürgerkriegs weltweit sichtbar. Ihr Werk bleibt zugleich ein zentraler Ort der Debatte über testimonio, Übersetzung, Repräsentation und historische Wahrheit.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {
+        "title": "Biografía",
+        "url": "https://fundacionrigobertamenchutum.org/biografia/",
+        "publisher": "Fundación Rigoberta Menchú Tum",
+        "language": "es",
+        "type": "offizielle Stiftungsbiografie",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Rigoberta Menchú Tum – Biographical",
+        "url": "https://www.nobelprize.org/prizes/peace/1992/tum/biographical/",
+        "publisher": "Nobel Prize Outreach",
+        "language": "en",
+        "type": "Preisbiografie mit Kontroversenkontext",
+        "accessedAt": "2026-08-24"
+      }
+    ],
+    "review": {"status": "redaktionell geprüft; Kontroverse kenntlich gemacht", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "hoch", "displayRule": "Vor Details zu Folter, Tötungen und Bürgerkrieg warnen; bei der lebenden Person keine privaten Kontakt-, Aufenthalts- oder Familiendaten ergänzen."},
+    "provenance": {"method": "Gegenprüfung einer selbstdarstellenden Stiftungsquelle mit der Nobel-Biografie einschließlich ihrer Kontroversennotiz.", "sourcePolicy": "K'iche'-Eigenbezeichnung und attribuierte Kontroverse; keine Passagen aus dem testimonio reproduziert."},
+    "license": "rights-unclear"
+  },
+  {
+    "id": "bio-leonard-peltier",
+    "personName": "Leonard Peltier",
+    "birth": "1944-09-12",
+    "death": "unknown",
+    "places": ["Turtle Mountain Reservation, North Dakota, USA", "Pine Ridge Reservation, South Dakota, USA", "Bundesgefängnisse in den USA"],
+    "communities": ["Turtle Mountain Band of Chippewa Indians", "American Indian Movement"],
+    "shortDescription": "Aktivist der Turtle Mountain Band of Chippewa Indians und des American Indian Movement, dessen fast fünfzigjährige Haft und umstrittenes Verfahren zu einem internationalen Symbolfall wurden.",
+    "lifeStages": [
+      {
+        "period": "1944–1960er Jahre",
+        "title": "Familie, Reservation und Boarding School",
+        "description": "Peltier wuchs in North Dakota und im pazifischen Nordwesten auf. Als Kind wurde er auf eine bundesstaatliche Boarding School geschickt, Teil eines Systems, das indigene Kinder von Sprache, Familie und Kultur trennen sollte."
+      },
+      {
+        "period": "späte 1960er–1975",
+        "title": "Organisierung im American Indian Movement",
+        "description": "Er engagierte sich gegen Polizeigewalt und für Vertragsrechte und indigene Selbstbestimmung. 1975 hielt er sich in Pine Ridge auf, wo politische Gewalt und Konflikte zwischen AIM-Unterstützer*innen, lokaler Regierung und Bundesbehörden eskalierten."
+      },
+      {
+        "period": "1975–1977",
+        "title": "Schusswechsel, Auslieferung und Verurteilung",
+        "description": "Nach einem Schusswechsel am 26. Juni 1975, bei dem die FBI-Agenten Jack Coler und Ronald Williams sowie der Oglala-Lakota-Mann Joseph Stuntz starben, floh Peltier nach Kanada. Er wurde ausgeliefert und 1977 wegen Beihilfe zum Mord an den Agenten zu zwei lebenslangen Freiheitsstrafen verurteilt."
+      },
+      {
+        "period": "1977–2025",
+        "title": "Haft und weltweite Kampagne",
+        "description": "Peltier beteuerte seine Unschuld. Gerichte bestätigten die Verurteilung, obwohl Fragen zu zurückgehaltenen Beweisen, forensischen Aussagen und dem Auslieferungsverfahren internationale Kritik auslösten. Indigene Organisationen und Menschenrechtsgruppen forderten über Jahrzehnte Begnadigung oder Freilassung."
+      },
+      {
+        "period": "seit 2025",
+        "title": "Strafumwandlung und Hausarrest",
+        "description": "Präsident Joe Biden wandelte seine verbleibende Strafe am 20. Januar 2025 in Hausarrest um. Peltier verließ am 18. Februar 2025 das Gefängnis und kehrte in die Turtle-Mountain-Gemeinschaft zurück; die Verurteilung wurde nicht aufgehoben."
+      }
+    ],
+    "ideasAndPractices": [
+      "Indigene Selbstbestimmung, Vertragsrechte und Schutz vor Polizeigewalt",
+      "Politische Kunst und Schreiben aus der Haft",
+      "Internationale Solidaritätsarbeit gegen als politisch verstandene Inhaftierung"
+    ],
+    "organizingAndAchievements": [
+      "Langjährige Organisierung im Umfeld des American Indian Movement",
+      "Aufbau einer internationalen Unterstützungsbewegung für eine Überprüfung seines Falls",
+      "Künstlerische und humanitäre Projekte aus der Haft",
+      "Strafumwandlung in Hausarrest 2025 nach jahrzehntelanger indigener Organisierung"
+    ],
+    "repressionAndRisks": [
+      "Fast fünf Jahrzehnte Haft, darunter lange Phasen mit eingeschränkter Gesundheitsversorgung",
+      "Ein Verfahren, in dem nach Darstellung von Gerichten und Menschenrechtsorganisationen entlastendes Material zurückgehalten wurde; Rechtsmittel blieben dennoch erfolglos"
+    ],
+    "tensionsAndCritique": [
+      "Peltier ist rechtskräftig verurteilt und bestreitet die Tötung der beiden FBI-Agenten; Unterstützer*innen halten das Verfahren für unfair, während FBI und Angehörige der Agenten an seiner Schuld festhalten.",
+      "Die Strafumwandlung von 2025 war keine Begnadigung und hob die Verurteilung nicht auf.",
+      "Eine faire Darstellung nennt auch die drei Toten des Schusswechsels und unterscheidet belegte Verfahrensmängel von weitergehenden Schlussfolgerungen über Täterschaft.",
+      "Der Symbolstatus des Falls darf weder andere Betroffene der Gewalt in Pine Ridge noch interne Konflikte des AIM unsichtbar machen."
+    ],
+    "legacy": "Peltiers Fall bleibt ein Prüfstein für das Verhältnis von US-Strafjustiz, Bundesbehörden und indigener Souveränität. Seine Rückkehr 2025 beendete die Gefängnishaft, nicht aber die Auseinandersetzung um Urteil, Erinnerung und Verantwortung.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {
+        "title": "Leonard Peltier is Going Home: A Step Toward Healing and Justice",
+        "url": "https://www.ncai.org/news/leonard-peltier-is-going-home-a-step-toward-healing-and-justice",
+        "publisher": "National Congress of American Indians",
+        "language": "en",
+        "type": "indigene Institutionsstellungnahme",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "USA: Further information: Leonard Peltier, seeking clemency, contracts COVID",
+        "url": "https://www.amnesty.org/en/wp-content/uploads/2022/02/AMR5152082022ENGLISH.pdf",
+        "publisher": "Amnesty International",
+        "language": "en",
+        "type": "Menschenrechts-Fallakte",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Leonard Peltier leaves prison after Biden commuted his sentence",
+        "url": "https://apnews.com/article/8b7da707f4921e974b53ede7d032cf23",
+        "publisher": "Associated Press",
+        "language": "en",
+        "type": "Nachrichtenbericht zur Strafumwandlung",
+        "accessedAt": "2026-08-24"
+      }
+    ],
+    "review": {"status": "redaktionell geprüft; Rechtsstreit multiperspektivisch markiert", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "hoch", "displayRule": "Todesfälle, Haft und umstrittene Schuldfrage ankündigen; keine aktuelle Wohnadresse, Gesundheitsdetails oder unbelegten Tatbehauptungen zur lebenden Person anzeigen."},
+    "provenance": {"method": "Triangulation einer indigenen Institutionsquelle, einer Menschenrechts-Fallakte und aktueller Berichterstattung.", "sourcePolicy": "Verurteilung, Unschuldsposition, Verfahrenskritik und Gegenposition werden getrennt attribuiert."},
+    "license": "rights-unclear"
+  },
+  {
+    "id": "bio-annie-mae-aquash",
+    "personName": "Annie Mae Aquash",
+    "birth": "1945-03-27",
+    "death": "1975-12 (Tag unbekannt)",
+    "places": ["Sipekne'katik / Indian Brook, Nova Scotia, Kanada", "Boston, Massachusetts, USA", "Pine Ridge Reservation, South Dakota, USA"],
+    "communities": ["Mi'kmaq", "Boston Indian Council", "American Indian Movement"],
+    "shortDescription": "Mi'kmaq-Organisatorin, Pädagogin und Aktivistin des American Indian Movement, die urbane Community-Arbeit, Vertragsrechte und indigene Selbstbestimmung verband.",
+    "lifeStages": [
+      {
+        "period": "1945–1962",
+        "title": "Kindheit in Sipekne'katik",
+        "description": "Als Annie Mae Pictou wuchs sie in der Mi'kmaq-Gemeinschaft Indian Brook, heute Sipekne'katik First Nation, auf. Saisonarbeit und strukturelle Armut prägten das Leben vieler Familien in der Region."
+      },
+      {
+        "period": "1962–1972",
+        "title": "Migration und Community-Arbeit in Boston",
+        "description": "Sie zog nach Boston, arbeitete und gründete eine Familie. Im Boston Indian Council und im Teaching and Research in Bicultural Education School Project engagierte sie sich für Wohnen, Bildung und Unterstützung urbaner indigener Familien."
+      },
+      {
+        "period": "1972–1975",
+        "title": "American Indian Movement",
+        "description": "Aquash beteiligte sich an AIM-Aktionen, darunter 1973 an der Besetzung von Wounded Knee, und organisierte in mehreren Städten und Reservationsgemeinschaften. Sie sprach besonders über Bildung, Vertragsrechte, Frauen und die Lebensbedingungen indigener Menschen."
+      },
+      {
+        "period": "1975–1976",
+        "title": "Verschwinden, Mord und verspätete Identifizierung",
+        "description": "Im Dezember 1975 wurde Aquash entführt und ermordet. Ihr Körper wurde im Februar 1976 gefunden und zunächst ohne korrekte Identifizierung bestattet. Spätere Ermittlungen und Prozesse führten zu Verurteilungen von AIM-nahen Tätern."
+      }
+    ],
+    "ideasAndPractices": [
+      "Community-basierte Bildung für indigene Kinder in Städten",
+      "Verbindung von Mi'kmaq-Identität mit panindigener Organisierung",
+      "Frauen als politische Organisatorinnen und nicht nur als Unterstützerinnen von Bewegungen"
+    ],
+    "organizingAndAchievements": [
+      "Arbeit im Boston Indian Council und in einem bikulturellen Schulprojekt",
+      "Beteiligung an der Besetzung von Wounded Knee 1973",
+      "Organisierung für Vertragsrechte, Bildung und Selbstbestimmung in Kanada und den USA",
+      "Fortwirkende Mi'kmaq- und feministische Erinnerungsarbeit zu ihrem Leben"
+    ],
+    "repressionAndRisks": [
+      "Überwachung, Verhöre und Druck durch US-Bundesbehörden im Umfeld des AIM",
+      "Misstrauen und geschlechtsspezifische Gewalt innerhalb des Bewegungsumfelds",
+      "Entführung und Ermordung im Dezember 1975; anfängliche Fehlidentifizierung durch Behörden"
+    ],
+    "tensionsAndCritique": [
+      "Aquashs Tod lässt sich nicht ausschließlich als staatliche Repression erzählen: Gerichte verurteilten AIM-nahe Männer für ihre Entführung und Ermordung.",
+      "Gleichzeitig bildeten FBI-Überwachung, Infiltration und Desinformation einen Kontext, der Angst und Verdächtigungen in der Bewegung verschärfte.",
+      "Einige weitergehende Behauptungen über Auftraggeber oder Motive bleiben umstritten und werden hier nicht als Tatsachen wiederholt.",
+      "Quellen verwenden sowohl Annie Mae als auch Anna Mae; dieses Paket folgt der kanadischen Regierungsbiografie und dem häufigen Familiengebrauch 'Annie Mae', während der Smithsonian-Datensatz 'Anna Mae' verzeichnet."
+    ],
+    "legacy": "Aquash wird als Mi'kmaq-Organisatorin und als Opfer sowohl kolonialer Behördenpraxis als auch bewegungsinterner Gewalt erinnert. Ihre Geschichte fordert dazu auf, indigene Befreiungsbewegungen zugleich gegen staatliche Repression zu verteidigen und intern an Geschlechtergerechtigkeit und Verantwortlichkeit zu messen.",
+    "relatedEventIds": ["wounded-knee-occupation"],
+    "sourceRefs": [
+      {
+        "title": "Anna Mae Aquash",
+        "url": "https://www.canada.ca/en/women-gender-equality/commemorations-celebrations/women-impact/human-rights/anna-mae-aquash.html",
+        "publisher": "Women and Gender Equality Canada",
+        "language": "en",
+        "type": "offizielle Biografie",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Photograph of Mi'kmaq activist Anna Mae Aquash",
+        "url": "https://americanindian.si.edu/collections-search/edan-record/ead_component%3Asova-nmai-ac-449-ref20",
+        "publisher": "National Museum of the American Indian Archive Center",
+        "language": "en",
+        "type": "indigener Archivdatensatz",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Annie Mae Aquash",
+        "url": "https://canadashistory.ca/explore/women/annie-mae-aquash",
+        "publisher": "Canada's History Society",
+        "language": "en",
+        "type": "historischer Fachbeitrag",
+        "accessedAt": "2026-08-24"
+      }
+    ],
+    "review": {"status": "redaktionell geprüft; Tatdarstellung sensibel und attribuiert", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "hoch", "displayRule": "Vor Entführung, Mord, behördlicher Behandlung Verstorbener und bewegungsinterner Gewalt warnen; keine Leichenbilder oder grafischen Details anzeigen."},
+    "provenance": {"method": "Triangulation einer offiziellen kanadischen Biografie, eines indigenen Archivdatensatzes und eines historischen Fachbeitrags.", "sourcePolicy": "Mi'kmaq-Zugehörigkeit präzisiert; strittige Mordtheorien ausgeschlossen oder ausdrücklich markiert."},
+    "license": "rights-unclear"
+  },
+  {
+    "id": "bio-bartolina-sisa",
+    "personName": "Bartolina Sisa",
+    "birth": "unknown",
+    "death": "1782-09-05",
+    "places": ["Sica Sica und Sapahaqui, heutiges Bolivien", "La Paz / Chuqi Yapu, heutiges Bolivien"],
+    "communities": ["Aymara", "Antikoloniale Aufstandsnetzwerke in der Real Audiencia de Charcas"],
+    "shortDescription": "Aymara-Händlerin und militärisch-politische Anführerin der großen antikolonialen Erhebung von 1781 im Hochland des heutigen Bolivien.",
+    "lifeStages": [
+      {
+        "period": "um 1750–1780",
+        "title": "Handel und regionale Netzwerke",
+        "description": "Bartolina Sisa wuchs im Aymara-Hochland auf und war im Textil- und Coca-Handel tätig. Diese Arbeit schuf Kenntnisse über Routen, Märkte und Gemeinschaften, die später für die Organisierung wichtig waren. Geburtsort und genaues Geburtsdatum werden in den Quellen unterschiedlich angegeben."
+      },
+      {
+        "period": "1780–1781",
+        "title": "Vorbereitung der Erhebung",
+        "description": "Gemeinsam mit Julián Apaza, der den Namen Túpac Katari annahm, Gregoria Apaza und weiteren Anführer*innen organisierte Sisa Aymara-Gemeinschaften gegen koloniale Tribute, Zwangsarbeit, Gewalt und politische Herrschaft."
+      },
+      {
+        "period": "1781",
+        "title": "Führung bei der Belagerung von La Paz",
+        "description": "Während der Belagerungen von La Paz befehligte Sisa zeitweise eigenständig Kräfte und kontrollierte strategische Zugänge. Sie war nicht bloß Begleiterin ihres Partners, sondern Teil einer geteilten militärischen und politischen Führung."
+      },
+      {
+        "period": "1781–1782",
+        "title": "Gefangenschaft und Hinrichtung",
+        "description": "Nach Verrat wurde Sisa gefangen genommen, über ein Jahr inhaftiert und am 5. September 1782 von den Kolonialbehörden öffentlich hingerichtet. Ihr Körper wurde zur Abschreckung entehrt und an mehreren Orten ausgestellt."
+      }
+    ],
+    "ideasAndPractices": [
+      "Aymara-Selbstregierung und Zurückweisung kolonialer Tribute und Zwangsarbeit",
+      "Nutzung von Handels-, Verwandtschafts- und Gemeindeverbindungen für großräumige Mobilisierung",
+      "Geteilte militärische und politische Führung von Frauen und Männern"
+    ],
+    "organizingAndAchievements": [
+      "Mitorganisation einer der größten antikolonialen Erhebungen des 18. Jahrhunderts in Charcas",
+      "Eigenständige Befehlsführung während der Belagerung von La Paz 1781",
+      "Namensgeberin des am 5. September begangenen Internationalen Tags indigener Frauen",
+      "Namensgeberin einer bedeutenden bolivianischen Organisation von bäuerlichen, indigenen und originären Frauen"
+    ],
+    "repressionAndRisks": [
+      "Verrat, Gefangennahme, langjährige Haft und öffentlich inszenierte Hinrichtung",
+      "Postmortale Zerstückelung und Ausstellung ihrer sterblichen Überreste als koloniale Abschreckungsgewalt"
+    ],
+    "tensionsAndCritique": [
+      "Geburtsdatum und Geburtsort sind widersprüchlich überliefert; das Feld birth bleibt deshalb unknown.",
+      "Nationalistische Erinnerung stilisiert Sisa teils zur makellosen Heldin oder reduziert sie auf die Ehe mit Túpac Katari; beide Muster verdecken ihre eigenständige Führung und die kollektive Erhebung.",
+      "Ihre heutige symbolische Nutzung durch staatliche und parteinahe Institutionen ist von der historischen Person und von aktuellen Debatten um Autonomie indigener Frauenorganisationen zu unterscheiden.",
+      "Koloniale Strafakten beschreiben die Aufständischen aus Sicht der Herrschaft und benötigen kritische Kontextualisierung."
+    ],
+    "legacy": "Bartolina Sisa ist ein zentraler Bezugspunkt für Aymara-Widerstand und indigene Frauenorganisierung in Abya Yala. Ihr Name verbindet historische Erinnerung mit heutigen Kämpfen, bleibt aber zwischen Community-Gedenken, Staatssymbolik und Parteipolitik umkämpft.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {
+        "title": "Bartolina Sisa",
+        "url": "https://mujer.sea.gob.bo/src/personajeResultado.php?variable=4",
+        "publisher": "Servicio Estatal de Autonomías, Bolivia",
+        "language": "es",
+        "type": "offizielles historisches Dossier",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Héroes y heroínas de las Naciones y Pueblos Indígena Originario Campesinos",
+        "url": "https://www.minculturas.gob.bo/wp-content/uploads/2024/12/HEROES-Y-HEROINAS-2024_compressed.pdf",
+        "publisher": "Ministerio de Culturas, Descolonización y Despatriarcalización, Bolivia",
+        "language": "es",
+        "type": "offizielle historische Publikation",
+        "accessedAt": "2026-08-24"
+      }
+    ],
+    "review": {"status": "redaktionell geprüft mit Datierungsvorbehalt", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "hoch", "displayRule": "Vor Hinrichtung und postmortaler Gewalt warnen; in Kurzansichten keine grafischen Details, in Langansichten nur sachlich notwendige Angaben."},
+    "provenance": {"method": "Vergleich zweier bolivianischer Behördenpublikationen; widersprüchliche Geburtsangaben nicht harmonisiert.", "sourcePolicy": "Aymara-Eigenbezeichnung und eigenständige Frauenführung hervorgehoben; staatliche Erinnerung kritisch eingeordnet."},
+    "license": "rights-unclear"
+  },
+  {
+    "id": "bio-nemonte-nenquimo",
+    "personName": "Nemonte Nenquimo",
+    "birth": "unknown",
+    "death": "unknown",
+    "places": ["Waorani-Territorium in Pastaza, Ecuador", "Puyo und Quito, Ecuador"],
+    "communities": ["Waorani", "Alianza Ceibo", "Amazon Frontlines"],
+    "shortDescription": "Waorani-Anführerin und Mitgründerin der Alianza Ceibo, die gemeinschaftliche Organisierung, Recht und öffentliches Erzählen zur Verteidigung indigener Territorien verbindet.",
+    "lifeStages": [
+      {
+        "period": "Kindheit und Jugend",
+        "title": "Aufwachsen im Waorani-Territorium",
+        "description": "Nenquimo wuchs in einer Waorani-Gemeinschaft im ecuadorianischen Amazonasgebiet auf. Öffentlich beschriebene Erfahrungen mit missionarischer Umerziehung und Ölinteressen prägten ihre spätere Verteidigung von Sprache, Kultur und Territorium; genaue private Lebensdaten werden hier nicht erfasst."
+      },
+      {
+        "period": "2015–2018",
+        "title": "Aufbau indigener Allianzen",
+        "description": "2015 war sie Mitgründerin der von indigenen Nationen getragenen Alianza Ceibo. Die Allianz verbindet Waorani, A'i Cofán, Siekopai und Siona über Staatsgrenzen hinweg und arbeitet zu territorialer Kontrolle, Kommunikation, Frauenführung und Alternativen zum Extraktivismus."
+      },
+      {
+        "period": "2019",
+        "title": "Waorani-Führung und Gerichtserfolg",
+        "description": "Als erste Frau an der Spitze der Waorani-Organisation der Provinz Pastaza war sie eine zentrale Sprecherin einer gemeinschaftlich getragenen Klage. Das Urteil stoppte die Versteigerung von rund 200.000 Hektar Waorani-Territorium für Ölförderung und stärkte Anforderungen an freie, vorherige und informierte Konsultation."
+      },
+      {
+        "period": "2020–heute",
+        "title": "Internationale Arbeit und Selbstrepräsentation",
+        "description": "2020 erhielt sie den Goldman Environmental Prize. Seither arbeitet sie weiter in indigenen Bündnissen und veröffentlichte 2024 mit Mitch Anderson ihre Memoiren, um Waorani-Geschichte aus eigener Perspektive in internationale Debatten einzubringen."
+      }
+    ],
+    "ideasAndPractices": [
+      "Territoriale Selbstbestimmung und freie, vorherige und informierte Zustimmung",
+      "Von indigenen Nationen geführte, grenzüberschreitende Bündnisse",
+      "Karten, Gerichtsverfahren, Community-Kommunikation und mündliche Geschichte als kombinierte Werkzeuge",
+      "Frauenführung auf Grundlage der Autorität von pikenani, den älteren Wissens- und Führungspersonen"
+    ],
+    "organizingAndAchievements": [
+      "Mitgründung der Alianza Ceibo 2015",
+      "Erste Frau an der Spitze der Waorani-Organisation von Pastaza 2019",
+      "Zentrale Rolle in der erfolgreichen Klage zum Schutz von rund 200.000 Hektar Waorani-Territorium",
+      "Goldman Environmental Prize 2020",
+      "Mitautorin der Memoiren We Will Be Jaguars / We Will Not Be Saved"
+    ],
+    "repressionAndRisks": [
+      "Anhaltender Druck durch Öl-, Bergbau- und Holzeinschlagsinteressen auf indigene Territorien",
+      "Rassistische und sexistische Abwertung indigener Frauen in politischen und medialen Räumen",
+      "Sicherheitsrisiken für Land- und Umweltverteidiger*innen; aktuelle private Aufenthalts- und Familiendaten werden nicht dokumentiert"
+    ],
+    "tensionsAndCritique": [
+      "Der Gerichtserfolg von 2019 war eine kollektive Leistung von Gemeinden, älteren Frauen, Kläger*innen, der Waorani-Organisation und Partnerorganisationen; er darf nicht einer Einzelperson zugeschrieben werden.",
+      "Internationale Umweltpreise können Sichtbarkeit schaffen, zugleich aber indigene Politik auf Naturschutzsymbolik reduzieren. Nenquimos Arbeit zielt umfassender auf Selbstbestimmung und kulturelles Fortbestehen.",
+      "Die Bezeichnung des Gebiets als 'unberührter Regenwald' würde die langjährige Gestaltung und Bewohnung durch Waorani unsichtbar machen und wird vermieden.",
+      "Bei einer lebenden Verteidigerin haben Sicherheit und Datensparsamkeit Vorrang vor biografischer Vollständigkeit."
+    ],
+    "legacy": "Nenquimos Arbeit zeigt, wie indigene Governance, Frauenführung, Kartierung, Recht und Erzählen zusammenwirken können. Ihr öffentliches Profil verweist bewusst auf die kollektive Autorität und das Wissen der Waorani-Gemeinschaften.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {
+        "title": "Conoce a Siete Mujeres Indígenas que Luchan por su Cultura y Territorio",
+        "url": "https://amazonfrontlines.org/es/chronicles/siete-mujeres-indigenas-amazonia/",
+        "publisher": "Amazon Frontlines und Alianza Ceibo",
+        "language": "es",
+        "type": "indigen geführtes Organisationsprofil",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Nemonte Nenquimo",
+        "url": "https://www.goldmanprize.org/recipient/nemonte-nenquimo/",
+        "publisher": "Goldman Environmental Prize",
+        "language": "en",
+        "type": "offizielle Preisbiografie",
+        "accessedAt": "2026-08-24"
+      }
+    ],
+    "review": {"status": "redaktionell geprüft; Datenschutz für lebende Person", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "mittel", "displayRule": "Keine genauen Geburts-, Wohn-, Reise-, Kontakt- oder Familiendaten ergänzen; Sicherheitsrisiken nur aus öffentlichen Organisationsquellen beschreiben."},
+    "provenance": {"method": "Redaktionelle Synthese eines indigen geführten Organisationsprofils und einer Preisbiografie.", "sourcePolicy": "Datensparsamkeit bei lebender Person; kollektive Urheberschaft des Gerichtserfolgs ausdrücklich bewahrt."},
+    "license": "rights-unclear"
+  },
+  {
+    "id": "bio-meri-te-tai-mangakahia",
+    "personName": "Meri Te Tai Mangakāhia",
+    "birth": "1868 (genaues Datum unsicher)",
+    "death": "1920-10-10",
+    "places": ["Panguru und Hokianga, Aotearoa Neuseeland", "Whangapoua, Coromandel, Aotearoa Neuseeland", "Hawke's Bay, Aotearoa Neuseeland"],
+    "communities": ["Te Rarawa", "Ngāti Te Rēinga", "Ngāti Manawa", "Te Kaitūtae", "Te Kotahitanga"],
+    "shortDescription": "Frau von hohem Ansehen aus Te Rarawa, die 1893 im Te-Kotahitanga-Parlament Stimm- und Mitentscheidungsrechte für Māori-Frauen forderte.",
+    "lifeStages": [
+      {
+        "period": "um 1868–1892",
+        "title": "Hokianga, Bildung und whānau",
+        "description": "Meri Te Tai wurde nahe Panguru in eine ranghohe Te-Rarawa-Familie geboren. Familienüberlieferungen berichten von guter formaler Bildung. Durch ihre Ehe mit Hāmiora Mangakāhia war sie eng mit dem Aufbau von Te Kotahitanga, der Māori-Parlamentsbewegung, verbunden."
+      },
+      {
+        "period": "1893",
+        "title": "Antrag im Te-Kotahitanga-Parlament",
+        "description": "Am 18. Mai 1893 brachte sie im Unterhaus von Te Kotahitanga einen Antrag ein, Frauen das Wahlrecht und die Wählbarkeit für das Māori-Parlament zu geben. Sie begründete dies auch mit den Folgen von Landverlust, Witwenschaft und der unzureichenden Wirkung bisheriger Petitionen männlicher Führungspersonen."
+      },
+      {
+        "period": "1890er Jahre",
+        "title": "Te Reiri Karamu und Frauenorganisierung",
+        "description": "Sie blieb in Māori-Politik und Wohlfahrtsarbeit aktiv und war wahrscheinlich an einem Frauenkomitee im Umfeld von Te Kotahitanga beteiligt. Diese Komitees organisierten Versammlungen und diskutierten politische Fragen; eine konkrete Mitgliedschaft ist nicht sicher belegt."
+      },
+      {
+        "period": "1900–1920",
+        "title": "Community- und Wohlfahrtsarbeit",
+        "description": "Mangakāhia blieb in Māori-politischen und sozialen Angelegenheiten aktiv. Sie starb 1920 an einer Influenzaerkrankung und wurde auf dem Friedhof Pūreirei bei Lower Waihou beigesetzt."
+      }
+    ],
+    "ideasAndPractices": [
+      "Politische Autorität von wāhine Māori innerhalb von tino rangatiratanga",
+      "Verbindung von Stimmrecht, Wählbarkeit, Landschutz und Wohlergehen von whānau",
+      "Petitionen, parlamentarische Anträge und autonome Frauenkomitees"
+    ],
+    "organizingAndAchievements": [
+      "Erster dokumentierter Antrag einer Frau im Te-Kotahitanga-Parlament 1893",
+      "Frühe Forderung nach aktivem und passivem Wahlrecht für Māori-Frauen",
+      "Wahrscheinliche Mitwirkung in den Frauenkomitees der Te-Kotahitanga-Bewegung",
+      "Dauerhafter Bezugspunkt für wāhine-Māori-Führung und feministische Geschichtsschreibung in Aotearoa"
+    ],
+    "repressionAndRisks": [
+      "Politische Entrechtung von Frauen in kolonialen und Māori-parlamentarischen Strukturen",
+      "Kolonialer Landverlust und rechtliche Verfahren, die Māori-Gemeinschaften und besonders Witwen belasteten"
+    ],
+    "tensionsAndCritique": [
+      "Das häufig genannte Geburtsdatum 22. Mai 1868 beruht laut Dictionary of New Zealand Biography auf unsicherer Überlieferung; deshalb wird nur das Jahr mit Vorbehalt angegeben.",
+      "Ihre Forderung im Māori-Parlament ist von der zeitgleichen Kampagne für das Wahlrecht im kolonialen Parlament zu unterscheiden, auch wenn beide 1893 zusammenliefen.",
+      "Der nationale Mythos vom 'ersten Land mit Frauenwahlrecht' kann verdecken, dass Frauen zunächst nicht kandidieren durften und dass Māori-Selbstregierung von der Krone nicht gleichrangig anerkannt wurde.",
+      "Ihre politische Arbeit darf nicht ausschließlich über die Ämter ihres Ehemanns erzählt werden."
+    ],
+    "legacy": "Mangakāhia verknüpfte Frauenrechte mit Māori-Selbstbestimmung und Landfragen. Ihr Antrag von 1893 erweitert die Wahlrechtsgeschichte Aotearoas über die koloniale Parlamentsgeschichte hinaus.",
+    "relatedEventIds": ["new-zealand-womens-suffrage-1893"],
+    "sourceRefs": [
+      {
+        "title": "Mangakāhia, Meri Te Tai",
+        "url": "https://teara.govt.nz/en/biographies/2m30/mangakahia-meri-te-tai",
+        "publisher": "Dictionary of New Zealand Biography / Te Ara",
+        "language": "en",
+        "type": "wissenschaftlich kuratierte Nationalbiografie",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Meri Mangakāhia",
+        "url": "https://nzhistory.govt.nz/people/meri-mangakahia",
+        "publisher": "Manatū Taonga – Ministry for Culture and Heritage",
+        "language": "en",
+        "type": "offizielle Geschichtsbiografie",
+        "accessedAt": "2026-08-24"
+      }
+    ],
+    "review": {"status": "redaktionell geprüft mit Datierungsvorbehalt", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "mittel", "displayRule": "Te-reo-Māori-Namen und Makrons unverändert anzeigen; Darstellungen einer Verstorbenen sowie Begräbnisangaben respektvoll und ohne unnötige Visualisierung behandeln."},
+    "provenance": {"method": "Redaktionelle Synthese zweier staatlich kuratierter neuseeländischer Geschichtsquellen, darunter eine Nationalbiografie.", "sourcePolicy": "Iwi- und hapū-Zugehörigkeiten präzisiert; unsichere Datierung sichtbar belassen."},
+    "license": "rights-unclear"
+  },
+  {
+    "id": "bio-eddie-koiki-mabo",
+    "personName": "Eddie Koiki Mabo",
+    "birth": "1936-06-29",
+    "death": "1992-01-21",
+    "places": ["Mer / Murray Island, Torres Strait, Australien", "Townsville, Queensland, Australien"],
+    "communities": ["Meriam", "Mabo family", "Townsville Aboriginal and Torres Strait Islander community"],
+    "shortDescription": "Meriam-Landrechtsaktivist, Pädagoge und Mitkläger im Verfahren Mabo v Queensland, das die Rechtsfiktion terra nullius im australischen Common Law verwarf.",
+    "lifeStages": [
+      {
+        "period": "1936–1957",
+        "title": "Kindheit auf Mer",
+        "description": "Koiki wurde auf Mer geboren und von Benny und Maigo Mabo adoptiert. Er lernte Meriam-Sprache, Malo law, Genealogien und die Verantwortlichkeiten für Familienland. Als junger Mann verließ er Mer und lebte später in Queensland."
+      },
+      {
+        "period": "1957–1973",
+        "title": "Arbeit, Organisierung und Bildung in Townsville",
+        "description": "In Queensland arbeitete Mabo unter anderem auf Schiffen und bei der Eisenbahn, engagierte sich gewerkschaftlich und politisch und heiratete Bonita Neehow. Gemeinsam mit Bonita Mabo und weiteren Mitstreiter*innen gründete er 1973 die Black Community School in Townsville."
+      },
+      {
+        "period": "1974–1981",
+        "title": "Landwissen trifft koloniales Eigentumsrecht",
+        "description": "Bei der Arbeit an der James Cook University erfuhr Mabo, dass das australische Recht seinen gelebten und ererbten Landanspruch auf Mer nicht anerkannte. Er begann, diesen Widerspruch öffentlich und juristisch anzugreifen."
+      },
+      {
+        "period": "1982–1992",
+        "title": "Mabo v Queensland",
+        "description": "1982 erhoben Koiki Mabo, Reverend David Passi, Celuia Mapoo Salee, Sam Passi und James Rice Klage. Mabo erlebte das Urteil nicht mehr: Fünf Monate nach seinem Tod erkannte der High Court am 3. Juni 1992 fortbestehende indigene Landrechte an und verwarf terra nullius als Grundlage des Common Law."
+      }
+    ],
+    "ideasAndPractices": [
+      "Meriam-Recht und genealogische Verantwortung für Land als lebendige Rechtsordnung",
+      "Community-kontrollierte Bildung und Weitergabe von Sprache und Kultur",
+      "Verbindung von Gewerkschaftsarbeit, öffentlicher Bildung und strategischer Prozessführung"
+    ],
+    "organizingAndAchievements": [
+      "Mitgründung der Black Community School in Townsville 1973",
+      "Mitorganisation von Kultur-, Gesundheits- und Rechtsinitiativen in Townsville",
+      "Mitkläger im Grundsatzverfahren Mabo v Queensland (No 2)",
+      "Beitrag zur Anerkennung von native title und zur Zurückweisung von terra nullius im australischen Common Law"
+    ],
+    "repressionAndRisks": [
+      "Rassistische Arbeits- und Lebensbedingungen sowie koloniale Kontrolle der Torres-Strait-Inseln",
+      "Ausschluss von der Rückkehr nach Mer in jungen Jahren",
+      "Nach seinem Tod wurde sein Grab auf Mer geschändet; die Familie bestattete seine sterblichen Überreste später nach Meriam-Bräuchen erneut"
+    ],
+    "tensionsAndCritique": [
+      "Das Urteil war Ergebnis der Arbeit von fünf Klägern, ihren Familien, Meriam-Zeug*innen und einem breiten juristischen Team; die Bezeichnung 'Mabo-Urteil' kann diese Kollektivität verdecken.",
+      "Der High Court erkannte native title innerhalb des australischen Rechtssystems an, nicht eine uneingeschränkte indigene Souveränität; hohe Beweishürden und spätere Gesetzgebung begrenzen die Wirkung.",
+      "Terra nullius war eine koloniale Rechtsfiktion. Ihre Zurückweisung beseitigte weder historischen Landraub noch heutige Ungleichheit.",
+      "Koiki ist sein gebräuchlicher Meriam-Name; 'Eddie' bleibt als öffentlich bekannter Name ergänzend erhalten."
+    ],
+    "legacy": "Koiki Mabos Beharren auf Meriam-Recht veränderte das australische Eigentumsrecht grundlegend. Sein Vermächtnis umfasst neben dem Gerichtsfall auch Community-Bildung, Gewerkschaftsarbeit und die fortdauernde Forderung, Meriam-Recht nicht nur durch koloniale Rechtskategorien zu betrachten.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {
+        "title": "Eddie Koiki Mabo",
+        "url": "https://aiatsis.gov.au/explore/eddie-koiki-mabo",
+        "publisher": "Australian Institute of Aboriginal and Torres Strait Islander Studies (AIATSIS)",
+        "language": "en",
+        "type": "indigenes Institutionsprofil",
+        "accessedAt": "2026-08-24"
+      },
+      {
+        "title": "Mabo, Edward Koiki (Eddie) (1936–1992)",
+        "url": "https://adb.online.anu.edu.au/biography/mabo-edward-koiki-eddie-16122",
+        "publisher": "Australian Dictionary of Biography, Australian National University",
+        "language": "en",
+        "type": "wissenschaftliche Biografie",
+        "accessedAt": "2026-08-24"
+      }
+    ],
+    "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "hoch", "displayRule": "Vor Namen oder Bildern verstorbener Aboriginal und Torres-Strait-Islander warnen; Grabschändung nur textlich und ohne Bildmaterial erwähnen."},
+    "provenance": {"method": "Redaktionelle Synthese eines indigenen Institutionsprofils und einer wissenschaftlichen Nationalbiografie.", "sourcePolicy": "Meriam-Identität, Koiki als Name und kollektive Prozessführung hervorgehoben; Rechtswirkung nicht überzeichnet."},
+    "license": "rights-unclear"
+  }
+]

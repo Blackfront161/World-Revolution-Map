@@ -9,6 +9,7 @@ import {
   validateRelations,
   validateRoutes
 } from '../src/game-core.js';
+import { BIOGRAPHY_ID_PATTERN, normalizeBiography, validateBiography } from '../src/biography-core.js';
 
 const catalog = JSON.parse(await readFile('data/event-catalog.json', 'utf8'));
 if (!Array.isArray(catalog) || !catalog.length) throw new Error('event-catalog.json muss eine nichtleere Liste sein.');
@@ -62,11 +63,18 @@ for (const [index, row] of metadata.events.entries()) {
   }
 }
 
-const originallySensitive = [...rawById.values()].filter(row => row.sensitivity && !['Niedrig', 'Nein', 'Keine'].includes(row.sensitivity));
-if (originallySensitive.length !== 53) throw new Error(`Erwartet wurden 53 bereits sensible Ereignisse, gefunden: ${originallySensitive.length}.`);
-for (const row of originallySensitive) {
+const sensitiveEvents = [...rawById.values()].filter(row => row.sensitivity && !['Niedrig', 'Nein', 'Keine'].includes(row.sensitivity));
+for (const row of sensitiveEvents) {
   const meta = metadata.events.find(item => item.id === row.id);
   if (!meta?.coordinatePrecision) throw new Error(`${row.id}: sensible Koordinate ist nicht klassifiziert.`);
+  if (row.coordinatePrecision && row.coordinatePrecision !== meta.coordinatePrecision) throw new Error(`${row.id}: Koordinatenklassifikation widerspricht dem Ereignisdatensatz.`);
+}
+const baselineSensitiveIds = contract.sensitivityPolicy?.baselineSensitiveIds;
+if (!Array.isArray(baselineSensitiveIds) || !baselineSensitiveIds.length || new Set(baselineSensitiveIds).size !== baselineSensitiveIds.length) throw new Error('archive-contract.json: sensible Baseline fehlt oder ist doppelt.');
+for (const id of baselineSensitiveIds) {
+  const row = rawById.get(id);
+  if (!row?.sensitivity) throw new Error(`${id}: sensible Baseline ist nicht mehr als sensibel gekennzeichnet.`);
+  if (!metadataIds.has(id)) throw new Error(`${id}: sensible Baseline hat keine Koordinatenklassifikation.`);
 }
 
 const overrides = JSON.parse(await readFile('data/event-editorial-overrides.json', 'utf8'));
@@ -103,4 +111,26 @@ const relationIssues = validateRelations(relations, ids, new Set(routes.routes.m
 if (relationIssues.length) throw new Error(relationIssues.join('; '));
 if (relations.relations.length < 20) throw new Error('relations.json: mindestens 20 kuratierte Beziehungen erforderlich.');
 
-console.log(`${catalog.length} Datendateien, ${activeCount} aktive Ereignisse, ${deepenedCount} Vertiefungen, ${metadataIds.size} Koordinatenklassifikationen, ${routes.routes.length} Routen, ${taxonomy.layers.length} Layer, ${taxonomy.tactics.length} Taktiken, ${relations.relations.length} Beziehungen und ${taxonomy.mapStyles.length} Kartenstile validiert.`);
+const biographyContract = contract.biographyModel;
+if (!biographyContract || biographyContract.idPattern !== BIOGRAPHY_ID_PATTERN.source || biographyContract.minimumHttpsSources !== 2) throw new Error('archive-contract.json: Biografiemodell fehlt oder ist inkonsistent.');
+const biographyCatalog = JSON.parse(await readFile('data/biography-catalog.json', 'utf8'));
+if (biographyCatalog.schemaVersion !== contract.schemaVersion || !Array.isArray(biographyCatalog.files) || biographyCatalog.files.length !== 3) throw new Error('biography-catalog.json: ungültige Struktur.');
+const biographyIds = new Set();
+let biographyCount = 0;
+let biographySourceCount = 0;
+for (const entry of biographyCatalog.files) {
+  if (!entry || typeof entry !== 'object' || !/^[a-z0-9-]+\.json$/i.test(entry.file) || typeof entry.defaultTradition !== 'string' || !entry.defaultTradition.trim()) throw new Error('biography-catalog.json: ungültiger Katalogeintrag.');
+  const rows = JSON.parse(await readFile(`data/${entry.file}`, 'utf8'));
+  if (!Array.isArray(rows)) throw new Error(`${entry.file}: Biografiedatei muss eine Liste sein.`);
+  rows.forEach((row, index) => {
+    const issues = validateBiography(row, ids, entry);
+    if (issues.length) throw new Error(`${entry.file}[${index}]: ${issues.join('; ')}`);
+    const bio = normalizeBiography(row, entry);
+    if (biographyIds.has(bio.id)) throw new Error(`${entry.file}[${index}]: doppelte Biografie-ID ${bio.id}`);
+    biographyIds.add(bio.id);
+    biographyCount += 1;
+    biographySourceCount += bio.sources.length;
+  });
+}
+
+console.log(`${catalog.length} Ereignisdateien, ${activeCount} aktive Ereignisse, ${deepenedCount} Vertiefungen, ${metadataIds.size} Koordinatenklassifikationen, ${biographyCount} Biografien mit ${biographySourceCount} Quellen in ${biographyCatalog.files.length} Biografiedateien, ${routes.routes.length} Routen, ${taxonomy.layers.length} Layer, ${taxonomy.tactics.length} Taktiken, ${relations.relations.length} Beziehungen und ${taxonomy.mapStyles.length} Kartenstile validiert.`);
