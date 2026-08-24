@@ -49,6 +49,42 @@ export const RELATION_TYPE_VALUES = new Set(['same-route', 'similar-tactic', 'sh
 export const RELATION_EVIDENCE_VALUES = new Set(['curated-context', 'heuristic-similarity', 'sourced-relation']);
 export const MAP_STYLE_VALUES = new Set(['dark', 'mono', 'paper']);
 
+const SEARCH_SYNONYMS = new Map([
+  ['arbeiter', ['worker', 'workers', 'labour', 'labor']],
+  ['worker', ['arbeiter', 'labour', 'labor']],
+  ['indigen', ['indigenous', 'first nations', 'native']],
+  ['indigenous', ['indigen', 'first nations', 'native']],
+  ['queer', ['lgbt', 'lgbtq', 'homosexuell']],
+  ['antikolonial', ['dekolonial', 'decolonial', 'anti colonial']],
+  ['decolonial', ['antikolonial', 'dekolonial']],
+  ['schwarz', ['black', 'afro']],
+  ['black', ['schwarz', 'afro']],
+  ['gegenseitige hilfe', ['mutual aid']],
+  ['mutual aid', ['gegenseitige hilfe']],
+  ['zapatista', ['ezln', 'zapatist']],
+  ['ezln', ['zapatista', 'zapatist']]
+]);
+
+export function normalizeSearchText(value) {
+  return String(value ?? '')
+    .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+    .toLocaleLowerCase('de')
+    .replace(/[‐‑‒–—―-]+/g, ' ')
+    .replace(/[^a-z0-9äöüß]+/gi, ' ')
+    .replace(/\s+/g, ' ').trim();
+}
+
+export function matchesTolerantSearch(haystack, query) {
+  const normalizedHaystack = normalizeSearchText(haystack);
+  const normalizedQuery = normalizeSearchText(query);
+  if (!normalizedQuery) return true;
+  return normalizedQuery.split(' ').every(token => {
+    if (normalizedHaystack.includes(token)) return true;
+    const alternatives = SEARCH_SYNONYMS.get(token) || [];
+    return alternatives.some(value => normalizedHaystack.includes(normalizeSearchText(value)));
+  });
+}
+
 const cleanList = (value, itemLength = 500, maxItems = 24) => {
   const list = Array.isArray(value) ? value : typeof value === 'string' ? value.split(/\s*;\s*/) : [];
   return [...new Set(list.map(item => clean(typeof item === 'object' ? item?.text : item, itemLength)).filter(Boolean))].slice(0, maxItems);
@@ -378,7 +414,7 @@ export function isValidEvent(event) {
 }
 
 export function filterEvents(events, filters, discoveredIds = new Set()) {
-  const query = String(filters.query || '').trim().toLocaleLowerCase('de');
+  const query = String(filters.query || '').trim();
   const fromValue = Number(filters.from);
   const toValue = Number(filters.to);
   const from = Number.isFinite(fromValue) ? fromValue : -Infinity;
@@ -386,14 +422,12 @@ export function filterEvents(events, filters, discoveredIds = new Set()) {
   const selectedLayers = new Set(Array.isArray(filters.layers) ? filters.layers : []);
 
   return events.filter(event => {
-    const haystack = [event.title, event.location, event.country, event.category, ...event.tags, event.description, event.significance, event.yearStart, event.yearEnd]
-      .join(' ')
-      .toLocaleLowerCase('de');
+    const haystack = [event.title, event.location, event.country, event.category, ...event.tags, event.description, event.significance, event.yearStart, event.yearEnd].join(' ');
     const undated = !Number.isFinite(event.yearStart);
     const eventStart = undated ? null : event.yearStart;
     const eventEnd = undated ? null : (event.yearEnd ?? eventStart);
 
-    return (!query || haystack.includes(query))
+    return matchesTolerantSearch(haystack, query)
       && (filters.category === 'all' || event.category === filters.category || event.tags.includes(filters.category))
       && (!selectedLayers.size || event.layerIds?.some(id => selectedLayers.has(id)))
       && (undated ? filters.includeUndated !== false : eventStart <= to && eventEnd >= from)

@@ -14,6 +14,8 @@ import {
   levelProgress,
   localizeEvent,
   normalizeEvent,
+  normalizeSearchText,
+  matchesTolerantSearch,
   normalizeEventTranslations,
   normalizeTimeRange,
   seededShuffle,
@@ -76,6 +78,12 @@ test('mischt deterministisch und formatiert Zeiträume', () => {
   assert.equal(formatYearRange({ yearStart: 1918, yearEnd: 1921 }), '1918–1921');
   assert.equal(formatYearRange({ yearStart: null, yearEnd: null }), 'undatiert');
   assert.equal(formatYearRange({ yearStart: -1157, yearEnd: -1157, dateLabel: 'ca. 1157 v. u. Z.' }), 'ca. 1157 v. u. Z.');
+});
+
+test('tolerante Suche normalisiert Diakritika, Bindestriche und kuratierte Synonyme', () => {
+  assert.equal(normalizeSearchText('Ni-Una-Menos'), 'ni una menos');
+  assert.equal(matchesTolerantSearch('Zapatistische Selbstverwaltung', 'EZLN'), true);
+  assert.equal(matchesTolerantSearch('Indigener Widerstand', 'indigenous'), true);
 });
 
 test('filtert mehrere Themenebenen als ODER und behandelt undatierte Einträge ausdrücklich', () => {

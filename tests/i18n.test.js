@@ -40,6 +40,9 @@ test('lokalisiert die Komfortfunktionen in allen neun Sprachen', () => {
     for (const key of ['timeRange', 'includeUndated', 'thematicLayers', 'mapStyle', 'timeline', 'playTime', 'motionDisabled', 'network', 'networkIntro', 'relationList', 'relationSimilarTactic', 'heuristicSimilarity', 'layerIndigenous', 'layerLabour', 'layerAnticolonial', 'layerFeminist', 'layerQueer', 'layerBlack', 'layerEcological', 'layerCommons', 'layerAbolition', 'layerMutualAid', 'tacticStrike', 'tacticOccupation', 'tacticBlockade', 'tacticBoycott', 'tacticUprising', 'tacticLandDefence', 'tacticMutualAid', 'tacticArtsMedia', 'tacticSelfGovernance', 'tacticPrisonStrike', 'styleDark', 'styleMono', 'stylePaper', 'precisionExactReason', 'precisionApproximateReason', 'precisionRegionReason', 'precisionHiddenReason', 'previousEvent', 'nextEvent', 'backToWorld', 'mapLegend']) {
       assert.notEqual(i18n.t(key), key);
     }
+    for (const key of ['biographies', 'livesFromBelow', 'biographiesIntro', 'biographyStance', 'ideasPractice', 'organizingAchievements', 'repressionRisks', 'tensionsCriticism', 'relatedEvents', 'namedCollections', 'exportCollections', 'importCollections', 'compare', 'compareIntro', 'continueReading', 'readingMode', 'onlineMapNote', 'filterPresetCopied', 'similarHistory', 'unknownFriendly', 'bioReviewReviewed', 'bioReviewDeepReviewed', 'bioSourcePrimary', 'bioSourceCommunity', 'bioSourceMovement', 'bioSourceArchive', 'bioSourceOralHistory', 'bioSourceMuseum', 'bioSourceAcademic', 'bioSourcePublicInstitution', 'bioSourceHumanRights']) {
+      assert.notEqual(i18n.t(key), key);
+    }
   }
   assert.equal(translateEditorialMetadata('Redaktioneller Pilotstand', 'en'), 'Editorial pilot');
   assert.equal(translateEditorialMetadata('Redaktionell vertieft', 'en'), 'Editorially deepened');

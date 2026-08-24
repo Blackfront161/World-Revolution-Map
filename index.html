@@ -1,18 +1,19 @@
 <!doctype html>
-<html lang="de" data-atlas-version="2.8.0">
+<html lang="de" data-atlas-version="2.9.0">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#07130f">
   <meta name="description" id="meta-description" content="Ein spielerischer Atlas historischer Bewegungen, Aufstände und solidarischer Kämpfe.">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; script-src 'self' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co https://*.cartocdn.com https://de.wikipedia.org https://en.wikipedia.org; worker-src blob:; child-src blob:; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; manifest-src 'self'; script-src 'self' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co https://*.cartocdn.com https://de.wikipedia.org https://en.wikipedia.org; worker-src 'self' blob:; child-src blob:; upgrade-insecure-requests">
   <title>Atlas des Widerstands</title>
 
   <link rel="preconnect" href="https://unpkg.com">
   <link rel="preconnect" href="https://basemaps.cartocdn.com">
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" integrity="sha384-MinO0mNliZ3vwppuPOUnGa+iq619pfMhLVUXfC4LHwSCvF9H+6P/KO4Q7qBOYV5V" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.webmanifest">
   <script defer src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js" integrity="sha384-SYKAG6cglRMN0RVvhNeBY0r3FYKNOJtznwA0v7B5Vp9tr31xAHsZC0DqkQ/pZDmj" crossorigin="anonymous"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4" integrity="sha384-GFr3yTh5lJznCbZfpTtXnwboFsxqtTQoeTZCRHhE0579KrRmlCzen5AA8ohaB5ug" crossorigin="anonymous"></script>
   <script type="module" src="script.js"></script>
@@ -55,7 +56,8 @@
       <label class="field-label" for="search-input" data-i18n="search">Suche</label>
       <div class="search-wrap">
         <span aria-hidden="true">⌕</span>
-        <input id="search-input" type="search" autocomplete="off" placeholder="Ort, Bewegung, Jahr …" data-i18n-placeholder="searchPlaceholder">
+        <input id="search-input" type="search" autocomplete="off" list="search-suggestions" placeholder="Ort, Bewegung, Jahr …" data-i18n-placeholder="searchPlaceholder">
+        <datalist id="search-suggestions"></datalist>
         <button class="search-clear" id="clear-search" type="button" aria-label="Suche leeren" data-i18n-aria="clearSearch" hidden>×</button>
         <kbd>F</kbd>
       </div>
@@ -123,6 +125,7 @@
         </span>
       </div>
       <div class="active-filters" id="active-filters" aria-label="Aktive Filter" data-i18n-aria="activeFilters"></div>
+      <button class="text-button" id="copy-filter-preset" type="button" data-i18n="copyFilterPreset">Filter-Link kopieren</button>
 
       <div class="action-grid">
         <button class="primary-button" id="random-event" type="button"><span aria-hidden="true">⚄</span> <span data-i18n="surprise">Überrasch mich</span></button>
@@ -133,6 +136,21 @@
         <span class="status-dot"></span>
         <span data-i18n="loadingData">Daten werden geladen …</span>
       </div>
+      <p class="online-map-note" id="online-map-note"><span aria-hidden="true">◉</span> <span data-i18n="onlineMapNote">Die Karte benötigt eine Online-Verbindung; Listen, Lebenswege, Routen und Sammlungen bleiben offline verfügbar.</span></p>
+      <section class="continue-card" id="continue-card" aria-labelledby="continue-title" hidden>
+        <p class="eyebrow" data-i18n="continueReading">Hier weiterlesen</p>
+        <h3 id="continue-title"></h3>
+        <button class="text-button" id="continue-button" type="button" data-i18n="continueButton">Weiterlesen →</button>
+      </section>
+      <details class="reader-settings">
+        <summary data-i18n="readingMode">Ruhiger Lesemodus</summary>
+        <label class="check-row compact-check"><input id="reader-enabled" type="checkbox"><span data-i18n="readingModeEnable">Lesemodus aktivieren</span></label>
+        <label class="field-label" for="reader-font"><span data-i18n="fontSize">Schriftgröße</span> <output id="reader-font-output">100%</output></label>
+        <input id="reader-font" type="range" min="90" max="140" step="5" value="100">
+        <label class="field-label" for="reader-width"><span data-i18n="lineWidth">Zeilenbreite</span> <output id="reader-width-output">68ch</output></label>
+        <input id="reader-width" type="range" min="48" max="90" step="2" value="68">
+        <label class="check-row compact-check"><input id="reader-contrast" type="checkbox"><span data-i18n="highReadingContrast">Hoher Lesekontrast</span></label>
+      </details>
       <button class="text-button about-map-link" id="about-map-button" type="button" data-i18n="aboutMap">Über diese Karte und Methodik</button>
     </aside>
 
@@ -152,10 +170,12 @@
     <nav class="bottom-nav glass-panel" aria-label="Spielbereiche">
       <button class="nav-button is-active" type="button" data-panel="map"><span>◉</span><span data-i18n="map">Karte</span></button>
       <button class="nav-button" type="button" data-panel="archive"><span>▤</span><span data-i18n="archive">Archiv</span> <b id="archive-count">0</b></button>
+      <button class="nav-button" type="button" data-panel="biographies"><span>♙</span><span data-i18n="biographies">Lebenswege</span> <b id="biography-count">0</b></button>
       <button class="nav-button" type="button" data-panel="timeline"><span>⌛</span><span data-i18n="timeline">Zeitleiste</span></button>
       <button class="nav-button" type="button" data-panel="routes"><span>↝</span><span data-i18n="routes">Routen</span></button>
       <button class="nav-button" type="button" data-panel="list"><span>☷</span><span data-i18n="listView">Liste</span></button>
       <button class="nav-button" type="button" data-panel="network"><span>⌘</span><span data-i18n="network">Netzwerk</span></button>
+      <button class="nav-button" type="button" data-panel="compare"><span>⇄</span><span data-i18n="compare">Vergleichen</span> <b id="compare-count">0</b></button>
       <button class="nav-button" type="button" data-panel="achievements"><span>◇</span><span data-i18n="achievements">Erfolge</span> <b id="achievement-count">0</b></button>
       <button class="nav-button" type="button" data-panel="connections"><span>⚡</span><span data-i18n="sparks">Funken</span></button>
       <button class="nav-button" id="quiz-button" type="button" data-panel="quiz"><span>?</span>Quiz</button>
@@ -194,7 +214,45 @@
         <div><p class="eyebrow" data-i18n="collection">Deine Sammlung</p><h2 id="archive-title" data-i18n="discoveredArchive">Entdecktes Archiv</h2></div>
         <button class="icon-button drawer-close" type="button" aria-label="Archiv schließen" data-i18n-aria="closeArchive">×</button>
       </div>
+      <section class="collection-tools" aria-labelledby="collection-title">
+        <h3 id="collection-title" data-i18n="namedCollections">Benannte Sammlungen</h3>
+        <div class="collection-create"><label for="collection-name" data-i18n="collectionName">Name</label><input id="collection-name" maxlength="80"><button class="secondary-button" id="collection-create" type="button" data-i18n="createCollection">Anlegen</button></div>
+        <label class="field-label" for="collection-select" data-i18n="activeCollection">Aktive Sammlung</label>
+        <select id="collection-select"></select>
+        <div class="collection-actions"><button class="text-button" id="collection-export" type="button" data-i18n="exportCollections">JSON exportieren</button><button class="text-button" id="collection-import-toggle" type="button" data-i18n="importCollections">JSON importieren</button></div>
+        <div id="collection-import-panel" hidden><label class="field-label" for="collection-import" data-i18n="collectionJson">Sammlungs-JSON</label><textarea id="collection-import" maxlength="200000" rows="5"></textarea><button class="secondary-button" id="collection-import-apply" type="button" data-i18n="applyImport">Import prüfen und übernehmen</button></div>
+        <div class="collection-list" id="collection-list"></div>
+      </section>
+      <h3 data-i18n="discoveredTraces">Gespeicherte Ereignisse</h3>
       <div class="archive-list" id="archive-list"></div>
+    </section>
+
+    <section class="drawer glass-panel biographies-drawer" id="biographies-drawer" role="dialog" aria-modal="false" aria-labelledby="biographies-title" tabindex="-1" hidden>
+      <div class="drawer-header">
+        <div><p class="eyebrow" data-i18n="livesFromBelow">Widersprüchliche Lebenswege von unten</p><h2 id="biographies-title" data-i18n="biographies">Lebenswege</h2></div>
+        <button class="icon-button drawer-close" type="button" aria-label="Lebenswege schließen" data-i18n-aria="closeBiographies">×</button>
+      </div>
+      <p class="drawer-intro" data-i18n="biographiesIntro">Keine Heldengalerie: Praxis, Repression, Spannungen, Kritik und Vermächtnis werden gemeinsam lesbar.</p>
+      <div class="biography-filters" id="biography-filters">
+        <label><span data-i18n="searchPerson">Person suchen</span><input id="biography-search" type="search" autocomplete="off"></label>
+        <label><span data-i18n="regionCommunity">Gemeinschaft oder Region</span><select id="biography-region"><option value="all" data-i18n="allValues">Alle</option></select></label>
+        <label><span data-i18n="tradition">Tradition oder Strömung</span><select id="biography-tradition"><option value="all" data-i18n="allValues">Alle</option></select></label>
+        <label><span data-i18n="from">Von</span><input id="biography-from" type="number" min="-1200" max="2030" value="-1200"></label>
+        <label><span data-i18n="to">Bis</span><input id="biography-to" type="number" min="-1200" max="2030" value="2030"></label>
+      </div>
+      <p id="biography-result-count" aria-live="polite"></p>
+      <div class="biography-list" id="biography-list"></div>
+      <article class="biography-detail reading-surface" id="biography-detail" tabindex="-1" hidden></article>
+    </section>
+
+    <section class="drawer glass-panel compare-drawer" id="compare-drawer" role="dialog" aria-modal="false" aria-labelledby="compare-title" tabindex="-1" hidden>
+      <div class="drawer-header">
+        <div><p class="eyebrow" data-i18n="compareContext">Kontexte nebeneinander</p><h2 id="compare-title" data-i18n="compare">Vergleichen</h2></div>
+        <button class="icon-button drawer-close" type="button" aria-label="Vergleich schließen" data-i18n-aria="closeCompare">×</button>
+      </div>
+      <p class="drawer-intro" data-i18n="compareIntro">Bis zu drei Ereignisse oder Lebenswege vergleichen. Ähnlichkeit bedeutet nicht automatisch Einfluss.</p>
+      <div id="compare-content" class="compare-content"></div>
+      <button id="compare-clear" class="text-button" type="button" data-i18n="clearComparison">Vergleich leeren</button>
     </section>
 
     <section class="drawer glass-panel routes-drawer" id="routes-drawer" role="dialog" aria-modal="false" aria-labelledby="routes-title" tabindex="-1" hidden>

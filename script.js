@@ -13,11 +13,14 @@ import {
   levelProgress,
   localizeEvent,
   normalizeEvent,
+  normalizeSearchText,
   normalizeTimeRange,
   resolveEventId,
   seededShuffle,
   solidarityResult
 } from './src/game-core.js';
+import { biographyYearLabel, filterBiographies, normalizeBiography } from './src/biography-core.js';
+import { addCollection, exportLibrary, parseLibrary, sanitizeLibrary, toggleCollectionItem, toggleComparison } from './src/local-library.js';
 import { createAtlasApi } from './src/atlas-api.js';
 import { readRuntimeConfig } from './src/atlas-config.js';
 import { parseStoredProgress, reconcileProgress, sanitizeProgress } from './src/progress-store.js';
@@ -28,6 +31,7 @@ const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_cAh2ZxD6aaXREXhMIVyvyA_C_yeFxRd
 const STORAGE_KEY = 'atlas-des-widerstands-progress-v2';
 const VIEW_STORAGE_KEY = 'atlas-des-widerstands-view-v2';
 const STYLE_STORAGE_KEY = 'atlas-map-style-v1';
+const LIBRARY_STORAGE_KEY = 'atlas-local-library-v1';
 const DEFAULT_TIME = { minimum: -1200, maximum: 2030, defaultFrom: -1200, defaultTo: 2030 };
 const runtimeConfig = readRuntimeConfig(window.location.search, document.documentElement.dataset, window.location.href);
 const i18n = createI18n({ search: window.location.search, storage: window.localStorage, navigatorLanguage: navigator.language });
@@ -66,6 +70,7 @@ const app = {
   map: null,
   popup: null,
   events: [],
+  biographies: [],
   routes: [],
   relations: [],
   taxonomy: { time: DEFAULT_TIME, layers: [], tactics: [], mapStyles: [], network: { maximumNodes: 72, maximumEdges: 140 } },
@@ -77,7 +82,9 @@ const app = {
   bridge: null,
   lastFocus: null,
   mapStyle: loadMapStyle(),
-  timeTimer: null
+  timeTimer: null,
+  library: loadLibrary(),
+  biographyFilters: { query: '', region: 'all', tradition: 'all', from: -1200, to: 2030 }
 };
 
 document.addEventListener('DOMContentLoaded', start);
@@ -101,20 +108,38 @@ async function start() {
   setupHostApi();
 
   try {
-    await waitForMapLibre();
     app.events = await loadEvents();
+    app.biographies = await loadBiographies();
     app.progress = reconcileProgress(app.progress, new Set(app.events.map(event => event.id)));
     populateCategories();
     populateLayerFilters();
     populateMapStyles();
     populateTacticLegend();
+    populateSearchSuggestions();
+    populateBiographyFilters();
     applyFiltersToUi();
     applyMapStyle();
     ensureMission();
-    initializeMap();
+    try {
+      await waitForMapLibre();
+      initializeMap();
+      ui.onlineMapNote.classList.remove('is-offline');
+    } catch (mapError) {
+      console.warn('Online-Karte nicht verfügbar; lokale Archivansichten bleiben nutzbar:', mapError);
+      ui.onlineMapNote.classList.add('is-offline');
+      document.body.classList.add('map-unavailable');
+    }
     updateGameUi();
+    applyReaderSettings();
+    renderBiographies();
+    renderCollections();
+    renderComparison();
+    renderContinueReading();
+    registerServiceWorker();
     const hasEventDeepLink = new URLSearchParams(window.location.search).has('event');
-    if (runtimeConfig.showWelcome && !app.progress.seenWelcome && !hasEventDeepLink) openModal(ui.welcomeModal);
+    const biographyId = new URLSearchParams(window.location.search).get('bio');
+    if (biographyId) openBiography(biographyId, true);
+    if (runtimeConfig.showWelcome && !app.progress.seenWelcome && !hasEventDeepLink && !biographyId) openModal(ui.welcomeModal);
     emitAtlasEvent('ready', { eventCount: app.events.length, embedded: runtimeConfig.embed });
   } catch (error) {
     console.error('Atlas konnte nicht gestartet werden:', error);
@@ -133,7 +158,10 @@ function bindUi() {
     'connection-content', 'new-connection', 'copy-connection', 'power-excuse', 'power-counter', 'new-excuse', 'quiz-button',
     'quiz-modal', 'quiz-title', 'quiz-content', 'welcome-modal', 'methodology-modal', 'modal-backdrop', 'begin-button',
     'methodology-button', 'about-map-button', 'help-button', 'toast-region', 'menu-toggle', 'menu-close', 'control-panel', 'language-select',
-    'active-filters', 'event-list-drawer', 'event-list-body', 'layer-filters', 'map-style-select', 'tactic-legend'
+    'active-filters', 'event-list-drawer', 'event-list-body', 'layer-filters', 'map-style-select', 'tactic-legend', 'search-suggestions',
+    'copy-filter-preset', 'online-map-note', 'continue-card', 'continue-title', 'continue-button', 'reader-enabled', 'reader-font', 'reader-font-output', 'reader-width', 'reader-width-output', 'reader-contrast',
+    'biography-count', 'biographies-drawer', 'biography-filters', 'biography-search', 'biography-region', 'biography-tradition', 'biography-from', 'biography-to', 'biography-result-count', 'biography-list', 'biography-detail',
+    'compare-count', 'compare-drawer', 'compare-content', 'compare-clear', 'collection-name', 'collection-create', 'collection-select', 'collection-export', 'collection-import-toggle', 'collection-import-panel', 'collection-import', 'collection-import-apply', 'collection-list'
   ];
   ids.forEach(id => { ui[toCamel(id)] = document.getElementById(id); });
   ui.navButtons = [...document.querySelectorAll('.nav-button')];
@@ -172,8 +200,13 @@ function changeLanguage(language) {
     populateLayerFilters();
     populateMapStyles();
     populateTacticLegend();
+    populateBiographyFilters();
     updateGameUi();
     renderMapData();
+    renderBiographies();
+    renderCollections();
+    renderComparison();
+    renderContinueReading();
     if (app.activeConnection) renderConnection(app.activeConnection);
     if (!ui.connectionsDrawer.hidden) renderPowerExcuse();
     if (!ui.quizModal.hidden) openQuiz();
@@ -231,14 +264,26 @@ function attachUiEvents() {
   ui.menuClose.addEventListener('click', () => toggleMobileMenu(false));
   ui.timePlay.addEventListener('click', toggleTimeTravel);
   ui.timeReset.addEventListener('click', resetTimeRange);
+  ui.copyFilterPreset.addEventListener('click', copyFilterPreset);
+  ui.continueButton.addEventListener('click', openLastRead);
+  for (const control of [ui.readerEnabled, ui.readerFont, ui.readerWidth, ui.readerContrast]) control.addEventListener('input', updateReaderSettings);
+  for (const control of [ui.biographySearch, ui.biographyRegion, ui.biographyTradition, ui.biographyFrom, ui.biographyTo]) control.addEventListener('input', updateBiographyFilters);
+  ui.compareClear.addEventListener('click', () => { app.library.compare = []; saveLibrary(); renderComparison(); syncComparisonUrl(); });
+  ui.collectionCreate.addEventListener('click', createNamedCollection);
+  ui.collectionSelect.addEventListener('change', renderCollections);
+  ui.collectionExport.addEventListener('click', downloadCollections);
+  ui.collectionImportToggle.addEventListener('click', () => { ui.collectionImportPanel.hidden = !ui.collectionImportPanel.hidden; if (!ui.collectionImportPanel.hidden) ui.collectionImport.focus(); });
+  ui.collectionImportApply.addEventListener('click', importCollections);
 
   ui.navButtons.forEach(button => button.addEventListener('click', () => {
     const panel = button.dataset.panel;
     if (panel === 'archive') toggleDrawer(ui.archiveDrawer, button);
+    if (panel === 'biographies') { toggleDrawer(ui.biographiesDrawer, button); if (!ui.biographiesDrawer.hidden) renderBiographies(); }
     if (panel === 'timeline') { toggleDrawer(ui.timelineDrawer, button); if (!ui.timelineDrawer.hidden) renderTimeline(); }
     if (panel === 'routes') toggleDrawer(ui.routesDrawer, button);
     if (panel === 'list') toggleDrawer(ui.eventListDrawer, button);
     if (panel === 'network') { toggleDrawer(ui.networkDrawer, button); if (!ui.networkDrawer.hidden) renderNetwork(); }
+    if (panel === 'compare') { toggleDrawer(ui.compareDrawer, button); if (!ui.compareDrawer.hidden) renderComparison(); }
     if (panel === 'achievements') toggleDrawer(ui.achievementsDrawer, button);
     if (panel === 'connections') {
       toggleDrawer(ui.connectionsDrawer, button);
@@ -313,6 +358,27 @@ async function loadEvents() {
     console.warn('Supabase nicht erreichbar, kuratierter Fallback wird verwendet:', error);
     setDataStatus(i18n.t('fallbackStatus', { count: fallback.length }), 'fallback');
     return fallback;
+  }
+}
+
+async function loadBiographies() {
+  try {
+    const catalogResponse = await fetch('./data/biography-catalog.json');
+    if (!catalogResponse.ok) return [];
+    const catalog = await catalogResponse.json();
+    if (catalog?.schemaVersion !== 1 || !Array.isArray(catalog.files)) return [];
+    const entries = catalog.files.filter(entry => entry && typeof entry === 'object' && /^[a-z0-9-]+\.json$/i.test(entry.file));
+    const responses = await Promise.all(entries.map(entry => fetch(`./data/${entry.file}`)));
+    const available = responses.map((response, index) => ({ response, entry: entries[index] })).filter(item => item.response.ok);
+    if (available.length !== entries.length) console.warn('Noch nicht alle katalogisierten Biografiedateien sind verfügbar.');
+    const payloads = await Promise.all(available.map(async item => ({ payload: await item.response.json(), entry: item.entry })));
+    return payloads
+      .flatMap(({ payload, entry }) => (Array.isArray(payload) ? payload : Array.isArray(payload?.biographies) ? payload.biographies : []).map(row => normalizeBiography(row, entry)))
+      .filter(bio => bio.id && bio.name)
+      .sort((a, b) => a.name.localeCompare(b.name, i18n.locale));
+  } catch (error) {
+    console.warn('Lebenswege konnten nicht geladen werden:', error);
+    return [];
   }
 }
 
@@ -557,6 +623,7 @@ function toGeoJson(events) {
 
 async function openEventPopup(event, coordinates = safeDisplayCoordinates(event)) {
   event = localizeEvent(event, i18n.language);
+  markLastRead(`event:${event.id}`);
   if (app.popup) app.popup.remove();
   const content = document.createElement('article');
   content.className = 'event-popup';
@@ -672,6 +739,13 @@ async function openEventPopup(event, coordinates = safeDisplayCoordinates(event)
   share.textContent = i18n.t('copyEventLink');
   share.addEventListener('click', () => copyEventLink(event));
   actions.append(share);
+  const compare = document.createElement('button');
+  compare.type = 'button';
+  compare.className = 'share-link';
+  compare.textContent = app.library.compare.includes(`event:${event.id}`) ? i18n.t('removeFromCompare') : i18n.t('addToCompare');
+  compare.addEventListener('click', () => toggleCompareRef(`event:${event.id}`, compare));
+  actions.append(compare);
+  appendCollectionAction(actions, `event:${event.id}`);
   body.append(actions);
   const navigation = document.createElement('div');
   navigation.className = 'event-navigation';
@@ -705,6 +779,7 @@ async function openEventPopup(event, coordinates = safeDisplayCoordinates(event)
     sourceMetadata.append(badge);
   }
   if (sourceMetadata.childElementCount) body.append(sourceMetadata);
+  appendSimilarHistory(body, event);
   if (event.significance) {
     const significance = document.createElement('p');
     significance.className = 'event-popup-description event-popup-significance';
@@ -754,6 +829,528 @@ function appendEventDetail(container, label, value) {
     section.append(paragraph);
   }
   container.append(section);
+}
+
+function populateBiographyFilters() {
+  const selectedRegion = ui.biographyRegion.value || app.biographyFilters.region;
+  const selectedTradition = ui.biographyTradition.value || app.biographyFilters.tradition;
+  fillSelect(ui.biographyRegion, [...new Set(app.biographies.flatMap(bio => [...bio.regions, ...bio.communities]))].sort((a, b) => a.localeCompare(b, i18n.locale)), selectedRegion);
+  fillSelect(ui.biographyTradition, [...new Set(app.biographies.flatMap(bio => bio.traditions))].sort((a, b) => a.localeCompare(b, i18n.locale)), selectedTradition);
+  ui.biographySearch.value = app.biographyFilters.query;
+  ui.biographyFrom.value = app.biographyFilters.from;
+  ui.biographyTo.value = app.biographyFilters.to;
+}
+
+function fillSelect(select, values, selected) {
+  select.replaceChildren();
+  const all = document.createElement('option');
+  all.value = 'all';
+  all.textContent = i18n.t('allValues');
+  select.append(all);
+  values.forEach(value => {
+    const option = document.createElement('option');
+    option.value = value;
+    option.textContent = value;
+    select.append(option);
+  });
+  select.value = values.includes(selected) ? selected : 'all';
+}
+
+function updateBiographyFilters() {
+  app.biographyFilters = {
+    query: ui.biographySearch.value.slice(0, 160),
+    region: ui.biographyRegion.value,
+    tradition: ui.biographyTradition.value,
+    from: Math.max(-1200, Math.min(2030, Number(ui.biographyFrom.value) || -1200)),
+    to: Math.max(-1200, Math.min(2030, Number(ui.biographyTo.value) || 2030))
+  };
+  if (app.biographyFilters.from > app.biographyFilters.to) [app.biographyFilters.from, app.biographyFilters.to] = [app.biographyFilters.to, app.biographyFilters.from];
+  renderBiographies();
+}
+
+function renderBiographies() {
+  if (!ui.biographyList) return;
+  const filtered = filterBiographies(app.biographies, app.biographyFilters, normalizeSearchText);
+  ui.biographyCount.textContent = app.biographies.length;
+  ui.biographyResultCount.textContent = i18n.t('biographyResults', { count: filtered.length });
+  ui.biographyList.replaceChildren();
+  if (!filtered.length) {
+    const empty = document.createElement('p');
+    empty.className = 'archive-empty';
+    empty.textContent = app.biographies.length ? i18n.t('noResults') : i18n.t('biographiesPending');
+    ui.biographyList.append(empty);
+    return;
+  }
+  const fragment = document.createDocumentFragment();
+  filtered.slice(0, 200).forEach(bio => {
+    const article = document.createElement('article');
+    article.className = 'biography-card';
+    const heading = document.createElement('h3');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = bio.selfName ? `${bio.name} · ${bio.selfName}` : bio.name;
+    button.addEventListener('click', () => openBiography(bio.id));
+    heading.append(button);
+    const meta = document.createElement('p');
+    meta.className = 'biography-meta';
+    meta.textContent = `${biographyYearLabel(bio, i18n.t('unknownFriendly'))} · ${bio.regions.join(', ') || i18n.t('unknownFriendly')}`;
+    const traditions = document.createElement('p');
+    traditions.textContent = bio.traditions.join(' · ') || i18n.t('unknownFriendly');
+    article.append(heading, meta, traditions);
+    fragment.append(article);
+  });
+  ui.biographyList.append(fragment);
+}
+
+function openBiography(id, updateUrl = true) {
+  const bio = app.biographies.find(item => item.id === id);
+  if (!bio) return false;
+  openPanel('biographies');
+  ui.biographyList.hidden = true;
+  ui.biographyFilters.hidden = true;
+  ui.biographyResultCount.hidden = true;
+  ui.biographyDetail.hidden = false;
+  ui.biographyDetail.replaceChildren();
+  const back = document.createElement('button');
+  back.type = 'button';
+  back.className = 'text-button';
+  back.textContent = i18n.t('backToBiographyList');
+  back.addEventListener('click', closeBiographyDetail);
+  const heading = document.createElement('h3');
+  heading.id = `biography-title-${bio.id}`;
+  heading.tabIndex = -1;
+  heading.textContent = bio.selfName ? `${bio.name} · ${bio.selfName}` : bio.name;
+  const meta = document.createElement('p');
+  meta.className = 'biography-meta';
+  meta.textContent = `${biographyYearLabel(bio, i18n.t('unknownFriendly'))} · ${(bio.communities.length ? bio.communities : bio.regions).join(', ') || i18n.t('unknownFriendly')}`;
+  const stance = document.createElement('p');
+  stance.className = 'editorial-note';
+  stance.textContent = i18n.t('biographyStance');
+  const summary = document.createElement('p');
+  summary.className = 'biography-summary';
+  summary.textContent = bio.summary;
+  ui.biographyDetail.append(back, heading, meta, stance, summary);
+  appendBiographyPhases(ui.biographyDetail, bio.lifePhases);
+  appendBiographyField(ui.biographyDetail, i18n.t('ideasPractice'), bio.ideasAndPractice);
+  appendBiographyField(ui.biographyDetail, i18n.t('organizingAchievements'), bio.organizingAndAchievements);
+  appendBiographyField(ui.biographyDetail, i18n.t('repressionRisks'), bio.repressionAndRisks);
+  appendBiographyField(ui.biographyDetail, i18n.t('tensionsCriticism'), bio.tensionsAndCriticism);
+  appendBiographyField(ui.biographyDetail, i18n.t('legacy'), bio.legacy);
+  appendBiographyRelatedEvents(ui.biographyDetail, bio);
+  appendBiographySources(ui.biographyDetail, bio.sources);
+  const status = document.createElement('p');
+  status.className = 'source-badge biography-status';
+  status.textContent = `${i18n.t('reviewStatusLabel')}: ${biographyReviewLabel(bio.reviewStatus)} · ${i18n.t('sensitivityTitle')}: ${i18n.t(`bioSensitivity${bio.sensitivity[0].toUpperCase()}${bio.sensitivity.slice(1)}`)}`;
+  const actions = document.createElement('div');
+  actions.className = 'event-popup-actions';
+  const compare = document.createElement('button');
+  compare.type = 'button';
+  compare.textContent = app.library.compare.includes(`bio:${bio.id}`) ? i18n.t('removeFromCompare') : i18n.t('addToCompare');
+  compare.addEventListener('click', () => toggleCompareRef(`bio:${bio.id}`, compare));
+  actions.append(compare);
+  appendCollectionAction(actions, `bio:${bio.id}`);
+  ui.biographyDetail.append(status, actions);
+  ui.biographyDetail.setAttribute('aria-labelledby', heading.id);
+  heading.focus({ preventScroll: true });
+  markLastRead(`bio:${bio.id}`);
+  if (updateUrl) setBiographyInUrl(bio.id);
+  return true;
+}
+
+function closeBiographyDetail() {
+  ui.biographyDetail.hidden = true;
+  ui.biographyList.hidden = false;
+  ui.biographyFilters.hidden = false;
+  ui.biographyResultCount.hidden = false;
+  const url = new URL(window.location.href);
+  url.searchParams.delete('bio');
+  window.history.replaceState(null, '', url);
+  ui.biographySearch.focus();
+}
+
+function appendBiographyPhases(container, phases) {
+  if (!phases.length) return;
+  const section = document.createElement('section');
+  const heading = document.createElement('h4');
+  heading.textContent = i18n.t('lifePhases');
+  const list = document.createElement('ol');
+  phases.forEach(phase => {
+    const item = document.createElement('li');
+    const title = document.createElement('strong');
+    title.textContent = `${phase.period || formatFilterYear(phase.startYear)}${phase.title ? ` · ${phase.title}` : ''}`;
+    const text = document.createElement('p');
+    text.textContent = phase.description;
+    item.append(title, text);
+    list.append(item);
+  });
+  section.append(heading, list);
+  container.append(section);
+}
+
+function appendBiographyField(container, label, value) {
+  const values = Array.isArray(value) ? value.filter(Boolean) : value ? [value] : [];
+  if (!values.length) return;
+  const section = document.createElement('section');
+  const heading = document.createElement('h4');
+  heading.textContent = label;
+  section.append(heading);
+  if (Array.isArray(value)) {
+    const list = document.createElement('ul');
+    values.forEach(value => { const item = document.createElement('li'); item.textContent = value; list.append(item); });
+    section.append(list);
+  } else {
+    const paragraph = document.createElement('p');
+    paragraph.textContent = values[0];
+    section.append(paragraph);
+  }
+  container.append(section);
+}
+
+function appendBiographyRelatedEvents(container, bio) {
+  if (!bio.relatedEventIds.length) return;
+  const section = document.createElement('section');
+  const heading = document.createElement('h4');
+  heading.textContent = i18n.t('relatedEvents');
+  const list = document.createElement('ul');
+  bio.relatedEventIds.forEach(id => {
+    const event = resolveEventId(app.events, id);
+    if (!event) return;
+    const item = document.createElement('li');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'text-button';
+    button.textContent = `${event.title} — ${i18n.t('explicitBiographyRelation')}`;
+    button.addEventListener('click', () => { closeDrawers(); flyToEvent(event); });
+    item.append(button);
+    list.append(item);
+  });
+  section.append(heading, list);
+  container.append(section);
+}
+
+function appendBiographySources(container, sources) {
+  const section = document.createElement('section');
+  const heading = document.createElement('h4');
+  heading.textContent = i18n.t('sourcesTitle');
+  const list = document.createElement('ol');
+  sources.forEach(source => {
+    const url = safeExternalUrl(source.url);
+    if (!url) return;
+    const item = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = source.title || source.publisher;
+    const meta = document.createElement('small');
+    meta.textContent = `${source.publisher} · ${source.language || i18n.t('unknownFriendly')} · ${biographySourceTypeLabel(source.type)} · ${i18n.t('accessedAt')} ${source.accessedAt || i18n.t('unknownFriendly')}`;
+    item.append(link, meta);
+    list.append(item);
+  });
+  section.append(heading, list);
+  container.append(section);
+}
+
+function biographyReviewLabel(value) {
+  const keys = { draft: 'bioReviewDraft', reviewed: 'bioReviewReviewed', 'deep-reviewed': 'bioReviewDeepReviewed' };
+  return i18n.t(keys[value] || 'unknownFriendly');
+}
+
+function biographySourceTypeLabel(value) {
+  const keys = { primary: 'bioSourcePrimary', community: 'bioSourceCommunity', movement: 'bioSourceMovement', archive: 'bioSourceArchive', 'oral-history': 'bioSourceOralHistory', museum: 'bioSourceMuseum', academic: 'bioSourceAcademic', 'public-institution': 'bioSourcePublicInstitution', 'human-rights': 'bioSourceHumanRights' };
+  return i18n.t(keys[value] || 'unknownFriendly');
+}
+
+function loadLibrary() {
+  let library;
+  try { library = parseLibrary(localStorage.getItem(LIBRARY_STORAGE_KEY) || '{}'); } catch { library = sanitizeLibrary(); }
+  const compare = new URLSearchParams(window.location.search).get('compare');
+  // URLSearchParams liefert bereits dekodierte Werte. Ein zweites Dekodieren
+  // könnte bei einem absichtlich fehlerhaften Prozent-Escape die App stoppen.
+  if (compare) library.compare = compare.split(',').filter(Boolean).slice(0, 3);
+  return sanitizeLibrary(library);
+}
+
+function saveLibrary() {
+  app.library = sanitizeLibrary(app.library);
+  try { localStorage.setItem(LIBRARY_STORAGE_KEY, exportLibrary(app.library)); } catch (error) { console.warn('Lokale Sammlungen konnten nicht gespeichert werden:', error); }
+  ui.compareCount.textContent = app.library.compare.length;
+}
+
+function validLibraryRef(ref) {
+  const [type, id] = String(ref).split(':');
+  return type === 'event' ? Boolean(resolveEventId(app.events, id)) : type === 'bio' ? app.biographies.some(bio => bio.id === id) : false;
+}
+
+function resolveLibraryRef(ref) {
+  const [type, id] = String(ref).split(':');
+  if (type === 'event') {
+    const event = resolveEventId(app.events, id);
+    return event ? { type, id: event.id, title: event.title, years: formatLocalizedYear(event, i18n), region: event.location, tradition: translateCategory(event.category, i18n.language), summary: event.description, review: translateEditorialMetadata(event.reviewStatus, i18n.language), value: event } : null;
+  }
+  if (type === 'bio') {
+    const bio = app.biographies.find(item => item.id === id);
+    return bio ? { type, id: bio.id, title: bio.name, years: biographyYearLabel(bio, i18n.t('unknownFriendly')), region: bio.regions.join(', '), tradition: bio.traditions.join(', '), summary: bio.summary, review: biographyReviewLabel(bio.reviewStatus), value: bio } : null;
+  }
+  return null;
+}
+
+function createNamedCollection() {
+  const before = app.library.collections.length;
+  app.library = addCollection(app.library, ui.collectionName.value);
+  if (app.library.collections.length === before) return;
+  ui.collectionName.value = '';
+  saveLibrary();
+  renderCollections();
+  ui.collectionSelect.value = app.library.collections.at(-1).id;
+}
+
+function renderCollections() {
+  if (!ui.collectionSelect) return;
+  const selected = ui.collectionSelect.value;
+  ui.collectionSelect.replaceChildren();
+  if (!app.library.collections.length) {
+    const option = document.createElement('option');
+    option.value = '';
+    option.textContent = i18n.t('noCollections');
+    ui.collectionSelect.append(option);
+  } else {
+    app.library.collections.forEach(collection => {
+      const option = document.createElement('option');
+      option.value = collection.id;
+      option.textContent = `${collection.name} (${collection.items.length})`;
+      ui.collectionSelect.append(option);
+    });
+    ui.collectionSelect.value = app.library.collections.some(item => item.id === selected) ? selected : app.library.collections[0].id;
+  }
+  ui.collectionList.replaceChildren();
+  const collection = app.library.collections.find(item => item.id === ui.collectionSelect.value);
+  if (!collection) return;
+  collection.items.map(resolveLibraryRef).filter(Boolean).forEach(item => {
+    const row = document.createElement('div');
+    row.className = 'collection-item';
+    const open = document.createElement('button');
+    open.type = 'button';
+    open.className = 'text-button';
+    open.textContent = item.title;
+    open.addEventListener('click', () => openLibraryItem(`${item.type}:${item.id}`));
+    const remove = document.createElement('button');
+    remove.type = 'button';
+    remove.className = 'icon-button';
+    remove.setAttribute('aria-label', `${i18n.t('removeFromCollection')}: ${item.title}`);
+    remove.textContent = '×';
+    remove.addEventListener('click', () => { app.library = toggleCollectionItem(app.library, collection.id, `${item.type}:${item.id}`); saveLibrary(); renderCollections(); });
+    row.append(open, remove);
+    ui.collectionList.append(row);
+  });
+}
+
+function appendCollectionAction(container, ref) {
+  if (!app.library.collections.length) return;
+  const collection = app.library.collections.find(item => item.id === ui.collectionSelect?.value) || app.library.collections[0];
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'share-link';
+  button.textContent = collection.items.includes(ref) ? i18n.t('removeFromCollection') : i18n.t('addToCollection', { name: collection.name });
+  button.addEventListener('click', () => {
+    app.library = toggleCollectionItem(app.library, collection.id, ref);
+    saveLibrary();
+    renderCollections();
+    const updated = app.library.collections.find(item => item.id === collection.id);
+    button.textContent = updated?.items.includes(ref) ? i18n.t('removeFromCollection') : i18n.t('addToCollection', { name: collection.name });
+  });
+  container.append(button);
+}
+
+function downloadCollections() {
+  const blob = new Blob([exportLibrary(app.library)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'atlas-sammlungen.json';
+  document.body.append(link);
+  link.click();
+  link.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function importCollections() {
+  const imported = parseLibrary(ui.collectionImport.value);
+  imported.collections.forEach(collection => { collection.items = collection.items.filter(validLibraryRef); });
+  imported.compare = imported.compare.filter(validLibraryRef).slice(0, 3);
+  imported.lastRead = validLibraryRef(imported.lastRead) ? imported.lastRead : null;
+  app.library = imported;
+  saveLibrary();
+  applyReaderSettings();
+  renderCollections();
+  renderComparison();
+  renderContinueReading();
+  ui.collectionImport.value = '';
+  ui.collectionImportPanel.hidden = true;
+  showToast(i18n.t('importComplete'), i18n.t('importCompleteBody', { count: imported.collections.length }));
+}
+
+function toggleCompareRef(ref, button) {
+  app.library = toggleComparison(app.library, ref);
+  saveLibrary();
+  syncComparisonUrl();
+  renderComparison();
+  if (button) button.textContent = app.library.compare.includes(ref) ? i18n.t('removeFromCompare') : i18n.t('addToCompare');
+}
+
+function syncComparisonUrl() {
+  const url = new URL(window.location.href);
+  if (app.library.compare.length) url.searchParams.set('compare', app.library.compare.join(',')); else url.searchParams.delete('compare');
+  window.history.replaceState(null, '', url);
+}
+
+function renderComparison() {
+  if (!ui.compareContent) return;
+  app.library.compare = app.library.compare.filter(validLibraryRef).slice(0, 3);
+  saveLibrary();
+  const items = app.library.compare.map(resolveLibraryRef).filter(Boolean);
+  ui.compareContent.replaceChildren();
+  if (!items.length) {
+    const empty = document.createElement('p');
+    empty.className = 'archive-empty';
+    empty.textContent = i18n.t('compareEmpty');
+    ui.compareContent.append(empty);
+    return;
+  }
+  const wrapper = document.createElement('div');
+  wrapper.className = 'table-scroll';
+  const table = document.createElement('table');
+  table.className = 'compare-table';
+  const head = document.createElement('thead');
+  const headRow = document.createElement('tr');
+  const emptyHead = document.createElement('th');
+  emptyHead.scope = 'col';
+  emptyHead.textContent = i18n.t('aspect');
+  headRow.append(emptyHead);
+  items.forEach(item => { const th = document.createElement('th'); th.scope = 'col'; th.textContent = item.title; headRow.append(th); });
+  head.append(headRow);
+  const body = document.createElement('tbody');
+  for (const [label, key] of [[i18n.t('type'), 'type'], [i18n.t('year'), 'years'], [i18n.t('regionCommunity'), 'region'], [i18n.t('tradition'), 'tradition'], [i18n.t('summary'), 'summary'], [i18n.t('reviewStatusLabel'), 'review']]) {
+    const row = document.createElement('tr');
+    const th = document.createElement('th');
+    th.scope = 'row';
+    th.textContent = label;
+    row.append(th);
+    items.forEach(item => { const cell = document.createElement('td'); cell.textContent = key === 'type' ? i18n.t(item.type === 'bio' ? 'biographySingular' : 'event') : item[key] || i18n.t('unknownFriendly'); row.append(cell); });
+    body.append(row);
+  }
+  const openRow = document.createElement('tr');
+  const openHeading = document.createElement('th');
+  openHeading.scope = 'row';
+  openHeading.textContent = i18n.t('open');
+  openRow.append(openHeading);
+  items.forEach(item => { const cell = document.createElement('td'); const button = document.createElement('button'); button.type = 'button'; button.className = 'text-button'; button.textContent = i18n.t('open'); button.addEventListener('click', () => openLibraryItem(`${item.type}:${item.id}`)); cell.append(button); openRow.append(cell); });
+  body.append(openRow);
+  table.append(head, body);
+  wrapper.append(table);
+  ui.compareContent.append(wrapper);
+}
+
+function openLibraryItem(ref) {
+  const item = resolveLibraryRef(ref);
+  if (!item) return;
+  if (item.type === 'bio') openBiography(item.id);
+  else { closeDrawers(); flyToEvent(item.value); }
+}
+
+function markLastRead(ref) {
+  if (!validLibraryRef(ref)) return;
+  app.library.lastRead = ref;
+  saveLibrary();
+  renderContinueReading();
+}
+
+function renderContinueReading() {
+  const item = resolveLibraryRef(app.library.lastRead);
+  ui.continueCard.hidden = !item;
+  if (item) ui.continueTitle.textContent = `${i18n.t(item.type === 'bio' ? 'biographySingular' : 'event')}: ${item.title}`;
+}
+
+function openLastRead() {
+  if (app.library.lastRead) openLibraryItem(app.library.lastRead);
+}
+
+function updateReaderSettings() {
+  app.library.reader = {
+    enabled: ui.readerEnabled.checked,
+    fontScale: Number(ui.readerFont.value),
+    lineWidth: Number(ui.readerWidth.value),
+    highContrast: ui.readerContrast.checked
+  };
+  saveLibrary();
+  applyReaderSettings();
+}
+
+function applyReaderSettings() {
+  const reader = app.library.reader;
+  ui.readerEnabled.checked = reader.enabled;
+  ui.readerFont.value = reader.fontScale;
+  ui.readerWidth.value = reader.lineWidth;
+  ui.readerContrast.checked = reader.highContrast;
+  ui.readerFontOutput.value = `${reader.fontScale}%`;
+  ui.readerWidthOutput.value = `${reader.lineWidth}ch`;
+  document.body.classList.toggle('reader-mode', reader.enabled);
+  document.body.classList.toggle('reader-high-contrast', reader.highContrast);
+  document.documentElement.style.setProperty('--reader-scale', String(reader.fontScale / 100));
+  document.documentElement.style.setProperty('--reader-width', `${reader.lineWidth}ch`);
+}
+
+function populateSearchSuggestions() {
+  ui.searchSuggestions.replaceChildren();
+  const values = [...new Set(app.events.flatMap(event => [event.title, event.location, event.category, ...event.tags]).filter(Boolean))]
+    .sort((a, b) => String(a).localeCompare(String(b), i18n.locale)).slice(0, 220);
+  values.forEach(value => { const option = document.createElement('option'); option.value = value; ui.searchSuggestions.append(option); });
+}
+
+async function copyFilterPreset() {
+  syncShareableViewUrl();
+  try {
+    await navigator.clipboard.writeText(window.location.href);
+    showToast(i18n.t('filterPresetCopied'), i18n.t('filterPresetCopiedBody'));
+  } catch { showToast(i18n.t('copyFailed'), i18n.t('copyFailedBody')); }
+}
+
+function appendSimilarHistory(container, event) {
+  const relations = app.relations.filter(relation => relation.from === event.id || relation.to === event.id).slice(0, 4);
+  if (!relations.length) return;
+  const section = document.createElement('section');
+  section.className = 'similar-history';
+  const heading = document.createElement('h4');
+  heading.textContent = i18n.t('similarHistory');
+  const list = document.createElement('ul');
+  relations.forEach(relation => {
+    const otherId = relation.from === event.id ? relation.to : relation.from;
+    const other = resolveEventId(app.events, otherId);
+    if (!other) return;
+    const item = document.createElement('li');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'text-button';
+    button.textContent = other.title;
+    button.addEventListener('click', () => flyToEvent(other));
+    const evidence = document.createElement('small');
+    evidence.textContent = `${relationTypeLabel(relation.relationType)} · ${relationEvidenceLabel(relation.evidenceMode)}`;
+    item.append(button, evidence);
+    list.append(item);
+  });
+  section.append(heading, list);
+  container.append(section);
+}
+
+function setBiographyInUrl(id) {
+  const url = new URL(window.location.href);
+  url.searchParams.set('bio', id);
+  window.history.replaceState(null, '', url);
+}
+
+function registerServiceWorker() {
+  if (!('serviceWorker' in navigator) || !(window.isSecureContext || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) return;
+  navigator.serviceWorker.register('./service-worker.js', { scope: './' }).catch(error => console.warn('Offline-Shell konnte nicht aktiviert werden:', error));
 }
 
 function discoverEvent(event, button) {
@@ -852,10 +1449,14 @@ function updateGameUi() {
   const discovered = discoveredEvents();
   ui.archiveCount.textContent = discovered.length;
   ui.achievementCount.textContent = app.progress.unlockedAchievements.length;
+  ui.biographyCount.textContent = app.biographies.length;
+  ui.compareCount.textContent = app.library.compare.length;
   updateMissionUi();
   renderArchive(discovered);
   renderRoutes();
   renderAchievements();
+  renderCollections();
+  renderContinueReading();
 }
 
 function renderRoutes() {
@@ -1349,6 +1950,7 @@ function flyToRandomEvent(events) {
 }
 
 function fitFilteredEvents() {
+  if (!app.map) { showToast(i18n.t('onlineMapUnavailable'), i18n.t('onlineMapNote')); return; }
   if (!app.filteredEvents.length) {
     showToast(i18n.t('noResults'), i18n.t('resetHint'));
     return;
@@ -1372,6 +1974,7 @@ function fitFilteredEvents() {
 }
 
 function flyToEvent(event, openPopup = true) {
+  if (!app.map) { showToast(i18n.t('onlineMapUnavailable'), i18n.t('onlineMapNote')); return false; }
   if (!app.map) return;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const duration = reducedMotion ? 0 : 1200;
@@ -1595,13 +2198,13 @@ function loadViewFilters() {
     const range = normalizeTimeRange(from, to, DEFAULT_TIME.minimum, DEFAULT_TIME.maximum);
     const layers = params.has('layers') ? params.get('layers').split(',') : stored.layers;
     return {
-      query: typeof stored.query === 'string' ? stored.query.slice(0, 160) : defaults.query,
-      category: typeof stored.category === 'string' ? stored.category.slice(0, 100) : defaults.category,
+      query: String(params.get('q') ?? stored.query ?? defaults.query).slice(0, 160),
+      category: String(params.get('category') ?? stored.category ?? defaults.category).slice(0, 100),
       from: range.from,
       to: range.to,
       includeUndated: params.get('undated') === '0' ? false : stored.includeUndated !== false,
       layers: Array.isArray(layers) ? layers.filter(id => typeof id === 'string').slice(0, 10) : defaults.layers,
-      undiscoveredOnly: Boolean(stored.undiscoveredOnly)
+      undiscoveredOnly: params.get('undiscovered') === '1' || (!params.has('undiscovered') && Boolean(stored.undiscoveredOnly))
     };
   } catch {
     return defaults;
@@ -1635,6 +2238,9 @@ function syncShareableViewUrl() {
   if (app.filters.to === time.defaultTo) url.searchParams.delete('to'); else url.searchParams.set('to', app.filters.to);
   if (app.filters.includeUndated) url.searchParams.delete('undated'); else url.searchParams.set('undated', '0');
   if (app.filters.layers.length) url.searchParams.set('layers', app.filters.layers.join(',')); else url.searchParams.delete('layers');
+  if (app.filters.query) url.searchParams.set('q', app.filters.query); else url.searchParams.delete('q');
+  if (app.filters.category !== 'all') url.searchParams.set('category', app.filters.category); else url.searchParams.delete('category');
+  if (app.filters.undiscoveredOnly) url.searchParams.set('undiscovered', '1'); else url.searchParams.delete('undiscovered');
   if (app.mapStyle === 'dark') url.searchParams.delete('style'); else url.searchParams.set('style', app.mapStyle);
   window.history.replaceState(null, '', url);
 }
@@ -1686,10 +2292,12 @@ function openPanel(panel) {
   if (panel === 'map') { closeDrawers(); return true; }
   const drawers = {
     archive: ui.archiveDrawer,
+    biographies: ui.biographiesDrawer,
     timeline: ui.timelineDrawer,
     routes: ui.routesDrawer,
     list: ui.eventListDrawer,
     network: ui.networkDrawer,
+    compare: ui.compareDrawer,
     achievements: ui.achievementsDrawer,
     connections: ui.connectionsDrawer
   };
@@ -1703,20 +2311,33 @@ function openPanel(panel) {
   if (panel === 'connections') drawConnection(false);
   if (panel === 'timeline') renderTimeline();
   if (panel === 'network') renderNetwork();
+  if (panel === 'biographies') renderBiographies();
+  if (panel === 'compare') renderComparison();
   drawer.focus();
   return true;
 }
 
 function closeDrawers(restoreFocus = true) {
-  const hadOpenDrawer = [ui.archiveDrawer, ui.timelineDrawer, ui.routesDrawer, ui.eventListDrawer, ui.networkDrawer, ui.achievementsDrawer, ui.connectionsDrawer]
+  const hadOpenDrawer = [ui.archiveDrawer, ui.biographiesDrawer, ui.timelineDrawer, ui.routesDrawer, ui.eventListDrawer, ui.networkDrawer, ui.compareDrawer, ui.achievementsDrawer, ui.connectionsDrawer]
     .some(drawer => !drawer.hidden);
   ui.archiveDrawer.hidden = true;
+  ui.biographiesDrawer.hidden = true;
   ui.timelineDrawer.hidden = true;
   ui.routesDrawer.hidden = true;
   ui.eventListDrawer.hidden = true;
   ui.networkDrawer.hidden = true;
+  ui.compareDrawer.hidden = true;
   ui.achievementsDrawer.hidden = true;
   ui.connectionsDrawer.hidden = true;
+  if (!ui.biographyDetail.hidden) {
+    ui.biographyDetail.hidden = true;
+    ui.biographyList.hidden = false;
+    ui.biographyFilters.hidden = false;
+    ui.biographyResultCount.hidden = false;
+    const url = new URL(window.location.href);
+    url.searchParams.delete('bio');
+    window.history.replaceState(null, '', url);
+  }
   stopTimeTravel();
   ui.navButtons.forEach(button => button.classList.toggle('is-active', button.dataset.panel === 'map'));
   if (restoreFocus && hadOpenDrawer && app.lastFocus?.isConnected) app.lastFocus.focus();
