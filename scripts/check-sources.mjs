@@ -33,7 +33,9 @@ async function checkSource() {
         const retryableStatus = response.status === 408 || response.status === 425 || response.status >= 500;
         const retryable = retryableStatus && attempt < 3;
         if (!retryable) {
-          if ([401, 403, 429].includes(response.status)) botProtected.push({ title, url, status: response.status });
+          // 405 bedeutet hier nicht „Quelle fehlt“, sondern dass der Anbieter
+          // automatisierte GET-Abrufe anders behandelt als normale Navigation.
+          if ([401, 403, 405, 429].includes(response.status)) botProtected.push({ title, url, status: response.status });
           else if (retryableStatus) unresolved.push({ title, url, status: response.status });
           else if (response.status >= 400) failures.push({ title, url, status: response.status });
         }
@@ -52,7 +54,7 @@ async function checkSource() {
 await Promise.all(Array.from({ length: 8 }, checkSource));
 
 console.log(`${sources.length - failures.length - botProtected.length - unresolved.length}/${sources.length} Quellen direkt erreichbar.`);
-if (botProtected.length) console.log(`${botProtected.length} weitere Quellen blockieren automatisierte Abrufe mit 401, 403 oder 429.`);
+if (botProtected.length) console.log(`${botProtected.length} weitere Quellen blockieren automatisierte Abrufe mit 401, 403, 405 oder 429.`);
 if (unresolved.length) console.log(`${unresolved.length} Quellen blieben nach drei Versuchen wegen Netzwerk- oder Serverfehlern unentscheidbar.`);
 failures.forEach(failure => console.error(`${failure.status}\t${failure.title}\t${failure.url}`));
 unresolved.forEach(entry => console.warn(`${entry.status}\tUNENTSCHIEDEN\t${entry.title}\t${entry.url}`));

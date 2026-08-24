@@ -99,7 +99,7 @@ npm run verify
 npm run check:sources
 ```
 
-Benötigt wird Node.js 20 oder neuer. Es müssen keine Pakete installiert werden. Die Quellenprüfung benötigt Internetzugang und weist 401-, 403- und 429-Antworten separat als automatisiert blockiert aus.
+Benötigt wird Node.js 20 oder neuer. Es müssen keine Pakete installiert werden. Die Quellenprüfung benötigt Internetzugang und weist 401-, 403-, 405- und 429-Antworten separat als automatisiert blockiert aus; 404/410 bleiben definitive Fehler.
 
 ## Datenquellen
 

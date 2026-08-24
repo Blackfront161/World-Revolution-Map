@@ -237,6 +237,7 @@ test('Design berücksichtigt reduzierte Bewegung und mobile Ansichten', async ()
 test('Quellenprüfung trennt definitive Fehler von Netzwerkunsicherheit', async () => {
   const sourceCheck = await readFile(new URL('scripts/check-sources.mjs', root), 'utf8');
   assert.match(sourceCheck, /const unresolved = \[\]/);
+  assert.match(sourceCheck, /401, 403, 405, 429/);
   assert.match(sourceCheck, /UNENTSCHIEDEN/);
   assert.match(sourceCheck, /if \(failures\.length\) process\.exitCode = 1/);
   assert.match(sourceCheck, /biography-catalog\.json/);
