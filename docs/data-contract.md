@@ -7,6 +7,7 @@ Der maschinenlesbare Vertrag steht in `data/archive-contract.json`. Er gilt für
 - `schemaVersion` ist eine positive Ganzzahl. Version 1 ergänzt Metadaten, ohne alte Ereignisdateien ungültig zu machen.
 - `id` ist eine stabile, kleingeschriebene, durch Bindestriche getrennte kanonische ID. Veröffentlichte IDs werden weder wiederverwendet noch still umbenannt.
 - `aliases` enthält optionale frühere oder alternative IDs. Eine Alias-ID muss projektweit eindeutig sein und auf genau eine kanonische ID zeigen.
+- Biografien können in `searchAliases` ausschließlich kuratierte Namens- und häufige Schreibvarianten führen; daraus entsteht keine allgemeine Fuzzy-Suche.
 - Links und Routen speichern immer die kanonische ID; der Resolver akzeptiert zusätzlich Aliase.
 
 ## Herkunft, Rechte und Prüfung

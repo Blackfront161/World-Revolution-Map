@@ -22,8 +22,8 @@ Eine interaktive, spielerische Weltkarte historischer Bewegungen, Aufstände, St
 - eigene Perspektiven auf frühe soziale Revolten, Widerstand versklavter Menschen, antifeudale Kämpfe, Commons und Rätebewegungen
 - ein vertiefter Kanada-Schwerpunkt mit über 40 indigenen Land-, Autonomie-, Kultur-, Fischerei- und Umweltkämpfen vom 18. Jahrhundert bis zur Gegenwart
 - soziale Errungenschaften als eigene Kategorie: erkämpfte Wahl-, Arbeits-, Gesundheits-, reproduktive und queere Rechte – jeweils mit ihren Grenzen und möglichen Rückschritten
-- Live-Daten aus Supabase, automatisch mit dem Fallback-Archiv zusammengeführt
-- Karten-Popups mit Einordnung, Bild und weiterführender Quelle
+- optionaler Supabase-Abruf ausschließlich nach explizitem `?supabase=1`; die RC startet standardmäßig vollständig aus den lokalen Daten
+- Karten-Popups mit Einordnung und weiterführender Quelle; Remote-Bilder sind bis zu einem vollständigen per-item Rechte- und Attributionsmanifest deaktiviert
 - ausführliche, optionale Ergebnisfelder ohne Einteilung in „gewonnen“ oder „verloren“
 - sichtbare und in allen neun UI-Sprachen beschriftete Quellenart, Quellenqualität, Prüfstatus, Unsicherheit und Hinweise zu sensiblen Inhalten
 - 20 Ereignisvertiefungen als separate, nachvollziehbare Redaktionsebene; weitere Ereignisse führen ihre Redaktionsfelder direkt im jeweiligen Datensatz
@@ -31,7 +31,7 @@ Eine interaktive, spielerische Weltkarte historischer Bewegungen, Aufstände, St
 - sichtbare aktive Filter, die einzeln entfernt werden können
 - Vorher-/Zurück-zur-Welt-/Nächster-Navigation, lokale Lesezeichen, benannte Sammlungen mit begrenztem JSON-Import/-Export und reproduzierbare Ansichtsparameter in der URL
 - gemischter Vergleich von zwei bis drei Ereignissen oder Lebenswegen, „Hier weiterlesen“, Quellen-Metadatenvorschau und ruhiger Lesemodus
-- installierbare Offline-Grundlage für lokale Oberfläche, Datendateien, Listen, Lebenswege, Routen und Sammlungen; externe Kartenskripte, Wikimedia-Ressourcen und Kartenkacheln werden nicht vorab gespeichert
+- atomar installierte Offline-Grundlage für lokale Oberfläche, beide Kataloge, alle katalogisierten Datendateien, Listen, Lebenswege, Routen und Sammlungen; eine unvollständige Cachegeneration wird nicht aktiviert, externe Kartenskripte und Kartenkacheln werden nicht vorab gespeichert
 - lokales Fortschrittssystem mit XP, Levels und Entdeckungsarchiv
 - zufällige und tägliche Missionen
 - Wissensquiz, Solidaritäts-Combos und zehn freischaltbare Erfolge
@@ -57,10 +57,10 @@ Der Atlas kann als iframe, WebView oder Mikro-Frontend eingebunden werden. Query
 ## Sicherheit
 
 - Datenbankinhalte werden ausschließlich über `textContent` und DOM-Knoten ausgegeben.
-- Quellenlinks akzeptieren nur HTTPS; dynamische Bilder und Bild-APIs sind auf Wikimedia/Wikipedia begrenzt.
+- Quellenlinks akzeptieren nur HTTPS; Remote-Bilder und Bild-APIs sind in der RC deaktiviert.
 - Fortschrittsimporte werden typisiert, längenbegrenzt und gegen bekannte Ereignis-IDs abgeglichen.
 - Sammlungsimporte sind auf 200 KB, 20 Sammlungen und insgesamt 500 bekannte Ereignis-/Biografiereferenzen begrenzt.
-- Supabase-Live-Daten sind auf 2.000 Zeilen pro Abruf begrenzt.
+- Supabase ist standardmäßig aus und wird nur mit `?supabase=1` geladen; Live-Daten sind dann auf 2.000 Zeilen pro Abruf begrenzt.
 - Externe Skripte und Styles sind fest versioniert und mit SHA-384-SRI abgesichert.
 - Die CSP beschränkt Skripte, Netzwerkziele, Worker, Formulare und Plugins.
 - postMessage wird nur mit einer expliziten, validierten Empfänger-Origin aktiviert; `*` ist verboten.
@@ -75,7 +75,7 @@ Quellentyp, Quellenqualität und redaktioneller Prüfstand sind getrennte Felder
 
 Die Grundsätze sind direkt in der Anwendung über „Über diese Karte und Methodik“ erreichbar. Korrekturen und bessere Quellen können über GitHub Issues vorgeschlagen werden.
 
-Der stabile Datenvertrag ist in [`docs/data-contract.md`](docs/data-contract.md) und maschinenlesbar in [`data/archive-contract.json`](data/archive-contract.json) beschrieben. Die ursprünglichen 53 sensiblen Ereignisse sind als nicht-regressierbare Basis im Vertrag verankert; auch jedes neu hinzukommende sensible Ereignis benötigt eine geprüfte Ortsgenauigkeitsklasse. Aktuelle oder fortwirkende Schutzkontexte werden nur grob verortet. Rechte- und Attributionsstände für Code, Ereignisdaten, Biografietexte, Bilder und Kartendaten stehen getrennt in [`docs/licensing-and-attribution.md`](docs/licensing-and-attribution.md). Dieses Dokument erteilt ausdrücklich keine pauschale Gesamtprojektlizenz.
+Der stabile Datenvertrag ist in [`docs/data-contract.md`](docs/data-contract.md) und maschinenlesbar in [`data/archive-contract.json`](data/archive-contract.json) beschrieben. Die ursprünglichen 53 sensiblen Ereignisse sind als nicht-regressierbare Basis im Vertrag verankert; auch jedes neu hinzukommende sensible Ereignis benötigt eine geprüfte Ortsgenauigkeitsklasse. Aktuelle oder fortwirkende Schutzkontexte werden nur grob verortet. Rechte- und Attributionsstände für Code, Ereignisdaten, Biografietexte, Bilder und Kartendaten stehen getrennt in [`docs/licensing-and-attribution.md`](docs/licensing-and-attribution.md); vollständige versionierte Drittanbieterhinweise stehen in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md). Diese Dokumente erteilen ausdrücklich keine pauschale Gesamtprojektlizenz.
 
 Die Kartentaxonomie liegt in [`data/map-taxonomy.json`](data/map-taxonomy.json), die eigenständigen Beziehungen in [`data/relations.json`](data/relations.json). Verborgene Schutzorte werden nicht als Marker und nicht als numerische Koordinaten an DOM, öffentliche App-Snapshots oder Deep-Links ausgegeben. Die visuelle Netzwerkdarstellung ist auf 72 Knoten und 140 Kanten begrenzt; die relationale Liste bleibt die barrierearme Alternative. Ein 3D-Globus ist bewusst zurückgestellt, weil er gegenüber dieser Stufe zusätzliche Renderinglast und eine parallele zugängliche Bedienoberfläche erfordern würde, ohne den Quellenwert zu erhöhen.
 
@@ -103,7 +103,7 @@ Benötigt wird Node.js 20 oder neuer. Es müssen keine Pakete installiert werden
 
 ## Datenquellen
 
-Beim Start liest die Anwendung `data/event-catalog.json` und lädt daraus die 24 Ereignisdateien. `data/biography-catalog.json` katalogisiert drei eigenständige Biografiedateien; Lebenswege werden nicht als Kartenereignisse behandelt und erhalten keine künstlichen Koordinaten. Neue Sammlungen können durch eine zusätzliche JSON-Datei und einen Katalogeintrag ergänzt werden, ohne den JavaScript-Lader zu verändern. Wenn Supabase verfügbar ist, werden Datensätze aus `public.ereignisse` ergänzt beziehungsweise mit gleichnamigen Einträgen zusammengeführt. Dadurch bleiben lokale Archivansichten auch bei einem Ausfall der Datenbank nutzbar.
+Beim Start liest die Anwendung `data/event-catalog.json` und lädt daraus die 24 Ereignisdateien. `data/biography-catalog.json` katalogisiert drei eigenständige Biografiedateien; Lebenswege werden nicht als Kartenereignisse behandelt und erhalten keine künstlichen Koordinaten. Neue Sammlungen können durch eine zusätzliche JSON-Datei und einen Katalogeintrag ergänzt werden, ohne den JavaScript-Lader zu verändern. Nur mit dem ausdrücklichen Parameter `?supabase=1` werden Datensätze aus `public.ereignisse` ergänzt beziehungsweise mit gleichnamigen Einträgen zusammengeführt. Ohne diesen Parameter startet die RC ausschließlich aus dem lokalen Archiv.
 
 Ein Eintrag besitzt eine primäre Kategorie und beliebig viele `tags`. Der Filter berücksichtigt beides. Negative Jahreswerte stehen für Jahre vor unserer Zeitrechnung; für ihre sichtbare Datierung wird zusätzlich `dateLabel` gepflegt. Paläontologische Fundorte gehören nicht in diesen Atlas: Der zeitliche Anfang folgt der frühesten belastbaren Überlieferung kollektiven sozialen Handelns. Moderne Begriffe werden in antiken und mittelalterlichen Einträgen nicht als Selbstbezeichnungen ausgegeben.
 

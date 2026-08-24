@@ -4,7 +4,7 @@ Dieses Repository enthält Bestandteile mit unterschiedlichen Rechteketten. Es w
 
 ## Code
 
-Im Repository liegt derzeit keine vom Rechteinhaber freigegebene `LICENSE`-Datei. Der Projektcode ist deshalb nicht automatisch Open Source. Eine spätere Lizenzentscheidung muss durch die Rechteinhaber*innen erfolgen; Abhängigkeiten behalten ihre eigenen Lizenzen. MapLibre GL JS steht laut Projekt unter der [BSD-3-Clause-Lizenz](https://github.com/maplibre/maplibre-gl-js/blob/main/LICENSE.txt).
+Im Repository liegt derzeit keine vom Rechteinhaber freigegebene `LICENSE`-Datei. Der Projektcode ist deshalb nicht automatisch Open Source. Eine spätere Lizenzentscheidung muss durch die Rechteinhaber*innen erfolgen; Abhängigkeiten behalten ihre eigenen Lizenzen. Die vollständigen versionierten Hinweise für MapLibre GL JS 4.7.1 und die nur bei ausdrücklichem Opt-in geladene Supabase-JavaScript-Bibliothek 2.45.4 stehen in [`THIRD_PARTY_NOTICES.md`](../THIRD_PARTY_NOTICES.md).
 
 ## Ereignisdaten und Redaktion
 
@@ -12,11 +12,11 @@ Historische Tatsachen, redaktionelle Formulierungen und verlinkte Quellwerke hab
 
 ## Biografiedaten
 
-Die drei in `data/biography-catalog.json` geführten Dateien enthalten eigene Lizenzhinweise je Datensatz. Manche redaktionellen Texte nennen CC BY 4.0, andere ausdrücklich `rights-unclear`. Daraus folgt keine einheitliche Lizenz für den Gesamtkatalog. Quellenmetadaten und Links übertragen weder Rechte an Archivmaterialien noch an verlinkten Texten. Bei Export, Nachdruck oder Übersetzung ist deshalb der Lizenzhinweis jeder einzelnen Biografie sowie die Rechteangabe der Originalquelle zu prüfen.
+Die drei in `data/biography-catalog.json` geführten Dateien enthalten eigene Lizenzhinweise je Datensatz. Bis ein identifizierter Lizenzgeber Umfang, Lizenzlink und Attribution nachweist, werden die redaktionellen Biografietexte konservativ als `rights-unclear` geführt. Daraus folgt keine Lizenz für den Gesamtkatalog. Quellenmetadaten und Links übertragen weder Rechte an Archivmaterialien noch an verlinkten Texten.
 
 ## Bilder
 
-Die Anwendung lädt, wenn verfügbar, Vorschaudaten aus Wikipedia-/Wikimedia-Endpunkten. Für jedes Bild gelten die Angaben auf seiner Datei- oder Quellseite; Urheber*in, konkrete Lizenz und nötige Namensnennung müssen vor einer Weiterverwendung einzeln geprüft werden. Wikimedia weist darauf hin, dass Dateien unterschiedliche Attributions- und Lizenzbedingungen haben: [Hinweise zur Nachnutzung](https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia/en).
+Die RC-Oberfläche lädt und zeigt keine Wikipedia-/Wikimedia-Bilder. Ein Bildmodus bleibt gesperrt, bis ein vollständiges per-item Manifest Urheber*in, konkrete Lizenz, Quellseite, Attribution und Änderungsstatus für jede Datei belegt. Bereits vorhandene Bild-URL-Felder in Daten sind keine Freigabe und werden von der RC nicht abgerufen.
 
 ## Kartendaten und Basiskarte
 
@@ -25,6 +25,8 @@ Die Basiskarte wird von CARTO bereitgestellt und enthält OpenStreetMap-Daten. D
 - OpenStreetMap-Daten: © OpenStreetMap-Mitwirkende, [ODbL und Attribution](https://www.openstreetmap.org/copyright)
 - CARTO: [Attributionsanforderungen](https://carto.com/attribution/)
 - Kartenrenderer: MapLibre GL JS, BSD-3-Clause (siehe oben)
+
+Attribution allein belegt noch keine CARTO-Nutzungsberechtigung. API-Key, Vertrag/Grant, Basemap Terms sowie die sichtbare CARTO-/OpenStreetMap-/OpenMapTiles-Attribution müssen im konkreten Zielhosting vor Freigabe geprüft werden.
 
 Die Darstellungen „Dunkles Archiv“, „Kontrastreich monochrom“ und „Warmes Papierarchiv“ sind ausschließlich lokale CSS-/Renderer-Varianten derselben CARTO-/OpenStreetMap-Basiskarte. Sie binden keinen weiteren Tileanbieter ein und verändern oder verdecken die Attribution nicht. Eine zusätzliche Datenschutz- oder Rechtebehauptung für neue Kartendienste ist damit nicht verbunden.
 
