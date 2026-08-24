@@ -7,7 +7,7 @@ const root = new URL('../', import.meta.url);
 
 test('HTML verweist auf vorhandene lokale Kernressourcen', async () => {
   const html = await readFile(new URL('index.html', root), 'utf8');
-  for (const resource of ['styles.css', 'script.js']) {
+  for (const resource of ['styles.css', 'script.js', 'manifest.webmanifest']) {
     assert.match(html, new RegExp(resource.replace('.', '\\.')));
     const file = await readFile(new URL(resource, root), 'utf8');
     assert.ok(file.length > 100);
@@ -28,6 +28,9 @@ test('HTML verweist auf vorhandene lokale Kernressourcen', async () => {
   assert.match(html, /id="tactic-legend"/);
   assert.match(html, /id="map-style-select"/);
   assert.match(html, /id="active-filters"/);
+  assert.match(html, /id="biographies-drawer"/);
+  assert.match(html, /id="compare-drawer"/);
+  assert.match(html, /class="reader-settings"/);
 });
 
 test('Fallback-Archiv enthält valide, eindeutige und belegte Ereignisse', async () => {
@@ -37,7 +40,7 @@ test('Fallback-Archiv enthält valide, eindeutige und belegte Ereignisse', async
   assert.equal(allRows.filter(event => event.category === 'Tiefe Geschichte').length, 0);
   const rows = allRows.filter(row => !row.archived);
   const events = rows.map(normalizeEvent);
-  assert.equal(events.length, 655);
+  assert.equal(events.length, 668);
   assert.equal(new Set(events.map(event => event.id)).size, events.length);
   assert.ok(events.every(isValidEvent));
   assert.ok(events.every(event => event.sourceUrl.startsWith('https://')));
@@ -55,6 +58,7 @@ test('Fallback-Archiv enthält valide, eindeutige und belegte Ereignisse', async
   for (const id of ['battle-of-seattle-wto-1999', 'rodney-king-beating-1991', 'baltimore-uprising-2015', 'black-lives-matter-toronto-pride-2016', 'breonna-taylor-louisville-protests']) {
     assert.ok(events.some(event => event.id === id), `Erwarteter Eintrag fehlt: ${id}`);
   }
+  for (const resource of ['service-worker.js', 'icons/atlas-icon.svg']) assert.ok((await readFile(new URL(resource, root), 'utf8')).length > 100);
 });
 
 test('Datenvertrag, Koordinatenschutz, Vertiefungen und Routen bleiben konsistent', async () => {
@@ -66,11 +70,13 @@ test('Datenvertrag, Koordinatenschutz, Vertiefungen und Routen bleiben konsisten
   const routes = JSON.parse(await readFile(new URL('data/routes.json', root), 'utf8'));
   const taxonomy = JSON.parse(await readFile(new URL('data/map-taxonomy.json', root), 'utf8'));
   const relations = JSON.parse(await readFile(new URL('data/relations.json', root), 'utf8'));
+  const contract = JSON.parse(await readFile(new URL('data/archive-contract.json', root), 'utf8'));
   const sensitiveIds = rows.filter(row => row.sensitivity && !['Niedrig', 'Nein', 'Keine'].includes(row.sensitivity)).map(row => row.id);
   const precisionById = new Map(metadata.events.map(row => [row.id, row.coordinatePrecision]));
 
-  assert.equal(sensitiveIds.length, 53);
   assert.ok(sensitiveIds.every(id => precisionById.has(id)));
+  assert.ok(contract.sensitivityPolicy.baselineSensitiveIds.length >= 53);
+  assert.ok(contract.sensitivityPolicy.baselineSensitiveIds.every(id => sensitiveIds.includes(id) && precisionById.has(id)));
   assert.equal(Object.keys(overrides.events).length, 20);
   assert.ok(Object.entries(overrides.events).every(([id, row]) => ids.has(id) && !/wikipedia\.org/i.test(row.sourceUrl) && row.reviewStatus === 'Redaktionell vertieft'));
   assert.equal(routes.routes.length, 4);
@@ -189,6 +195,34 @@ test('Datenbankinhalte werden nicht über innerHTML in die Seite geschrieben', a
   assert.match(script, /event\.coordinatePrecision !== 'hidden'/);
   assert.match(script, /safeDisplayCoordinates/);
   assert.match(script, /syncShareableViewUrl/);
+  assert.match(script, /loadBiographies/);
+  assert.match(script, /'biography-filters'/);
+  assert.match(script, /renderComparison/);
+  assert.match(script, /parseLibrary/);
+  assert.doesNotMatch(script, /decodeURIComponent\(value\)/);
+  assert.match(script, /navigator\.serviceWorker\.register/);
+});
+
+test('Biografiekatalog enthält 40 koordinatenfreie, belegte Lebenswege', async () => {
+  const catalog = JSON.parse(await readFile(new URL('data/biography-catalog.json', root), 'utf8'));
+  const rows = (await Promise.all(catalog.files.map(entry => readFile(new URL(`data/${entry.file}`, root), 'utf8')))).flatMap(JSON.parse);
+  const sources = rows.flatMap(row => row.sources ?? row.sourceRefs ?? []);
+  assert.equal(catalog.files.length, 3);
+  assert.equal(rows.length, 40);
+  assert.equal(sources.length, 97);
+  assert.equal(new Set(rows.map(row => row.id)).size, 40);
+  assert.ok(rows.every(row => /^bio-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(row.id)));
+  assert.ok(rows.every(row => !('coordinates' in row) && !('lat' in row) && !('lng' in row)));
+  assert.ok(rows.every(row => (row.sources ?? row.sourceRefs ?? []).length >= 2));
+  assert.ok(sources.every(source => /^https:\/\//.test(source.url)));
+});
+
+test('Offline-Shell cachet ausschließlich lokale Ressourcen vorab', async () => {
+  const worker = await readFile(new URL('service-worker.js', root), 'utf8');
+  assert.match(worker, /atlas-local-v2\.9\.0-r1/);
+  assert.match(worker, /fetch\(request\)[\s\S]+catch\(\(\) => caches\.match\(request\)\)/);
+  assert.match(worker, /url\.origin !== self\.location\.origin/);
+  assert.doesNotMatch(worker, /https:\/\/(?:api\.maptiler|tiles|carto|wikimedia)/i);
 });
 
 test('Design berücksichtigt reduzierte Bewegung und mobile Ansichten', async () => {
@@ -205,4 +239,5 @@ test('Quellenprüfung trennt definitive Fehler von Netzwerkunsicherheit', async 
   assert.match(sourceCheck, /const unresolved = \[\]/);
   assert.match(sourceCheck, /UNENTSCHIEDEN/);
   assert.match(sourceCheck, /if \(failures\.length\) process\.exitCode = 1/);
+  assert.match(sourceCheck, /biography-catalog\.json/);
 });

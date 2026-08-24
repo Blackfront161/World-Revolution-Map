@@ -10,6 +10,10 @@ Im Repository liegt derzeit keine vom Rechteinhaber freigegebene `LICENSE`-Datei
 
 Historische Tatsachen, redaktionelle Formulierungen und verlinkte Quellwerke haben unterschiedliche Rechtezustände. Bis zu einer ausdrücklichen Freigabe lautet der Status der projektinternen Zusammenstellung `rights-unclear`. Verlinkte Archive, Museen, Community-Organisationen und Publikationen bleiben bei ihren jeweiligen Rechteinhaber*innen; ihre Verlinkung überträgt keine Nutzungsrechte.
 
+## Biografiedaten
+
+Die drei in `data/biography-catalog.json` geführten Dateien enthalten eigene Lizenzhinweise je Datensatz. Manche redaktionellen Texte nennen CC BY 4.0, andere ausdrücklich `rights-unclear`. Daraus folgt keine einheitliche Lizenz für den Gesamtkatalog. Quellenmetadaten und Links übertragen weder Rechte an Archivmaterialien noch an verlinkten Texten. Bei Export, Nachdruck oder Übersetzung ist deshalb der Lizenzhinweis jeder einzelnen Biografie sowie die Rechteangabe der Originalquelle zu prüfen.
+
 ## Bilder
 
 Die Anwendung lädt, wenn verfügbar, Vorschaudaten aus Wikipedia-/Wikimedia-Endpunkten. Für jedes Bild gelten die Angaben auf seiner Datei- oder Quellseite; Urheber*in, konkrete Lizenz und nötige Namensnennung müssen vor einer Weiterverwendung einzeln geprüft werden. Wikimedia weist darauf hin, dass Dateien unterschiedliche Attributions- und Lizenzbedingungen haben: [Hinweise zur Nachnutzung](https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia/en).

@@ -11,6 +11,9 @@ Der Atlas verwaltet öffentliche Geschichtsdaten und einen lokalen, nicht vertra
 - Wikipedia-Bild-APIs sind auf de.wikipedia.org und en.wikipedia.org begrenzt; geladene Bilder müssen von upload.wikimedia.org stammen.
 - Live-Daten und alle Textfelder besitzen clientseitige Obergrenzen.
 - Lokale oder importierte Spielstände werden validiert, gekürzt und mit bekannten Ereignis-IDs abgeglichen.
+- Lokale Sammlungsimporte sind auf 200 KB, 20 Sammlungen und 500 syntaktisch begrenzte Ereignis-/Biografiereferenzen beschränkt; fremdes HTML wird nie interpretiert.
+- Biografien besitzen keine Koordinaten. Deep-Links und Vergleiche verwenden nur stabile IDs.
+- Der Service Worker speichert ausschließlich gleich-originäre App-Shell- und Datendateien. Externe Kartenbibliotheken, Wikimedia-Ressourcen und Kartenkacheln werden nicht vorab gecacht.
 - Die CSP sperrt fremde Skriptquellen, Plugins, Formulare und unbekannte Netzwerkziele.
 - CDN-Dateien sind fest versioniert und über SHA-384 Subresource Integrity gebunden.
 - Cross-Origin-Nachrichten werden nur an eine explizite HTTPS-Origin gesendet. Wildcards werden verworfen.
@@ -30,6 +33,7 @@ Der Atlas verwaltet öffentliche Geschichtsdaten und einen lokalen, nicht vertra
 ## Bewusste Restrisiken
 
 - Externe Kartenkacheln und Wikimedia sehen technisch die IP-Adresse des Browsers.
+- Die Offline-Oberfläche macht die Online-Abhängigkeit der Basiskarte sichtbar; ein vorhandener lokaler Cache ist kein vollständiges Offline-Kartenpaket.
 - GitHub Pages erlaubt nur begrenzte Kontrolle über HTTP-Sicherheitsheader.
 - Inhalte externer Quellen können sich nach der redaktionellen Prüfung verändern.
 - Eine Person kann ihren lokalen Spielstand manipulieren. Das ist akzeptiert, solange der Spielstand keine Autorität außerhalb des Browsers erhält.

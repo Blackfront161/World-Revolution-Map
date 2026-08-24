@@ -25,7 +25,19 @@ Der maschinenlesbare Vertrag steht in `data/archive-contract.json`. Er gilt für
 - `region`: ein räumlich verteilter Kampf; der Punkt dient nur als Kartenanker.
 - `hidden`: angezeigter Punkt ist absichtlich grob. Aktuelle Treffpunkte, Schutzräume oder gefährdete Gemeinschaften dürfen daraus nicht ableitbar sein.
 
-Die 53 bereits als sensibel gekennzeichneten Ereignisse sind in `data/event-metadata.json` einzeln klassifiziert. Vier gegenwärtige bzw. fortwirkende Land-/Wasserschutzkontexte und die weiterhin bestehende Aboriginal Tent Embassy sind zusätzlich als `hidden` behandelt. Die Anwendung zeigt die Präzisionsstufe, aber keine numerischen Koordinaten in der Detailansicht.
+Die ursprünglichen 53 sensiblen Ereignisse stehen als `baselineSensitiveIds` im Vertrag und müssen dauerhaft sensibel sowie in `data/event-metadata.json` klassifiziert bleiben. Der Gesamtwert ist absichtlich nicht fest codiert: Neue sensible Ereignisse sind zulässig, benötigen aber ebenfalls Metadaten und eine übereinstimmende `coordinatePrecision`. Vier gegenwärtige bzw. fortwirkende Land-/Wasserschutzkontexte und die weiterhin bestehende Aboriginal Tent Embassy sind zusätzlich als `hidden` behandelt. Die Anwendung zeigt die Präzisionsstufe, aber keine numerischen Koordinaten in der Detailansicht.
+
+## Eigenständiges Biografiemodell
+
+`data/biography-catalog.json` katalogisiert drei Biografiedateien. Biografien sind keine Kartenereignisse, erhalten keine Koordinaten und verwenden stabile IDs nach dem Muster `bio-*`.
+
+- Pflicht sind Name, Kurzbiografie, Lebensphasen, Ideen/Praxis, Organisierung/Errungenschaften, Spannungen/Kritik, Vermächtnis, Review-, Sensitivitäts-, Provenance- und Lizenzangaben.
+- Jede Biografie benötigt mindestens zwei strukturierte HTTPS-Quellen mit Herausgeber, Sprache, Typ und Abrufdatum.
+- `relatedEventIds` enthalten ausschließlich kanonische vorhandene Ereignis-IDs; sie begründen eine explizite UI-Verknüpfung, aber keine künstliche räumliche oder kausale Behauptung.
+- Unbelegte Zitatfelder sind unzulässig. Die vorliegenden Texte paraphrasieren; direkte Stimmen müssten künftig einzeln und unmittelbar belegt werden.
+- Lebensdaten dürfen als unsicher oder unbekannt erhalten bleiben. Der Zeitraumfilter erzeugt daraus keine falsche Genauigkeit.
+
+Derzeit enthält der Katalog 40 Lebenswege und 97 Quellen. Die UI-Langtexte sind vollständig neunsprachig; die historischen Biografietexte bleiben als deutsche Originalfassung gekennzeichnet.
 
 ## Redaktionelle Überschreibungen
 
@@ -43,7 +55,7 @@ Die 53 bereits als sensibel gekennzeichneten Ereignisse sind in `data/event-meta
 - `styles` enthält die drei lokalen Darstellungsvarianten. Sie verwenden dieselbe dokumentierte Basiskarte und wechseln keinen Tileanbieter.
 - `network` begrenzt Knoten und Kanten, damit die Zusatzansicht bei der vollständigen Sammlung bedienbar bleibt.
 
-Die reproduzierbaren URL-Parameter heißen `from`, `to`, `undated`, `layers` und `style`. Sie enthalten niemals Ereigniskoordinaten.
+Die reproduzierbaren URL-Parameter heißen `from`, `to`, `undated`, `q`, `category`, `layers`, `style`, `event`, `bio` und `compare`. Sie enthalten niemals Ereigniskoordinaten. `compare` akzeptiert höchstens drei begrenzte `event:*`-/`bio:*`-Referenzen.
 
 ## Beziehungen
 
