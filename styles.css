@@ -623,8 +623,8 @@ kbd {
   .mission-card { top: 86px; left: 10px; right: 10px; width: auto; padding: 12px 14px; }
   .mission-card h2 { font-size: 16px; }
   .mission-card p { display: none; }
-  .bottom-nav { left: 10px; right: 10px; bottom: 10px; transform: none; display: flex; gap: 1px; }
-  .nav-button { min-width: 48px; flex: 1 0 48px; flex-direction: column; gap: 1px; padding: 5px 2px; font-size: 9px; }
+  .bottom-nav { left: 10px; right: 10px; bottom: 10px; transform: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); gap: 1px; overflow: visible; }
+  .nav-button { min-width: 0; width: 100%; flex-direction: column; gap: 1px; padding: 5px 2px; font-size: 9px; }
   .nav-button > span:not(:first-child) { font-size: 8px; }
   .nav-button b { display: none; }
   .drawer { top: 86px; left: 10px; right: 10px; bottom: 72px; width: auto; }
@@ -654,6 +654,8 @@ kbd {
   .biography-filters { grid-template-columns: 1fr; }
   .collection-create { grid-template-columns: 1fr; }
   .event-popup-actions { grid-template-columns: 1fr 1fr; }
+  .drawer, .maplibregl-popup { bottom: 122px; }
+  .toast-region { bottom: 126px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

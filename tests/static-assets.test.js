@@ -240,6 +240,8 @@ test('Design berücksichtigt reduzierte Bewegung und mobile Ansichten', async ()
   assert.match(css, /data-map-style="mono"/);
   assert.match(css, /data-map-style="paper"/);
   assert.match(css, /event-approximate-rings|precision-sample\.is-approximate/);
+  assert.match(css, /grid-template-columns: repeat\(auto-fit, minmax\(50px, 1fr\)\)/);
+  assert.match(css, /\.nav-button \{ min-width: 0; width: 100%;/);
 });
 
 test('Quellenprüfung trennt definitive Fehler von Netzwerkunsicherheit', async () => {
