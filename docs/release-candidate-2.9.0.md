@@ -36,6 +36,10 @@ Getestet wurde im Codex-In-App-Browser auf einem frischen lokalen Origin. Extern
 
 Die atomare Worker-Installation schreibt zuerst in einen Staging-Cache, prüft Kataloge und jede erforderliche Ressource und aktiviert erst danach die vollständige Generation. Kern-Shell, beide Kataloge, alle 24 Ereignisdateien, alle drei Biografiedateien sowie Vertrag, Metadaten, Routen, Taxonomie und Relationen sind abgedeckt. Externe Tiles, Kartenstile, CDN-Skripte und Wikimedia-Ressourcen werden nicht vorab gespeichert. Bei fehlenden Daten endet die UI nach einem begrenzten Timeout mit einem lokalisierten Fehlerzustand statt mit „0 Ereignisse“ und einer endlosen Ladeanzeige.
 
+## Designnotiz: farbigeres Archiv ohne Belohnungslogik für Gewalt
+
+Die RC erhält eine lokale, CSS-native Atlaspalette aus Grün, Gold/Ocker, Koralle, Violett und Teal sowie zusätzliche, zurückhaltende Archivraster, Glasflächen und Hierarchieebenen. Farben ergänzen stets Texte, Buchstaben, Symbole und Formen; sie ersetzen keine Bedeutung. Navigation, Routen, Zeitleiste, Archiv, Netzwerk, Vergleiche und Lebenswege nutzen unterschiedliche Akzentfamilien. Akzente in Biografiekarten werden nur deterministisch aus der stabilen ID verteilt und klassifizieren keine Community, Herkunft oder Strömung. Sensible Ereignisse bleiben visuell ruhiger: kein Halo, keine Feieranimation und zurückhaltende Sand-/Neutraltöne. Der monochrome Stil schaltet Dekor zugunsten maximalen Kontrasts zurück; der Papierstil bewahrt dieselbe Informationshierarchie mit warmen, lesbaren Flächen. Alle zusätzlichen Übergänge werden bei `prefers-reduced-motion` deaktiviert.
+
 ## Offene manuelle Geräte- und Accessibility-Matrix
 
 - [ ] **NVDA unter Windows:** vollständige Landmark-, Dialog-, Tabellen-, Kartenalternativ- und Live-Region-Prüfung durch eine Person. Nicht in dieser RC-Umgebung durchgeführt.

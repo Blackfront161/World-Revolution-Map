@@ -442,11 +442,11 @@ function initializeMap() {
       source: 'resistance-events',
       filter: ['has', 'point_count'],
       paint: {
-        'circle-color': ['step', ['get', 'point_count'], '#65f3a6', 6, '#20d477', 12, '#118650'],
+        'circle-color': ['step', ['get', 'point_count'], '#5eead4', 6, '#c4b5fd', 12, '#f6c66d'],
         'circle-radius': ['step', ['get', 'point_count'], 18, 6, 24, 12, 31],
-        'circle-opacity': .88,
+        'circle-opacity': .92,
         'circle-stroke-width': 3,
-        'circle-stroke-color': 'rgba(101,243,166,.26)'
+        'circle-stroke-color': 'rgba(244, 249, 246, .72)'
       }
     });
 
@@ -456,7 +456,7 @@ function initializeMap() {
       source: 'resistance-events',
       filter: ['has', 'point_count'],
       layout: { 'text-field': '{point_count_abbreviated}', 'text-size': 12, 'text-font': ['Open Sans Bold'] },
-      paint: { 'text-color': '#042113' }
+      paint: { 'text-color': '#10211d', 'text-halo-color': 'rgba(255,255,255,.45)', 'text-halo-width': .5 }
     });
 
     app.map.addLayer({
@@ -489,6 +489,19 @@ function initializeMap() {
     });
 
     app.map.addLayer({
+      id: 'event-point-halos',
+      type: 'circle',
+      source: 'resistance-events',
+      filter: ['all', ['!', ['has', 'point_count']], ['!=', ['get', 'coordinatePrecision'], 'region'], ['==', ['get', 'sensitive'], false]],
+      paint: {
+        'circle-color': categoryColorExpression(),
+        'circle-radius': ['case', ['==', ['get', 'discovered'], true], 9, 13],
+        'circle-opacity': ['case', ['==', ['get', 'discovered'], true], .08, .16],
+        'circle-blur': .35
+      }
+    });
+
+    app.map.addLayer({
       id: 'event-points',
       type: 'circle',
       source: 'resistance-events',
@@ -496,9 +509,9 @@ function initializeMap() {
       paint: {
         'circle-color': categoryColorExpression(),
         'circle-radius': ['case', ['==', ['get', 'discovered'], true], 6, 8],
-        'circle-opacity': ['case', ['==', ['get', 'discovered'], true], .55, .95],
+        'circle-opacity': ['case', ['==', ['get', 'sensitive'], true], .72, ['==', ['get', 'discovered'], true], .55, .95],
         'circle-stroke-width': ['case', ['==', ['get', 'discovered'], true], 1, 2],
-        'circle-stroke-color': ['case', ['==', ['get', 'discovered'], true], '#dbe9df', '#ffffff']
+        'circle-stroke-color': ['case', ['==', ['get', 'sensitive'], true], '#d8c8ac', ['==', ['get', 'discovered'], true], '#dbe9df', '#ffffff']
       }
     });
 
@@ -623,6 +636,7 @@ function toGeoJson(events) {
         coordinatePrecision: event.coordinatePrecision || 'exact',
         tacticSymbol: primaryTactic(event)?.symbol || '·',
         discovered: discovered.has(event.id),
+        sensitive: isSensitiveEvent(event),
         missionTarget: missionTargets.has(event.id) && !app.progress.mission?.completedIds?.includes(event.id)
       }
     }))
@@ -642,7 +656,7 @@ async function openEventPopup(event, coordinates = safeDisplayCoordinates(event)
 
   const media = document.createElement('div');
   media.className = 'event-popup-placeholder';
-  media.textContent = '✦';
+  media.textContent = sensitive ? '○' : '✦';
   content.append(media);
 
   const body = document.createElement('div');
@@ -883,6 +897,7 @@ function renderBiographies() {
   filtered.slice(0, 200).forEach(bio => {
     const article = document.createElement('article');
     article.className = 'biography-card';
+    article.dataset.accent = biographyVisualAccent(bio.id);
     const heading = document.createElement('h3');
     const button = document.createElement('button');
     button.type = 'button';
@@ -898,6 +913,12 @@ function renderBiographies() {
     fragment.append(article);
   });
   ui.biographyList.append(fragment);
+}
+
+function biographyVisualAccent(id = '') {
+  const accents = ['teal', 'gold', 'coral', 'violet', 'green'];
+  const total = [...String(id)].reduce((sum, character) => sum + character.charCodeAt(0), 0);
+  return accents[total % accents.length];
 }
 
 function openBiography(id, updateUrl = true) {

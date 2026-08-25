@@ -236,7 +236,7 @@ test('Offline-Shell aktiviert nur eine vollständige atomare lokale Generation',
   const biographyCatalog = JSON.parse(await readFile(new URL('data/biography-catalog.json', root), 'utf8'));
   assert.equal(eventCatalog.length, 24);
   assert.equal(biographyCatalog.files.length, 3);
-  assert.match(worker, /atlas-local-v2\.9\.0-rc2-r4/);
+  assert.match(worker, /atlas-local-v2\.9\.0-rc2-r5/);
   assert.match(worker, /STAGING_CACHE/);
   assert.match(worker, /MANIFEST_URL/);
   assert.match(worker, /catalogFileUrls\(eventCatalog\)/);
@@ -277,6 +277,7 @@ test('Remote-Daten und -Bilder sind im RC standardmäßig deaktiviert', async ()
 
 test('Design berücksichtigt reduzierte Bewegung und mobile Ansichten', async () => {
   const css = await readFile(new URL('styles.css', root), 'utf8');
+  const script = await readFile(new URL('script.js', root), 'utf8');
   assert.match(css, /prefers-reduced-motion/);
   assert.match(css, /@media \(max-width: 820px\)/);
   assert.match(css, /data-map-style="mono"/);
@@ -284,6 +285,14 @@ test('Design berücksichtigt reduzierte Bewegung und mobile Ansichten', async ()
   assert.match(css, /event-approximate-rings|precision-sample\.is-approximate/);
   assert.match(css, /grid-template-columns: repeat\(auto-fit, minmax\(50px, 1fr\)\)/);
   assert.match(css, /\.nav-button \{ min-width: 0; width: 100%;/);
+  for (const token of ['--atlas-green', '--atlas-gold', '--atlas-coral', '--atlas-violet', '--atlas-teal']) assert.match(css, new RegExp(token));
+  assert.match(css, /\.nav-button\[data-panel="biographies"\]/);
+  assert.match(css, /html\[data-map-style="mono"\].*background: #000/s);
+  assert.match(css, /html\[data-map-style="paper"\]/);
+  assert.match(script, /event-point-halos/);
+  assert.match(script, /sensitive: isSensitiveEvent\(event\)/);
+  assert.match(script, /sensitive \? '○' : '✦'/);
+  assert.match(script, /biographyVisualAccent\(bio\.id\)/);
 });
 
 test('Quellenprüfung trennt definitive Fehler von Netzwerkunsicherheit', async () => {
