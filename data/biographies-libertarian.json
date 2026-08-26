@@ -112,7 +112,7 @@
     "review": {"status": "Redaktioneller Pilotstand", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "hoch", "displayRule": "Antisemitismus und politische Gewalt paraphrasieren und kritisch kontextualisieren."},
     "provenance": {"method": "Redaktionelle Zusammenfassung aus Archivmetadaten und wissenschaftlichem Nachschlagewerk.", "editorialNote": "Julianische und gregorianische Datierung berücksichtigt."},
-    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Quellenrechte verbleiben bei den Herausgebern."}
+    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Quellenrechte verbleiben bei den herausgebenden Stellen."}
   },
   {
     "id": "bio-pjotr-kropotkin",
@@ -196,7 +196,7 @@
     "review": {"status": "Redaktioneller Pilotstand", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "mittel", "displayRule": "Aufstandsversuche, Haft und politische Gewalt nüchtern und entwicklungsgeschichtlich darstellen."},
     "provenance": {"method": "Redaktionelle Zusammenfassung aus Primärtextarchiv und biografischem Fachlexikon.", "editorialNote": "Taktische Positionsänderungen nicht als Widerspruch glätten."},
-    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Rechte an Editionen und Lexikontexten verbleiben bei den Anbietern."}
+    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Rechte an Editionen und Lexikontexten verbleiben bei den anbietenden Stellen."}
   },
   {
     "id": "bio-voltairine-de-cleyre",
@@ -280,7 +280,7 @@
     "review": {"status": "Redaktioneller Pilotstand", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "hoch", "displayRule": "Attentate, Erschießungen und Krieg ohne Märtyrer- oder Kampfromantik darstellen; ungeklärte Todesumstände markieren."},
     "provenance": {"method": "Redaktionelle Synthese aus Referenzwerk und quellenbasierter Bewegungsgeschichte.", "editorialNote": "Keine Durruti zugeschriebenen, quellenunsicheren Zitate verwendet."},
-    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Buch- und Quellenrechte verbleiben bei den Rechteinhabern."}
+    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Buch- und Quellenrechte verbleiben bei den Rechteinhaber*innen."}
   },
   {
     "id": "bio-ricardo-flores-magon",
@@ -367,7 +367,7 @@
     "review": {"status": "Redaktioneller Pilotstand", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "hoch", "displayRule": "Verfolgung, erzwungene Selbstkritik und eigene Mitverantwortung ohne Gleichsetzung oder Entlastung darstellen."},
     "provenance": {"method": "Redaktionelle Synthese aus Universitätsarchiven, Briefmetadaten und institutioneller Biografie.", "editorialNote": "Frühen Anarchismus und spätere Staatsinstitutionen nicht zu einer geraden Entwicklung vereinfachen."},
-    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Rechte an Briefen und Werken bleiben bei Archiven und Rechteinhabern."}
+    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Rechte an Briefen und Werken bleiben bei Archiven und Rechteinhaber*innen."}
   },
   {
     "id": "bio-ito-noe",
@@ -508,6 +508,6 @@
     "review": {"status": "Redaktioneller Pilotstand", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "mittel", "displayRule": "Afrikanische Gesellschaften nicht als einheitlich oder zeitlos kommunal darstellen; Eigenangaben als solche markieren."},
     "provenance": {"method": "Redaktionelle Zusammenfassung aus zwei Primärinterviews und einer zeitgenössischen biografischen Notiz.", "editorialNote": "Mangels institutionellen Personenarchivs wurde die Quellenlage durch mehrere unabhängige Bewegungspublikationen trianguliert."},
-    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Interview- und Publikationsrechte verbleiben bei Autor*innen und Herausgebern."}
+    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Interview- und Publikationsrechte verbleiben bei Autor*innen und Herausgeber*innen."}
   }
 ]

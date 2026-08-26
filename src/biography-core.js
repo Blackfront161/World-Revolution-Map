@@ -1,4 +1,4 @@
-import { EVENT_ID_PATTERN } from './game-core.js';
+import { BIOGRAPHY_TRANSLATION_FIELDS, EVENT_ID_PATTERN, localizeTranslatedRecord } from './game-core.js';
 
 export const BIOGRAPHY_ID_PATTERN = /^bio-[a-z0-9]+(?:-[a-z0-9]+)*$/;
 export const BIOGRAPHY_REVIEW_VALUES = new Set(['draft', 'reviewed', 'deep-reviewed']);
@@ -43,6 +43,7 @@ const normalizeSourceType = value => {
 };
 
 export function normalizeBiography(row = {}, defaults = {}) {
+  row = localizeTranslatedRecord(row, defaults.language || 'de', BIOGRAPHY_TRANSLATION_FIELDS);
   const birthRaw = row.birthYear ?? row.yearBirth ?? row.birth?.date ?? row.birth;
   const deathRaw = row.deathYear ?? row.yearDeath ?? row.death?.date ?? row.death;
   const rawSources = row.sources ?? row.sourceRefs;

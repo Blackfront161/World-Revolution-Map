@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "policyVersion": "1.0.0",
+  "description": "Menschliche Einzelreviews für codebasierte UI-, Dossier-, Metadaten- und Taxonomietexte. Leere Liste bedeutet: vorhanden, aber nicht reviewed.",
+  "reviews": []
+}

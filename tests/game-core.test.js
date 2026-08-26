@@ -13,6 +13,7 @@ import {
   levelFromXp,
   levelProgress,
   localizeEvent,
+  localizeTranslatedRecord,
   normalizeEvent,
   normalizeSearchText,
   matchesTolerantSearch,
@@ -20,6 +21,8 @@ import {
   normalizeTimeRange,
   seededShuffle,
   resolveEventId,
+  ROUTE_TRANSLATION_FIELDS,
+  translationSourceDigest,
   validateContractFields,
   validateEditorialFields,
   validateMapTaxonomy,
@@ -104,22 +107,66 @@ test('filtert mehrere Themenebenen als ODER und behandelt undatierte Einträge a
 });
 
 test('Ereignisübersetzungen werden feldweise und nur nach Prüfung übernommen', () => {
+  const source = { title: 'Deutsch', description: 'Deutscher Text' };
+  const review = {
+    status: 'reviewed', sourceDigest: translationSourceDigest(source.title), reviewedAt: '2026-08-26',
+    languageReviewer: 'Human Language Reviewer', factReviewer: 'Human Fact Reviewer',
+    policyVersion: '1.0.0', machineAssisted: false
+  };
   const translations = {
     en: {
-      title: { text: 'Reviewed title', status: 'reviewed' },
+      title: { text: 'Reviewed title', ...review },
       description: { text: 'Unreviewed text', status: 'draft' }
     }
   };
-  assert.deepEqual(normalizeEventTranslations(translations), {
-    en: { title: { text: 'Reviewed title', status: 'reviewed' } }
+  assert.deepEqual(normalizeEventTranslations(translations, source), {
+    en: { title: { text: 'Reviewed title', ...review } }
   });
-  const localized = localizeEvent(normalizeEvent({ title: 'Deutsch', description: 'Deutscher Text', longitude: 1, latitude: 1, translations }), 'en');
+  const localized = localizeEvent(normalizeEvent({ ...source, longitude: 1, latitude: 1, translations }), 'en');
   assert.equal(localized.title, 'Reviewed title');
   assert.equal(localized.description, 'Deutscher Text');
   assert.equal(localized.localization.usesGermanOriginal, true);
-  assert.deepEqual(validateEditorialFields({ translations: { en: { title: { text: 'Draft', status: 'draft' } } } }), [
-    'translations.en.title benötigt status "reviewed"'
+  assert.deepEqual(validateEditorialFields({ title: 'Deutsch', translations: { en: { title: { text: 'Draft', status: 'reviewed' } } } }), [
+    'translations.en.title benötigt vollständigen menschlichen Reviewnachweis für Policy 1.0.0'
   ]);
+  const changedSource = { ...source, title: 'Deutsch geändert', longitude: 1, latitude: 1, translations };
+  assert.equal(normalizeEvent(changedSource).translations.en, undefined);
+  assert.equal(localizeEvent(changedSource, 'en').title, 'Deutsch geändert');
+  assert.ok(validateEditorialFields(changedSource).some(issue => issue.includes('ist stale')));
+});
+
+test('Routenlokalisierung übernimmt nur reviewed Text mit aktuellem Ausgangsdigest', () => {
+  const source = 'Eine kuratierte Route.';
+  const route = {
+    title: source,
+    translations: { en: { title: {
+      text: 'A curated route.', status: 'reviewed', sourceDigest: translationSourceDigest(source), reviewedAt: '2026-08-26',
+      languageReviewer: 'Human EN Reviewer', factReviewer: 'Human Fact Reviewer', policyVersion: '1.0.0', machineAssisted: false
+    } } }
+  };
+  assert.equal(localizeTranslatedRecord(route, 'en', ROUTE_TRANSLATION_FIELDS).title, 'A curated route.');
+  route.title = 'Geänderte Route.';
+  assert.equal(localizeTranslatedRecord(route, 'en', ROUTE_TRANSLATION_FIELDS).title, 'Geänderte Route.');
+});
+
+test('Routen verwerfen reviewed-markierte Zieltexte mit HTML, Bidi, Nicht-NFC, Placeholder- oder Formfehlern', () => {
+  const cases = [
+    ['HTML', 'Eine Route.', '<b>unsafe</b>'],
+    ['Bidi', 'Eine Route.', 'Unsafe\u202E text'],
+    ['NFC', 'Café-Route.', 'Cafe\u0301 route'],
+    ['Placeholder', 'Route {count}', 'Route {total}'],
+    ['Form', 'Eine Route.', ['Wrong list form']]
+  ];
+  for (const [label, source, target] of cases) {
+    const route = {
+      title: source,
+      translations: { en: { title: {
+        text: target, status: 'reviewed', sourceDigest: translationSourceDigest(source), reviewedAt: '2026-08-26',
+        languageReviewer: 'Human EN Reviewer', factReviewer: 'Human Fact Reviewer', policyVersion: '1.0.0', machineAssisted: false
+      } } }
+    };
+    assert.equal(localizeTranslatedRecord(route, 'en', ROUTE_TRANSLATION_FIELDS).title, source, label);
+  }
 });
 
 test('normalisiert und validiert optionale Redaktionsfelder rückwärtskompatibel', () => {

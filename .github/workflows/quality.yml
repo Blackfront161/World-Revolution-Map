@@ -28,6 +28,10 @@ jobs:
         run: npm run check:js
       - name: Data model and source URL validation
         run: npm run validate:data
+      - name: Translation inventory and no-regression baseline
+        run: npm run check:translations
+      - name: Context-sensitive German inclusive-language gate
+        run: npm run check:inclusive-language
       - name: Test suite
         run: npm test
       - name: Remote source availability

@@ -32,17 +32,31 @@ export const CATEGORY_COLORS = {
 
 const clean = (value, maxLength = 600) => typeof value === 'string' ? value.trim().slice(0, maxLength) : value;
 
-const EDITORIAL_LIST_FIELDS = ['demands', 'participants', 'powerStructures', 'tactics', 'voices'];
-const EDITORIAL_TEXT_FIELDS = [
+export const EDITORIAL_LIST_FIELDS = ['demands', 'participants', 'powerStructures', 'tactics', 'voices'];
+export const EDITORIAL_TEXT_FIELDS = [
   'immediateConsequences', 'longTermImpact', 'repression', 'humanCosts', 'aftermath',
   'openQuestions', 'sourceType', 'sourceQuality', 'uncertainty', 'sensitivity', 'reviewStatus',
   'bottomUpPressure', 'achievement', 'limits'
 ];
-const EVENT_TRANSLATION_FIELDS = new Set([
+export const EVENT_TRANSLATION_FIELDS = new Set([
   'title', 'location', 'description', 'significance', 'clue',
-  ...EDITORIAL_LIST_FIELDS, ...EDITORIAL_TEXT_FIELDS
+  ...EDITORIAL_LIST_FIELDS,
+  ...EDITORIAL_TEXT_FIELDS.filter(field => !['sourceType', 'sourceQuality', 'reviewStatus'].includes(field)),
+  'category', 'country', 'continent'
 ]);
-const EVENT_TRANSLATION_LANGUAGES = new Set(['en', 'es', 'fr', 'it', 'pt', 'ru', 'el', 'tr']);
+export const EVENT_TRANSLATION_LANGUAGES = new Set(['en', 'es', 'fr', 'it', 'pt', 'ru', 'el', 'tr']);
+export const TRANSLATION_POLICY_VERSION = '1.0.0';
+export const BIOGRAPHY_TRANSLATION_FIELDS = new Set([
+  'shortDescription', 'legacy', 'sensitivity.displayRule',
+  'places.0', 'places.1', 'places.2', 'places.3', 'places.4', 'places.5', 'places.6', 'places.7', 'places.8', 'places.9', 'places.10', 'places.11',
+  'communities.0', 'communities.1', 'communities.2', 'communities.3', 'communities.4', 'communities.5', 'communities.6', 'communities.7', 'communities.8', 'communities.9', 'communities.10', 'communities.11',
+  'ideasAndPractices.0', 'ideasAndPractices.1', 'ideasAndPractices.2', 'ideasAndPractices.3', 'ideasAndPractices.4', 'ideasAndPractices.5', 'ideasAndPractices.6', 'ideasAndPractices.7', 'ideasAndPractices.8', 'ideasAndPractices.9', 'ideasAndPractices.10', 'ideasAndPractices.11', 'ideasAndPractices.12', 'ideasAndPractices.13', 'ideasAndPractices.14', 'ideasAndPractices.15', 'ideasAndPractices.16', 'ideasAndPractices.17', 'ideasAndPractices.18', 'ideasAndPractices.19', 'ideasAndPractices.20', 'ideasAndPractices.21', 'ideasAndPractices.22', 'ideasAndPractices.23',
+  'organizingAndAchievements.0', 'organizingAndAchievements.1', 'organizingAndAchievements.2', 'organizingAndAchievements.3', 'organizingAndAchievements.4', 'organizingAndAchievements.5', 'organizingAndAchievements.6', 'organizingAndAchievements.7', 'organizingAndAchievements.8', 'organizingAndAchievements.9', 'organizingAndAchievements.10', 'organizingAndAchievements.11', 'organizingAndAchievements.12', 'organizingAndAchievements.13', 'organizingAndAchievements.14', 'organizingAndAchievements.15', 'organizingAndAchievements.16', 'organizingAndAchievements.17', 'organizingAndAchievements.18', 'organizingAndAchievements.19', 'organizingAndAchievements.20', 'organizingAndAchievements.21', 'organizingAndAchievements.22', 'organizingAndAchievements.23',
+  'repressionAndRisks.0', 'repressionAndRisks.1', 'repressionAndRisks.2', 'repressionAndRisks.3', 'repressionAndRisks.4', 'repressionAndRisks.5', 'repressionAndRisks.6', 'repressionAndRisks.7', 'repressionAndRisks.8', 'repressionAndRisks.9', 'repressionAndRisks.10', 'repressionAndRisks.11', 'repressionAndRisks.12', 'repressionAndRisks.13', 'repressionAndRisks.14', 'repressionAndRisks.15', 'repressionAndRisks.16', 'repressionAndRisks.17', 'repressionAndRisks.18', 'repressionAndRisks.19', 'repressionAndRisks.20', 'repressionAndRisks.21', 'repressionAndRisks.22', 'repressionAndRisks.23',
+  'tensionsAndCritique.0', 'tensionsAndCritique.1', 'tensionsAndCritique.2', 'tensionsAndCritique.3', 'tensionsAndCritique.4', 'tensionsAndCritique.5', 'tensionsAndCritique.6', 'tensionsAndCritique.7', 'tensionsAndCritique.8', 'tensionsAndCritique.9', 'tensionsAndCritique.10', 'tensionsAndCritique.11', 'tensionsAndCritique.12', 'tensionsAndCritique.13', 'tensionsAndCritique.14', 'tensionsAndCritique.15', 'tensionsAndCritique.16', 'tensionsAndCritique.17', 'tensionsAndCritique.18', 'tensionsAndCritique.19', 'tensionsAndCritique.20', 'tensionsAndCritique.21', 'tensionsAndCritique.22', 'tensionsAndCritique.23',
+  ...Array.from({ length: 24 }, (_, index) => [`lifeStages.${index}.title`, `lifeStages.${index}.period`, `lifeStages.${index}.description`]).flat()
+]);
+export const ROUTE_TRANSLATION_FIELDS = new Set(['title', 'description', 'sourceNote']);
 export const EVENT_ID_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 export const COORDINATE_PRECISION_VALUES = new Set(['exact', 'approximate', 'region', 'hidden']);
 export const LICENSE_STATUS_VALUES = new Set(['rights-unclear', 'per-item', 'third-party-terms', 'public-domain', 'licensed']);
@@ -91,25 +105,154 @@ const cleanList = (value, itemLength = 500, maxItems = 24) => {
   return [...new Set(list.map(item => clean(typeof item === 'object' ? item?.text : item, itemLength)).filter(Boolean))].slice(0, maxItems);
 };
 
-export function normalizeEventTranslations(value) {
+const SHA256_INITIAL = [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19];
+const SHA256_CONSTANTS = [
+  0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+  0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+  0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+  0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+  0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+  0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+  0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+  0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
+];
+const rotateRight = (value, bits) => (value >>> bits) | (value << (32 - bits));
+
+function sha256Hex(input) {
+  const bytes = new TextEncoder().encode(input);
+  const paddedLength = Math.ceil((bytes.length + 9) / 64) * 64;
+  const padded = new Uint8Array(paddedLength);
+  padded.set(bytes);
+  padded[bytes.length] = 0x80;
+  const view = new DataView(padded.buffer);
+  const bitLength = bytes.length * 8;
+  view.setUint32(paddedLength - 8, Math.floor(bitLength / 0x100000000), false);
+  view.setUint32(paddedLength - 4, bitLength >>> 0, false);
+  const hash = [...SHA256_INITIAL];
+  const words = new Uint32Array(64);
+  for (let offset = 0; offset < paddedLength; offset += 64) {
+    for (let index = 0; index < 16; index += 1) words[index] = view.getUint32(offset + index * 4, false);
+    for (let index = 16; index < 64; index += 1) {
+      const s0 = rotateRight(words[index - 15], 7) ^ rotateRight(words[index - 15], 18) ^ (words[index - 15] >>> 3);
+      const s1 = rotateRight(words[index - 2], 17) ^ rotateRight(words[index - 2], 19) ^ (words[index - 2] >>> 10);
+      words[index] = (words[index - 16] + s0 + words[index - 7] + s1) >>> 0;
+    }
+    let [a, b, c, d, e, f, g, h] = hash;
+    for (let index = 0; index < 64; index += 1) {
+      const s1 = rotateRight(e, 6) ^ rotateRight(e, 11) ^ rotateRight(e, 25);
+      const choice = (e & f) ^ (~e & g);
+      const temporary1 = (h + s1 + choice + SHA256_CONSTANTS[index] + words[index]) >>> 0;
+      const s0 = rotateRight(a, 2) ^ rotateRight(a, 13) ^ rotateRight(a, 22);
+      const majority = (a & b) ^ (a & c) ^ (b & c);
+      const temporary2 = (s0 + majority) >>> 0;
+      h = g; g = f; f = e; e = (d + temporary1) >>> 0; d = c; c = b; b = a; a = (temporary1 + temporary2) >>> 0;
+    }
+    hash[0] = (hash[0] + a) >>> 0; hash[1] = (hash[1] + b) >>> 0;
+    hash[2] = (hash[2] + c) >>> 0; hash[3] = (hash[3] + d) >>> 0;
+    hash[4] = (hash[4] + e) >>> 0; hash[5] = (hash[5] + f) >>> 0;
+    hash[6] = (hash[6] + g) >>> 0; hash[7] = (hash[7] + h) >>> 0;
+  }
+  return hash.map(value => value.toString(16).padStart(8, '0')).join('');
+}
+
+export function translationSourceDigest(value) {
+  const normalized = typeof value === 'string'
+    ? value.normalize('NFC')
+    : Array.isArray(value) ? value.map(item => String(item).normalize('NFC')) : value;
+  return `sha256:${sha256Hex(JSON.stringify(normalized))}`;
+}
+
+export function translationValueAtPath(value, path) {
+  return String(path).split('.').reduce((current, part) => current?.[Number.isInteger(Number(part)) ? Number(part) : part], value);
+}
+
+const translationEntryHasReviewProof = (entry, policyVersion = TRANSLATION_POLICY_VERSION) => entry?.status === 'reviewed'
+  && /^sha256:[a-f0-9]{64}$/.test(entry.sourceDigest || '')
+  && /^\d{4}-\d{2}-\d{2}$/.test(entry.reviewedAt || '')
+  && typeof entry.languageReviewer === 'string' && entry.languageReviewer.trim().length >= 2
+  && typeof entry.factReviewer === 'string' && entry.factReviewer.trim().length >= 2
+  && entry.policyVersion === policyVersion
+  && typeof entry.machineAssisted === 'boolean';
+
+const translationPlaceholders = value => [...String(value ?? '').matchAll(/\{([A-Za-z0-9_]+)\}/g)].map(match => match[1]).sort();
+const unsafeTranslationText = value => typeof value === 'string' && (value !== value.normalize('NFC') || /[\u202A-\u202E\u2066-\u2069]/u.test(value) || /<[^>]+>/u.test(value));
+const translationTextMatchesShape = (source, target) => Array.isArray(source)
+  ? Array.isArray(target) && source.length === target.length && target.every(item => typeof item === 'string' && item.trim())
+  : typeof target === 'string' && Boolean(target.trim());
+const translationHasMatchingPlaceholders = (source, target) => {
+  if (Array.isArray(source)) return Array.isArray(target) && source.every((item, index) => JSON.stringify(translationPlaceholders(item)) === JSON.stringify(translationPlaceholders(target[index])));
+  return JSON.stringify(translationPlaceholders(source)) === JSON.stringify(translationPlaceholders(target));
+};
+export function reviewedTranslationEntryIsAdmissible(entry, source, policyVersion = TRANSLATION_POLICY_VERSION) {
+  if (!translationEntryHasReviewProof(entry, policyVersion) || entry.sourceDigest !== translationSourceDigest(source)) return false;
+  if (!translationTextMatchesShape(source, entry.text) || !translationHasMatchingPlaceholders(source, entry.text)) return false;
+  const targetParts = Array.isArray(entry.text) ? entry.text : [entry.text];
+  if (targetParts.some(unsafeTranslationText)) return false;
+  if (JSON.stringify(source) === JSON.stringify(entry.text) && !(typeof entry.preserveReason === 'string' && entry.preserveReason.trim())) return false;
+  return true;
+}
+const isIdentitySensitiveTranslation = row => Boolean(row?.sensitivity && !['Niedrig', 'Nein', 'Keine'].includes(row.sensitivity))
+  || /Indigen|Schwarze|queer|feminis|antisex|antirassist|Sklav/i.test([row?.category, ...(row?.tags || [])].join(' '));
+
+export function normalizeReviewedTranslations(value, sourceRow = {}, allowedFields = EVENT_TRANSLATION_FIELDS) {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return {};
   const translations = {};
   for (const [language, fields] of Object.entries(value)) {
     if (!EVENT_TRANSLATION_LANGUAGES.has(language) || !fields || typeof fields !== 'object' || Array.isArray(fields)) continue;
     const reviewed = {};
     for (const [field, entry] of Object.entries(fields)) {
-      if (!EVENT_TRANSLATION_FIELDS.has(field) || !entry || typeof entry !== 'object' || Array.isArray(entry)) continue;
-      if (entry.status !== 'reviewed') continue;
+      if (!allowedFields.has(field) || !entry || typeof entry !== 'object' || Array.isArray(entry)) continue;
+      const source = translationValueAtPath(sourceRow, field);
+      if (!reviewedTranslationEntryIsAdmissible(entry, source)) continue;
       const text = Array.isArray(entry.text) ? cleanList(entry.text, 800) : clean(entry.text, 2400);
-      if ((Array.isArray(text) && text.length) || (typeof text === 'string' && text)) reviewed[field] = { text, status: 'reviewed' };
+      if ((Array.isArray(text) && text.length) || (typeof text === 'string' && text)) reviewed[field] = {
+        text,
+        status: 'reviewed',
+        sourceDigest: entry.sourceDigest,
+        reviewedAt: entry.reviewedAt,
+        languageReviewer: clean(entry.languageReviewer, 160),
+        factReviewer: clean(entry.factReviewer, 160),
+        policyVersion: entry.policyVersion,
+        machineAssisted: entry.machineAssisted,
+        ...(entry.preserveReason ? { preserveReason: clean(entry.preserveReason, 500) } : {}),
+        ...(entry.subjectMatterReviewer ? { subjectMatterReviewer: clean(entry.subjectMatterReviewer, 160) } : {})
+      };
     }
     if (Object.keys(reviewed).length) translations[language] = reviewed;
   }
   return translations;
 }
 
+export function normalizeEventTranslations(value, sourceRow = {}) {
+  return normalizeReviewedTranslations(value, sourceRow, EVENT_TRANSLATION_FIELDS);
+}
+
+function setTranslationValue(target, path, value) {
+  const parts = String(path).split('.');
+  let current = target;
+  for (let index = 0; index < parts.length - 1; index += 1) {
+    const part = Number.isInteger(Number(parts[index])) ? Number(parts[index]) : parts[index];
+    const existing = current?.[part];
+    current[part] = Array.isArray(existing) ? [...existing] : { ...(existing || {}) };
+    current = current[part];
+  }
+  const finalPart = Number.isInteger(Number(parts.at(-1))) ? Number(parts.at(-1)) : parts.at(-1);
+  current[finalPart] = Array.isArray(value) ? [...value] : value;
+}
+
+export function localizeTranslatedRecord(record, language = 'de', allowedFields = EVENT_TRANSLATION_FIELDS) {
+  if (language === 'de') return { ...record };
+  const localized = { ...record };
+  for (const [field, entry] of Object.entries(record?.translations?.[language] || {})) {
+    const source = translationValueAtPath(record, field);
+    if (!allowedFields.has(field) || !reviewedTranslationEntryIsAdmissible(entry, source)) continue;
+    setTranslationValue(localized, field, entry.text);
+  }
+  return localized;
+}
+
 export function localizeEvent(event, language = 'de') {
-  const localized = { ...event };
+  const localized = localizeTranslatedRecord(event, language, EVENT_TRANSLATION_FIELDS);
   const reviewed = event?.translations?.[language] || {};
   const translatedFields = [];
   const originalFields = [...EVENT_TRANSLATION_FIELDS].filter(field => {
@@ -117,8 +260,8 @@ export function localizeEvent(event, language = 'de') {
     return Array.isArray(value) ? value.length > 0 : Boolean(value);
   });
   for (const [field, entry] of Object.entries(reviewed)) {
-    if (entry?.status !== 'reviewed' || !EVENT_TRANSLATION_FIELDS.has(field)) continue;
-    localized[field] = Array.isArray(entry.text) ? [...entry.text] : entry.text;
+    const source = event?.[field];
+    if (!EVENT_TRANSLATION_FIELDS.has(field) || !reviewedTranslationEntryIsAdmissible(entry, source)) continue;
     translatedFields.push(field);
   }
   localized.localization = {
@@ -208,7 +351,7 @@ export function normalizeEvent(row, index = 0) {
     uncertainty: clean(row.uncertainty, 1200) || '',
     sensitivity: clean(row.sensitivity, 240) || '',
     reviewStatus: clean(row.review_status ?? row.reviewStatus, 120) || 'Ungeprüfter Bestandseintrag',
-    translations: normalizeEventTranslations(row.translations),
+    translations: normalizeEventTranslations(row.translations, row),
     difficulty: Math.min(3, Math.max(1, Number(row.difficulty) || 1)),
     featured: Boolean(row.featured)
   };
@@ -400,12 +543,23 @@ export function validateEditorialFields(row) {
         }
         for (const [field, entry] of Object.entries(fields)) {
           if (!EVENT_TRANSLATION_FIELDS.has(field)) issues.push(`translations.${language}.${field} ist kein übersetzbares Feld`);
-          if (!entry || typeof entry !== 'object' || Array.isArray(entry) || entry.status !== 'reviewed') {
-            issues.push(`translations.${language}.${field} benötigt status \"reviewed\"`);
+          if (!entry || typeof entry !== 'object' || Array.isArray(entry) || !['draft', 'reviewed', 'stale'].includes(entry.status)) {
+            issues.push(`translations.${language}.${field} benötigt status draft, reviewed oder stale`);
             continue;
           }
-          const validText = typeof entry.text === 'string' ? Boolean(entry.text.trim()) : Array.isArray(entry.text) && entry.text.length > 0 && entry.text.every(item => typeof item === 'string' && item.trim());
-          if (!validText) issues.push(`translations.${language}.${field} benötigt geprüften Text`);
+          const source = row[field];
+          if ((Array.isArray(source) && !source.length) || (!Array.isArray(source) && !(typeof source === 'string' && source.trim()))) {
+            issues.push(`translations.${language}.${field} hat kein vorhandenes Ausgangsfeld`);
+            continue;
+          }
+          if (!translationTextMatchesShape(source, entry.text)) issues.push(`translations.${language}.${field} muss Typ und Listenlänge des Ausgangsfelds bewahren`);
+          const targetParts = Array.isArray(entry.text) ? entry.text : [entry.text];
+          if (targetParts.some(unsafeTranslationText)) issues.push(`translations.${language}.${field} benötigt NFC-Text ohne Bidi-Steuerzeichen oder HTML`);
+          if (!translationHasMatchingPlaceholders(source, entry.text)) issues.push(`translations.${language}.${field} muss alle Platzhalter unverändert bewahren`);
+          if (JSON.stringify(source) === JSON.stringify(entry.text) && !(typeof entry.preserveReason === 'string' && entry.preserveReason.trim())) issues.push(`translations.${language}.${field} benötigt bei identischem Text eine preserveReason`);
+          if (entry.status === 'reviewed' && !translationEntryHasReviewProof(entry)) issues.push(`translations.${language}.${field} benötigt vollständigen menschlichen Reviewnachweis für Policy ${TRANSLATION_POLICY_VERSION}`);
+          if (entry.status === 'reviewed' && translationEntryHasReviewProof(entry) && entry.sourceDigest !== translationSourceDigest(source)) issues.push(`translations.${language}.${field} ist stale: sourceDigest stimmt nicht mit dem aktuellen Ausgangsfeld überein`);
+          if (entry.status === 'reviewed' && isIdentitySensitiveTranslation(row) && !(typeof entry.subjectMatterReviewer === 'string' && entry.subjectMatterReviewer.trim().length >= 2)) issues.push(`translations.${language}.${field} benötigt für sensible oder identitätsbezogene Inhalte einen Fachreview`);
         }
       }
     }

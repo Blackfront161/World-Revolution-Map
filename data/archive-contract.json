@@ -35,6 +35,36 @@
     "sourceTypes": ["primary", "community", "movement", "archive", "oral-history", "museum", "academic", "public-institution", "human-rights"],
     "quotationRule": "Unbelegte direkte Zitate und eigenständige Zitatfelder sind unzulässig. Paraphrasen bleiben als redaktionelle Synthese gekennzeichnet."
   },
+  "translationModel": {
+    "matrixVersion": 1,
+    "sourceLanguage": "de",
+    "languages": ["de", "en", "es", "fr", "it", "pt", "ru", "el", "tr"],
+    "policyVersion": "1.0.0",
+    "statusValues": ["draft", "reviewed", "stale"],
+    "reviewRequirements": ["sourceDigest", "reviewedAt", "languageReviewer", "factReviewer", "policyVersion", "machineAssisted"],
+    "manifestReviewRequirements": ["sourceDigest", "targetDigest", "reviewedAt", "languageReviewer", "factReviewer", "policyVersion", "machineAssisted"],
+    "reviewRule": "reviewed wird erst nach menschlicher Sprach- und Faktenprüfung vergeben. sourceDigest bindet die Übersetzung an den NFC-normalisierten Ausgangstext; Änderungen am Ausgangstext machen den Eintrag stale.",
+    "qualityRule": "Platzhalter und Listenstruktur bleiben identisch. Texte sind NFC-normalisiert und enthalten weder Bidi-Steuerzeichen noch HTML. Identischer Zieltext benötigt eine begründete preserve-Entscheidung. Sensible oder identitätsbezogene Inhalte benötigen einen benannten Fachreview.",
+    "batchRule": "Freigegebene Chargen erlauben keinen Fallback und umfassen höchstens 25 IDs beziehungsweise 300 Textsegmente; Biografiechargen höchstens fünf Personen.",
+    "fallbackRule": "Geerbte oder ersatzweise angezeigte Texte gelten nicht als geprüfte Übersetzung. Nur sprachspezifisch gepflegte UI-Schlüssel oder Datenfelder mit status reviewed zählen als abgedeckt.",
+    "eventFields": [
+      "title", "location", "description", "significance", "clue", "demands", "participants",
+      "powerStructures", "tactics", "voices", "immediateConsequences", "longTermImpact",
+      "repression", "humanCosts", "aftermath", "openQuestions", "uncertainty", "sensitivity",
+      "bottomUpPressure", "achievement", "limits", "category", "country", "continent"
+    ],
+    "biographyFields": [
+      "places.*", "communities.*", "shortDescription", "lifeStages.*.title", "lifeStages.*.period",
+      "lifeStages.*.description", "ideasAndPractices", "organizingAndAchievements",
+      "repressionAndRisks", "tensionsAndCritique", "legacy", "sensitivity.displayRule"
+    ],
+    "routeFields": ["title", "description", "sourceNote"],
+    "metadataFields": ["sourceType", "sourceQuality", "reviewStatus"],
+    "inventoryFile": "data/language-inventory.json",
+    "baselineFile": "data/language-coverage-baseline.json",
+    "batchFile": "data/translation-batches.json",
+    "reviewManifestFile": "data/translation-review-manifest.json"
+  },
   "achievementModel": {
     "category": "Soziale Errungenschaft",
     "requiredPerspectiveFields": ["bottomUpPressure", "achievement", "limits"],

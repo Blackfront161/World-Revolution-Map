@@ -67,7 +67,7 @@
     "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "hoch", "displayRule": "Koloniale Gewalt, Versklavung und Tötungsgefahr sachlich darstellen; keine spielerische Belohnung oder exakte Verortung historisch unsicherer Rückzugsorte."},
     "provenance": {"method": "Deutschsprachige redaktionelle Synthese aus institutionellen Quellen; strittige Angaben ausdrücklich als unsicher markiert.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
-    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweiligen Herausgebern."}
+    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweils herausgebenden Stellen."}
   },
   {
     "id": "bio-harriet-tubman",
@@ -145,7 +145,7 @@
     "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "hoch", "displayRule": "Sklaverei, körperliche Gewalt und Krieg sachlich benennen; keine Gamifizierung von Flucht, Verletzungen oder bewaffneten Operationen."},
     "provenance": {"method": "Deutschsprachige redaktionelle Synthese aus Bundesinstitutionen und deren Primärquellenführern; unsicheres Geburtsdatum nicht präzisiert.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
-    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweiligen Herausgebern."}
+    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweils herausgebenden Stellen."}
   },
   {
     "id": "bio-robert-smalls",
@@ -223,7 +223,7 @@
     "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "hoch", "displayRule": "Sklaverei, Krieg und rassistische Wahlgewalt nüchtern darstellen; Schiffsübernahme nicht als spielerischen Coup inszenieren."},
     "provenance": {"method": "Deutschsprachige Synthese aus National Park Service, Kongress- und Marinegeschichte; umstrittene oder politisierte Punkte kontextualisiert.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
-    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweiligen Herausgebern."}
+    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweils herausgebenden Stellen."}
   },
   {
     "id": "bio-yaa-asantewaa",
@@ -242,7 +242,7 @@
       {
         "period": "1896–1900",
         "title": "Kolonialer Druck und Exil der Asante-Führung",
-        "description": "Nach der britischen Gefangennahme und Verbannung von Asantehene Prempeh I und weiteren Amtsträgern übernahm sie als Regentin besondere Verantwortung in Ejisu. Die Forderung nach dem Goldenen Stuhl verschärfte 1900 die Konfrontation."
+        "description": "Nach der britischen Gefangennahme und Verbannung von Asantehene Prempeh I und weiteren Personen in politischen Ämtern übernahm sie als Regentin besondere Verantwortung in Ejisu. Die Forderung nach dem Goldenen Stuhl verschärfte 1900 die Konfrontation."
       },
       {
         "period": "1900–1921",
@@ -293,7 +293,7 @@
     "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "hoch", "displayRule": "Kolonialkrieg, Verluste und Deportation sachlich darstellen; keine Heroisierung von Gewalt und keine ungesicherten Reden als Zitate verwenden."},
     "provenance": {"method": "Redaktionelle Synthese aus Museums-, Provenienz- und Fachliteratur; unsicheres Geburtsdatum auf unknown gesetzt.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
-    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweiligen Herausgebern."}
+    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweils herausgebenden Stellen."}
   },
   {
     "id": "bio-lamine-senghor",
@@ -371,7 +371,7 @@
     "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "mittel", "displayRule": "Kolonialkrieg, Krankheit und historische rassistische Organisationsnamen kontextualisieren; diskriminierende Begriffe nicht als heutige Kategorien verwenden."},
     "provenance": {"method": "Synthese aus Nationalbibliothek und peer-reviewter Forschung mit ausgewerteten Polizei- und Bewegungsquellen.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
-    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweiligen Herausgebern."}
+    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweils herausgebenden Stellen."}
   },
   {
     "id": "bio-funmilayo-ransome-kuti",
@@ -441,7 +441,7 @@
     "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "hoch", "displayRule": "Koloniale Repression und den tödlichen Militärangriff sachlich darstellen; Tod nicht als dramatischen Schluss- oder Belohnungsmoment inszenieren."},
     "provenance": {"method": "Synthese aus UNESCO-/UN-Katalogen und institutionell archiviertem Lehrmaterial; kollektive Rolle der Abeokuta-Frauen ausdrücklich berücksichtigt.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
-    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweiligen Herausgebern."}
+    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweils herausgebenden Stellen."}
   },
   {
     "id": "bio-ella-baker",
@@ -519,7 +519,7 @@
     "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "mittel", "displayRule": "Rassistische Gewalt und geschlechtsspezifische Abwertung kontextualisieren; Basisarbeit nicht in ein heroisches Punktesystem übersetzen."},
     "provenance": {"method": "Synthese aus National Park Service sowie Primärquellen-Findbüchern von NYPL und National Archives.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
-    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweiligen Herausgebern."}
+    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweils herausgebenden Stellen."}
   },
   {
     "id": "bio-claudia-jones",
@@ -597,7 +597,7 @@
     "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "mittel", "displayRule": "Haft, Abschiebung und rassistische Gewalt sachlich darstellen; historische diskriminierende Begriffe nur in Quellentiteln und mit Kontext anzeigen."},
     "provenance": {"method": "Synthese aus britischem Nationalarchiv und digitalisierten Primärtexten; Zuschreibungen zur Carnival-Geschichte bewusst kollektiv formuliert.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
-    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweiligen Herausgebern."}
+    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweils herausgebenden Stellen."}
   },
   {
     "id": "bio-andree-blouin",
@@ -631,7 +631,7 @@
     ],
     "organizingAndAchievements": [
       "mobilisierte Frauen für Guineas und Kongos Unabhängigkeitskampagnen",
-      "verband politische Akteure und Bewegungen über Zentral- und Westafrika hinweg",
+      "verband politische Akteur*innen und Bewegungen über Zentral- und Westafrika hinweg",
       "hinterließ mit ihrer Autobiografie eine seltene Innenperspektive einer Schwarzen Organisatorin der Dekolonisierung"
     ],
     "repressionAndRisks": [
@@ -675,7 +675,7 @@
     "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "hoch", "displayRule": "Kindesmisshandlung, rassistische Institutionen, Kolonialgewalt und Ausweisung zurückhaltend darstellen; keine unnötigen Details und keine Dramatisierung."},
     "provenance": {"method": "Quellenkritische Synthese aus Primärquellenkatalog, Universitätsressource und Fachkapitel; strittige Amtsbezeichnungen vermieden.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
-    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweiligen Herausgebern."}
+    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweils herausgebenden Stellen."}
   },
   {
     "id": "bio-bayard-rustin",
@@ -694,7 +694,7 @@
       {
         "period": "1948–1963",
         "title": "Strategie, Ausbildung und March on Washington",
-        "description": "Rustin vermittelte Methoden gewaltfreier Massenaktion, beriet Martin Luther King Jr. und andere Aktivist*innen und koordinierte 1963 die komplexe Logistik des March on Washington for Jobs and Freedom. Gegner nutzten seine Sexualität und frühere Parteiverbindungen zur Diffamierung."
+        "description": "Rustin vermittelte Methoden gewaltfreier Massenaktion, beriet Martin Luther King Jr. und andere Aktivist*innen und koordinierte 1963 die komplexe Logistik des March on Washington for Jobs and Freedom. Politische Gegner*innen nutzten seine Sexualität und frühere Parteiverbindungen zur Diffamierung."
       },
       {
         "period": "1964–1987",
@@ -753,7 +753,7 @@
     "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "mittel", "displayRule": "Homophobe Strafverfolgung und Diffamierung sachlich und ohne intime Details darstellen; keine Stigmatisierung durch historische Gesetzessprache."},
     "provenance": {"method": "Synthese aus NPS-Denkmalforschung und dem Primärquellen-Findbuch der Library of Congress.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
-    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweiligen Herausgebern."}
+    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweils herausgebenden Stellen."}
   },
   {
     "id": "bio-wangari-maathai",
@@ -839,6 +839,6 @@
     "review": {"status": "redaktionell geprüft", "reviewedAt": "2026-08-24"},
     "sensitivity": {"level": "mittel", "displayRule": "Polizeigewalt und Repression sachlich darstellen; keine aktuellen Standorte gefährdeter Aktivist*innen oder Baumschulen nennen."},
     "provenance": {"method": "Synthese aus Nobel-Dokumentation, Maathais eigener Nobelvorlesung und institutioneller Umweltpreis-Biografie; Baumzahlen nicht absolut gesetzt.", "checkedAt": "2026-08-24", "quotationPolicy": "Keine direkten Zitate übernommen."},
-    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweiligen Herausgebern."}
+    "license": {"status": "rights-unclear", "notice": "Rechte am redaktionellen Text sind bis zur Entscheidung der Rechteinhaber*innen nicht geklärt; Quellenrechte verbleiben bei den jeweils herausgebenden Stellen."}
   }
 ]

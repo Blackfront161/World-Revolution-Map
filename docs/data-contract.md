@@ -38,7 +38,11 @@ Die ursprünglichen 53 sensiblen Ereignisse stehen als `baselineSensitiveIds` im
 - Unbelegte Zitatfelder sind unzulässig. Die vorliegenden Texte paraphrasieren; direkte Stimmen müssten künftig einzeln und unmittelbar belegt werden.
 - Lebensdaten dürfen als unsicher oder unbekannt erhalten bleiben. Der Zeitraumfilter erzeugt daraus keine falsche Genauigkeit.
 
-Derzeit enthält der Katalog 40 Lebenswege und 97 Quellen. Die UI-Langtexte sind vollständig neunsprachig; die historischen Biografietexte bleiben als deutsche Originalfassung gekennzeichnet.
+Derzeit enthält der Katalog 40 Lebenswege und 97 Quellen. Alle UI-Schlüssel besitzen in neun Sprachen einen expliziten Zieltext, sind aber mangels menschlichem Reviewmanifest als `present-unreviewed` inventarisiert. Die historischen Biografietexte bleiben als deutsche Originalfassung gekennzeichnet.
+
+## Übersetzungsvertrag
+
+`translationModel` im maschinenlesbaren Vertrag und `docs/translation-workflow.md` definieren neun explizite Sprachen, exakte Source-Digests, Stale-Erkennung, menschliche Sprach-/Faktenprüfung, Listen- und Platzhaltertreue sowie die No-Fallback-Regel für freigegebene Chargen. Codebasierte Texte erhalten ihren konstruktiven Reviewpfad über `data/translation-review-manifest.json` mit Source- und Target-Digest. Ereignis-, Biografie- und Routentexte werden über denselben Digest-gebundenen Laufzeitpfad lokalisiert. Die vollständige Matrix und ihre Zieltext-Digests schützende No-Regression-Baseline werden eingecheckt; das Strict-Gate bleibt ein separates Zielgate und darf erwartete Lücken nicht als bestandene Übersetzung ausgeben.
 
 ## Redaktionelle Überschreibungen
 

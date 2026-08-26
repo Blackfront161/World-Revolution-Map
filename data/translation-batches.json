@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "policyVersion": "1.0.0",
+  "limits": {
+    "maximumIds": 25,
+    "maximumSegments": 300,
+    "maximumBiographies": 5
+  },
+  "releasedBatches": []
+}

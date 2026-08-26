@@ -274,7 +274,7 @@ test('Offline-Shell aktiviert nur eine vollständige atomare lokale Generation',
   const biographyCatalog = JSON.parse(await readFile(new URL('data/biography-catalog.json', root), 'utf8'));
   assert.equal(eventCatalog.length, 25);
   assert.equal(biographyCatalog.files.length, 3);
-  assert.match(worker, /atlas-local-v2\.9\.0-rc2-r9/);
+  assert.match(worker, /atlas-local-v2\.9\.0-rc2-r11/);
   const coreMatch = worker.match(/const CORE_RESOURCES = \[([\s\S]*?)\];/);
   assert.ok(coreMatch, 'CORE_RESOURCES muss für die Offline-Generation deklarativ bleiben');
   const coreResources = [...coreMatch[1].matchAll(/'([^']+)'/g)].map(match => match[1]);
@@ -286,7 +286,7 @@ test('Offline-Shell aktiviert nur eine vollständige atomare lokale Generation',
   }
   assert.equal(
     digest.digest('hex'),
-    'e1e2c4f626be7f4cc886843ff1c7cfdc060d1c9325586e4f70e4e86b33036e21',
+    'a5cabb165c7c2c430891e0ee5b89f25962ffed82bf7cdf42cc3ae82198240d14',
     'Vorab gecachte Kernressourcen haben sich geändert: CACHE_VERSION erhöhen und den geprüften Generations-Digest aktualisieren.'
   );
   assert.match(worker, /STAGING_CACHE/);
@@ -316,6 +316,15 @@ test('Fehlerhafte lokale Datenladung endet in einem sichtbaren, lokalisierten Zu
   assert.match(script, /setDataStatus\(i18n\.t\('archiveLoadFailed'\), 'error'\)/);
   assert.equal((translations.match(/archiveLoadFailed:/g) || []).length, 9);
   assert.equal((translations.match(/archiveLoadFailedBody:/g) || []).length, 9);
+});
+
+test('Biografien und Routen werden auch nach einem Sprachwechsel digestgebunden neu lokalisiert', async () => {
+  const script = await readFile(new URL('script.js', root), 'utf8');
+  const biographies = await readFile(new URL('src/biography-core.js', root), 'utf8');
+  assert.match(script, /app\.routes = localizeRoutes\(app\.routeSources\)/);
+  assert.match(script, /app\.biographies = localizeBiographies\(app\.biographySources\)/);
+  assert.match(script, /localizeTranslatedRecord\(route, i18n\.language, ROUTE_TRANSLATION_FIELDS\)/);
+  assert.match(biographies, /localizeTranslatedRecord\(row, defaults\.language \|\| 'de', BIOGRAPHY_TRANSLATION_FIELDS\)/);
 });
 
 test('Remote-Daten und -Bilder sind im RC standardmäßig deaktiviert', async () => {

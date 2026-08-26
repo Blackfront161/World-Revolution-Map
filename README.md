@@ -97,10 +97,14 @@ Danach `http://localhost:4173` aufrufen.
 ```bash
 npm test
 npm run verify
+npm run check:translations
+npm run check:inclusive-language
 npm run check:sources
 ```
 
 Benötigt wird Node.js 20 oder neuer. Es müssen keine Pakete installiert werden. Die Quellenprüfung benötigt Internetzugang und weist 401-, 403-, 405- und 429-Antworten separat als automatisiert blockiert aus; 404/410 bleiben definitive Fehler.
+
+Der Übersetzungs- und Inclusive-Language-Prozess ist in [docs/translation-workflow.md](docs/translation-workflow.md) dokumentiert. `npm run check:translations:strict` ist das bewusst noch rote Vollständigkeits-Zielgate und gehört nicht zum normalen PR-Gate.
 
 ## Datenquellen
 

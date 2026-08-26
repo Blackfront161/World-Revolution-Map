@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { biographyYearLabel, filterBiographies, normalizeBiography, validateBiography } from '../src/biography-core.js';
-import { normalizeSearchText } from '../src/game-core.js';
+import { normalizeSearchText, translationSourceDigest } from '../src/game-core.js';
 
 const raw = {
   id: 'bio-example-person',
@@ -38,6 +38,55 @@ test('normalisiert und validiert eigenständige Biografien ohne Koordinaten', ()
   assert.ok(validateBiography({ ...raw, quotes: ['unbelegt'] }, new Set(['event-one'])).some(issue => issue.includes('Zitatfelder')));
   assert.ok(validateBiography({ ...raw, license: 'Redaktioneller Text: CC BY 4.0' }, new Set(['event-one'])).some(issue => issue.includes('Lizenzgeber')));
   assert.deepEqual(validateBiography({ ...raw, license: { status: 'CC BY 4.0', licensor: 'Example Editorial Collective', url: 'https://creativecommons.org/licenses/by/4.0/', scope: 'summary and editorial fields' } }, new Set(['event-one'])), []);
+});
+
+test('wendet nur digestgebundene reviewed-Biografieübersetzungen auf verschachtelte Pfade an', () => {
+  const sourceDescription = 'Aufbau lokaler Strukturen.';
+  const { summary: _summary, lifePhases: _lifePhases, ...catalogStyleRaw } = raw;
+  const translated = {
+    ...catalogStyleRaw,
+    shortDescription: 'Eine deutsche Kurzbiografie.',
+    lifeStages: [{ title: 'Organisierung', period: '1920–1940', description: sourceDescription }],
+    translations: {
+      en: {
+        shortDescription: {
+          text: 'An English short biography.', status: 'reviewed', sourceDigest: translationSourceDigest('Eine deutsche Kurzbiografie.'),
+          reviewedAt: '2026-08-26', languageReviewer: 'Human EN Reviewer', factReviewer: 'Human Fact Reviewer', policyVersion: '1.0.0', machineAssisted: false
+        },
+        'lifeStages.0.description': {
+          text: 'Building local structures.', status: 'reviewed', sourceDigest: translationSourceDigest(sourceDescription),
+          reviewedAt: '2026-08-26', languageReviewer: 'Human EN Reviewer', factReviewer: 'Human Fact Reviewer', policyVersion: '1.0.0', machineAssisted: false
+        }
+      }
+    }
+  };
+  const bio = normalizeBiography(translated, { language: 'en' });
+  assert.equal(bio.summary, 'An English short biography.');
+  assert.equal(bio.lifePhases[0].description, 'Building local structures.');
+  translated.lifeStages[0].description = 'Geänderter Ausgangstext.';
+  assert.equal(normalizeBiography(translated, { language: 'en' }).lifePhases[0].description, 'Geänderter Ausgangstext.');
+});
+
+test('Biografien verwerfen reviewed-markierte Zieltexte mit HTML, Bidi, Nicht-NFC, Placeholder- oder Formfehlern', () => {
+  const cases = [
+    ['HTML', 'Eine Kurzbiografie.', '<b>unsafe</b>'],
+    ['Bidi', 'Eine Kurzbiografie.', 'Unsafe\u202E text'],
+    ['NFC', 'Café-Biografie.', 'Cafe\u0301 biography'],
+    ['Placeholder', 'Biografie {count}', 'Biography {total}'],
+    ['Form', 'Eine Kurzbiografie.', ['Wrong list form']]
+  ];
+  for (const [label, source, target] of cases) {
+    const row = {
+      ...raw,
+      summary: undefined,
+      shortDescription: source,
+      translations: { en: { shortDescription: {
+        text: target, status: 'reviewed', sourceDigest: translationSourceDigest(source), reviewedAt: '2026-08-26',
+        languageReviewer: 'Human EN Reviewer', factReviewer: 'Human Fact Reviewer', policyVersion: '1.0.0', machineAssisted: false
+      } } }
+    };
+    assert.equal(normalizeBiography(row, { language: 'en' }).summary, source, label);
+  }
 });
 
 test('filtert Lebenswege tolerant nach Region, Tradition und Zeitraum', () => {

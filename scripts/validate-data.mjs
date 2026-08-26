@@ -1,6 +1,9 @@
 import { readFile } from 'node:fs/promises';
 import {
   EVENT_ID_PATTERN,
+  EVENT_TRANSLATION_FIELDS,
+  EVENT_TRANSLATION_LANGUAGES,
+  TRANSLATION_POLICY_VERSION,
   isValidEvent,
   normalizeEvent,
   validateContractFields,
@@ -71,6 +74,19 @@ for (const field of ['code', 'data', 'images', 'mapData', 'notice']) {
 }
 if (!contract.mapModel?.hiddenCoordinateRule || contract.mapModel.layerMode !== 'multi-select-or') throw new Error('archive-contract.json: Kartenmodell fehlt.');
 if (contract.achievementModel?.category !== 'Soziale Errungenschaft' || !Array.isArray(contract.achievementModel?.requiredPerspectiveFields)) throw new Error('archive-contract.json: Errungenschaftsmodell fehlt.');
+const translationModel = contract.translationModel;
+if (!translationModel || translationModel.matrixVersion !== 1 || translationModel.policyVersion !== TRANSLATION_POLICY_VERSION) throw new Error('archive-contract.json: Übersetzungsmodell fehlt oder hat die falsche Policyversion.');
+if (JSON.stringify(translationModel.languages) !== JSON.stringify(['de', ...EVENT_TRANSLATION_LANGUAGES])) throw new Error('archive-contract.json: Übersetzungssprachen stimmen nicht mit der Laufzeit überein.');
+if (new Set(translationModel.eventFields).size !== EVENT_TRANSLATION_FIELDS.size || [...EVENT_TRANSLATION_FIELDS].some(field => !translationModel.eventFields.includes(field))) throw new Error('archive-contract.json: übersetzbare Ereignisfelder stimmen nicht mit der Laufzeit überein.');
+for (const field of ['sourceDigest', 'reviewedAt', 'languageReviewer', 'factReviewer', 'policyVersion', 'machineAssisted']) if (!translationModel.reviewRequirements.includes(field)) throw new Error(`archive-contract.json: Reviewpflicht ${field} fehlt.`);
+for (const field of ['sourceDigest', 'targetDigest', 'reviewedAt', 'languageReviewer', 'factReviewer', 'policyVersion', 'machineAssisted']) if (!translationModel.manifestReviewRequirements?.includes(field)) throw new Error(`archive-contract.json: Manifest-Reviewpflicht ${field} fehlt.`);
+if (translationModel.reviewManifestFile !== 'data/translation-review-manifest.json') throw new Error('archive-contract.json: Reviewmanifest-Pfad fehlt oder ist inkonsistent.');
+
+const translationBatches = JSON.parse(await readFile('data/translation-batches.json', 'utf8'));
+if (translationBatches.schemaVersion !== 1 || translationBatches.policyVersion !== TRANSLATION_POLICY_VERSION || !Array.isArray(translationBatches.releasedBatches)) throw new Error('translation-batches.json: ungültige Struktur oder Policyversion.');
+if (translationBatches.limits?.maximumIds !== 25 || translationBatches.limits?.maximumSegments !== 300 || translationBatches.limits?.maximumBiographies !== 5) throw new Error('translation-batches.json: Chargengrenzen stimmen nicht mit der Reviewpolicy überein.');
+const translationReviewManifest = JSON.parse(await readFile('data/translation-review-manifest.json', 'utf8'));
+if (translationReviewManifest.schemaVersion !== 1 || translationReviewManifest.policyVersion !== TRANSLATION_POLICY_VERSION || !Array.isArray(translationReviewManifest.reviews)) throw new Error('translation-review-manifest.json: ungültige Struktur oder Policyversion.');
 
 if (metadata.schemaVersion !== contract.schemaVersion || !Array.isArray(metadata.events)) throw new Error('event-metadata.json: ungültige Struktur.');
 const metadataIds = new Set();

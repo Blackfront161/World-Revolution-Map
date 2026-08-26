@@ -15,6 +15,8 @@ import {
   normalizeEvent,
   normalizeSearchText,
   normalizeTimeRange,
+  localizeTranslatedRecord,
+  ROUTE_TRANSLATION_FIELDS,
   resolveEventId,
   seededShuffle,
   solidarityResult
@@ -73,7 +75,9 @@ const app = {
   popup: null,
   events: [],
   biographies: [],
+  biographySources: [],
   routes: [],
+  routeSources: [],
   relations: [],
   taxonomy: { time: DEFAULT_TIME, layers: [], tactics: [], mapStyles: [], network: { maximumNodes: 72, maximumEdges: 140 } },
   filteredEvents: [],
@@ -196,6 +200,8 @@ function changeLanguage(language) {
   i18n.setLanguage(language);
   applyLanguage();
   if (app.events.length) {
+    app.routes = localizeRoutes(app.routeSources);
+    app.biographies = localizeBiographies(app.biographySources);
     populateCategories();
     populateLayerFilters();
     populateMapStyles();
@@ -343,7 +349,8 @@ async function loadEvents() {
   const metadataById = new Map((metadata.events || []).map(row => [row.id, row]));
   const editorialById = overrides.events || {};
   const enrichRow = row => ({ ...row, ...(editorialById[row.id] || {}), ...(metadataById.get(row.id) || {}), schemaVersion: metadata.schemaVersion || 1 });
-  app.routes = Array.isArray(routes.routes) ? routes.routes : [];
+  app.routeSources = Array.isArray(routes.routes) ? routes.routes : [];
+  app.routes = localizeRoutes(app.routeSources);
   app.taxonomy = taxonomy;
   app.relations = Array.isArray(relations.relations) ? relations.relations : [];
   app.filters = sanitizeViewFilters(app.filters);
@@ -386,10 +393,20 @@ async function loadBiographies() {
   const entries = catalog.files.filter(entry => entry && typeof entry === 'object' && /^[a-z0-9-]+\.json$/i.test(entry.file));
   if (entries.length !== catalog.files.length) throw new Error('Biografiekatalog enthält ungültige Einträge.');
   const payloads = await Promise.all(entries.map(async entry => ({ payload: await fetchLocalJson(`./data/${entry.file}`), entry })));
-  return payloads
-    .flatMap(({ payload, entry }) => (Array.isArray(payload) ? payload : Array.isArray(payload?.biographies) ? payload.biographies : []).map(row => normalizeBiography(row, entry)))
+  app.biographySources = payloads
+    .flatMap(({ payload, entry }) => (Array.isArray(payload) ? payload : Array.isArray(payload?.biographies) ? payload.biographies : []).map(row => ({ row, entry })));
+  return localizeBiographies(app.biographySources);
+}
+
+function localizeBiographies(sources) {
+  return sources
+    .map(({ row, entry }) => normalizeBiography(row, { ...entry, language: i18n.language }))
     .filter(bio => bio.id && bio.name)
     .sort((a, b) => a.name.localeCompare(b.name, i18n.locale));
+}
+
+function localizeRoutes(sources) {
+  return sources.map(route => localizeTranslatedRecord(route, i18n.language, ROUTE_TRANSLATION_FIELDS));
 }
 
 function mergeEvents(fallback, remote) {
