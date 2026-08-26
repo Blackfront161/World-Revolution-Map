@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'atlas-local-v2.9.0-rc2-r5';
+const CACHE_VERSION = 'atlas-local-v2.9.0-rc2-r6';
 const STAGING_CACHE = `${CACHE_VERSION}-installing`;
 const MANIFEST_URL = './__offline_manifest__';
 const CORE_RESOURCES = [

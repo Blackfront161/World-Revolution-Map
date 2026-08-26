@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { isValidEvent, normalizeEvent } from '../src/game-core.js';
 
@@ -236,7 +237,21 @@ test('Offline-Shell aktiviert nur eine vollständige atomare lokale Generation',
   const biographyCatalog = JSON.parse(await readFile(new URL('data/biography-catalog.json', root), 'utf8'));
   assert.equal(eventCatalog.length, 24);
   assert.equal(biographyCatalog.files.length, 3);
-  assert.match(worker, /atlas-local-v2\.9\.0-rc2-r5/);
+  assert.match(worker, /atlas-local-v2\.9\.0-rc2-r6/);
+  const coreMatch = worker.match(/const CORE_RESOURCES = \[([\s\S]*?)\];/);
+  assert.ok(coreMatch, 'CORE_RESOURCES muss für die Offline-Generation deklarativ bleiben');
+  const coreResources = [...coreMatch[1].matchAll(/'([^']+)'/g)].map(match => match[1]);
+  const digest = createHash('sha256');
+  for (const resource of coreResources) {
+    const normalizedPath = resource === './' ? 'index.html' : resource.replace(/^\.\//, '');
+    const content = (await readFile(new URL(normalizedPath, root), 'utf8')).replace(/\r\n/g, '\n');
+    digest.update(`${resource}\0${content}\0`);
+  }
+  assert.equal(
+    digest.digest('hex'),
+    'bde8d655311b8c9b32f4a6980d85d8229b6bf56259fd7e0546f066e0245479da',
+    'Vorab gecachte Kernressourcen haben sich geändert: CACHE_VERSION erhöhen und den geprüften Generations-Digest aktualisieren.'
+  );
   assert.match(worker, /STAGING_CACHE/);
   assert.match(worker, /MANIFEST_URL/);
   assert.match(worker, /catalogFileUrls\(eventCatalog\)/);

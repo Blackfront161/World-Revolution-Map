@@ -12,7 +12,7 @@ Prüfdatum: 26. August 2026. Diese Datei trennt automatisierte beziehungsweise i
 | Biografien | 40 koordinatenfreie Biografien, 97 HTTPS-Quellen, 3 katalogisierte Dateien |
 | Archivmodelle | 4 Routen, 10 Layer, 10 Taktiken, 24 Beziehungen, 3 Kartenstile |
 | Tests | 42/42 bestanden, 0 fehlgeschlagen |
-| Quellencheck | 363/769 direkt erreichbar; 394 automatisiert mit 401/403/405/429 blockiert; 12 nach drei Versuchen unentscheidbar; kein definitiver HTTP-Fehler im Gate |
+| Quellencheck | 475/769 direkt erreichbar; 282 automatisiert mit 401/403/405/429 blockiert; 12 nach drei Versuchen unentscheidbar; kein definitiver HTTP-Fehler im Gate |
 | Remote-Minimierung | Supabase standardmäßig aus und nur per `?supabase=1` nachladbar; keine Wikipedia-/Wikimedia-Bildabfrage oder Bildausgabe in der RC |
 | Drittanbieterhinweise | vollständige versionierte Notices für MapLibre GL JS 4.7.1 und `@supabase/supabase-js` 2.45.4 in `THIRD_PARTY_NOTICES.md` |
 
@@ -26,15 +26,15 @@ Getestet wurde im Codex-In-App-Browser auf einem frischen lokalen Origin. Extern
 |---|---|
 | Frische Origin `127.0.0.1:4186` | erster Online-Lauf: 668 Ereignisse und 40 Biografien; Online-Reload: erneut 668/40; `offlineReady=true` |
 | Server wirklich gestoppt | Listener-PID wurde beendet und ein unabhängiger HTTP-Abruf bestätigte `SERVER_STOPPED`; Reload lieferte nach 2,5 Sekunden exakt 668 Ereignisse und 40 Biografien, kein hängender Ladezustand |
-| Upgrade einer alten Generation | derselbe Origin wurde von Cachegeneration `rc2-r3` auf `rc2-r4` aktualisiert; nach bestätigter Aktivierung und erneut gestopptem Server lieferte der Reload 668/40 |
+| Upgrade einer alten Generation | derselbe Origin `127.0.0.1:4194` cachte zuerst `rc2-r5` mit Paper-Teal `#5eead4`; nach Upgrade auf `rc2-r6` war Teal `#075c58`. Nach wirklich gestopptem Server lieferte der Offline-Reload erneut 668 Ereignisse und 40 Biografien. |
 | Desktop 1280×720 | kein Seiten-Horizontaloverflow; Suche `Seattle` ergab 4 Treffer; Tabelle zeigte dieselben 4 Treffer; Methodikdialog öffnete; Ereignisdetail „Generalstreik von Seattle“ öffnete mit `?event=seattle-general-strike` |
-| Mobile 390×844 | Seitenbreite 390 px; alle 11 Navigationsziele innerhalb des Viewports sichtbar; 11/11 über Tastaturaktionen erreichbar |
+| Mobile 390×844 | Seitenbreite 390 px; alle 11 Navigationsziele innerhalb des Viewports sichtbar und per Klick/Touch erreichbar; native Buttons und Fokus sind vorhanden. Die echte Hardwaretastatur-Prüfung bleibt ein manuelles Gate. |
 | Reflow 640×360 | Seitenbreite 640 px; alle 11 Navigationsziele sichtbar; kein Seiten-Horizontaloverflow |
 | Lebenswege-Suche | `Proudon`, `Joseph Proudon` und normalisierte Varianten finden ausschließlich den kuratierten Eintrag Pierre-Joseph Proudhon; kein allgemeines Fuzzy-Matching |
 | Lebensdaten | 40 Listeneinträge geprüft; kein sichtbares Rohsentinel `unknown`; teilweise bekannte Angaben bleiben erhalten, zum Beispiel „1944-09-12–nicht sicher überliefert“ |
 | Remote-Opt-in | ohne Query-Opt-in kein Supabase-SDK im DOM; keine Ereignisbilder im DOM |
 
-Die atomare Worker-Installation schreibt zuerst in einen Staging-Cache, prüft Kataloge und jede erforderliche Ressource und aktiviert erst danach die vollständige Generation. Kern-Shell, beide Kataloge, alle 24 Ereignisdateien, alle drei Biografiedateien sowie Vertrag, Metadaten, Routen, Taxonomie und Relationen sind abgedeckt. Externe Tiles, Kartenstile, CDN-Skripte und Wikimedia-Ressourcen werden nicht vorab gespeichert. Bei fehlenden Daten endet die UI nach einem begrenzten Timeout mit einem lokalisierten Fehlerzustand statt mit „0 Ereignisse“ und einer endlosen Ladeanzeige.
+Die atomare Worker-Installation schreibt zuerst in einen Staging-Cache, prüft Kataloge und jede erforderliche Ressource und aktiviert erst danach die vollständige Generation. Kern-Shell, beide Kataloge, alle 24 Ereignisdateien, alle drei Biografiedateien sowie Vertrag, Metadaten, Routen, Taxonomie und Relationen sind abgedeckt. Für die korrigierte Oberfläche ist die Cachegeneration `atlas-local-v2.9.0-rc2-r6`; der Test hält zusätzlich einen Digest der vorab gecachten Kernressourcen fest. Externe Tiles, Kartenstile, CDN-Skripte und Wikimedia-Ressourcen werden nicht vorab gespeichert. Bei fehlenden Daten endet die UI nach einem begrenzten Timeout mit einem lokalisierten Fehlerzustand statt mit „0 Ereignisse“ und einer endlosen Ladeanzeige.
 
 ## Designnotiz: farbigeres Archiv ohne Belohnungslogik für Gewalt
 
