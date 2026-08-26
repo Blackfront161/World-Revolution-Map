@@ -24,6 +24,15 @@
     { "id": "similar-strike-01", "from": "iceland-womens-strike-1975", "to": "women-liberia-peace", "relationType": "similar-tactic", "contextId": "women-mass-action", "evidenceMode": "heuristic-similarity" },
     { "id": "similar-boycott-01", "from": "bristol-bus-boycott", "to": "montgomery-bus-boycott", "relationType": "similar-tactic", "contextId": "boycott", "evidenceMode": "heuristic-similarity" },
     { "id": "movement-black-01", "from": "greensboro-sit-ins", "to": "black-panther-party", "relationType": "shared-movement", "contextId": "black-liberation", "evidenceMode": "heuristic-similarity" },
-    { "id": "movement-self-rule-01", "from": "ezln", "to": "lip-selbstverwaltung", "relationType": "similar-tactic", "contextId": "self-governance", "evidenceMode": "heuristic-similarity" }
+    { "id": "movement-self-rule-01", "from": "ezln", "to": "lip-selbstverwaltung", "relationType": "similar-tactic", "contextId": "self-governance", "evidenceMode": "heuristic-similarity" },
+    { "id": "route-deck-01", "from": "amistad-revolt", "to": "revolt-of-the-lash", "relationType": "same-route", "contextId": "uprising-on-deck", "evidenceMode": "curated-context" },
+    { "id": "route-deck-02", "from": "revolt-of-the-lash", "to": "kiel-sailors-uprising-1918", "relationType": "same-route", "contextId": "uprising-on-deck", "evidenceMode": "curated-context" },
+    { "id": "route-deck-03", "from": "kiel-sailors-uprising-1918", "to": "invergordon-collective-refusal-1931", "relationType": "same-route", "contextId": "uprising-on-deck", "evidenceMode": "curated-context" },
+    { "id": "route-deck-04", "from": "invergordon-collective-refusal-1931", "to": "royal-indian-navy-mutiny", "relationType": "same-route", "contextId": "uprising-on-deck", "evidenceMode": "curated-context" },
+    { "id": "route-sea-01", "from": "save-the-whales-campaign", "to": "sea-shepherd-origins", "relationType": "same-route", "contextId": "sea-rights-and-protection", "evidenceMode": "curated-context" },
+    { "id": "route-sea-02", "from": "sea-shepherd-origins", "to": "iwc-commercial-whaling-moratorium-1982", "relationType": "same-route", "contextId": "sea-rights-and-protection", "evidenceMode": "curated-context" },
+    { "id": "route-sea-03", "from": "iwc-commercial-whaling-moratorium-1982", "to": "blue-mud-bay-sea-rights-2008", "relationType": "same-route", "contextId": "sea-rights-and-protection", "evidenceMode": "curated-context" },
+    { "id": "route-sea-04", "from": "blue-mud-bay-sea-rights-2008", "to": "pacific-climate-warriors-newcastle-2014", "relationType": "same-route", "contextId": "sea-rights-and-protection", "evidenceMode": "curated-context" },
+    { "id": "route-sea-05", "from": "pacific-climate-warriors-newcastle-2014", "to": "tallurutiup-imanga-inuit-agreement-2019", "relationType": "same-route", "contextId": "sea-rights-and-protection", "evidenceMode": "curated-context" }
   ]
 }

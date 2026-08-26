@@ -35,7 +35,8 @@ const clean = (value, maxLength = 600) => typeof value === 'string' ? value.trim
 const EDITORIAL_LIST_FIELDS = ['demands', 'participants', 'powerStructures', 'tactics', 'voices'];
 const EDITORIAL_TEXT_FIELDS = [
   'immediateConsequences', 'longTermImpact', 'repression', 'humanCosts', 'aftermath',
-  'openQuestions', 'sourceType', 'sourceQuality', 'uncertainty', 'sensitivity', 'reviewStatus'
+  'openQuestions', 'sourceType', 'sourceQuality', 'uncertainty', 'sensitivity', 'reviewStatus',
+  'bottomUpPressure', 'achievement', 'limits'
 ];
 const EVENT_TRANSLATION_FIELDS = new Set([
   'title', 'location', 'description', 'significance', 'clue',
@@ -197,6 +198,10 @@ export function normalizeEvent(row, index = 0) {
     humanCosts: clean(row.human_costs ?? row.humanCosts, 1800) || '',
     aftermath: clean(row.aftermath, 2400) || '',
     openQuestions: clean(row.open_questions ?? row.openQuestions, 1800) || '',
+    bottomUpPressure: clean(row.bottom_up_pressure ?? row.bottomUpPressure, 2400) || '',
+    achievement: clean(row.achievement, 2400) || '',
+    limits: clean(row.limits, 2400) || '',
+    relatedEventIds: cleanList(row.related_event_ids ?? row.relatedEventIds, 120, 40),
     voices: cleanList(row.voices, 800, 12),
     sourceType,
     sourceQuality,

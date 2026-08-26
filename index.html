@@ -109,6 +109,7 @@
           <li><i class="precision-sample is-region"></i><span data-i18n="coordinatePrecisionRegion">Regionaler Kartenpunkt</span></li>
           <li><i class="precision-sample is-hidden"></i><span data-i18n="coordinatePrecisionHidden">Absichtlich grobe Ortsangabe</span></li>
         </ul>
+        <p class="maritime-route-note" id="maritime-route-note" hidden><span aria-hidden="true">≈ ⋯ ≈</span> <span data-i18n="maritimeRouteNote">Gestrichelte Linien zeigen kuratierte Vergleiche, keine Reise- oder Einflusswege.</span></p>
       </details>
 
       <label class="check-row" for="undiscovered-only">
@@ -150,6 +151,7 @@
         <input id="reader-width" type="range" min="48" max="90" step="2" value="68">
         <label class="check-row compact-check"><input id="reader-contrast" type="checkbox"><span data-i18n="highReadingContrast">Hoher Lesekontrast</span></label>
       </details>
+      <button class="text-button maritime-dossier-open" id="pirate-dossier-button" type="button"><span aria-hidden="true">≈</span> <span data-i18n="pirateDossierButton">Quellenkritisches Pirat*innen-Dossier</span></button>
       <button class="text-button about-map-link" id="about-map-button" type="button" data-i18n="aboutMap">Über diese Karte und Methodik</button>
     </aside>
 
@@ -323,7 +325,7 @@
       <p class="editorial-note" data-i18n="editorial">Ein Bildungsprototyp: Die kurzen Texte ersetzen keine historische Quellenprüfung.</p>
     </section>
 
-    <section class="modal glass-panel methodology-modal" id="methodology-modal" role="dialog" aria-modal="true" aria-labelledby="methodology-title" hidden>
+  <section class="modal glass-panel methodology-modal" id="methodology-modal" role="dialog" aria-modal="true" aria-labelledby="methodology-title" hidden>
       <button class="icon-button modal-close" type="button" aria-label="Methodik schließen" data-i18n-aria="closeMethodology">×</button>
       <p class="eyebrow" data-i18n="methodologyEyebrow">Geschichte von unten</p>
       <h2 id="methodology-title" data-i18n="aboutMap">Über diese Karte und Methodik</h2>
@@ -335,9 +337,30 @@
         <section><h3 data-i18n="namesTitle">Namen und Selbstbezeichnungen</h3><p data-i18n="namesBody">Selbstbezeichnungen betroffener Gemeinschaften haben Vorrang. Historisch belastete Fremdbezeichnungen werden nur erklärt verwendet.</p></section>
         <section><h3 data-i18n="contributeTitle">Korrekturen und Beiträge</h3><p data-i18n="contributeBody">Fehler, fehlende Perspektiven oder bessere Quellen können über den GitHub-Repository-Link gemeldet werden. Änderungen bleiben nachvollziehbar.</p><a class="source-link methodology-link" href="https://github.com/Blackfront161/World-Revolution-Map/issues" target="_blank" rel="noopener noreferrer" data-i18n="reportCorrection">Korrektur oder Ergänzung melden ↗</a></section>
       </div>
-    </section>
+  </section>
 
-    <section class="modal glass-panel" id="quiz-modal" role="dialog" aria-modal="true" aria-labelledby="quiz-title" hidden>
+  <section class="modal glass-panel pirate-dossier-modal" id="pirate-dossier-modal" role="dialog" aria-modal="true" aria-labelledby="pirate-dossier-title" hidden>
+    <button class="icon-button modal-close" type="button" aria-label="Pirat*innen-Dossier schließen" data-i18n-aria="closePirateDossier">×</button>
+    <p class="eyebrow" data-i18n="pirateEyebrow">Nautische Quellenkritik</p>
+    <h2 id="pirate-dossier-title" data-i18n="pirateTitle">Piraterie ist nicht automatisch Anarchie</h2>
+    <p class="pirate-dossier-intro" data-i18n="pirateIntro">Bordordnungen können anti-hierarchische Praxis zeigen. Sie machen gewaltsamen Raub, Versklavung und koloniale Verflechtung nicht unsichtbar.</p>
+    <div class="pirate-logbook">
+      <section><b aria-hidden="true">I</b><div><h3 data-i18n="piratePracticeTitle">Begrenzte Gegenmacht an Bord</h3><p data-i18n="piratePracticeBody">Manche Besatzungen wählten und entließen Kapitäne, regelten Beuteanteile in Bordartikeln und sahen Kompensation für Verletzungen vor. Das waren konkrete, aber auf die Crew begrenzte Ordnungen.</p></div></section>
+      <section><b aria-hidden="true">II</b><div><h3 data-i18n="pirateViolenceTitle">Raub und koloniale Gewalt</h3><p data-i18n="pirateViolenceBody">Piraterie blieb gewaltsamer Raub. Pirat*innen operierten in kolonialen Handelsräumen, griffen Schiffe an und verkauften versklavte Menschen häufig weiter. Interne Teilhabe bedeutete keine allgemeine Befreiung.</p></div></section>
+      <section><b aria-hidden="true">III</b><div><h3 data-i18n="pirateMythTitle">Libertalia: Mythos, kein Kartenpunkt</h3><p data-i18n="pirateMythBody">Libertalia ist nur aus einer literarisch geprägten Erzählung bekannt und wird von der Forschung weithin als Fiktion behandelt. Der Atlas führt sie deshalb nicht als historische anarchistische Republik.</p></div></section>
+      <section><b aria-hidden="true">IV</b><div><h3 data-i18n="pirateUncertaintyTitle">Anne Bonny und Mary Read</h3><p data-i18n="pirateUncertaintyBody">Gerichtsakten belegen ihre Verurteilung; viele Lebensdetails stammen aus einer späteren, teils ausgeschmückten Geschichte. Unsicherheit ist hier Teil des Wissens, keine Einladung zur Heldengalerie.</p></div></section>
+    </div>
+    <h3 data-i18n="pirateSourcesTitle">Quellen und Gegenlesen</h3>
+    <ul class="pirate-source-list">
+      <li><a href="https://www.rmg.co.uk/stories/maritime-history/pirates-fact-or-fiction" target="_blank" rel="noopener noreferrer">Royal Museums Greenwich: Pirates – fact or fiction ↗</a></li>
+      <li><a href="https://www.rmg.co.uk/stories/maritime-history/pirates-history-golden-age-piracy" target="_blank" rel="noopener noreferrer">Royal Museums Greenwich: Golden Age in colonial context ↗</a></li>
+      <li><a href="https://ocean.si.edu/human-connections/exploration/william-dampier-pirate-who-collected-plants" target="_blank" rel="noopener noreferrer">Smithsonian Ocean: William Dampier ↗</a></li>
+      <li><a href="https://guides.loc.gov/golden-age-of-piracy" target="_blank" rel="noopener noreferrer">Library of Congress: primary-source guide ↗</a></li>
+      <li><a href="https://www.loc.gov/item/10031667/" target="_blank" rel="noopener noreferrer">Library of Congress: A General History of the Pyrates ↗</a></li>
+    </ul>
+  </section>
+
+  <section class="modal glass-panel" id="quiz-modal" role="dialog" aria-modal="true" aria-labelledby="quiz-title" hidden>
       <button class="icon-button modal-close" type="button" aria-label="Quiz schließen" data-i18n-aria="closeQuiz">×</button>
       <p class="eyebrow" data-i18n="knowledgeTest">Wissensprobe</p>
       <h2 id="quiz-title" data-i18n="quizDefault">Wann begann dieses Ereignis?</h2>

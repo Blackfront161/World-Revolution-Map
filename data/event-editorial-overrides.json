@@ -400,6 +400,46 @@
       "reviewStatus": "Redaktionell vertieft",
       "provenance": { "sourceUrls": ["https://www.americanhistory.si.edu/explore/stories/sitting-disability-rights-section-504-protests-1970s"], "checkedAt": "2026-08-23" },
       "license": { "status": "rights-unclear" }
+    },
+    "revolt-of-the-lash": {
+      "sourceUrl": "https://dspace.mj.gov.br/bitstream/1/13654/1/651728%20Vultos%20negros%20na%20hist%C3%B3ria%20do%20Brasil.pdf",
+      "demands": ["Abschaffung der Peitschenstrafe", "Ende rassistischer und entwürdigender Behandlung", "Bessere Nahrung und Dienstbedingungen", "Amnestie für die Aufständischen"],
+      "participants": ["Überwiegend Schwarze und arme Matrosen der brasilianischen Marine", "João Cândido Felisberto und gewählte Delegierte", "Besatzungen mehrerer Kriegsschiffe"],
+      "powerStructures": ["Brasilianische Marineführung und Offizierskorps", "Rassistische Nachordnung Schwarzer Matrosen nach der Abschaffung der Sklaverei", "Regierung und militärisches Disziplinarsystem"],
+      "tactics": ["Übernahme von Kriegsschiffen", "Kollektive Befehlsverweigerung", "Ultimatum und Verhandlung", "Koordination zwischen Besatzungen"],
+      "immediateConsequences": "Der Kongress beschloss eine bedingte Amnestie und die Regierung sagte das Ende der Peitschenstrafen zu. Nach der Aufgabe der Schiffe folgten jedoch rasch Entlassungen, Verhaftungen und Bestrafungen.",
+      "longTermImpact": "Die Revolte wurde zu einem zentralen Bezugspunkt Schwarzer Erinnerungspolitik in Brasilien und machte die Fortwirkung von Sklaverei und Rassismus in der Marine sichtbar.",
+      "repression": "Die zugesagte Amnestie schützte die Beteiligten nicht: Viele wurden entlassen oder inhaftiert; Gefangene starben in Haft, weitere wurden deportiert oder zu Zwangsarbeit geschickt.",
+      "humanCosts": "Die Quellen dokumentieren Todesfälle unter Inhaftierten und weitere Tote infolge der Repression; genaue Gesamtzahlen und Verantwortungszuweisungen unterscheiden sich in Darstellungen.",
+      "aftermath": "João Cândido überlebte Haft und Ausschluss aus der Marine, lebte lange in Armut und wurde erst Jahrzehnte später öffentlich rehabilitiert. Die materielle Wiedergutmachung blieb umstritten.",
+      "openQuestions": "Die Beteiligung einzelner Besatzungen, Opferzahlen und die Reichweite der tatsächlichen Abschaffung körperlicher Strafen benötigen weiterhin quellennahe Differenzierung.",
+      "sourceType": "Brasilianisches Justiz-/Bildungsarchiv, Parlamentsquelle und Gesetzesquelle",
+      "sourceQuality": "Hoch – offizielle brasilianische Quellen belegen Forderungen, Amnestie und ihren Bruch; Detailzahlen bleiben vorsichtig formuliert.",
+      "uncertainty": "Der Punkt bezeichnet den Flottenraum der Guanabara-Bucht und kein einzelnes Schiff oder eine exakte Position.",
+      "sensitivity": "Rassistische Gewalt, Haft, Deportation und Todesfälle; sachliche Darstellung ohne Spielbelohnung.",
+      "reviewStatus": "Redaktionell vertieft",
+      "provenance": {"sourceUrls": ["https://dspace.mj.gov.br/bitstream/1/13654/1/651728%20Vultos%20negros%20na%20hist%C3%B3ria%20do%20Brasil.pdf", "https://www.camara.leg.br/noticias/38166-aprovada-anistia-para-lider-da-revolta-da-chibata/", "https://www2.camara.leg.br/legin/fed/decret/1910-1919/decreto-2280-25-novembro-1910-587394-norma-pl.html"], "checkedAt": "2026-08-26"},
+      "license": {"status": "rights-unclear"}
+    },
+    "amistad-revolt": {
+      "sourceUrl": "https://home.nps.gov/articles/amistad-how-it-began.htm",
+      "demands": ["Rückkehr nach Mendeland", "Anerkennung als illegal Verschleppte und freie Menschen", "Abwehr der Behandlung als Eigentum oder Bergungsgut"],
+      "participants": ["53 aus Westafrika verschleppte Mende und andere Gefangene", "Sengbe Pieh und weitere Organisierende an Bord", "Mende-Dolmetscher und abolitionistische Unterstützungsnetzwerke im Rechtsverfahren"],
+      "powerStructures": ["Atlantischer Sklavenhandel und kubanische Sklaverei", "Spanische und US-amerikanische Staatsinteressen", "Gerichte und Eigentumsansprüche von Versklavern und Bergungsparteien"],
+      "tactics": ["Gewaltsame Selbstbefreiung an Bord", "Kollektive Navigation mit dem Ziel Afrika", "Aussagen und strategische Beteiligung am Gerichtsverfahren", "Transatlantische Unterstützungs- und Spendennetze"],
+      "immediateConsequences": "Bei der Übernahme wurden der Kapitän und der Koch getötet. Die Überlebenden wurden vor Long Island gefangen genommen, in New Haven inhaftiert und mit Piraterie- und Eigentumsansprüchen konfrontiert.",
+      "longTermImpact": "Der Supreme Court bestätigte 1841 ihre Freiheit; 35 Überlebende kehrten 1842 nach Sierra Leone zurück. Der Fall wurde zu einem wichtigen Bezugspunkt abolitionistischer Erinnerung, ohne die strukturelle Sklaverei zu beenden.",
+      "repression": "Die Mende waren entführt, über den Atlantik verschleppt, verkauft, an Bord misshandelt und nach der Selbstbefreiung in den USA lange inhaftiert worden; die Regierung Van Buren drängte auf ihre Auslieferung.",
+      "humanCosts": "Menschen starben bereits während Verschleppung und Überfahrt; bei der Revolte wurden zwei Mitglieder der Schiffsbesatzung getötet. Von den 53 Gefangenen kehrten 35 nach Sierra Leone zurück.",
+      "aftermath": "Die Rückkehr erfolgte mit Missionsbegleitung und unter Bedingungen, die nicht einfach als vollständige Wiederherstellung früherer Leben beschrieben werden können. Angehörige, Gemeinschaften und Lebenswege waren durch die Verschleppung dauerhaft verändert.",
+      "openQuestions": "Namen und Perspektiven vieler Beteiligter sind in US-zentrierten Darstellungen weniger sichtbar; die Rolle weißer Anwälte darf die eigenständige Mende-Handlungsfähigkeit nicht überdecken.",
+      "sourceType": "National Park Service, Museumsobjekt und juristische Primärquelle",
+      "sourceQuality": "Hoch – institutionelle Darstellungen und das Urteil belegen Selbstbefreiung und Rechtsausgang; individuelle Lebenswege bleiben lückenhaft.",
+      "uncertainty": "Der regionale Punkt verbindet mehrere Räume und ist keine behauptete exakte Schiffsposition.",
+      "sensitivity": "Versklavung, Entführung, tödliche Gewalt und Haft; sachliche Darstellung ohne Spielbelohnung.",
+      "reviewStatus": "Redaktionell vertieft",
+      "provenance": {"sourceUrls": ["https://home.nps.gov/articles/amistad-how-it-began.htm", "https://npg.si.edu/object/npg_NPG.2018.83.39", "https://tile.loc.gov/storage-services/service/ll/usrep/usrep040/usrep040518/usrep040518.pdf"], "checkedAt": "2026-08-26"},
+      "license": {"status": "rights-unclear"}
     }
   }
 }

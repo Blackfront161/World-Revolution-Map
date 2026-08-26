@@ -35,6 +35,11 @@
     "sourceTypes": ["primary", "community", "movement", "archive", "oral-history", "museum", "academic", "public-institution", "human-rights"],
     "quotationRule": "Unbelegte direkte Zitate und eigenständige Zitatfelder sind unzulässig. Paraphrasen bleiben als redaktionelle Synthese gekennzeichnet."
   },
+  "achievementModel": {
+    "category": "Soziale Errungenschaft",
+    "requiredPerspectiveFields": ["bottomUpPressure", "achievement", "limits"],
+    "rule": "Errungenschaften benennen Druck und Organisierung von unten, das konkrete Ergebnis sowie Grenzen und fortdauernde Konflikte; sie werden nicht als Geschenk von oben oder als gewonnen/verloren bewertet."
+  },
   "provenance": {
     "method": "Redaktionelle Kurztexte werden aus den je Ereignis verlinkten Quellen zusammengefasst; Quellenrechte werden dadurch nicht übertragen.",
     "sourcePolicy": "Community-, Primär-, Archiv-, Museums-, wissenschaftliche, ILO/UN- und Menschenrechtsquellen werden bevorzugt; Unsicherheit wird sichtbar benannt.",

@@ -33,6 +33,8 @@ test('HTML verweist auf vorhandene lokale Kernressourcen', async () => {
   assert.match(html, /id="active-filters"/);
   assert.match(html, /id="biographies-drawer"/);
   assert.match(html, /id="compare-drawer"/);
+  assert.match(html, /id="pirate-dossier-modal"/);
+  assert.match(html, /Piraterie ist nicht automatisch Anarchie/);
   assert.match(html, /class="reader-settings"/);
 });
 
@@ -45,7 +47,7 @@ test('Fallback-Archiv enthält valide, eindeutige und belegte Ereignisse', async
   assert.equal(allRows.filter(event => event.category === 'Tiefe Geschichte').length, 0);
   const rows = allRows.filter(row => !row.archived);
   const events = rows.map(row => normalizeEvent({ ...row, ...(metadataById.get(row.id) || {}) }));
-  assert.equal(events.length, 668);
+  assert.equal(events.length, 674);
   assert.equal(new Set(events.map(event => event.id)).size, events.length);
   assert.ok(events.every(isValidEvent));
   assert.ok(events.every(event => event.sourceUrl.startsWith('https://')));
@@ -82,14 +84,14 @@ test('Datenvertrag, Koordinatenschutz, Vertiefungen und Routen bleiben konsisten
   assert.ok(sensitiveIds.every(id => precisionById.has(id)));
   assert.ok(contract.sensitivityPolicy.baselineSensitiveIds.length >= 53);
   assert.ok(contract.sensitivityPolicy.baselineSensitiveIds.every(id => sensitiveIds.includes(id) && precisionById.has(id)));
-  assert.equal(Object.keys(overrides.events).length, 20);
+  assert.equal(Object.keys(overrides.events).length, 22);
   assert.ok(Object.entries(overrides.events).every(([id, row]) => ids.has(id) && !/wikipedia\.org/i.test(row.sourceUrl) && row.reviewStatus === 'Redaktionell vertieft'));
-  assert.equal(routes.routes.length, 4);
-  assert.equal(taxonomy.layers.length, 10);
+  assert.equal(routes.routes.length, 6);
+  assert.equal(taxonomy.layers.length, 11);
   assert.equal(taxonomy.tactics.length, 10);
   assert.equal(taxonomy.mapStyles.length, 3);
   assert.equal(taxonomy.network.maximumNodes, 72);
-  assert.equal(relations.relations.length, 24);
+  assert.equal(relations.relations.length, 33);
   assert.ok(routes.routes.every(route => route.eventIds.every(id => ids.has(id)) && route.sensitivityMode === 'neutral-progress'));
   for (const id of ['standing-rock', 'muskrat-falls-land-protectors', '1492-land-back-lane', 'camp-morgan-landfill-search', 'aboriginal-tent-embassy']) {
     assert.equal(precisionById.get(id), 'hidden');
@@ -97,6 +99,30 @@ test('Datenvertrag, Koordinatenschutz, Vertiefungen und Routen bleiben konsisten
     assert.ok(raw);
     assert.ok(!('coordinates' in raw) && !('latitude' in raw) && !('longitude' in raw) && !('lat' in raw) && !('lng' in raw));
   }
+});
+
+test('Maritime Erweiterung bleibt quellenkritisch, regional und ohne Piraten-Mythenevent', async () => {
+  const maritime = JSON.parse(await readFile(new URL('data/expansion-maritime.json', root), 'utf8'));
+  const routes = JSON.parse(await readFile(new URL('data/routes.json', root), 'utf8'));
+  const relations = JSON.parse(await readFile(new URL('data/relations.json', root), 'utf8'));
+  const html = await readFile(new URL('index.html', root), 'utf8');
+  const script = await readFile(new URL('script.js', root), 'utf8');
+  assert.equal(maritime.length, 6);
+  assert.equal(new Set(maritime.map(row => row.id)).size, maritime.length);
+  assert.ok(maritime.every(row => row.tags.includes('Maritime Gegenmacht')));
+  assert.ok(maritime.every(row => ['approximate', 'region'].includes(row.coordinatePrecision)));
+  assert.ok(maritime.every(row => row.license?.status === 'rights-unclear'));
+  assert.ok(maritime.every(row => row.provenance?.sourceUrls?.length >= 2 && row.provenance.sourceUrls.includes(row.sourceUrl)));
+  const achievements = maritime.filter(row => row.category === 'Soziale Errungenschaft');
+  assert.equal(achievements.length, 3);
+  assert.ok(achievements.every(row => row.bottomUpPressure && row.achievement && row.limits));
+  assert.ok(routes.routes.some(route => route.id === 'uprising-on-deck'));
+  assert.ok(routes.routes.some(route => route.id === 'sea-rights-and-protection'));
+  assert.ok(relations.relations.filter(row => row.contextId === 'uprising-on-deck' || row.contextId === 'sea-rights-and-protection').every(row => row.evidenceMode === 'curated-context'));
+  assert.ok(!maritime.some(row => /libertalia|anne-bonny|mary-read/.test(row.id)));
+  assert.match(html, /Libertalia: Mythos, kein Kartenpunkt/);
+  assert.match(script, /ui\.pirateDossierModal\.hidden = true/);
+  assert.match(script, /ui\.methodologyModal, ui\.pirateDossierModal/);
 });
 
 test('Priorisierte Ereignisse besitzen vertiefte redaktionelle Angaben', async () => {
@@ -235,9 +261,9 @@ test('Offline-Shell aktiviert nur eine vollständige atomare lokale Generation',
   const worker = await readFile(new URL('service-worker.js', root), 'utf8');
   const eventCatalog = JSON.parse(await readFile(new URL('data/event-catalog.json', root), 'utf8'));
   const biographyCatalog = JSON.parse(await readFile(new URL('data/biography-catalog.json', root), 'utf8'));
-  assert.equal(eventCatalog.length, 24);
+  assert.equal(eventCatalog.length, 25);
   assert.equal(biographyCatalog.files.length, 3);
-  assert.match(worker, /atlas-local-v2\.9\.0-rc2-r6/);
+  assert.match(worker, /atlas-local-v2\.9\.0-rc2-r8/);
   const coreMatch = worker.match(/const CORE_RESOURCES = \[([\s\S]*?)\];/);
   assert.ok(coreMatch, 'CORE_RESOURCES muss für die Offline-Generation deklarativ bleiben');
   const coreResources = [...coreMatch[1].matchAll(/'([^']+)'/g)].map(match => match[1]);
@@ -249,7 +275,7 @@ test('Offline-Shell aktiviert nur eine vollständige atomare lokale Generation',
   }
   assert.equal(
     digest.digest('hex'),
-    'bde8d655311b8c9b32f4a6980d85d8229b6bf56259fd7e0546f066e0245479da',
+    '2c1f5f19583ee42822add2b0caee860d810ec495d464916a3c6f694d09244550',
     'Vorab gecachte Kernressourcen haben sich geändert: CACHE_VERSION erhöhen und den geprüften Generations-Digest aktualisieren.'
   );
   assert.match(worker, /STAGING_CACHE/);
@@ -312,7 +338,9 @@ test('Design berücksichtigt reduzierte Bewegung und mobile Ansichten', async ()
   assert.match(css, /@media \(max-width: 820px\)[\s\S]*min-height: 44px/);
   assert.match(script, /event-point-halos/);
   assert.match(script, /sensitive: isSensitiveEvent\(event\)/);
-  assert.match(script, /sensitive \? '○' : '✦'/);
+  assert.match(script, /sensitive \? '○' : isMaritimeEvent\(event\) \? '≈' : '✦'/);
+  assert.match(script, /event-maritime-rings/);
+  assert.match(script, /maritime-route-guides/);
   assert.match(script, /biographyVisualAccent\(bio\.id\)/);
 });
 

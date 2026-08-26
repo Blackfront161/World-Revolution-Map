@@ -1117,3 +1117,108 @@ html[data-map-style="mono"] *::-webkit-scrollbar-thumb { background: #fff; borde
     touch-action: manipulation;
   }
 }
+
+/* Maritime atlas layer: CSS-native bathymetry, redundant wave marks and a
+ * source-critical logbook. No image request or external font is introduced. */
+:root { --atlas-ocean: #43d9d1; --atlas-deep: #5967d8; }
+.map-vignette::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .16;
+  background:
+    repeating-radial-gradient(ellipse at 78% 64%, transparent 0 35px, rgba(67,217,209,.20) 36px 37px, transparent 38px 55px),
+    repeating-radial-gradient(ellipse at 22% 34%, transparent 0 52px, rgba(89,103,216,.14) 53px 54px, transparent 55px 76px);
+  mask-image: linear-gradient(90deg, rgba(0,0,0,.75), transparent 42%, rgba(0,0,0,.65));
+}
+html.maritime-focus .map-vignette::after { opacity: .34; }
+.layer-toggle[data-layer="maritime"] {
+  border-inline-start: 3px double var(--atlas-ocean);
+  background: linear-gradient(90deg, rgba(67,217,209,.12), transparent 78%);
+}
+.layer-toggle[data-layer="maritime"] span::before { content: "≈ "; color: var(--atlas-ocean); font-weight: 900; }
+.maritime-route-note {
+  margin: 10px 0 0;
+  padding: 9px 10px;
+  border: 1px dashed color-mix(in srgb, var(--atlas-ocean) 55%, transparent);
+  border-radius: 10px;
+  background: rgba(67,217,209,.07);
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.45;
+}
+.maritime-route-note > span:first-child { color: var(--atlas-ocean); font-weight: 900; letter-spacing: .12em; }
+.maritime-dossier-open { display: flex; align-items: center; gap: 7px; width: 100%; margin-top: 12px; color: var(--atlas-ocean); }
+.maritime-dossier-open > span:first-child { font-size: 20px; line-height: 1; }
+.pirate-dossier-modal {
+  width: min(820px, calc(100vw - 32px));
+  background:
+    linear-gradient(110deg, rgba(67,217,209,.08), transparent 36%),
+    repeating-linear-gradient(0deg, transparent 0 27px, rgba(67,217,209,.045) 28px 29px),
+    var(--panel-solid);
+}
+.pirate-dossier-modal::after {
+  content: "N  ·  E  ·  S  ·  W";
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  color: color-mix(in srgb, var(--atlas-ocean) 42%, transparent);
+  font: 700 9px/1 var(--font-ui);
+  letter-spacing: .24em;
+}
+.pirate-dossier-intro { max-width: 66ch; }
+.pirate-logbook { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 18px 0; }
+.pirate-logbook section {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid color-mix(in srgb, var(--atlas-ocean) 32%, var(--line));
+  border-radius: 12px;
+  background: linear-gradient(145deg, rgba(67,217,209,.07), rgba(89,103,216,.05));
+}
+.pirate-logbook section > b { color: var(--atlas-ocean); font-family: var(--font-display); font-size: 15px; }
+.pirate-logbook h3 { margin: 0 0 7px; color: var(--atlas-ocean); font-size: 18px; }
+.pirate-logbook p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.pirate-source-list { display: grid; gap: 6px; padding-left: 20px; }
+.pirate-source-list a { color: var(--atlas-ocean); overflow-wrap: anywhere; }
+.route-card.is-maritime-route { border-left-color: var(--atlas-ocean); background: linear-gradient(135deg, rgba(67,217,209,.09), rgba(89,103,216,.06)); }
+.route-card.is-maritime-route h3::before { content: "≈ "; color: var(--atlas-ocean); }
+.event-table tr.is-maritime { box-shadow: inset 3px 0 0 var(--atlas-ocean); }
+.event-table tr.is-maritime td:first-child::before { content: "≈ "; color: var(--atlas-ocean); font-weight: 900; }
+.event-popup.is-maritime:not(.is-sensitive) .event-popup-placeholder {
+  background:
+    repeating-radial-gradient(ellipse at 52% 110%, transparent 0 18px, rgba(67,217,209,.22) 19px 20px, transparent 21px 29px),
+    linear-gradient(145deg, #07323a, #121a42);
+  color: #d9fffb;
+  font-size: 44px;
+}
+.event-popup-maritime { color: var(--atlas-ocean); font-weight: 900; }
+.event-popup.is-maritime:not(.is-sensitive) .event-popup-category,
+.event-popup.is-maritime:not(.is-sensitive) .event-detail-section h4 { color: var(--atlas-ocean); }
+
+html[data-map-style="paper"] { --atlas-ocean: #075c58; --atlas-deep: #3d3b70; }
+html[data-map-style="paper"] .pirate-dossier-modal,
+html[data-map-style="paper"] .pirate-logbook section,
+html[data-map-style="paper"] .route-card.is-maritime-route { background: var(--paper-surface); color: var(--atlas-ink); }
+html[data-map-style="paper"] .pirate-logbook p { color: var(--muted); }
+html[data-map-style="paper"] .event-popup.is-maritime:not(.is-sensitive) .event-popup-placeholder { background: #d8c493; color: var(--atlas-ocean); }
+
+html[data-map-style="mono"] { --atlas-ocean: #fff; --atlas-deep: #fff; }
+html[data-map-style="mono"] .map-vignette::after { opacity: .08; filter: grayscale(1); }
+html[data-map-style="mono"] :where(.layer-toggle[data-layer="maritime"], .maritime-route-note, .pirate-dossier-modal, .pirate-logbook section, .route-card.is-maritime-route, .event-table tr.is-maritime) {
+  border-color: #fff !important;
+  background: #000 !important;
+  color: #fff !important;
+}
+html[data-map-style="mono"] :where(.maritime-dossier-open, .pirate-logbook h3, .pirate-logbook section > b, .pirate-source-list a, .event-popup-maritime) { color: #fff !important; }
+
+@media (max-width: 620px) {
+  .pirate-logbook { grid-template-columns: 1fr; }
+  .pirate-dossier-modal { padding: 24px 18px; }
+  .pirate-logbook section { grid-template-columns: 30px 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-vignette::after, .maritime-dossier-open, .pirate-dossier-modal, .pirate-logbook section, .event-popup.is-maritime { animation: none !important; transition: none !important; }
+}

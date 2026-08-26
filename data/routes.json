@@ -32,6 +32,22 @@
       "eventIds": ["women-liberia-peace", "combahee-river-collective", "section-504-sit-in", "ni-una-menos", "black-trans-liberation-march"],
       "sourceNote": "Schwere Gewalt wird sachlich dargestellt. Für sensible Stopps gibt es weder XP noch satirische Kommentare.",
       "sensitivityMode": "neutral-progress"
+    },
+    {
+      "id": "uprising-on-deck",
+      "title": "Aufstand auf Deck",
+      "description": "Selbstbefreiung, Befehlsverweigerung und Rätebildung in sehr verschiedenen maritimen Machtordnungen – als Vergleich, nicht als behauptete Traditionslinie.",
+      "eventIds": ["amistad-revolt", "revolt-of-the-lash", "kiel-sailors-uprising-1918", "invergordon-collective-refusal-1931", "royal-indian-navy-mutiny"],
+      "sourceNote": "Die kuratierte Reihenfolge zeigt ähnliche Konflikte um Zwang, Rassismus, Lohn und militärische Hierarchie. Sie behauptet weder Gleichheit noch historische Beeinflussung.",
+      "sensitivityMode": "neutral-progress"
+    },
+    {
+      "id": "sea-rights-and-protection",
+      "title": "Meeresrechte und Schutz",
+      "description": "Von Walschutzkampagnen bis zu Indigenous Sea Country und arktischer Governance: unterschiedliche Wege, Meere gegen Ausbeutung zu verteidigen.",
+      "eventIds": ["save-the-whales-campaign", "sea-shepherd-origins", "iwc-commercial-whaling-moratorium-1982", "blue-mud-bay-sea-rights-2008", "pacific-climate-warriors-newcastle-2014", "tallurutiup-imanga-inuit-agreement-2019"],
+      "sourceNote": "Die Verbindung ist redaktionell-kuratierter Vergleich. Kampagne, Direktaktion, Gerichtsurteil und kooperative Governance werden nicht zu einer einzigen Bewegung erklärt.",
+      "sensitivityMode": "neutral-progress"
     }
   ]
 }

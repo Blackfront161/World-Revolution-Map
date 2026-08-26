@@ -11,7 +11,8 @@
     { "id": "ecological", "labelKey": "layerEcological", "terms": ["Ökologischer Widerstand", "Klimagerechtigkeit", "Landverteidigung"] },
     { "id": "commons", "labelKey": "layerCommons", "terms": ["Commons-Bewegung", "Rätebewegung", "Selbstverwaltung", "Libertärer Kommunismus"] },
     { "id": "abolition", "labelKey": "layerAbolition", "terms": ["Gefängnisabolitionismus", "Antirepression", "Polizeikritik"] },
-    { "id": "mutual-aid", "labelKey": "layerMutualAid", "terms": ["Mutual Aid", "Gegenseitige Hilfe", "Gesundheitsgerechtigkeit", "Care"] }
+    { "id": "mutual-aid", "labelKey": "layerMutualAid", "terms": ["Mutual Aid", "Gegenseitige Hilfe", "Gesundheitsgerechtigkeit", "Care"] },
+    { "id": "maritime", "labelKey": "layerMaritime", "terms": ["Maritime Gegenmacht", "Meeresrechte", "Meeresschutz", "Hafenwiderstand"] }
   ],
   "tactics": [
     { "id": "strike", "labelKey": "tacticStrike", "symbol": "S", "terms": ["streik", "strike", "arbeitsniederlegung"] },

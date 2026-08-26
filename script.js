@@ -156,9 +156,9 @@ function bindUi() {
     'mission-progress-text', 'mission-progress-bar', 'archive-count', 'achievement-count',
     'archive-drawer', 'archive-list', 'timeline-drawer', 'timeline-list', 'time-play', 'time-reset', 'motion-note', 'routes-drawer', 'routes-list', 'network-drawer', 'network-summary', 'network-legend', 'network-visual', 'relation-list', 'achievements-drawer', 'achievement-list', 'connections-drawer',
     'connection-content', 'new-connection', 'copy-connection', 'power-excuse', 'power-counter', 'new-excuse', 'quiz-button',
-    'quiz-modal', 'quiz-title', 'quiz-content', 'welcome-modal', 'methodology-modal', 'modal-backdrop', 'begin-button',
-    'methodology-button', 'about-map-button', 'help-button', 'toast-region', 'menu-toggle', 'menu-close', 'control-panel', 'language-select',
-    'active-filters', 'event-list-drawer', 'event-list-body', 'layer-filters', 'map-style-select', 'tactic-legend', 'search-suggestions',
+    'quiz-modal', 'quiz-title', 'quiz-content', 'welcome-modal', 'methodology-modal', 'pirate-dossier-modal', 'modal-backdrop', 'begin-button',
+    'methodology-button', 'about-map-button', 'pirate-dossier-button', 'help-button', 'toast-region', 'menu-toggle', 'menu-close', 'control-panel', 'language-select',
+    'active-filters', 'event-list-drawer', 'event-list-body', 'layer-filters', 'map-style-select', 'tactic-legend', 'maritime-route-note', 'search-suggestions',
     'copy-filter-preset', 'online-map-note', 'continue-card', 'continue-title', 'continue-button', 'reader-enabled', 'reader-font', 'reader-font-output', 'reader-width', 'reader-width-output', 'reader-contrast',
     'biography-count', 'biographies-drawer', 'biography-filters', 'biography-search', 'biography-region', 'biography-tradition', 'biography-from', 'biography-to', 'biography-result-count', 'biography-list', 'biography-detail',
     'compare-count', 'compare-drawer', 'compare-content', 'compare-clear', 'collection-name', 'collection-create', 'collection-select', 'collection-export', 'collection-import-toggle', 'collection-import-panel', 'collection-import', 'collection-import-apply', 'collection-list'
@@ -202,6 +202,7 @@ function changeLanguage(language) {
     populateTacticLegend();
     populateBiographyFilters();
     updateGameUi();
+    applyMapStyle();
     renderMapData();
     renderBiographies();
     renderCollections();
@@ -257,6 +258,7 @@ function attachUiEvents() {
   ui.helpButton.addEventListener('click', () => openModal(ui.welcomeModal));
   ui.methodologyButton.addEventListener('click', () => openModal(ui.methodologyModal));
   ui.aboutMapButton.addEventListener('click', () => openModal(ui.methodologyModal));
+  ui.pirateDossierButton.addEventListener('click', () => openModal(ui.pirateDossierModal));
   ui.modalBackdrop.addEventListener('click', closeModals);
   ui.modalCloseButtons.forEach(button => button.addEventListener('click', closeModals));
   ui.drawerCloseButtons.forEach(button => button.addEventListener('click', closeDrawers));
@@ -421,6 +423,23 @@ function initializeMap() {
       clusterMaxZoom: 7,
       clusterRadius: 48
     });
+    app.map.addSource('maritime-route-guides', {
+      type: 'geojson',
+      data: toMaritimeRouteGeoJson(app.events)
+    });
+
+    app.map.addLayer({
+      id: 'maritime-route-guides',
+      type: 'line',
+      source: 'maritime-route-guides',
+      layout: { 'line-cap': 'round', 'line-join': 'round' },
+      paint: {
+        'line-color': '#43d9d1',
+        'line-width': ['interpolate', ['linear'], ['zoom'], 1, 1.2, 6, 2.4],
+        'line-opacity': .46,
+        'line-dasharray': [2, 3]
+      }
+    });
 
     app.map.addLayer({
       id: 'mission-halo',
@@ -489,6 +508,20 @@ function initializeMap() {
     });
 
     app.map.addLayer({
+      id: 'event-maritime-rings',
+      type: 'circle',
+      source: 'resistance-events',
+      filter: ['all', ['!', ['has', 'point_count']], ['==', ['get', 'maritime'], true], ['==', ['get', 'sensitive'], false]],
+      paint: {
+        'circle-radius': ['interpolate', ['linear'], ['zoom'], 1, 13, 6, 23],
+        'circle-color': 'rgba(67,217,209,0.05)',
+        'circle-stroke-width': 2,
+        'circle-stroke-color': '#43d9d1',
+        'circle-stroke-opacity': .82
+      }
+    });
+
+    app.map.addLayer({
       id: 'event-point-halos',
       type: 'circle',
       source: 'resistance-events',
@@ -529,6 +562,15 @@ function initializeMap() {
       paint: { 'text-color': '#07130f', 'text-halo-color': '#ffffff', 'text-halo-width': .5 }
     });
 
+    app.map.addLayer({
+      id: 'event-maritime-symbols',
+      type: 'symbol',
+      source: 'resistance-events',
+      filter: ['all', ['!', ['has', 'point_count']], ['==', ['get', 'maritime'], true], ['==', ['get', 'sensitive'], false]],
+      layout: { 'text-field': '≈', 'text-size': 14, 'text-font': ['Open Sans Bold'], 'text-offset': [0, 1.35], 'text-allow-overlap': true },
+      paint: { 'text-color': '#d9fffb', 'text-halo-color': '#063d43', 'text-halo-width': 1.2 }
+    });
+
     app.map.on('click', 'clusters', expandCluster);
     ['event-points', 'event-regions'].forEach(layer => app.map.on('click', layer, event => {
       const selected = app.events.find(item => item.id === event.features?.[0]?.properties?.id);
@@ -539,6 +581,7 @@ function initializeMap() {
       app.map.on('mouseleave', layer, () => { app.map.getCanvas().style.cursor = ''; });
     });
 
+    applyMapStyle();
     renderMapData();
     const eventId = new URLSearchParams(window.location.search).get('event');
     const deepLinkedEvent = resolveEventId(app.events, eventId);
@@ -549,6 +592,7 @@ function initializeMap() {
 function renderMapData() {
   const discovered = new Set(app.progress.discoveredIds);
   app.filteredEvents = filterEvents(app.events, app.filters, discovered);
+  document.documentElement.classList.toggle('maritime-focus', app.filters.layers.includes('maritime'));
   ui.resultCount.textContent = `${app.filteredEvents.length.toLocaleString(i18n.locale)} ${i18n.t(app.filteredEvents.length === 1 ? 'eventOne' : 'eventMany')}`;
   ui.clearSearch.hidden = !app.filters.query;
   renderActiveFilters();
@@ -559,6 +603,9 @@ function renderMapData() {
   saveViewFilters();
   const source = app.map?.getSource('resistance-events');
   if (source) source.setData(toGeoJson(app.filteredEvents));
+  const routeSource = app.map?.getSource('maritime-route-guides');
+  if (routeSource) routeSource.setData(toMaritimeRouteGeoJson(app.filteredEvents));
+  if (ui.maritimeRouteNote) ui.maritimeRouteNote.hidden = !app.filters.layers.includes('maritime');
 }
 
 function renderActiveFilters() {
@@ -590,12 +637,14 @@ function renderEventList() {
   const fragment = document.createDocumentFragment();
   [...app.filteredEvents].sort((a, b) => (a.yearStart ?? 9999) - (b.yearStart ?? 9999)).forEach(event => {
     const row = document.createElement('tr');
+    row.classList.toggle('is-maritime', isMaritimeEvent(event));
     const year = document.createElement('td');
     year.textContent = formatLocalizedYear(event, i18n);
     const titleCell = document.createElement('td');
     const button = document.createElement('button');
     button.type = 'button';
-    button.textContent = event.title;
+    button.textContent = isMaritimeEvent(event) ? `≈ ${event.title}` : event.title;
+    if (isMaritimeEvent(event)) button.setAttribute('aria-label', `${i18n.t('layerMaritime')}: ${event.title}`);
     button.addEventListener('click', () => { closeDrawers(); flyToEvent(event); });
     titleCell.append(button);
     const place = document.createElement('td');
@@ -635,6 +684,7 @@ function toGeoJson(events) {
         yearStart: event.yearStart || 0,
         coordinatePrecision: event.coordinatePrecision || 'exact',
         tacticSymbol: primaryTactic(event)?.symbol || '·',
+        maritime: isMaritimeEvent(event),
         discovered: discovered.has(event.id),
         sensitive: isSensitiveEvent(event),
         missionTarget: missionTargets.has(event.id) && !app.progress.mission?.completedIds?.includes(event.id)
@@ -653,10 +703,11 @@ async function openEventPopup(event, coordinates = safeDisplayCoordinates(event)
   content.setAttribute('aria-modal', 'false');
   const sensitive = isSensitiveEvent(event);
   content.classList.toggle('is-sensitive', sensitive);
+  content.classList.toggle('is-maritime', isMaritimeEvent(event));
 
   const media = document.createElement('div');
   media.className = 'event-popup-placeholder';
-  media.textContent = sensitive ? '○' : '✦';
+  media.textContent = sensitive ? '○' : isMaritimeEvent(event) ? '≈' : '✦';
   content.append(media);
 
   const body = document.createElement('div');
@@ -669,6 +720,12 @@ async function openEventPopup(event, coordinates = safeDisplayCoordinates(event)
   const year = document.createElement('span');
   year.textContent = formatLocalizedYear(event, i18n);
   meta.append(category, year);
+  if (isMaritimeEvent(event)) {
+    const maritime = document.createElement('span');
+    maritime.className = 'event-popup-maritime';
+    maritime.textContent = `≈ ${i18n.t('layerMaritime')}`;
+    meta.prepend(maritime);
+  }
 
   const title = document.createElement('h3');
   title.id = `event-title-${event.id}`;
@@ -730,6 +787,9 @@ async function openEventPopup(event, coordinates = safeDisplayCoordinates(event)
   appendEventDetail(details, i18n.t('humanCosts'), event.humanCosts);
   appendEventDetail(details, i18n.t('aftermath'), event.aftermath);
   appendEventDetail(details, i18n.t('openQuestions'), event.openQuestions);
+  appendEventDetail(details, i18n.t('bottomUpPressure'), event.bottomUpPressure);
+  appendEventDetail(details, i18n.t('achievementOutcome'), event.achievement);
+  appendEventDetail(details, i18n.t('achievementLimits'), event.limits);
   appendEventDetail(details, i18n.t('voices'), event.voices);
   appendEventDetail(details, i18n.t('uncertainty'), event.uncertainty);
   if (details.childElementCount) body.append(details);
@@ -1524,6 +1584,7 @@ function renderRoutes() {
     const completed = events.filter(event => discovered.has(event.id)).length;
     const card = document.createElement('article');
     card.className = 'route-card';
+    card.classList.toggle('is-maritime-route', ['uprising-on-deck', 'sea-rights-and-protection'].includes(route.id));
     const heading = document.createElement('h3');
     heading.textContent = route.title;
     const description = document.createElement('p');
@@ -2079,6 +2140,7 @@ function populateLayerFilters() {
   app.taxonomy.layers.forEach(layer => {
     const label = document.createElement('label');
     label.className = 'layer-toggle';
+    label.dataset.layer = layer.id;
     const input = document.createElement('input');
     input.type = 'checkbox';
     input.value = layer.id;
@@ -2088,6 +2150,7 @@ function populateLayerFilters() {
         ? [...new Set([...app.filters.layers, layer.id])]
         : app.filters.layers.filter(id => id !== layer.id);
       renderMapData();
+      if (layer.id === 'maritime' && input.checked) window.setTimeout(fitFilteredEvents, 0);
     });
     const text = document.createElement('span');
     text.textContent = i18n.t(layer.labelKey);
@@ -2138,6 +2201,39 @@ function applyMapStyle() {
   document.documentElement.dataset.mapStyle = app.mapStyle;
   document.documentElement.style.setProperty('--accent', app.mapStyle === 'mono' ? '#ffffff' : app.mapStyle === 'paper' ? '#6d2f1d' : runtimeConfig.accent);
   if (ui.mapStyleSelect) ui.mapStyleSelect.value = app.mapStyle;
+  if (app.map?.getLayer('maritime-route-guides')) {
+    const mono = app.mapStyle === 'mono';
+    const paper = app.mapStyle === 'paper';
+    app.map.setPaintProperty('maritime-route-guides', 'line-color', mono ? '#ffffff' : paper ? '#075c58' : '#43d9d1');
+    app.map.setPaintProperty('event-maritime-rings', 'circle-stroke-color', mono ? '#ffffff' : paper ? '#075c58' : '#43d9d1');
+    app.map.setPaintProperty('event-maritime-symbols', 'text-color', mono ? '#ffffff' : paper ? '#075c58' : '#d9fffb');
+    app.map.setPaintProperty('event-maritime-symbols', 'text-halo-color', mono ? '#000000' : paper ? '#fff1cf' : '#063d43');
+  }
+}
+
+function isMaritimeEvent(event) {
+  return event?.layerIds?.includes('maritime') || event?.tags?.includes('Maritime Gegenmacht');
+}
+
+function toMaritimeRouteGeoJson(events) {
+  const collection = { type: 'FeatureCollection', features: [] };
+  if (!app.filters.layers.includes('maritime')) return collection;
+  const visible = new Map(events
+    .filter(event => isMaritimeEvent(event) && event.coordinatePrecision !== 'hidden' && Number.isFinite(event.longitude) && Number.isFinite(event.latitude))
+    .map(event => [event.id, event]));
+  app.routes.filter(route => ['uprising-on-deck', 'sea-rights-and-protection'].includes(route.id)).forEach(route => {
+    route.eventIds.slice(1).forEach((eventId, index) => {
+      const from = visible.get(route.eventIds[index]);
+      const to = visible.get(eventId);
+      if (!from || !to) return;
+      collection.features.push({
+        type: 'Feature',
+        geometry: { type: 'LineString', coordinates: [[from.longitude, from.latitude], [to.longitude, to.latitude]] },
+        properties: { routeId: route.id, evidenceMode: 'curated-context' }
+      });
+    });
+  });
+  return collection;
 }
 
 function primaryTactic(event) {
@@ -2410,16 +2506,17 @@ function openModal(modal) {
 }
 
 function closeModals(restoreFocus = true) {
-  const hadOpenModal = !ui.welcomeModal.hidden || !ui.quizModal.hidden || !ui.methodologyModal.hidden;
+  const hadOpenModal = !ui.welcomeModal.hidden || !ui.quizModal.hidden || !ui.methodologyModal.hidden || !ui.pirateDossierModal.hidden;
   ui.modalBackdrop.hidden = true;
   ui.welcomeModal.hidden = true;
   ui.quizModal.hidden = true;
   ui.methodologyModal.hidden = true;
+  ui.pirateDossierModal.hidden = true;
   if (restoreFocus && hadOpenModal && app.lastFocus?.isConnected) app.lastFocus.focus();
 }
 
 function trapModalFocus(event) {
-  const modal = [ui.welcomeModal, ui.quizModal, ui.methodologyModal].find(item => !item.hidden);
+  const modal = [ui.welcomeModal, ui.quizModal, ui.methodologyModal, ui.pirateDossierModal].find(item => !item.hidden);
   if (!modal) return;
   const focusable = [...modal.querySelectorAll('button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])')];
   if (!focusable.length) return;

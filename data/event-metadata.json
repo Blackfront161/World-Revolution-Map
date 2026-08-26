@@ -86,6 +86,14 @@
     { "id": "india-cooked-midday-meal-entitlement-2001", "coordinatePrecision": "region" },
     { "id": "south-africa-tac-nevirapine-judgment-2002", "coordinatePrecision": "region" },
     { "id": "red-vienna-municipal-housing-1923", "coordinatePrecision": "region" },
-    { "id": "aboriginal-land-rights-nt-act-1976", "coordinatePrecision": "region" }
+    { "id": "aboriginal-land-rights-nt-act-1976", "coordinatePrecision": "region" },
+    { "id": "revolt-of-the-lash", "coordinatePrecision": "approximate" },
+    { "id": "amistad-revolt", "coordinatePrecision": "region" },
+    { "id": "kiel-sailors-uprising-1918", "coordinatePrecision": "approximate" },
+    { "id": "invergordon-collective-refusal-1931", "coordinatePrecision": "region" },
+    { "id": "pacific-climate-warriors-newcastle-2014", "coordinatePrecision": "region" },
+    { "id": "blue-mud-bay-sea-rights-2008", "coordinatePrecision": "region" },
+    { "id": "tallurutiup-imanga-inuit-agreement-2019", "coordinatePrecision": "region" },
+    { "id": "iwc-commercial-whaling-moratorium-1982", "coordinatePrecision": "region" }
   ]
 }

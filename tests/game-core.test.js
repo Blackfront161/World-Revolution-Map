@@ -141,6 +141,19 @@ test('normalisiert und validiert optionale Redaktionsfelder rückwärtskompatibe
   assert.deepEqual(validateEditorialFields({ demands: [''] }), ['demands enthält einen leeren oder ungültigen Eintrag']);
 });
 
+test('modelliert Errungenschaften mit Druck von unten und Grenzen', () => {
+  const event = normalizeEvent({
+    id: 'sea-rights', title: 'Meeresrechte', longitude: 1, latitude: 2,
+    bottomUpPressure: 'Gemeinschaften organisierten sich.', achievement: 'Ein Recht wurde anerkannt.', limits: 'Die Umsetzung bleibt begrenzt.',
+    relatedEventIds: ['other-event']
+  });
+  assert.equal(event.bottomUpPressure, 'Gemeinschaften organisierten sich.');
+  assert.equal(event.achievement, 'Ein Recht wurde anerkannt.');
+  assert.equal(event.limits, 'Die Umsetzung bleibt begrenzt.');
+  assert.deepEqual(event.relatedEventIds, ['other-event']);
+  assert.deepEqual(validateEditorialFields({ achievement: 3 }), ['achievement muss Text sein']);
+});
+
 test('sensible Ereignisse werden nicht in Missionen aufgenommen', () => {
   const pool = [
     ...events,

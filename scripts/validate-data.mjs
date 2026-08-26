@@ -21,6 +21,7 @@ const rawCoordinateFields = ['coordinates', 'longitude', 'latitude', 'lng', 'lat
 const ids = new Set();
 const rawById = new Map();
 let activeCount = 0;
+let maritimeCount = 0;
 for (const filename of catalog) {
   if (typeof filename !== 'string' || !/^[a-z0-9-]+\.json$/i.test(filename)) throw new Error(`Ungültiger Katalogpfad: ${filename}`);
   const rows = JSON.parse(await readFile(`data/${filename}`, 'utf8'));
@@ -30,6 +31,22 @@ for (const filename of catalog) {
     const editorialIssues = validateEditorialFields(row);
     if (editorialIssues.length) throw new Error(`${label}: ${editorialIssues.join('; ')}`);
     if (row.archived) return;
+    if (Array.isArray(row.relatedEventIds)) {
+      for (const relatedId of row.relatedEventIds) if (!EVENT_ID_PATTERN.test(String(relatedId))) throw new Error(`${label}: relatedEventIds enthält eine ungültige ID.`);
+    }
+    if (filename === 'expansion-maritime.json') {
+      maritimeCount += 1;
+      const required = ['demands', 'participants', 'powerStructures', 'tactics', 'immediateConsequences', 'longTermImpact', 'repression', 'humanCosts', 'aftermath', 'openQuestions', 'sourceType', 'sourceQuality', 'uncertainty', 'sensitivity', 'reviewStatus', 'provenance', 'license'];
+      for (const field of required) if (!row[field] || (Array.isArray(row[field]) && !row[field].length)) throw new Error(`${label}: maritimes Pflichtfeld ${field} fehlt.`);
+      if (!row.tags?.includes('Maritime Gegenmacht')) throw new Error(`${label}: kontrollierter Tag Maritime Gegenmacht fehlt.`);
+      if (!['approximate', 'region'].includes(row.coordinatePrecision)) throw new Error(`${label}: maritimer Ort muss approximate oder region sein.`);
+      if (row.reviewStatus !== 'Redaktioneller Pilotstand') throw new Error(`${label}: maritimer Reviewstatus ist inkonsistent.`);
+      if (row.license?.status !== 'rights-unclear') throw new Error(`${label}: maritime Textrechte müssen konservativ rights-unclear bleiben.`);
+      if (!Array.isArray(row.provenance?.sourceUrls) || row.provenance.sourceUrls.length < 2 || !row.provenance.sourceUrls.includes(row.sourceUrl)) throw new Error(`${label}: mindestens zwei Provenance-Quellen einschließlich sourceUrl erforderlich.`);
+      if (row.category === contract.achievementModel?.category) {
+        for (const field of contract.achievementModel.requiredPerspectiveFields || []) if (!row[field]) throw new Error(`${label}: Errungenschaftsfeld ${field} fehlt.`);
+      }
+    }
     const coordinatePrecision = precisionById.get(row.id) || row.coordinatePrecision || '';
     if (coordinatePrecision === 'hidden' && rawCoordinateFields.some(field => field in row)) {
       throw new Error(`${label}: hidden-Ereignisse dürfen keine Rohkoordinaten enthalten.`);
@@ -44,6 +61,7 @@ for (const filename of catalog) {
     try { new URL(event.sourceUrl); } catch { throw new Error(`${label}: sourceUrl ist keine gültige URL.`); }
   });
 }
+if (maritimeCount < 6 || maritimeCount > 10) throw new Error(`expansion-maritime.json: erwartet werden 6–10 qualitätsgesicherte Neueinträge; gefunden: ${maritimeCount}.`);
 
 if (contract.schemaVersion !== 1) throw new Error('archive-contract.json: nicht unterstützte schemaVersion.');
 if (!contract.idPolicy || contract.idPolicy.pattern !== EVENT_ID_PATTERN.source) throw new Error('archive-contract.json: ID-Policy stimmt nicht mit der Laufzeit überein.');
@@ -52,6 +70,7 @@ for (const field of ['code', 'data', 'images', 'mapData', 'notice']) {
   if (!contract.license?.[field]) throw new Error(`archive-contract.json: license.${field} fehlt.`);
 }
 if (!contract.mapModel?.hiddenCoordinateRule || contract.mapModel.layerMode !== 'multi-select-or') throw new Error('archive-contract.json: Kartenmodell fehlt.');
+if (contract.achievementModel?.category !== 'Soziale Errungenschaft' || !Array.isArray(contract.achievementModel?.requiredPerspectiveFields)) throw new Error('archive-contract.json: Errungenschaftsmodell fehlt.');
 
 if (metadata.schemaVersion !== contract.schemaVersion || !Array.isArray(metadata.events)) throw new Error('event-metadata.json: ungültige Struktur.');
 const metadataIds = new Set();
@@ -82,6 +101,9 @@ for (const id of baselineSensitiveIds) {
   if (!row?.sensitivity) throw new Error(`${id}: sensible Baseline ist nicht mehr als sensibel gekennzeichnet.`);
   if (!metadataIds.has(id)) throw new Error(`${id}: sensible Baseline hat keine Koordinatenklassifikation.`);
 }
+for (const row of rawById.values()) {
+  for (const relatedId of row.relatedEventIds || []) if (!ids.has(relatedId)) throw new Error(`${row.id}: relatedEventIds enthält unbekannte Event-ID ${relatedId}.`);
+}
 
 const overrides = JSON.parse(await readFile('data/event-editorial-overrides.json', 'utf8'));
 if (overrides.schemaVersion !== contract.schemaVersion || !overrides.events || Array.isArray(overrides.events)) throw new Error('event-editorial-overrides.json: ungültige Struktur.');
@@ -98,7 +120,7 @@ for (const [id, row] of Object.entries(overrides.events)) {
   if (!metadataIds.has(id)) throw new Error(`${label}: coordinatePrecision fehlt in event-metadata.json.`);
   deepenedCount += 1;
 }
-if (deepenedCount < 20 || deepenedCount > 25) throw new Error(`Redaktionsrunde muss 20–25 Ereignisse enthalten; gefunden: ${deepenedCount}.`);
+if (deepenedCount < 20) throw new Error(`Mindestens 20 redaktionelle Vertiefungen erforderlich; gefunden: ${deepenedCount}.`);
 
 const routes = JSON.parse(await readFile('data/routes.json', 'utf8'));
 if (routes.schemaVersion !== contract.schemaVersion) throw new Error('routes.json: schemaVersion stimmt nicht.');
@@ -109,7 +131,7 @@ const taxonomy = JSON.parse(await readFile('data/map-taxonomy.json', 'utf8'));
 if (taxonomy.schemaVersion !== contract.schemaVersion) throw new Error('map-taxonomy.json: schemaVersion stimmt nicht.');
 const taxonomyIssues = validateMapTaxonomy(taxonomy);
 if (taxonomyIssues.length) throw new Error(taxonomyIssues.join('; '));
-if (taxonomy.layers.length !== 10 || taxonomy.tactics.length !== 10 || taxonomy.mapStyles.length !== 3) throw new Error('map-taxonomy.json: erwartet werden 10 Layer, 10 Taktiken und 3 Kartenstile.');
+if (taxonomy.layers.length !== 11 || taxonomy.tactics.length !== 10 || taxonomy.mapStyles.length !== 3) throw new Error('map-taxonomy.json: erwartet werden 11 Layer, 10 Taktiken und 3 Kartenstile.');
 
 const relations = JSON.parse(await readFile('data/relations.json', 'utf8'));
 if (relations.schemaVersion !== contract.schemaVersion) throw new Error('relations.json: schemaVersion stimmt nicht.');
