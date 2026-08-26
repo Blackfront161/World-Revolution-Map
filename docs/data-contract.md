@@ -46,6 +46,16 @@ Derzeit enthält der Katalog 40 Lebenswege und 97 Quellen. Die UI-Langtexte sind
 
 `data/routes.json` referenziert ausschließlich kanonische IDs. Fehlende, doppelte oder aliasbasierte Stopps lassen die Validierung scheitern.
 
+## Soziale Errungenschaften
+
+Einträge der Kategorie `Soziale Errungenschaft` können drei ausdrücklich getrennte Perspektivfelder führen:
+
+- `bottomUpPressure`: Organisierung, Forderungen und Druck von unten;
+- `achievement`: das konkret belegte rechtliche, soziale oder institutionelle Ergebnis;
+- `limits`: Ausnahmen, Umsetzungsprobleme, Rückschritte und fortdauernde Konflikte.
+
+Diese Trennung verhindert, dass Rechte als Geschenk von Regierungen oder als pauschal „gewonnen“ erzählt werden. Die drei maritimen Errungenschaften in `data/expansion-maritime.json` müssen alle Felder vollständig führen; der Validator erzwingt zusätzlich mindestens zwei Provenance-URLs und `rights-unclear`.
+
 ## Kartenmodell, Zeit und Themenebenen
 
 `data/map-taxonomy.json` ist die kontrollierte, versionierte Taxonomie der Kartenoberfläche:
@@ -55,6 +65,8 @@ Derzeit enthält der Katalog 40 Lebenswege und 97 Quellen. Die UI-Langtexte sind
 - `tactics` enthält stabile Symbol-IDs, ein lokales Textsymbol und belegte Suchbegriffe. Ein unbekannter oder nicht zuordenbarer Begriff bleibt als Text sichtbar und wird nicht erraten.
 - `styles` enthält die drei lokalen Darstellungsvarianten. Sie verwenden dieselbe dokumentierte Basiskarte und wechseln keinen Tileanbieter.
 - `network` begrenzt Knoten und Kanten, damit die Zusatzansicht bei der vollständigen Sammlung bedienbar bleibt.
+
+Die Ebene `maritime` wird ausschließlich über kontrollierte Begriffe wie `Maritime Gegenmacht`, `Meeresrechte`, `Meeresschutz` und `Hafenwiderstand` zugeordnet. Ein maritimer Marker erhält zusätzlich ein Wellenzeichen; Farbe ist nie das einzige Signal. Neue maritime Geometrien sind nur `approximate` oder `region`. Die gestrichelten Linien der beiden maritimen Routen visualisieren redaktionelle Nachbarschaft mit `curated-context`, keine tatsächliche Reise, Kausalität oder historische Einflusslinie.
 
 Die reproduzierbaren URL-Parameter heißen `from`, `to`, `undated`, `q`, `category`, `layers`, `style`, `event`, `bio` und `compare`. Sie enthalten niemals Ereigniskoordinaten. `compare` akzeptiert höchstens drei begrenzte `event:*`-/`bio:*`-Referenzen.
 

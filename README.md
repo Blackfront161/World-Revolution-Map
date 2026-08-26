@@ -6,15 +6,15 @@ Eine interaktive, spielerische Weltkarte historischer Bewegungen, Aufstände, St
 
 - interaktive MapLibre-Weltkarte mit Clustern, beschrifteten Taktiksymbolen und erklärter Ortsgenauigkeit
 - zugänglicher Zeitraumregler mit Zahleneingaben, optionaler Zeitreise, Deep-Link und ausdrücklicher Behandlung undatierter Einträge
-- zehn mehrfach auswählbare Themenebenen mit aktiven Filterchips und gemeinsamem Filter für Karte, Liste, Routen, Zeitleiste und Ergebniszahl
+- elf mehrfach auswählbare Themenebenen – einschließlich „Meere, Häfen & maritime Gegenmacht“ – mit aktiven Filterchips und gemeinsamem Filter für Karte, Liste, Routen, Zeitleiste und Ergebniszahl
 - zehn lokale Taktiksymbole für Streik, Besetzung, Blockade, Boykott, Aufstand, Landverteidigung, gegenseitige Hilfe, Kunst/Medien, Selbstverwaltung und Gefangenenstreik
 - optionale, begrenzte 2D-Netzwerkansicht mit zugänglicher Beziehungsliste und klarer Trennung von redaktionellen Routenbezügen und bloßen Ähnlichkeiten
 - drei lokal umgeschaltete Kartenstile – dunkles Archiv, kontrastreich monochrom und warmes Papierarchiv – auf derselben attribuierten Basiskarte
 - tolerante Volltextsuche mit Diakritika-, Bindestrich- und kuratierten Synonymvarianten sowie Kategorie-, Themen- und Zeitraumfiltern
-- 668 kuratierte, aktive Ereignisse in 24 Datendateien aus allen Weltregionen
+- 674 kuratierte, aktive Ereignisse in 25 Datendateien aus allen Weltregionen
 - 40 koordinatenfreie Lebenswege mit 97 strukturierten Quellen, Suche nach Person, Gemeinschaft/Region, Tradition und Zeitraum sowie Verknüpfungen zu bestehenden Ereignissen
-- vier geführte, quellengebundene Archiv-Routen mit neutralem Lesefortschritt und zugänglicher Stoppliste
-- 24 validierte Beziehungen zwischen stabilen Ereignis-IDs; heuristische Ähnlichkeiten behaupten ausdrücklich keinen historischen Einfluss
+- sechs geführte, quellengebundene Archiv-Routen mit neutralem Lesefortschritt und zugänglicher Stoppliste
+- 33 validierte Beziehungen zwischen stabilen Ereignis-IDs; heuristische Ähnlichkeiten behaupten ausdrücklich keinen historischen Einfluss
 - neun lokal gespeicherte Oberflächensprachen wie bei World Revolution News: Deutsch, Englisch, Spanisch, Französisch, Italienisch, Portugiesisch, Russisch, Griechisch und Türkisch
 - Mehrfach-Tags für überlappende Spektren wie Anarchismus, indigener Widerstand, Antisexismus, Schwarze Befreiung, Antifaschismus, Antikolonialismus und Tierbefreiung
 - regional aufgeteilte, über `data/event-catalog.json` erweiterbare Datendateien
@@ -22,11 +22,12 @@ Eine interaktive, spielerische Weltkarte historischer Bewegungen, Aufstände, St
 - eigene Perspektiven auf frühe soziale Revolten, Widerstand versklavter Menschen, antifeudale Kämpfe, Commons und Rätebewegungen
 - ein vertiefter Kanada-Schwerpunkt mit über 40 indigenen Land-, Autonomie-, Kultur-, Fischerei- und Umweltkämpfen vom 18. Jahrhundert bis zur Gegenwart
 - soziale Errungenschaften als eigene Kategorie: erkämpfte Wahl-, Arbeits-, Gesundheits-, reproduktive und queere Rechte – jeweils mit ihren Grenzen und möglichen Rückschritten
+- maritime Geschichte mit sechs neuen quellenkritischen Ereignissen, zwei Vertiefungen, zwei Vergleichsrouten, redundanten Wellenzeichen und einem Pirat*innen-Dossier, das interne Borddemokratie nicht mit allgemeiner Befreiung verwechselt
 - optionaler Supabase-Abruf ausschließlich nach explizitem `?supabase=1`; die RC startet standardmäßig vollständig aus den lokalen Daten
 - Karten-Popups mit Einordnung und weiterführender Quelle; Remote-Bilder sind bis zu einem vollständigen per-item Rechte- und Attributionsmanifest deaktiviert
 - ausführliche, optionale Ergebnisfelder ohne Einteilung in „gewonnen“ oder „verloren“
 - sichtbare und in allen neun UI-Sprachen beschriftete Quellenart, Quellenqualität, Prüfstatus, Unsicherheit und Hinweise zu sensiblen Inhalten
-- 20 Ereignisvertiefungen als separate, nachvollziehbare Redaktionsebene; weitere Ereignisse führen ihre Redaktionsfelder direkt im jeweiligen Datensatz
+- 22 Ereignisvertiefungen als separate, nachvollziehbare Redaktionsebene; weitere Ereignisse führen ihre Redaktionsfelder direkt im jeweiligen Datensatz
 - zugängliche, tastaturbedienbare Ereignistabelle als Alternative zur Karte
 - sichtbare aktive Filter, die einzeln entfernt werden können
 - Vorher-/Zurück-zur-Welt-/Nächster-Navigation, lokale Lesezeichen, benannte Sammlungen mit begrenztem JSON-Import/-Export und reproduzierbare Ansichtsparameter in der URL
@@ -103,11 +104,11 @@ Benötigt wird Node.js 20 oder neuer. Es müssen keine Pakete installiert werden
 
 ## Datenquellen
 
-Beim Start liest die Anwendung `data/event-catalog.json` und lädt daraus die 24 Ereignisdateien. `data/biography-catalog.json` katalogisiert drei eigenständige Biografiedateien; Lebenswege werden nicht als Kartenereignisse behandelt und erhalten keine künstlichen Koordinaten. Neue Sammlungen können durch eine zusätzliche JSON-Datei und einen Katalogeintrag ergänzt werden, ohne den JavaScript-Lader zu verändern. Nur mit dem ausdrücklichen Parameter `?supabase=1` werden Datensätze aus `public.ereignisse` ergänzt beziehungsweise mit gleichnamigen Einträgen zusammengeführt. Ohne diesen Parameter startet die RC ausschließlich aus dem lokalen Archiv.
+Beim Start liest die Anwendung `data/event-catalog.json` und lädt daraus die 25 Ereignisdateien. `data/biography-catalog.json` katalogisiert drei eigenständige Biografiedateien; Lebenswege werden nicht als Kartenereignisse behandelt und erhalten keine künstlichen Koordinaten. Neue Sammlungen können durch eine zusätzliche JSON-Datei und einen Katalogeintrag ergänzt werden, ohne den JavaScript-Lader zu verändern. Nur mit dem ausdrücklichen Parameter `?supabase=1` werden Datensätze aus `public.ereignisse` ergänzt beziehungsweise mit gleichnamigen Einträgen zusammengeführt. Ohne diesen Parameter startet die RC ausschließlich aus dem lokalen Archiv.
 
 Ein Eintrag besitzt eine primäre Kategorie und beliebig viele `tags`. Der Filter berücksichtigt beides. Negative Jahreswerte stehen für Jahre vor unserer Zeitrechnung; für ihre sichtbare Datierung wird zusätzlich `dateLabel` gepflegt. Paläontologische Fundorte gehören nicht in diesen Atlas: Der zeitliche Anfang folgt der frühesten belastbaren Überlieferung kollektiven sozialen Handelns. Moderne Begriffe werden in antiken und mittelalterlichen Einträgen nicht als Selbstbezeichnungen ausgegeben.
 
-Das Datenmodell akzeptiert zusätzlich rückwärtskompatible optionale Felder: `demands`, `participants`, `powerStructures`, `tactics`, `immediateConsequences`, `longTermImpact`, `repression`, `humanCosts`, `aftermath`, `openQuestions`, `voices`, `sourceType`, `sourceQuality`, `uncertainty`, `sensitivity`, `reviewStatus`, `schemaVersion`, `aliases`, `coordinatePrecision`, `provenance` und `license`. Neue Einträge sollen diese Felder nur mit belegbaren Aussagen füllen; leere Felder dürfen leer bleiben. Kontrollierte Themen-, Taktik-, Stil- und Zeitwerte stehen in `data/map-taxonomy.json`; Beziehungen mit stabiler ID, `relationType` und `evidenceMode` stehen getrennt in `data/relations.json`.
+Das Datenmodell akzeptiert zusätzlich rückwärtskompatible optionale Felder: `demands`, `participants`, `powerStructures`, `tactics`, `immediateConsequences`, `longTermImpact`, `repression`, `humanCosts`, `aftermath`, `openQuestions`, `voices`, `sourceType`, `sourceQuality`, `uncertainty`, `sensitivity`, `reviewStatus`, `schemaVersion`, `aliases`, `coordinatePrecision`, `provenance`, `license` sowie für soziale Errungenschaften `bottomUpPressure`, `achievement` und `limits`. Neue Einträge sollen diese Felder nur mit belegbaren Aussagen füllen; leere Felder dürfen leer bleiben. Kontrollierte Themen-, Taktik-, Stil- und Zeitwerte stehen in `data/map-taxonomy.json`; Beziehungen mit stabiler ID, `relationType` und `evidenceMode` stehen getrennt in `data/relations.json`.
 
 Geprüfte Ereignisübersetzungen werden optional und feldweise unter `translations` gespeichert. Jede Sprachfassung muss pro Feld die Form `{ "text": "…", "status": "reviewed" }` verwenden. Nur so markierte Felder überschreiben das deutsche Original; Entwürfe oder fehlende Felder werden nicht als Übersetzung ausgegeben. Die Oberfläche kennzeichnet deshalb auch teilweise übersetzte Einträge ausdrücklich.
 
