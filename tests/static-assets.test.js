@@ -116,11 +116,22 @@ test('Maritime Erweiterung bleibt quellenkritisch, regional und ohne Piraten-Myt
   const achievements = maritime.filter(row => row.category === 'Soziale Errungenschaft');
   assert.equal(achievements.length, 3);
   assert.ok(achievements.every(row => row.bottomUpPressure && row.achievement && row.limits));
+  const tallurutiup = maritime.find(row => row.id === 'tallurutiup-imanga-inuit-agreement-2019');
+  assert.ok(tallurutiup);
+  assert.doesNotMatch(`${tallurutiup.significance} ${tallurutiup.achievement} ${tallurutiup.immediateConsequences}`, /formell (?:eingerichtet|etabliert)/i);
+  assert.match(tallurutiup.limits, /gesetzliche Einrichtung/i);
+  assert.match(tallurutiup.limits, /noch aus/i);
+  assert.match(tallurutiup.achievement, /IIBA[\s\S]*begannen[\s\S]*kooperativ zu betreiben/i);
   assert.ok(routes.routes.some(route => route.id === 'uprising-on-deck'));
   assert.ok(routes.routes.some(route => route.id === 'sea-rights-and-protection'));
   assert.ok(relations.relations.filter(row => row.contextId === 'uprising-on-deck' || row.contextId === 'sea-rights-and-protection').every(row => row.evidenceMode === 'curated-context'));
   assert.ok(!maritime.some(row => /libertalia|anne-bonny|mary-read/.test(row.id)));
   assert.match(html, /Libertalia: Mythos, kein Kartenpunkt/);
+  assert.match(html, /1721 gedruckter Bericht des Vizeadmiralitätsverfahrens/);
+  assert.match(html, /persee\.fr\/doc\/dhs_0070-6760_1998_num_30_1_2258/);
+  assert.match(html, /archive\.org\/details\/the-tryals-of-captain-john-rackham/);
+  assert.match(html, /blogs\.loc\.gov\/law\/2024\/07\/the-life-and-trial-of-anne-bonny/);
+  assert.match(html, /york\.ac\.uk\/eighteenth-century-studies\/news\/2018\/fictional-facts/);
   assert.match(script, /ui\.pirateDossierModal\.hidden = true/);
   assert.match(script, /ui\.methodologyModal, ui\.pirateDossierModal/);
 });
@@ -263,7 +274,7 @@ test('Offline-Shell aktiviert nur eine vollständige atomare lokale Generation',
   const biographyCatalog = JSON.parse(await readFile(new URL('data/biography-catalog.json', root), 'utf8'));
   assert.equal(eventCatalog.length, 25);
   assert.equal(biographyCatalog.files.length, 3);
-  assert.match(worker, /atlas-local-v2\.9\.0-rc2-r8/);
+  assert.match(worker, /atlas-local-v2\.9\.0-rc2-r9/);
   const coreMatch = worker.match(/const CORE_RESOURCES = \[([\s\S]*?)\];/);
   assert.ok(coreMatch, 'CORE_RESOURCES muss für die Offline-Generation deklarativ bleiben');
   const coreResources = [...coreMatch[1].matchAll(/'([^']+)'/g)].map(match => match[1]);
@@ -275,7 +286,7 @@ test('Offline-Shell aktiviert nur eine vollständige atomare lokale Generation',
   }
   assert.equal(
     digest.digest('hex'),
-    '2c1f5f19583ee42822add2b0caee860d810ec495d464916a3c6f694d09244550',
+    'e1e2c4f626be7f4cc886843ff1c7cfdc060d1c9325586e4f70e4e86b33036e21',
     'Vorab gecachte Kernressourcen haben sich geändert: CACHE_VERSION erhöhen und den geprüften Generations-Digest aktualisieren.'
   );
   assert.match(worker, /STAGING_CACHE/);
