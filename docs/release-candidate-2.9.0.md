@@ -1,6 +1,6 @@
 # Release Candidate 2.9.0
 
-Prüfdatum: 24. August 2026. Diese Datei trennt automatisierte beziehungsweise in der lokalen Browserumgebung reproduzierte Befunde von weiterhin offenen manuellen Release-Gates. Ein offenes Gate ist ausdrücklich **nicht bestanden**.
+Prüfdatum: 26. August 2026. Diese Datei trennt automatisierte beziehungsweise in der lokalen Browserumgebung reproduzierte Befunde von weiterhin offenen manuellen Release-Gates. Ein offenes Gate ist ausdrücklich **nicht bestanden**.
 
 ## Reproduzierte automatisierte Gates
 
@@ -12,7 +12,7 @@ Prüfdatum: 24. August 2026. Diese Datei trennt automatisierte beziehungsweise i
 | Biografien | 40 koordinatenfreie Biografien, 97 HTTPS-Quellen, 3 katalogisierte Dateien |
 | Archivmodelle | 4 Routen, 10 Layer, 10 Taktiken, 24 Beziehungen, 3 Kartenstile |
 | Tests | 42/42 bestanden, 0 fehlgeschlagen |
-| Quellencheck | 718/769 direkt erreichbar; 43 automatisiert mit 401/403/405/429 blockiert; 8 nach drei Versuchen unentscheidbar; kein definitiver 404/410-Fehler im Gate |
+| Quellencheck | 363/769 direkt erreichbar; 394 automatisiert mit 401/403/405/429 blockiert; 12 nach drei Versuchen unentscheidbar; kein definitiver HTTP-Fehler im Gate |
 | Remote-Minimierung | Supabase standardmäßig aus und nur per `?supabase=1` nachladbar; keine Wikipedia-/Wikimedia-Bildabfrage oder Bildausgabe in der RC |
 | Drittanbieterhinweise | vollständige versionierte Notices für MapLibre GL JS 4.7.1 und `@supabase/supabase-js` 2.45.4 in `THIRD_PARTY_NOTICES.md` |
 
@@ -38,7 +38,7 @@ Die atomare Worker-Installation schreibt zuerst in einen Staging-Cache, prüft K
 
 ## Designnotiz: farbigeres Archiv ohne Belohnungslogik für Gewalt
 
-Die RC erhält eine lokale, CSS-native Atlaspalette aus Grün, Gold/Ocker, Koralle, Violett und Teal sowie zusätzliche, zurückhaltende Archivraster, Glasflächen und Hierarchieebenen. Farben ergänzen stets Texte, Buchstaben, Symbole und Formen; sie ersetzen keine Bedeutung. Navigation, Routen, Zeitleiste, Archiv, Netzwerk, Vergleiche und Lebenswege nutzen unterschiedliche Akzentfamilien. Akzente in Biografiekarten werden nur deterministisch aus der stabilen ID verteilt und klassifizieren keine Community, Herkunft oder Strömung. Sensible Ereignisse bleiben visuell ruhiger: kein Halo, keine Feieranimation und zurückhaltende Sand-/Neutraltöne. Der monochrome Stil schaltet Dekor zugunsten maximalen Kontrasts zurück; der Papierstil bewahrt dieselbe Informationshierarchie mit warmen, lesbaren Flächen. Alle zusätzlichen Übergänge werden bei `prefers-reduced-motion` deaktiviert.
+Die RC erhält eine lokale, CSS-native Atlaspalette aus Grün, Gold/Ocker, Koralle, Violett und Teal sowie zusätzliche, zurückhaltende Archivraster, Glasflächen und Hierarchieebenen. Farben ergänzen stets Texte, Buchstaben, Symbole und Formen; sie ersetzen keine Bedeutung. Navigation, Routen, Zeitleiste, Archiv, Netzwerk, Vergleiche und Lebenswege nutzen unterschiedliche Akzentfamilien. Akzente in Biografiekarten werden nur deterministisch aus der stabilen ID verteilt und klassifizieren keine Community, Herkunft oder Strömung. Sensible Ereignisse bleiben visuell ruhiger: kein Halo, keine Feieranimation und zurückhaltende Sand-/Neutraltöne. Nach der Kontrastkorrektur nutzt der Papierstil feste dunkle Akzentwerte über festen Papierflächen: die im lokalen Browser gemessenen Schlüsselpaare liegen bei 4,98:1 (Grün), 6,06–7,34:1 (übrige Akzente), 7,83:1 (weißer Text auf Teal) und 8,62:1 (Fokus auf Papier). Der monochrome Stil setzt alle Atlas-Akzente auf Weiß und entsättigt verbleibende dekorative Altwerte; Netzwerk-Knoten/-Kanten und Scrollleisten sind schwarz/weiß. Die CSS- und Browserprüfung deckt 44×44-px-Touchflächen sowie 390×844 und 640×360 ohne Seiten-Horizontaloverflow ab. Enter/Leertaste werden nicht durch einen eigenen Handler abgefangen; die an diese Prüfumgebung gebundene synthetische Eingabe löste jedoch keine native Button-Aktivierung aus. Das bleibt für den echten Browser-/Screenreader-Release-Test offen. Alle zusätzlichen Übergänge werden bei `prefers-reduced-motion` deaktiviert.
 
 ## Offene manuelle Geräte- und Accessibility-Matrix
 

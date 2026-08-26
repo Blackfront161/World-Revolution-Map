@@ -289,6 +289,12 @@ test('Design berücksichtigt reduzierte Bewegung und mobile Ansichten', async ()
   assert.match(css, /\.nav-button\[data-panel="biographies"\]/);
   assert.match(css, /html\[data-map-style="mono"\].*background: #000/s);
   assert.match(css, /html\[data-map-style="paper"\]/);
+  assert.match(css, /html\[data-map-style="paper"\] \{[\s\S]*--atlas-teal: #075c58/);
+  assert.match(css, /--paper-focus: #563400/);
+  assert.match(css, /html\[data-map-style="mono"\] \{[\s\S]*--atlas-green: #fff/);
+  assert.match(css, /html\[data-map-style="mono"\] \.app-shell \{ filter: grayscale\(1\); \}/);
+  assert.match(css, /network-edge\.is-shared-movement/);
+  assert.match(css, /@media \(max-width: 820px\)[\s\S]*min-height: 44px/);
   assert.match(script, /event-point-halos/);
   assert.match(script, /sensitive: isSensitiveEvent\(event\)/);
   assert.match(script, /sensitive \? '○' : '✦'/);

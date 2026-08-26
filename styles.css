@@ -971,3 +971,149 @@ html[data-map-style="mono"] :where(button, input, select, summary, a):focus-visi
   .nav-button { min-height: 48px; border-radius: 9px; }
   .biography-card { min-height: auto; }
 }
+
+/*
+ * RC contrast and reflow guardrails.
+ * Paper uses solid, deliberately darkened ink/accent tokens beneath the
+ * archival texture: the texture stays decorative and never carries meaning.
+ * Mono maps every atlas token to the same black/white scale.
+ */
+html[data-map-style="paper"] {
+  --atlas-green: #216b49;
+  --atlas-gold: #6f470c;
+  --atlas-coral: #8a382e;
+  --atlas-violet: #4e3a7b;
+  --atlas-teal: #075c58;
+  --atlas-ink: #2b2115;
+  --paper-surface: #f2e1bb;
+  --paper-raised: #fff1cf;
+  --paper-focus: #563400;
+  --panel: #f2e1bb;
+  --panel-solid: #f2e1bb;
+  --accent: var(--atlas-teal);
+  --accent-strong: #064a47;
+  --accent-soft: rgba(7, 92, 88, .15);
+  --warm: var(--atlas-gold);
+  --line: rgba(43, 33, 21, .42);
+  --muted: #55432b;
+}
+
+html[data-map-style="paper"] .topbar,
+html[data-map-style="paper"] .control-panel,
+html[data-map-style="paper"] .glass-panel,
+html[data-map-style="paper"] .bottom-nav,
+html[data-map-style="paper"] .drawer,
+html[data-map-style="paper"] .modal,
+html[data-map-style="paper"] .maplibregl-popup-content,
+html[data-map-style="paper"] .mission-card,
+html[data-map-style="paper"] .route-card,
+html[data-map-style="paper"] .achievement,
+html[data-map-style="paper"] .connection-event,
+html[data-map-style="paper"] .archive-entry,
+html[data-map-style="paper"] .timeline-event,
+html[data-map-style="paper"] .biography-card,
+html[data-map-style="paper"] .methodology-content section,
+html[data-map-style="paper"] .collection-tools,
+html[data-map-style="paper"] .similar-history,
+html[data-map-style="paper"] .event-detail-section {
+  background: var(--paper-surface);
+  color: var(--atlas-ink);
+}
+
+html[data-map-style="paper"] :where(.eyebrow, .field-label, .hud-label, .status-label, .nav-button > span:first-child, .nav-button b, .mission-kicker, .event-popup-category, .event-detail-section h4, .archive-year, .connection-year) {
+  color: var(--atlas-teal);
+}
+
+html[data-map-style="paper"] :where(.primary-button, .maplibregl-ctrl button) {
+  background-color: var(--atlas-teal);
+  border-color: var(--atlas-teal);
+  color: #fff;
+}
+
+html[data-map-style="paper"] :where(.secondary-button, .icon-button, .language-picker select, input, select, textarea) {
+  background-color: var(--paper-raised);
+  border-color: #6d5734;
+  color: var(--atlas-ink);
+}
+
+html[data-map-style="paper"] .nav-button {
+  color: var(--atlas-ink);
+  border-color: #806843;
+}
+html[data-map-style="paper"] .nav-button.is-active,
+html[data-map-style="paper"] .nav-button:hover,
+html[data-map-style="paper"] .nav-button:focus-visible {
+  background: var(--paper-raised);
+  border-color: currentColor;
+}
+html[data-map-style="paper"] .nav-button.is-active::after { background: currentColor; }
+html[data-map-style="paper"] .nav-button[data-panel="map"] { color: var(--atlas-teal); }
+html[data-map-style="paper"] .nav-button[data-panel="archive"],
+html[data-map-style="paper"] .nav-button[data-panel="achievements"] { color: var(--atlas-gold); }
+html[data-map-style="paper"] .nav-button[data-panel="biographies"],
+html[data-map-style="paper"] .nav-button[data-panel="network"] { color: var(--atlas-violet); }
+html[data-map-style="paper"] .nav-button[data-panel="timeline"],
+html[data-map-style="paper"] .nav-button[data-panel="compare"] { color: var(--atlas-coral); }
+html[data-map-style="paper"] .nav-button[data-panel="routes"] { color: var(--atlas-green); }
+html[data-map-style="paper"] .nav-button[data-panel="list"],
+html[data-map-style="paper"] .nav-button[data-panel="quiz"] { color: #174b67; }
+html[data-map-style="paper"] .maplibregl-ctrl button .maplibregl-ctrl-icon { filter: none; }
+html[data-map-style="paper"] :where(button, input, select, summary, a):focus-visible {
+  outline-color: var(--paper-focus);
+  outline-width: 3px;
+  outline-offset: 3px;
+}
+
+html[data-map-style="mono"] {
+  --atlas-green: #fff;
+  --atlas-gold: #fff;
+  --atlas-coral: #fff;
+  --atlas-violet: #fff;
+  --atlas-teal: #fff;
+  --atlas-ink: #fff;
+}
+/* The monochrome mode deliberately desaturates remaining decorative legacy
+ * colors as a final guardrail; semantic labels and shapes remain unchanged. */
+html[data-map-style="mono"] .app-shell { filter: grayscale(1); }
+html[data-map-style="mono"] :where(.topbar, .control-panel, .bottom-nav, .drawer, .modal, .maplibregl-ctrl-group, .route-card, .achievement, .connection-event, .archive-entry, .timeline-event, .biography-card, .methodology-content section, .collection-tools, .similar-history, .event-detail-section) {
+  border-color: #fff !important;
+}
+html[data-map-style="mono"] :where(.network-node circle, .network-node polygon) {
+  fill: #fff !important;
+  stroke: #fff !important;
+  filter: none !important;
+}
+html[data-map-style="mono"] :where(.network-edge, .network-edge.is-shared-movement, .network-line-sample) {
+  stroke: #fff !important;
+  border-color: #fff !important;
+}
+html[data-map-style="mono"] :where(.network-node text, .network-label, .event-point-halo) { fill: #fff !important; color: #fff; }
+html[data-map-style="mono"] * { scrollbar-color: #fff #000; }
+html[data-map-style="mono"] *::-webkit-scrollbar-track { background: #000; }
+html[data-map-style="mono"] *::-webkit-scrollbar-thumb { background: #fff; border-color: #000; }
+
+@media (max-width: 820px) {
+  :where(#menu-toggle, #menu-close, #help-button, .icon-button) {
+    box-sizing: border-box;
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+  .language-picker select {
+    box-sizing: border-box;
+    min-width: 110px;
+    min-height: 44px;
+    height: 44px;
+    touch-action: manipulation;
+  }
+  .maplibregl-ctrl-group { min-width: 44px; }
+  .maplibregl-ctrl-group button {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px;
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+}
