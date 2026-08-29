@@ -1,4 +1,4 @@
-# Atlas des Widerstands
+# World Revolution Atlas
 
 Eine interaktive, spielerische Weltkarte historischer Bewegungen, Aufstände, Streiks und Kämpfe um Selbstbestimmung. Besucher*innen reisen über die Karte, sichern Ereignisse für ihr persönliches Archiv, erfüllen Missionen, lösen Quizfragen und schalten Erfolge frei.
 
@@ -24,7 +24,7 @@ Eine interaktive, spielerische Weltkarte historischer Bewegungen, Aufstände, St
 - soziale Errungenschaften als eigene Kategorie: erkämpfte Wahl-, Arbeits-, Gesundheits-, reproduktive und queere Rechte – jeweils mit ihren Grenzen und möglichen Rückschritten
 - maritime Geschichte mit sechs neuen quellenkritischen Ereignissen, zwei Vertiefungen, zwei Vergleichsrouten, redundanten Wellenzeichen und einem Pirat*innen-Dossier, das interne Borddemokratie nicht mit allgemeiner Befreiung verwechselt
 - optionaler Supabase-Abruf ausschließlich nach explizitem `?supabase=1`; die RC startet standardmäßig vollständig aus den lokalen Daten
-- Karten-Popups mit Einordnung und weiterführender Quelle; Remote-Bilder sind bis zu einem vollständigen per-item Rechte- und Attributionsmanifest deaktiviert
+- Karten-Popups mit Einordnung und weiterführender Quelle sowie präzisionsabhängigem, sensitivitätsschonendem Fokus; ein Remote-Bild erscheint nur nach vollständigem `rights-reviewed`-Einzelnachweis, sonst eine lokale Symbolkarte
 - ausführliche, optionale Ergebnisfelder ohne Einteilung in „gewonnen“ oder „verloren“
 - sichtbare und in allen neun UI-Sprachen beschriftete Quellenart, Quellenqualität, Prüfstatus, Unsicherheit und Hinweise zu sensiblen Inhalten
 - 22 Ereignisvertiefungen als separate, nachvollziehbare Redaktionsebene; weitere Ereignisse führen ihre Redaktionsfelder direkt im jeweiligen Datensatz
@@ -51,6 +51,59 @@ Die Sprache kann im Kopfbereich oder mit `?lang=de|en|es|fr|it|pt|ru|el|tr` gew�
 
 Zeit, Suche, Kategorie, Themenebenen, Kartenstil, Vergleich sowie ein Lebensweg können über `from`, `to`, `undated`, `q`, `category`, `layers`, `style`, `compare` und `bio` geteilt werden. `event` und `bio` werden robust nebeneinander verarbeitet. Die URL enthält keine Ereigniskoordinaten. Eine automatische Zeitreise ist optional und wird bei aktivierter Betriebssystem-Einstellung für reduzierte Bewegung abgeschaltet.
 
+## Produktlogo
+
+Das bereitgestellte Original liegt unverändert in
+`assets/brand/world-revolution-atlas-user-v1.png` (1254 × 1254 Pixel).
+Die aktive, KI-bearbeitete Hintergrundvariante liegt separat in
+`assets/brand/world-revolution-atlas-parchment-v2.png` (1254 × 1254 Pixel, ca. 3,12 MB).
+Der Bildbearbeitungsauftrag ersetzt den schwarzen Außenhintergrund durch warmes,
+dezent gealtertes Pergament und erhält Schrift, Komposition und Farben möglichst nah
+am Original; die bearbeitete Variante ist nicht pixelidentisch und nicht transparent.
+Eine messinggerahmte Papiereinfassung verbindet sie mit dem Serifensatz der
+Oberfläche. Das Logo im Kopfbereich öffnet die Einführung mit einer größeren,
+unbeschnittenen Ansicht. Unter 470 Pixeln bleibt im Kopfbereich nur die Plakette;
+der vollständige Produktname ist weiterhin für Screenreader verfügbar und steht
+in der Einführung zusätzlich als Text. Der Kontrastmodus zeigt die gesamte
+Oberfläche einschließlich Logo monochrom; die Quelldatei wird nicht verändert.
+Die früheren Entwürfe bleiben zur Nachvollziehbarkeit gespeichert, werden aber
+nicht mehr als Produktlogo angezeigt oder vorab in den Offlinecache geladen.
+
+## Sanfte Kartenperspektive
+
+Unter **Kartenstil → Sanfte 3D-Perspektive** lässt sich eine optionale,
+nordorientierte Kameraneigung einschalten: 28° am Desktop, 20° im mobilen Layout.
+2D bleibt bei jedem Neustart Standard. Betriebssystemseitig reduzierte Bewegung
+deaktiviert den Schalter und stellt ohne Animation auf 2D zurück. Sensible,
+regionale, verborgene oder nicht klassifizierte Ereignisorte werden ebenfalls
+flach fokussiert; Koordinaten- und Zoomgrenzen bleiben unverändert.
+Es ist eine [MapLibre-Kameraperspektive](https://maplibre.org/maplibre-gl-js/docs/API/type-aliases/CameraOptions/),
+kein Gelände-, Gebäude- oder Satellitenmodell. Keine neuen Kartenanbieter,
+Datenpakete oder Daueranimationen werden dafür geladen. Kartenkacheln benötigen
+weiterhin Netz; die lokale Archivliste und das Logo bleiben im Offlinepaket.
+
+## Globus-Testversion (2026-08-28)
+
+`?projection=globe` aktiviert den Globus; ohne Parameter bleibt die flache Karte
+Standard. Oben in den Suchfiltern lässt sich **Ansicht** zwischen beiden wechseln.
+Der runde Knopf daneben öffnet die Weltübersicht. Filter und Ereignis-IDs bleiben
+erhalten; die Rückseite ist naturgemäß nicht sichtbar, die Liste enthält alle Treffer.
+Ziehen/Wischen dreht die Erde; es gibt keine automatische Rotation. Reduzierte
+Bewegung unterdrückt Kamerafahrten. Im Globus ist die zusätzliche Kameraneigung
+deaktiviert; die vorhandenen Zoom- und Koordinatenschutzregeln gelten weiter.
+
+Die Runtime wurde für diese lokale Testversion von MapLibre GL JS 4.7.1 auf
+5.24.0 aktualisiert (JS/CSS fest versioniert mit neuen SHA-384-Prüfsummen).
+Das ist der geprüfte 5.x-Zwischenschritt, keine Behauptung über die neueste
+Hauptversion. Kartenstil und Kacheln bleiben bei CARTO; keine zusätzlichen
+Provider, Konten oder API-Schlüssel wurden ergänzt. Ein synchroner Fehler beim
+Projektionswechsel fällt auf Mercator zurück; ohne funktionierende WebGL-Runtime
+bleiben die Archivlisten verfügbar. Gelände wurde ausdrücklich noch nicht eingebaut.
+
+Die Notices wurden mit der vollständigen 5.24.0-Lizenz abgeglichen (Lizenztext
+unverändert). Ältere Auditdokumente beschreiben weiterhin ihren damaligen Stand.
+Lokaler Arbeitsstand und nächste Entscheidungen: `docs/current-handoff.md`.
+
 ## In eine andere App einbetten
 
 Der Atlas kann als iframe, WebView oder Mikro-Frontend eingebunden werden. Query-Parameter steuern Embed-Modus, Einführung, Akzentfarbe und den optionalen Supabase-Zugriff. Eine kleine JavaScript-API bietet Filter, Ereignisfokus, Panels sowie Fortschrittsimport und -export. Die vollständige Schnittstelle und ein abgesichertes iframe-Beispiel stehen in `docs/embedding.md`.
@@ -58,7 +111,7 @@ Der Atlas kann als iframe, WebView oder Mikro-Frontend eingebunden werden. Query
 ## Sicherheit
 
 - Datenbankinhalte werden ausschließlich über `textContent` und DOM-Knoten ausgegeben.
-- Quellenlinks akzeptieren nur HTTPS; Remote-Bilder und Bild-APIs sind in der RC deaktiviert.
+- Quellenlinks akzeptieren nur HTTPS; ungeprüfte Bildfelder und Bild-APIs sind deaktiviert, optionale Ereignisbilder benötigen die enge Host- und Einzelrechteprüfung des Datenvertrags.
 - Fortschrittsimporte werden typisiert, längenbegrenzt und gegen bekannte Ereignis-IDs abgeglichen.
 - Sammlungsimporte sind auf 200 KB, 20 Sammlungen und insgesamt 500 bekannte Ereignis-/Biografiereferenzen begrenzt.
 - Supabase ist standardmäßig aus und wird nur mit `?supabase=1` geladen; Live-Daten sind dann auf 2.000 Zeilen pro Abruf begrenzt.
@@ -79,6 +132,8 @@ Die Grundsätze sind direkt in der Anwendung über „Über diese Karte und Meth
 Der stabile Datenvertrag ist in [`docs/data-contract.md`](docs/data-contract.md) und maschinenlesbar in [`data/archive-contract.json`](data/archive-contract.json) beschrieben. Die ursprünglichen 53 sensiblen Ereignisse sind als nicht-regressierbare Basis im Vertrag verankert; auch jedes neu hinzukommende sensible Ereignis benötigt eine geprüfte Ortsgenauigkeitsklasse. Aktuelle oder fortwirkende Schutzkontexte werden nur grob verortet. Rechte- und Attributionsstände für Code, Ereignisdaten, Biografietexte, Bilder und Kartendaten stehen getrennt in [`docs/licensing-and-attribution.md`](docs/licensing-and-attribution.md); vollständige versionierte Drittanbieterhinweise stehen in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md). Diese Dokumente erteilen ausdrücklich keine pauschale Gesamtprojektlizenz.
 
 Die Kartentaxonomie liegt in [`data/map-taxonomy.json`](data/map-taxonomy.json), die eigenständigen Beziehungen in [`data/relations.json`](data/relations.json). Verborgene Schutzorte werden nicht als Marker und nicht als numerische Koordinaten an DOM, öffentliche App-Snapshots oder Deep-Links ausgegeben. Die visuelle Netzwerkdarstellung ist auf 72 Knoten und 140 Kanten begrenzt; die relationale Liste bleibt die barrierearme Alternative. Ein 3D-Globus ist bewusst zurückgestellt, weil er gegenüber dieser Stufe zusätzliche Renderinglast und eine parallele zugängliche Bedienoberfläche erfordern würde, ohne den Quellenwert zu erhöhen.
+
+Satelliten-/Luftbildkarten bleiben ebenfalls zurückgestellt: Ein zusätzlicher Anbieter benötigt eine separate Prüfung von Vertrag, Lizenz, Attribution, CSP und Datenschutz.
 
 Der Publishable Key im Browser ist bestimmungsgemäß öffentlich und kein Geheimnis. Die Sicherheit der Datenbank hängt davon ab, dass das dokumentierte RLS-/Grant-Schema tatsächlich in der produktiven Supabase-Instanz angewendet wird. Spiel-XP ist lokale UI-Daten und darf nie als serverseitige Berechtigung oder geldwerter Nachweis gelten.
 
@@ -112,7 +167,7 @@ Beim Start liest die Anwendung `data/event-catalog.json` und lädt daraus die 25
 
 Ein Eintrag besitzt eine primäre Kategorie und beliebig viele `tags`. Der Filter berücksichtigt beides. Negative Jahreswerte stehen für Jahre vor unserer Zeitrechnung; für ihre sichtbare Datierung wird zusätzlich `dateLabel` gepflegt. Paläontologische Fundorte gehören nicht in diesen Atlas: Der zeitliche Anfang folgt der frühesten belastbaren Überlieferung kollektiven sozialen Handelns. Moderne Begriffe werden in antiken und mittelalterlichen Einträgen nicht als Selbstbezeichnungen ausgegeben.
 
-Das Datenmodell akzeptiert zusätzlich rückwärtskompatible optionale Felder: `demands`, `participants`, `powerStructures`, `tactics`, `immediateConsequences`, `longTermImpact`, `repression`, `humanCosts`, `aftermath`, `openQuestions`, `voices`, `sourceType`, `sourceQuality`, `uncertainty`, `sensitivity`, `reviewStatus`, `schemaVersion`, `aliases`, `coordinatePrecision`, `provenance`, `license` sowie für soziale Errungenschaften `bottomUpPressure`, `achievement` und `limits`. Neue Einträge sollen diese Felder nur mit belegbaren Aussagen füllen; leere Felder dürfen leer bleiben. Kontrollierte Themen-, Taktik-, Stil- und Zeitwerte stehen in `data/map-taxonomy.json`; Beziehungen mit stabiler ID, `relationType` und `evidenceMode` stehen getrennt in `data/relations.json`.
+Das Datenmodell akzeptiert zusätzlich rückwärtskompatible optionale Felder: `demands`, `participants`, `powerStructures`, `tactics`, `immediateConsequences`, `longTermImpact`, `repression`, `humanCosts`, `aftermath`, `openQuestions`, `voices`, `sourceType`, `sourceQuality`, `uncertainty`, `sensitivity`, `reviewStatus`, `schemaVersion`, `aliases`, `coordinatePrecision`, `provenance`, `license`, das einzeln zu prüfende `visualMedia` sowie für soziale Errungenschaften `bottomUpPressure`, `achievement` und `limits`. Neue Einträge sollen diese Felder nur mit belegbaren Aussagen füllen; leere Felder dürfen leer bleiben. Kontrollierte Themen-, Taktik-, Stil- und Zeitwerte stehen in `data/map-taxonomy.json`; Beziehungen mit stabiler ID, `relationType` und `evidenceMode` stehen getrennt in `data/relations.json`.
 
 Geprüfte Ereignisübersetzungen werden optional und feldweise unter `translations` gespeichert. Jede Sprachfassung muss pro Feld die Form `{ "text": "…", "status": "reviewed" }` verwenden. Nur so markierte Felder überschreiben das deutsche Original; Entwürfe oder fehlende Felder werden nicht als Übersetzung ausgegeben. Die Oberfläche kennzeichnet deshalb auch teilweise übersetzte Einträge ausdrücklich.
 
@@ -121,6 +176,12 @@ Für die historischen Ereignis- und Biografie-Langtexte liegen derzeit noch kein
 Das erweiterte Referenzschema einschließlich einer Nur-Lesen-RLS-Policy befindet sich unter `docs/supabase-schema.sql`. Der im Browser verwendete Supabase-Schlüssel ist ein öffentlicher Publishable Key. Schreibzugriffe müssen dennoch zwingend durch Row Level Security blockiert werden.
 
 ## Tastaturkürzel
+
+Ereignisdetails und Auswahlmarkierung erscheinen sofort beim Öffnen, parallel zur
+präzisionsabhängigen Kamerafahrt. Schnelle Wechsel erzeugen keine verzögert
+aufspringenden Detailfenster. `Esc` schließt auch die Ereignisansicht und hält
+ihre laufende Kamerafahrt an. Die Systemeinstellung für reduzierte Bewegung gilt
+ebenfalls beim Auflösen von Punktgruppen.
 
 - `F` – Suche fokussieren
 - `R` – zufällige Spur anzeigen

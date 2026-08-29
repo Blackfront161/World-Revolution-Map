@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import {
+  NON_TRANSLATABLE_UI_FIELDS,
   buildCoverageBaseline,
   buildLanguageInventory,
   compareCoverageBaseline,
@@ -16,7 +17,9 @@ const root = new URL('../', import.meta.url);
 test('Sprachmatrix bildet alle Phase-1-Bestände und Fallbacks exakt ab', async () => {
   const inventory = await buildLanguageInventory();
   assert.deepEqual(inventory.languages, ['de', 'en', 'es', 'fr', 'it', 'pt', 'ru', 'el', 'tr']);
-  assert.equal(inventory.summary.ui.sourceFields, 357);
+  assert.equal(inventory.summary.ui.sourceFields, 376);
+  assert.ok(NON_TRANSLATABLE_UI_FIELDS.has('appTitle'));
+  assert.ok(!inventory.scopes.ui[0].sourceFields.includes('appTitle'));
   assert.equal(inventory.summary.events.entities, 674);
   assert.equal(inventory.summary.events.sourceFields, 6663);
   assert.equal(inventory.summary.events.sourceSegments, 7574);
@@ -30,7 +33,7 @@ test('Sprachmatrix bildet alle Phase-1-Bestände und Fallbacks exakt ab', async 
   assert.equal(inventory.summary.taxonomy.entities, 73);
   for (const language of ['it', 'pt', 'ru', 'el', 'tr']) {
     assert.equal(inventory.summary.ui.coverage[language].fallback, 0);
-    assert.equal(inventory.summary.ui.coverage[language].presentUnreviewed, 357);
+    assert.equal(inventory.summary.ui.coverage[language].presentUnreviewed, 376);
   }
 });
 

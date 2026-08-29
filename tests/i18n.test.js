@@ -1,8 +1,27 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { LANGUAGES, createI18n, formatLocalizedYear, normalizeLanguage, translateCategory, translateEditorialMetadata } from '../src/i18n.js';
+import { LANGUAGES, PRODUCT_NAME, createI18n, formatLocalizedYear, normalizeLanguage, translateCategory, translateEditorialMetadata } from '../src/i18n.js';
 
 const expected = ['de', 'en', 'es', 'fr', 'it', 'pt', 'ru', 'el', 'tr'];
+
+test('Globusbeschriftungen sind lokalisiert und bewahren den Produktnamen', () => {
+  for (const language of expected) {
+    const i18n = createI18n({search:`?lang=${language}`});
+    for (const key of ['mapProjection','projectionMap','projectionGlobe','globeHint','projectionUnavailable']) {
+      assert.notEqual(i18n.t(key),key);
+      if (language !== 'en') assert.notEqual(i18n.t(key),createI18n({search:'?lang=en'}).t(key));
+    }
+    assert.equal(i18n.t('appTitle'),'World Revolution Atlas');
+  }
+});
+
+test('3D-Bedienung besitzt explizite Fassungen in allen neun Sprachen', () => {
+  for (const key of ['mapDepth', 'mapDepthNote']) {
+    const values = expected.map(language => createI18n({ search: `?lang=${language}` }).t(key));
+    assert.equal(new Set(values).size, 9, `${key}: keine stille Fallbackfassung`);
+    assert.ok(values.every(value => value !== key && value.length > 5));
+  }
+});
 
 test('bietet dieselben neun Sprachen wie World Revolution News', () => {
   assert.deepEqual(LANGUAGES.map(language => language.code), expected);
@@ -48,4 +67,9 @@ test('lokalisiert die Komfortfunktionen in allen neun Sprachen', () => {
   }
   assert.equal(translateEditorialMetadata('Redaktioneller Pilotstand', 'en'), 'Editorial pilot');
   assert.equal(translateEditorialMetadata('Redaktionell vertieft', 'en'), 'Editorially deepened');
+});
+
+test('Produktname bleibt in allen neun Sprachen unverändert', () => {
+  assert.equal(PRODUCT_NAME, 'World Revolution Atlas');
+  assert.deepEqual(expected.map(language => createI18n({ search: `?lang=${language}` }).t('appTitle')), Array(9).fill(PRODUCT_NAME));
 });

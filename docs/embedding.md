@@ -1,11 +1,11 @@
-# Atlas in eine andere App integrieren
+# World Revolution Atlas in eine andere App integrieren
 
-Der Atlas bleibt eine statische Webanwendung und kann deshalb als iframe, als eigener WebView-Screen oder als separat bereitgestelltes Mikro-Frontend eingebunden werden. Er benötigt keinen Build-Schritt und keine Schreibberechtigung auf der Datenbank.
+World Revolution Atlas bleibt eine statische Webanwendung und kann deshalb als iframe, als eigener WebView-Screen oder als separat bereitgestelltes Mikro-Frontend eingebunden werden. Er benötigt keinen Build-Schritt und keine Schreibberechtigung auf der Datenbank.
 
 ## Schnellstart per iframe
 
     <iframe
-      title="Atlas des Widerstands"
+      title="World Revolution Atlas"
       src="https://blackfront161.github.io/World-Revolution-Map/?embed=1&welcome=0&lang=en&parentOrigin=https%3A%2F%2Fapp.example.org"
       loading="lazy"
       sandbox="allow-scripts allow-same-origin allow-popups"

@@ -325,6 +325,7 @@ export function normalizeEvent(row, index = 0) {
     imageApiUrl: clean(row.image_api_url ?? row.imageApiUrl ?? row.image_url, 1000) || '',
     imageUrl: clean(row.image ?? row.imageUrl, 1000) || '',
     imageAlt: clean(row.image_alt ?? row.imageAlt, 240) || 'Historische Darstellung: ' + title,
+    visualMedia: normalizeVisualMedia(row.visualMedia),
     sourceUrl,
     schemaVersion: Number.isInteger(Number(row.schemaVersion)) && Number(row.schemaVersion) > 0 ? Number(row.schemaVersion) : 1,
     aliases: cleanList(row.aliases, 120, 16).map(alias => alias.toLowerCase()),
@@ -356,6 +357,18 @@ export function normalizeEvent(row, index = 0) {
     featured: Boolean(row.featured)
   };
   return event;
+}
+
+function normalizeVisualMedia(value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+  return {
+    url: clean(value.url, 1000) || '',
+    sourceUrl: clean(value.sourceUrl, 1000) || '',
+    alt: clean(value.alt, 240) || '',
+    credit: clean(value.credit, 240) || '',
+    license: clean(value.license, 120) || '',
+    reviewStatus: clean(value.reviewStatus, 40) || ''
+  };
 }
 
 function normalizeProvenance(value) {

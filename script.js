@@ -27,6 +27,9 @@ import { createAtlasApi } from './src/atlas-api.js';
 import { readRuntimeConfig } from './src/atlas-config.js';
 import { parseStoredProgress, reconcileProgress, sanitizeProgress } from './src/progress-store.js';
 import { LANGUAGES, createI18n, formatLocalizedYear, translateCategory, translateEditorialMetadata } from './src/i18n.js';
+import { MOBILE_LAYOUT_QUERY, MOBILE_PRIMARY_ACTIONS, eventSheetButtonState, eventSheetInitialFocusTarget, eventSheetStateAfterAction } from './src/mobile-ui.js';
+import { eventFocusPolicy, mapPerspectivePolicy, selectedEventFilter, visualFocusModel } from './src/map-focus.js';
+import { normalizeMapProjection, worldOverviewCamera, needsGlobeOverview } from './src/map-projection.js';
 
 const SUPABASE_URL = 'https://pixafxinyydzwplirrnm.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_cAh2ZxD6aaXREXhMIVyvyA_C_yeFxRd';
@@ -72,6 +75,10 @@ const ACHIEVEMENTS = [
 const ui = {};
 const app = {
   map: null,
+  mapReady: false,
+  mapDepth: false,
+  projection: normalizeMapProjection(new URLSearchParams(window.location.search).get('projection')),
+  baseMapPaint: [],
   popup: null,
   events: [],
   biographies: [],
@@ -87,6 +94,10 @@ const app = {
   activeConnection: null,
   bridge: null,
   lastFocus: null,
+  popupReturnFocus: null,
+  popupReplacing: false,
+  selectedEventId: null,
+  mobileMenuReturnFocus: null,
   mapStyle: loadMapStyle(),
   timeTimer: null,
   library: loadLibrary(),
@@ -104,10 +115,11 @@ async function start() {
   updateVisitStreak();
   attachUiEvents();
   syncMobileMenuAccessibility();
-  window.matchMedia('(max-width: 820px)').addEventListener?.('change', () => {
+  window.matchMedia(MOBILE_LAYOUT_QUERY).addEventListener?.('change', () => {
     ui.controlPanel.classList.remove('is-open');
     ui.menuToggle.setAttribute('aria-expanded', 'false');
     syncMobileMenuAccessibility();
+    syncMapPerspective();
   });
   window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener?.('change', syncMotionPreference);
   syncMotionPreference();
@@ -161,14 +173,16 @@ function bindUi() {
     'archive-drawer', 'archive-list', 'timeline-drawer', 'timeline-list', 'time-play', 'time-reset', 'motion-note', 'routes-drawer', 'routes-list', 'network-drawer', 'network-summary', 'network-legend', 'network-visual', 'relation-list', 'achievements-drawer', 'achievement-list', 'connections-drawer',
     'connection-content', 'new-connection', 'copy-connection', 'power-excuse', 'power-counter', 'new-excuse', 'quiz-button',
     'quiz-modal', 'quiz-title', 'quiz-content', 'welcome-modal', 'methodology-modal', 'pirate-dossier-modal', 'modal-backdrop', 'begin-button',
-    'methodology-button', 'about-map-button', 'pirate-dossier-button', 'help-button', 'toast-region', 'menu-toggle', 'menu-close', 'control-panel', 'language-select',
-    'active-filters', 'event-list-drawer', 'event-list-body', 'layer-filters', 'map-style-select', 'tactic-legend', 'maritime-route-note', 'search-suggestions',
-    'copy-filter-preset', 'online-map-note', 'continue-card', 'continue-title', 'continue-button', 'reader-enabled', 'reader-font', 'reader-font-output', 'reader-width', 'reader-width-output', 'reader-contrast',
+    'methodology-button', 'about-map-button', 'pirate-dossier-button', 'help-button', 'brand-open', 'toast-region', 'menu-toggle', 'menu-close', 'control-panel', 'language-select', 'mobile-show-results', 'mobile-more-drawer',
+    'active-filters', 'event-list-drawer', 'event-list-body', 'layer-filters', 'map-style-select', 'map-depth-toggle', 'map-projection-select', 'world-overview', 'globe-note', 'tactic-legend', 'maritime-route-note', 'search-suggestions',
+    'copy-filter-preset', 'online-map-note', 'map-focus-card', 'continue-card', 'continue-title', 'continue-button', 'reader-enabled', 'reader-font', 'reader-font-output', 'reader-width', 'reader-width-output', 'reader-contrast',
     'biography-count', 'biographies-drawer', 'biography-filters', 'biography-search', 'biography-region', 'biography-tradition', 'biography-from', 'biography-to', 'biography-result-count', 'biography-list', 'biography-detail',
     'compare-count', 'compare-drawer', 'compare-content', 'compare-clear', 'collection-name', 'collection-create', 'collection-select', 'collection-export', 'collection-import-toggle', 'collection-import-panel', 'collection-import', 'collection-import-apply', 'collection-list'
   ];
   ids.forEach(id => { ui[toCamel(id)] = document.getElementById(id); });
   ui.navButtons = [...document.querySelectorAll('.nav-button')];
+  ui.mobileNavButtons = [...document.querySelectorAll('.mobile-nav-button')];
+  ui.mobileMoreButtons = [...document.querySelectorAll('[data-panel-target]')];
   ui.skipList = document.querySelector('.skip-link-list');
   ui.drawerCloseButtons = [...document.querySelectorAll('.drawer-close')];
   ui.modalCloseButtons = [...document.querySelectorAll('.modal-close')];
@@ -212,6 +226,10 @@ function changeLanguage(language) {
     renderMapData();
     renderBiographies();
     renderCollections();
+    if (app.selectedEventId) {
+      const selected = app.events.find(event => event.id === app.selectedEventId);
+      if (selected) renderMapFocusCard(localizeEvent(selected, i18n.language));
+    }
     renderComparison();
     renderContinueReading();
     if (app.activeConnection) renderConnection(app.activeConnection);
@@ -241,6 +259,12 @@ function attachUiEvents() {
   ui.includeUndated.addEventListener('change', () => { app.filters.includeUndated = ui.includeUndated.checked; renderMapData(); });
   ui.resetLayers.addEventListener('click', () => { app.filters.layers = []; populateLayerFilters(); renderMapData(); });
   ui.mapStyleSelect.addEventListener('change', () => setMapStyle(ui.mapStyleSelect.value));
+  ui.mapProjectionSelect.addEventListener('change', () => setMapProjection(ui.mapProjectionSelect.value));
+  ui.worldOverview.addEventListener('click', () => showWorldOverview());
+  ui.mapDepthToggle.addEventListener('change', () => {
+    app.mapDepth = ui.mapDepthToggle.checked;
+    syncMapPerspective(true);
+  });
   ui.undiscoveredOnly.addEventListener('change', () => { app.filters.undiscoveredOnly = ui.undiscoveredOnly.checked; renderMapData(); });
   ui.resetFilters.addEventListener('click', resetFilters);
   ui.fitResults.addEventListener('click', fitFilteredEvents);
@@ -262,14 +286,19 @@ function attachUiEvents() {
     showToast(i18n.t('started'), i18n.t('startedBody'));
   });
   ui.helpButton.addEventListener('click', () => openModal(ui.welcomeModal));
+  ui.brandOpen.addEventListener('click', () => openModal(ui.welcomeModal));
   ui.methodologyButton.addEventListener('click', () => openModal(ui.methodologyModal));
   ui.aboutMapButton.addEventListener('click', () => openModal(ui.methodologyModal));
   ui.pirateDossierButton.addEventListener('click', () => openModal(ui.pirateDossierModal));
   ui.modalBackdrop.addEventListener('click', closeModals);
   ui.modalCloseButtons.forEach(button => button.addEventListener('click', closeModals));
   ui.drawerCloseButtons.forEach(button => button.addEventListener('click', closeDrawers));
-  ui.menuToggle.addEventListener('click', () => toggleMobileMenu(true, true));
+  ui.menuToggle.addEventListener('click', () => toggleMobileMenu(true, true, ui.menuToggle));
   ui.menuClose.addEventListener('click', () => toggleMobileMenu(false));
+  ui.mobileShowResults.addEventListener('click', () => {
+    toggleMobileMenu(false);
+    fitFilteredEvents();
+  });
   ui.timePlay.addEventListener('click', toggleTimeTravel);
   ui.timeReset.addEventListener('click', resetTimeRange);
   ui.copyFilterPreset.addEventListener('click', copyFilterPreset);
@@ -300,8 +329,24 @@ function attachUiEvents() {
     if (panel === 'map') closeDrawers();
   }));
 
+  ui.mobileNavButtons.forEach(button => button.addEventListener('click', () => handleMobileNavigation(button)));
+  ui.mobileMoreButtons.forEach(button => button.addEventListener('click', () => {
+    const trigger = ui.mobileNavButtons.find(item => item.dataset.mobileAction === 'more') || button;
+    openPanel(button.dataset.panelTarget, trigger);
+  }));
+
   document.addEventListener('keydown', event => {
-    if (event.key === 'Escape') { closeModals(); closeDrawers(); toggleMobileMenu(false); }
+    if (event.key === 'Escape') {
+      if (event.defaultPrevented) return;
+      if (app.popup) {
+        app.map?.stop();
+        app.popup.remove();
+      }
+      closeModals();
+      closeDrawers();
+      toggleMobileMenu(false);
+      return;
+    }
     if (event.key === 'Tab') trapModalFocus(event);
     if (isFormElement(document.activeElement)) return;
     if (event.key.toLowerCase() === 'f') { event.preventDefault(); toggleMobileMenu(true); ui.searchInput.focus(); }
@@ -425,12 +470,18 @@ function initializeMap() {
     style: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
     center: [9, 30],
     zoom: 1.7,
-    minZoom: 1.2,
+    minZoom: -.5,
     maxZoom: 14,
+    maxPitch: 30,
+    dragRotate: false,
+    touchPitch: false,
     attributionControl: false
   });
   app.map.addControl(new window.maplibregl.NavigationControl({ showCompass: false }), 'top-right');
   app.map.addControl(new window.maplibregl.AttributionControl({ compact: true }), 'bottom-right');
+  // Keep the opt-in north-up perspective under one control, including on touch.
+  app.map.touchZoomRotate.disableRotation();
+  app.map.keyboard.disableRotation();
 
   app.map.on('load', () => {
     app.map.addSource('resistance-events', {
@@ -588,6 +639,34 @@ function initializeMap() {
       paint: { 'text-color': '#d9fffb', 'text-halo-color': '#063d43', 'text-halo-width': 1.2 }
     });
 
+    app.map.addLayer({
+      id: 'selected-event-halo',
+      type: 'circle',
+      source: 'resistance-events',
+      filter: selectedEventFilter(app.selectedEventId),
+      paint: {
+        'circle-radius': ['case', ['==', ['get', 'coordinatePrecision'], 'region'], 32, 19],
+        'circle-color': 'rgba(255,255,255,0.06)',
+        'circle-stroke-color': ['case', ['==', ['get', 'sensitive'], true], '#d8c8ac', '#ffffff'],
+        'circle-stroke-width': 4,
+        'circle-stroke-opacity': .96,
+        'circle-blur': .12
+      }
+    });
+
+    app.map.addLayer({
+      id: 'selected-event-symbol',
+      type: 'symbol',
+      source: 'resistance-events',
+      filter: selectedEventFilter(app.selectedEventId),
+      layout: { 'text-field': '◎', 'text-size': 25, 'text-allow-overlap': true },
+      paint: {
+        'text-color': ['case', ['==', ['get', 'sensitive'], true], '#eee3d3', '#ffffff'],
+        'text-halo-color': '#07130f',
+        'text-halo-width': 1.4
+      }
+    });
+
     app.map.on('click', 'clusters', expandCluster);
     ['event-points', 'event-regions'].forEach(layer => app.map.on('click', layer, event => {
       const selected = app.events.find(item => item.id === event.features?.[0]?.properties?.id);
@@ -598,6 +677,13 @@ function initializeMap() {
       app.map.on('mouseleave', layer, () => { app.map.getCanvas().style.cursor = ''; });
     });
 
+    app.mapReady = true;
+    app.baseMapPaint = ['background', 'landcover', 'water'].filter(id => app.map.getLayer(id)).map(id => {
+      const property = id === 'background' ? 'background-color' : 'fill-color';
+      return { id, property, value: app.map.getPaintProperty(id, property) };
+    });
+    setMapProjection(app.projection, false);
+    syncMapPerspective();
     applyMapStyle();
     renderMapData();
     const eventId = new URLSearchParams(window.location.search).get('event');
@@ -610,7 +696,9 @@ function renderMapData() {
   const discovered = new Set(app.progress.discoveredIds);
   app.filteredEvents = filterEvents(app.events, app.filters, discovered);
   document.documentElement.classList.toggle('maritime-focus', app.filters.layers.includes('maritime'));
-  ui.resultCount.textContent = `${app.filteredEvents.length.toLocaleString(i18n.locale)} ${i18n.t(app.filteredEvents.length === 1 ? 'eventOne' : 'eventMany')}`;
+  const localizedCount = app.filteredEvents.length.toLocaleString(i18n.locale);
+  ui.resultCount.textContent = `${localizedCount} ${i18n.t(app.filteredEvents.length === 1 ? 'eventOne' : 'eventMany')}`;
+  ui.mobileShowResults.textContent = i18n.t('showFilteredEvents', { count: localizedCount });
   ui.clearSearch.hidden = !app.filters.query;
   renderActiveFilters();
   renderEventList();
@@ -710,10 +798,19 @@ function toGeoJson(events) {
   };
 }
 
-async function openEventPopup(event, coordinates = safeDisplayCoordinates(event)) {
+async function openEventPopup(event, coordinates = safeDisplayCoordinates(event), { focusMap = true } = {}) {
+  if (focusMap) focusMapOnEvent(event, coordinates);
   event = localizeEvent(event, i18n.language);
   markLastRead(`event:${event.id}`);
-  if (app.popup) app.popup.remove();
+  const focusedBeforeOpen = document.activeElement instanceof HTMLElement && !document.activeElement.closest('.maplibregl-popup')
+    ? document.activeElement
+    : app.popupReturnFocus;
+  if (app.popup) {
+    app.popupReplacing = true;
+    app.popup.remove();
+    app.popupReplacing = false;
+  }
+  app.popupReturnFocus = focusedBeforeOpen;
   const content = document.createElement('article');
   content.className = 'event-popup';
   content.setAttribute('role', 'dialog');
@@ -721,6 +818,32 @@ async function openEventPopup(event, coordinates = safeDisplayCoordinates(event)
   const sensitive = isSensitiveEvent(event);
   content.classList.toggle('is-sensitive', sensitive);
   content.classList.toggle('is-maritime', isMaritimeEvent(event));
+
+  const sheetControls = document.createElement('div');
+  sheetControls.className = 'event-sheet-controls';
+  const sheetHandle = document.createElement('span');
+  sheetHandle.className = 'event-sheet-handle';
+  sheetHandle.setAttribute('aria-hidden', 'true');
+  const sheetActions = document.createElement('span');
+  sheetActions.className = 'event-sheet-actions';
+  const collapseSheet = document.createElement('button');
+  collapseSheet.type = 'button';
+  collapseSheet.dataset.sheetAction = 'collapse';
+  collapseSheet.setAttribute('aria-label', i18n.t('collapseEventSheet'));
+  collapseSheet.textContent = '−';
+  const expandSheet = document.createElement('button');
+  expandSheet.type = 'button';
+  expandSheet.dataset.sheetAction = 'expand';
+  expandSheet.setAttribute('aria-label', i18n.t('expandEventSheet'));
+  expandSheet.textContent = '↗';
+  const closeSheet = document.createElement('button');
+  closeSheet.type = 'button';
+  closeSheet.dataset.sheetAction = 'close';
+  closeSheet.setAttribute('aria-label', i18n.t('closeEvent'));
+  closeSheet.textContent = '×';
+  sheetActions.append(collapseSheet, expandSheet, closeSheet);
+  sheetControls.append(sheetHandle, sheetActions);
+  content.append(sheetControls);
 
   const media = document.createElement('div');
   media.className = 'event-popup-placeholder';
@@ -889,15 +1012,46 @@ async function openEventPopup(event, coordinates = safeDisplayCoordinates(event)
   }
   content.append(body);
 
-  app.popup = new window.maplibregl.Popup({ offset: 14, closeButton: true, focusAfterOpen: false })
+  const mobilePopup = window.matchMedia(MOBILE_LAYOUT_QUERY).matches;
+  const popupInstance = new window.maplibregl.Popup({ offset: 14, closeButton: !mobilePopup, focusAfterOpen: false })
     .setLngLat(coordinates)
     .setDOMContent(content)
     .addTo(app.map);
+  app.popup = popupInstance;
+  setSelectedEvent(event);
+  collapseSheet.addEventListener('click', () => updateEventSheetState(content, 'collapse', true));
+  expandSheet.addEventListener('click', () => updateEventSheetState(content, 'expand', true));
+  closeSheet.addEventListener('click', () => popupInstance.remove());
+  updateEventSheetState(content, 'collapse');
   content.closest('.maplibregl-popup-content')?.scrollTo({ top: 0 });
-  title.focus({ preventScroll: true });
+  eventSheetInitialFocusTarget({ mobile: mobilePopup, expand: expandSheet, close: closeSheet, title })
+    ?.focus({ preventScroll: true });
   setEventInUrl(event.id);
-  app.popup.on('close', () => clearEventFromUrl(event.id));
+  popupInstance.on('close', () => {
+    clearEventFromUrl(event.id);
+    if (app.popup === popupInstance) {
+      app.popup = null;
+      if (!app.popupReplacing) clearSelectedEvent(event.id);
+    }
+    if (!app.popupReplacing && app.popupReturnFocus?.isConnected) app.popupReturnFocus.focus({ preventScroll: true });
+  });
 
+}
+
+function updateEventSheetState(content, action, focusControl = false) {
+  const state = eventSheetStateAfterAction(content.dataset.sheetState, action);
+  const buttonState = eventSheetButtonState(state);
+  const popupElement = content.closest('.maplibregl-popup');
+  content.dataset.sheetState = buttonState.state;
+  popupElement?.setAttribute('data-sheet-state', buttonState.state);
+  const expand = content.querySelector('[data-sheet-action="expand"]');
+  const collapse = content.querySelector('[data-sheet-action="collapse"]');
+  if (expand) {
+    expand.disabled = !buttonState.canExpand;
+    expand.setAttribute('aria-expanded', String(buttonState.state === 'expanded'));
+  }
+  if (collapse) collapse.disabled = !buttonState.canCollapse;
+  if (focusControl) (buttonState.state === 'expanded' ? collapse : expand)?.focus({ preventScroll: true });
 }
 
 function appendEventDetail(container, label, value) {
@@ -1729,6 +1883,85 @@ function syncMotionPreference() {
   if (reduced) stopTimeTravel();
   ui.timePlay.disabled = reduced;
   ui.motionNote.textContent = reduced ? i18n.t('motionDisabled') : i18n.t('motionOptional');
+  if (reduced) app.mapDepth = false;
+  syncMapPerspective();
+}
+
+function mapPerspectiveFor(event = app.events.find(item => item.id === app.selectedEventId)) {
+  return mapPerspectivePolicy({
+    enabled: app.mapDepth && app.projection !== 'globe',
+    mobile: window.matchMedia(MOBILE_LAYOUT_QUERY).matches,
+    reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+    sensitive: event ? isSensitiveEvent(event) : false,
+    precision: event ? event.coordinatePrecision || 'region' : 'exact'
+  });
+}
+
+function syncMapPerspective(animate = false) {
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  ui.mapDepthToggle.checked = app.mapDepth;
+  ui.mapDepthToggle.disabled = reduced || !app.mapReady || app.projection === 'globe';
+  const policy = mapPerspectiveFor();
+  if (app.mapReady && (app.map.getPitch() !== policy.pitch || app.map.getBearing() !== 0)) {
+    app.map.easeTo({ ...policy, duration: animate ? policy.duration : 0 });
+  }
+}
+
+function setMapProjection(value, animate = true) {
+  if (!app.mapReady) return false;
+  const requested = normalizeMapProjection(value);
+  app.map.stop();
+  try {
+    app.map.setProjection({ type: requested });
+    app.projection = requested;
+  } catch (error) {
+    console.warn('Globusansicht nicht verfügbar:', error);
+    app.projection = 'mercator';
+    app.map.setProjection({ type: 'mercator' });
+    showToast(i18n.t('projectionUnavailable'), i18n.t('projectionMap'));
+  }
+  document.documentElement.dataset.mapProjection = app.projection;
+  app.map.resize();
+  ui.mapProjectionSelect.value = app.projection;
+  ui.mapProjectionSelect.disabled = false;
+  ui.worldOverview.disabled = false;
+  ui.globeNote.hidden = app.projection !== 'globe';
+  app.map.setMinZoom(app.projection === 'globe' ? -.5 : 1.2);
+  app.map.setRenderWorldCopies(app.projection !== 'globe');
+  syncMapPerspective();
+  applyMapStyle();
+  const selected = app.events.find(event => event.id === app.selectedEventId);
+  if (selected) focusMapOnEvent(selected);
+  else showWorldOverview(animate);
+  syncShareableViewUrl();
+  return app.projection === requested;
+}
+
+function showWorldOverview(animate = true) {
+  if (!app.mapReady) return;
+  app.popup?.remove();
+  const framed = app.projection === 'globe' && window.matchMedia('(max-width: 820px) and (orientation: portrait)').matches;
+  app.map.flyTo(worldOverviewCamera({
+    projection: app.projection, width: window.innerWidth,
+    height: framed ? app.map.getContainer().clientHeight : window.innerHeight, framed,
+    mobile: window.matchMedia(MOBILE_LAYOUT_QUERY).matches,
+    reducedMotion: !animate || window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  }));
+}
+
+function applyGlobeAppearance() {
+  if (!app.mapReady) return;
+  const paperGlobe = app.projection === 'globe' && app.mapStyle === 'paper';
+  const paperColors = { background: '#d8c595', landcover: '#b1b18a', water: '#416e70' };
+  for (const layer of app.baseMapPaint) app.map.setPaintProperty(layer.id, layer.property, paperGlobe ? paperColors[layer.id] : layer.value);
+  const paper = app.mapStyle === 'paper';
+  const mono = app.mapStyle === 'mono';
+  app.map.setSky(app.projection === 'globe' ? {
+    'sky-color': paper ? '#d7c39c' : '#07130f',
+    'horizon-color': mono ? '#c0c0c0' : paper ? '#f5dfac' : '#73a99c',
+    'sky-horizon-blend': .7,
+    'atmosphere-blend': ['interpolate', ['linear'], ['zoom'], 0, .22, 5, .1, 8, 0]
+  } : undefined);
 }
 
 function renderNetwork() {
@@ -2097,6 +2330,7 @@ function fitFilteredEvents() {
     return;
   }
   const bounds = new window.maplibregl.LngLatBounds();
+  if (app.projection === 'globe' && needsGlobeOverview(mappable)) { showWorldOverview(); return; }
   mappable.forEach(event => bounds.extend([event.longitude, event.latitude]));
   app.map.fitBounds(bounds, {
     padding: { top: 110, right: 80, bottom: 110, left: window.innerWidth > 820 ? 390 : 60 },
@@ -2107,19 +2341,88 @@ function fitFilteredEvents() {
 
 function flyToEvent(event, openPopup = true) {
   if (!app.map) { showToast(i18n.t('onlineMapUnavailable'), i18n.t('onlineMapNote')); return false; }
-  if (!app.map) return;
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const duration = reducedMotion ? 0 : 1200;
-  const hidden = event.coordinatePrecision === 'hidden';
   const coordinates = safeDisplayCoordinates(event);
-  app.map.flyTo({
-    center: coordinates,
-    zoom: hidden ? 1.7 : Math.max(app.map.getZoom(), event.coordinatePrecision === 'region' ? 3 : 5),
-    offset: [0, Math.min(160, window.innerHeight * 0.18)],
-    essential: false,
-    duration
+  focusMapOnEvent(event, coordinates);
+  // Render selection immediately: queued timers can reopen a dismissed event or
+  // replace a newer selection while a previous camera animation is finishing.
+  if (openPopup) openEventPopup(event, coordinates, { focusMap: false });
+  return true;
+}
+
+function focusMapOnEvent(event, coordinates = safeDisplayCoordinates(event)) {
+  const policy = eventFocusPolicy(event, {
+    sensitive: isSensitiveEvent(event),
+    reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches
   });
-  if (openPopup) window.setTimeout(() => openEventPopup(event, coordinates), duration + 100);
+  app.map?.flyTo({
+    ...mapPerspectiveFor(event),
+    center: coordinates,
+    zoom: policy.zoom,
+    offset: eventFocusOffset(),
+    essential: policy.essential,
+    duration: policy.duration
+  });
+  return policy;
+}
+
+function eventFocusOffset() {
+  const split = window.matchMedia('(min-width: 700px) and (max-width: 1000px) and (max-height: 520px) and (orientation: landscape)').matches;
+  if (split) return [-Math.round(window.innerWidth * .16), 18];
+  if (window.matchMedia(MOBILE_LAYOUT_QUERY).matches) return [0, -Math.min(76, Math.round(window.innerHeight * .09))];
+  return [72, 32];
+}
+
+function setSelectedEvent(event) {
+  app.selectedEventId = event.id;
+  ['selected-event-halo', 'selected-event-symbol'].forEach(layerId => {
+    if (app.map?.getLayer(layerId)) app.map.setFilter(layerId, selectedEventFilter(event.id));
+  });
+  document.documentElement.classList.add('event-focus-active');
+  renderMapFocusCard(event);
+}
+
+function clearSelectedEvent(eventId = null) {
+  if (eventId && app.selectedEventId !== eventId) return;
+  app.selectedEventId = null;
+  ['selected-event-halo', 'selected-event-symbol'].forEach(layerId => {
+    if (app.map?.getLayer(layerId)) app.map.setFilter(layerId, selectedEventFilter(null));
+  });
+  document.documentElement.classList.remove('event-focus-active');
+  ui.mapFocusCard?.replaceChildren();
+  if (ui.mapFocusCard) ui.mapFocusCard.hidden = true;
+}
+
+function renderMapFocusCard(event) {
+  if (!ui.mapFocusCard) return;
+  const model = visualFocusModel(event, {
+    yearLabel: formatLocalizedYear(event, i18n),
+    tacticSymbol: primaryTactic(event)?.symbol || (isMaritimeEvent(event) ? '≈' : '✦'),
+    categoryLabel: translateCategory(event.category, i18n.language)
+  });
+  const card = ui.mapFocusCard;
+  card.replaceChildren();
+  card.className = `map-focus-card is-${model.mode}`;
+  card.classList.toggle('is-sensitive', isSensitiveEvent(event));
+  card.classList.toggle('is-maritime', isMaritimeEvent(event));
+  if (model.mode === 'image') {
+    const image = document.createElement('img');
+    image.src = model.media.url;
+    image.alt = model.media.alt;
+    image.referrerPolicy = 'no-referrer';
+    const credit = document.createElement('small');
+    credit.textContent = `${model.media.credit} · ${model.media.license}`;
+    card.append(image, credit);
+  } else {
+    const symbol = document.createElement('span');
+    symbol.className = 'map-focus-symbol';
+    symbol.textContent = model.symbol;
+    const year = document.createElement('strong');
+    year.textContent = model.yearLabel;
+    const category = document.createElement('small');
+    category.textContent = model.categoryLabel;
+    card.append(symbol, year, category);
+  }
+  card.hidden = false;
 }
 
 async function expandCluster(event) {
@@ -2127,7 +2430,12 @@ async function expandCluster(event) {
   if (!feature) return;
   try {
     const zoom = await app.map.getSource('resistance-events').getClusterExpansionZoom(feature.properties.cluster_id);
-    app.map.easeTo({ center: feature.geometry.coordinates, zoom });
+    app.map.easeTo({
+      center: feature.geometry.coordinates,
+      zoom,
+      duration: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 650,
+      essential: false
+    });
   } catch (error) {
     console.warn('Cluster konnte nicht geöffnet werden:', error);
   }
@@ -2218,6 +2526,7 @@ function applyMapStyle() {
   document.documentElement.dataset.mapStyle = app.mapStyle;
   document.documentElement.style.setProperty('--accent', app.mapStyle === 'mono' ? '#ffffff' : app.mapStyle === 'paper' ? '#6d2f1d' : runtimeConfig.accent);
   if (ui.mapStyleSelect) ui.mapStyleSelect.value = app.mapStyle;
+  applyGlobeAppearance();
   if (app.map?.getLayer('maritime-route-guides')) {
     const mono = app.mapStyle === 'mono';
     const paper = app.mapStyle === 'paper';
@@ -2409,6 +2718,7 @@ function syncShareableViewUrl() {
   if (app.filters.category !== 'all') url.searchParams.set('category', app.filters.category); else url.searchParams.delete('category');
   if (app.filters.undiscoveredOnly) url.searchParams.set('undiscovered', '1'); else url.searchParams.delete('undiscovered');
   if (app.mapStyle === 'dark') url.searchParams.delete('style'); else url.searchParams.set('style', app.mapStyle);
+  if (app.projection === 'globe') url.searchParams.set('projection', 'globe'); else url.searchParams.delete('projection');
   window.history.replaceState(null, '', url);
 }
 
@@ -2454,8 +2764,15 @@ function toggleDrawer(drawer, activeButton) {
   }
 }
 
-function openPanel(panel) {
-  if (panel === 'quiz') { openQuiz(); return true; }
+function openPanel(panel, trigger = null) {
+  if (panel === 'quiz') {
+    const returnTarget = trigger || document.activeElement;
+    closeDrawers(false);
+    openQuiz();
+    app.lastFocus = returnTarget;
+    if (trigger?.classList.contains('mobile-nav-button')) setMobileNavigationState('more');
+    return true;
+  }
   if (panel === 'map') { closeDrawers(); return true; }
   const drawers = {
     archive: ui.archiveDrawer,
@@ -2471,10 +2788,11 @@ function openPanel(panel) {
   const drawer = drawers[panel];
   if (!drawer) return false;
   closeDrawers(false);
-  app.lastFocus = ui.navButtons.find(button => button.dataset.panel === panel) || document.activeElement;
+  app.lastFocus = trigger || ui.navButtons.find(button => button.dataset.panel === panel) || document.activeElement;
   drawer.hidden = false;
   drawer.scrollTo({ top: 0 });
   ui.navButtons.forEach(button => button.classList.toggle('is-active', button.dataset.panel === panel));
+  setMobileNavigationState(panel === 'archive' ? 'saved' : panel === 'list' ? 'discover' : 'more');
   if (panel === 'connections') drawConnection(false);
   if (panel === 'timeline') renderTimeline();
   if (panel === 'network') renderNetwork();
@@ -2485,7 +2803,7 @@ function openPanel(panel) {
 }
 
 function closeDrawers(restoreFocus = true) {
-  const hadOpenDrawer = [ui.archiveDrawer, ui.biographiesDrawer, ui.timelineDrawer, ui.routesDrawer, ui.eventListDrawer, ui.networkDrawer, ui.compareDrawer, ui.achievementsDrawer, ui.connectionsDrawer]
+  const hadOpenDrawer = [ui.archiveDrawer, ui.biographiesDrawer, ui.timelineDrawer, ui.routesDrawer, ui.eventListDrawer, ui.networkDrawer, ui.compareDrawer, ui.achievementsDrawer, ui.connectionsDrawer, ui.mobileMoreDrawer]
     .some(drawer => !drawer.hidden);
   ui.archiveDrawer.hidden = true;
   ui.biographiesDrawer.hidden = true;
@@ -2496,6 +2814,8 @@ function closeDrawers(restoreFocus = true) {
   ui.compareDrawer.hidden = true;
   ui.achievementsDrawer.hidden = true;
   ui.connectionsDrawer.hidden = true;
+  ui.mobileMoreDrawer.hidden = true;
+  ui.mobileNavButtons.find(button => button.dataset.mobileAction === 'more')?.setAttribute('aria-expanded', 'false');
   if (!ui.biographyDetail.hidden) {
     ui.biographyDetail.hidden = true;
     ui.biographyList.hidden = false;
@@ -2507,12 +2827,13 @@ function closeDrawers(restoreFocus = true) {
   }
   stopTimeTravel();
   ui.navButtons.forEach(button => button.classList.toggle('is-active', button.dataset.panel === 'map'));
+  setMobileNavigationState('map');
   if (restoreFocus && hadOpenDrawer && app.lastFocus?.isConnected) app.lastFocus.focus();
 }
 
 function openModal(modal) {
   closeModals(false);
-  app.lastFocus = window.matchMedia('(max-width: 820px)').matches && ui.controlPanel.contains(document.activeElement)
+  app.lastFocus = window.matchMedia(MOBILE_LAYOUT_QUERY).matches && ui.controlPanel.contains(document.activeElement)
     ? ui.menuToggle
     : document.activeElement;
   closeDrawers();
@@ -2543,18 +2864,59 @@ function trapModalFocus(event) {
   else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
 }
 
-function toggleMobileMenu(open, focusPanel = false) {
+function toggleMobileMenu(open, focusPanel = false, returnFocus = null) {
+  if (open) app.mobileMenuReturnFocus = returnFocus || document.activeElement;
   ui.controlPanel.classList.toggle('is-open', open);
   ui.menuToggle.setAttribute('aria-expanded', String(open));
+  ui.mobileNavButtons.find(button => button.dataset.mobileAction === 'filters')?.setAttribute('aria-expanded', String(open));
+  setMobileNavigationState(open ? 'filters' : 'map');
   syncMobileMenuAccessibility();
-  if (open && focusPanel && window.matchMedia('(max-width: 820px)').matches) ui.menuClose.focus();
-  if (!open && window.matchMedia('(max-width: 820px)').matches && ui.controlPanel.contains(document.activeElement)) {
-    ui.menuToggle.focus();
+  if (open && focusPanel && window.matchMedia(MOBILE_LAYOUT_QUERY).matches) ui.menuClose.focus();
+  if (!open && window.matchMedia(MOBILE_LAYOUT_QUERY).matches && ui.controlPanel.contains(document.activeElement)) {
+    (app.mobileMenuReturnFocus?.isConnected ? app.mobileMenuReturnFocus : ui.menuToggle).focus();
   }
 }
 
+function setMobileNavigationState(action) {
+  const normalized = MOBILE_PRIMARY_ACTIONS.includes(action) ? action : 'map';
+  ui.mobileNavButtons.forEach(button => {
+    const active = button.dataset.mobileAction === normalized;
+    button.classList.toggle('is-active', active);
+    button.toggleAttribute('aria-current', active);
+    if (active) button.setAttribute('aria-current', 'page');
+  });
+}
+
+function handleMobileNavigation(button) {
+  const action = button.dataset.mobileAction;
+  if (!MOBILE_PRIMARY_ACTIONS.includes(action)) return;
+  if (action === 'map') {
+    toggleMobileMenu(false);
+    closeDrawers();
+    app.popup?.remove();
+    return;
+  }
+  if (action === 'filters') {
+    closeDrawers(false);
+    app.lastFocus = button;
+    toggleMobileMenu(true, true, button);
+    return;
+  }
+  toggleMobileMenu(false);
+  if (action === 'discover') { openPanel('list', button); return; }
+  if (action === 'saved') { openPanel('archive', button); return; }
+  const shouldOpen = ui.mobileMoreDrawer.hidden;
+  closeDrawers(false);
+  if (!shouldOpen) return;
+  app.lastFocus = button;
+  ui.mobileMoreDrawer.hidden = false;
+  button.setAttribute('aria-expanded', 'true');
+  setMobileNavigationState('more');
+  ui.mobileMoreDrawer.focus();
+}
+
 function syncMobileMenuAccessibility() {
-  const mobile = window.matchMedia('(max-width: 820px)').matches;
+  const mobile = window.matchMedia(MOBILE_LAYOUT_QUERY).matches;
   const open = ui.controlPanel.classList.contains('is-open');
   ui.controlPanel.toggleAttribute('inert', mobile && !open);
   if (mobile) ui.controlPanel.setAttribute('aria-hidden', String(!open));

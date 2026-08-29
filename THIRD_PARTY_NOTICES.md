@@ -2,9 +2,9 @@
 
 This file reproduces the license and copyright notices shipped with the exact third-party versions referenced by the application. It does not license the World Revolution Map project itself.
 
-## MapLibre GL JS 4.7.1
+## MapLibre GL JS 5.24.0
 
-Official versioned source: https://github.com/maplibre/maplibre-gl-js/blob/v4.7.1/LICENSE.txt
+Official versioned source: https://github.com/maplibre/maplibre-gl-js/blob/v5.24.0/LICENSE.txt
 
 ```text
 Copyright (c) 2023, MapLibre contributors

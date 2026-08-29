@@ -1,6 +1,6 @@
 {
-  "name": "Atlas des Widerstands",
-  "short_name": "Widerstandsatlas",
+  "name": "World Revolution Atlas",
+  "short_name": "World Revolution Atlas",
   "description": "Lokales Archiv-Spiel für Geschichte und Lebenswege von unten.",
   "start_url": "./",
   "scope": "./",
@@ -9,6 +9,6 @@
   "theme_color": "#07130f",
   "lang": "de",
   "icons": [
-    { "src": "icons/atlas-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+    { "src": "assets/brand/world-revolution-atlas-parchment-v2.png", "sizes": "1254x1254", "type": "image/png", "purpose": "any" }
   ]
 }

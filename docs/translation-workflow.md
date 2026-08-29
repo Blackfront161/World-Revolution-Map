@@ -6,7 +6,7 @@ Die verbindliche, maschinenlesbare Bestandsaufnahme steht in `data/language-inve
 
 Aktueller Inventurumfang:
 
-- 357 UI-Schlüssel;
+- 376 übersetzbare UI-Schlüssel; der unveränderliche Produktname `World Revolution Atlas` ist als nicht übersetzbares Branding-Feld ausgeschlossen;
 - 674 aktive Ereignisse mit 6.663 übersetzbaren Feld-Einheiten beziehungsweise 7.574 Textsegmenten je Zielsprache;
 - 40 Biografien mit 1.314 narrativen Einheiten je Zielsprache;
 - sechs Routen mit 18 Feldern je Zielsprache;
@@ -58,5 +58,13 @@ Der deutsche Linter `npm run check:inclusive-language` prüft kanonische UI-Text
 Die normale CI verhindert, dass bereits geprüfte Felder ihren Status verlieren, vorhandene Zieltexte wieder zu Fallback/fehlend werden, sich ihr Zieltext-Digest unbemerkt ändert oder neue offene Einheiten ohne bewusste Baselineentscheidung hinzukommen. Dadurch fallen auch Nonsense-Änderungen oder ein Rückfall auf englischen Text trotz unverändertem Schlüssel auf. Verbesserungen von `missing`, `fallback` oder `present-unreviewed` zu `reviewed` bleiben nach bewusster Review- und Baselinepflege erlaubt.
 
 ## Chargenstatus
+
+Die Globus-Testversion ergänzt `mapProjection`, `projectionMap`, `projectionGlobe`,
+`globeHint` und `projectionUnavailable` in allen neun Sprachen. Nur diese neuen
+40 Zielsprachen-Einheiten erweitern die Baseline; sie bleiben `present-unreviewed`.
+
+Die zwei neuen UI-Schlüssel `mapDepth` und `mapDepthNote` besitzen explizite Fassungen
+in allen neun Sprachen. Die Baseline wird ausschließlich um diese neuen Einheiten
+erweitert (Zielsprachen: `present-unreviewed`); dies ist keine menschliche Freigabe.
 
 Phase 1 umfasst ausschließlich Vertrag, Inventar, Gates, die 40 früheren UI-Fallbacks sowie kontextsensitive deutsche Genderkorrekturen in UI, Dossiers, Routen, Biografien und der vereinbarten Ereignischarge. Sie enthält keine neue freigegebene historische Langtextübersetzung. Weitere Übersetzungsinhalte beginnen erst nach einer fokussierten Kontrolle dieses Zwischenstands.

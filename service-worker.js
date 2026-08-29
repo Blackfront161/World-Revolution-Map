@@ -1,9 +1,11 @@
-const CACHE_VERSION = 'atlas-local-v2.9.0-rc2-r11';
+const CACHE_VERSION = 'atlas-local-v2.9.0-rc2-r23';
 const STAGING_CACHE = `${CACHE_VERSION}-installing`;
 const MANIFEST_URL = './__offline_manifest__';
 const CORE_RESOURCES = [
-  './', './index.html', './styles.css', './script.js', './service-worker.js', './manifest.webmanifest', './icons/atlas-icon.svg',
-  './src/game-core.js', './src/biography-core.js', './src/local-library.js', './src/i18n.js', './src/progress-store.js', './src/atlas-api.js', './src/atlas-config.js',
+  './', './index.html', './mobile-simulator.html', './styles.css', './script.js', './service-worker.js', './manifest.webmanifest',
+  './assets/brand/world-revolution-atlas-parchment-v2.png',
+  './src/map-projection.js',
+  './src/game-core.js', './src/mobile-ui.js', './src/map-focus.js', './src/biography-core.js', './src/local-library.js', './src/i18n.js', './src/progress-store.js', './src/atlas-api.js', './src/atlas-config.js',
   './data/event-catalog.json', './data/biography-catalog.json', './data/archive-contract.json', './data/event-metadata.json',
   './data/event-editorial-overrides.json', './data/routes.json', './data/map-taxonomy.json', './data/relations.json'
 ];
@@ -109,10 +111,14 @@ async function networkFirst(request, fallbackUrl = request) {
   }
 }
 
+function navigationFallbackUrl(url) {
+  return url.pathname.endsWith('/mobile-simulator.html') ? './mobile-simulator.html' : './index.html';
+}
+
 self.addEventListener('fetch', event => {
   const request = event.request;
   if (request.method !== 'GET') return;
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
-  event.respondWith(networkFirst(request, request.mode === 'navigate' ? './index.html' : request));
+  event.respondWith(networkFirst(request, request.mode === 'navigate' ? navigationFallbackUrl(url) : request));
 });

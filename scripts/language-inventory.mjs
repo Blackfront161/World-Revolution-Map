@@ -7,6 +7,7 @@ import { reviewedTranslationEntryIsAdmissible } from '../src/game-core.js';
 const ROOT = new URL('../', import.meta.url);
 const INVENTORY_URL = new URL('data/language-inventory.json', ROOT);
 const BASELINE_URL = new URL('data/language-coverage-baseline.json', ROOT);
+export const NON_TRANSLATABLE_UI_FIELDS = new Set(['appTitle']);
 
 const readJson = async path => JSON.parse(await readFile(new URL(path, ROOT), 'utf8'));
 const hasContent = value => Array.isArray(value) ? value.length > 0 : typeof value === 'string' ? Boolean(value.trim()) : value !== null && value !== undefined;
@@ -301,7 +302,7 @@ export async function buildLanguageInventory(options = {}) {
   const rawEventFiles = await Promise.all(eventCatalog.map(filename => readJson(`data/${filename}`)));
   const activeEvents = rawEventFiles.flat().filter(row => !row.archived).map(row => ({ ...row, ...(overrides.events?.[row.id] || {}) }));
   const uiDirect = directUiKeys(i18nSource, languages);
-  const uiFields = [...uiDirect.de].sort();
+  const uiFields = [...uiDirect.de].filter(field => !NON_TRANSLATABLE_UI_FIELDS.has(field)).sort();
   const germanUi = createI18n({ search: '?lang=de' });
   const localizedUi = Object.fromEntries(languages.map(language => [language, createI18n({ search: `?lang=${language}` })]));
   const ui = [matrixEntity(

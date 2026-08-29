@@ -35,6 +35,15 @@
     "sourceTypes": ["primary", "community", "movement", "archive", "oral-history", "museum", "academic", "public-institution", "human-rights"],
     "quotationRule": "Unbelegte direkte Zitate und eigenständige Zitatfelder sind unzulässig. Paraphrasen bleiben als redaktionelle Synthese gekennzeichnet."
   },
+  "visualMediaModel": {
+    "eventField": "visualMedia",
+    "optional": true,
+    "requiredFields": ["url", "sourceUrl", "alt", "credit", "license", "reviewStatus"],
+    "reviewStatus": "rights-reviewed",
+    "allowedAssetHosts": ["upload.wikimedia.org"],
+    "allowedSourceHost": "commons.wikimedia.org",
+    "rule": "Ein Ereignisbild wird nur nach einer dokumentierten Einzelprüfung von Datei, Urheber*in, konkreter Lizenz, Creditline und Quellseite angezeigt. Fehlt ein zulässiger Nachweis, nutzt die Oberfläche ausschließlich das lokale Symbol-Fallback."
+  },
   "translationModel": {
     "matrixVersion": 1,
     "sourceLanguage": "de",

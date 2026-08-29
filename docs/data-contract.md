@@ -44,6 +44,10 @@ Derzeit enthält der Katalog 40 Lebenswege und 97 Quellen. Alle UI-Schlüssel be
 
 `translationModel` im maschinenlesbaren Vertrag und `docs/translation-workflow.md` definieren neun explizite Sprachen, exakte Source-Digests, Stale-Erkennung, menschliche Sprach-/Faktenprüfung, Listen- und Platzhaltertreue sowie die No-Fallback-Regel für freigegebene Chargen. Codebasierte Texte erhalten ihren konstruktiven Reviewpfad über `data/translation-review-manifest.json` mit Source- und Target-Digest. Ereignis-, Biografie- und Routentexte werden über denselben Digest-gebundenen Laufzeitpfad lokalisiert. Die vollständige Matrix und ihre Zieltext-Digests schützende No-Regression-Baseline werden eingecheckt; das Strict-Gate bleibt ein separates Zielgate und darf erwartete Lücken nicht als bestandene Übersetzung ausgeben.
 
+### Optionale Ereignisbilder
+
+`visualMedia` ist ein optionales, nicht übersetztes Medienobjekt. Es wird nur angezeigt, wenn `url`, konkrete Commons-Dateiseite (`sourceUrl`), Alternativtext, Creditline, Lizenz und `reviewStatus: "rights-reviewed"` vollständig vorliegen und die Laufzeit dieselbe enge Hostprüfung wie der Validator besteht. Ohne diesen Einzelbeleg rendert die Karte ein lokales Kategorie-/Taktiksymbol mit Jahresangabe. Eine Bild-URL allein ist ausdrücklich keine Freigabe.
+
 ## Redaktionelle Überschreibungen
 
 `data/event-editorial-overrides.json` vertieft vorhandene IDs. Es ist kein zweiter Ereigniskatalog: Geometrie, Titel und Grunddaten bleiben im ursprünglichen Datensatz; die Redaktionsebene überschreibt nur belegte Text- und Quellenfelder.

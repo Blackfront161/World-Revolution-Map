@@ -2,9 +2,70 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
+import { inflateSync } from 'node:zlib';
 import { isValidEvent, normalizeEvent } from '../src/game-core.js';
 
 const root = new URL('../', import.meta.url);
+
+function paeth(left, up, upperLeft) {
+  const prediction = left + up - upperLeft;
+  const leftDistance = Math.abs(prediction - left);
+  const upDistance = Math.abs(prediction - up);
+  const upperLeftDistance = Math.abs(prediction - upperLeft);
+  return leftDistance <= upDistance && leftDistance <= upperLeftDistance ? left : upDistance <= upperLeftDistance ? up : upperLeft;
+}
+
+function decodeRgbaPng(bytes) {
+  assert.equal(bytes.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
+  const width = bytes.readUInt32BE(16);
+  const height = bytes.readUInt32BE(20);
+  const bitDepth = bytes[24];
+  const colorType = bytes[25];
+  assert.equal(bitDepth, 8, 'Produktions-PNG muss 8 Bit pro Kanal verwenden');
+  assert.equal(colorType, 6, 'Produktions-PNG muss echtes RGBA statt RGB verwenden');
+  const idat = [];
+  for (let offset = 8; offset + 12 <= bytes.length;) {
+    const length = bytes.readUInt32BE(offset);
+    const type = bytes.subarray(offset + 4, offset + 8).toString('ascii');
+    if (type === 'IDAT') idat.push(bytes.subarray(offset + 8, offset + 8 + length));
+    offset += 12 + length;
+    if (type === 'IEND') break;
+  }
+  const encoded = inflateSync(Buffer.concat(idat));
+  const stride = width * 4;
+  const pixels = Buffer.alloc(stride * height);
+  let sourceOffset = 0;
+  for (let y = 0; y < height; y += 1) {
+    const filter = encoded[sourceOffset++];
+    for (let x = 0; x < stride; x += 1) {
+      const raw = encoded[sourceOffset++];
+      const left = x >= 4 ? pixels[y * stride + x - 4] : 0;
+      const up = y ? pixels[(y - 1) * stride + x] : 0;
+      const upperLeft = y && x >= 4 ? pixels[(y - 1) * stride + x - 4] : 0;
+      const value = filter === 0 ? raw
+        : filter === 1 ? raw + left
+          : filter === 2 ? raw + up
+            : filter === 3 ? raw + Math.floor((left + up) / 2)
+              : filter === 4 ? raw + paeth(left, up, upperLeft)
+                : NaN;
+      assert.ok(Number.isFinite(value), `Unbekannter PNG-Filter ${filter}`);
+      pixels[y * stride + x] = value & 255;
+    }
+  }
+  return { width, height, pixels };
+}
+
+test('Globus verwendet gepinnte Runtime, lokale Steuerung und keine Terrainquelle', async () => {
+  const html = await readFile(new URL('index.html',root),'utf8');
+  const script = await readFile(new URL('script.js',root),'utf8');
+  const notices = await readFile(new URL('THIRD_PARTY_NOTICES.md',root),'utf8');
+  assert.equal((html.match(/maplibre-gl@5\.24\.0\/dist\/maplibre-gl\./g)||[]).length,2);
+  assert.match(html,/id="map-projection-select"[^>]*aria-describedby="globe-note"/);
+  assert.match(notices,/MapLibre GL JS 5\.24\.0/);
+  assert.match(script,/setProjection\(\{ type: requested \}\)/);
+  assert.match(script,/app\.projection !== 'globe'/);
+  assert.doesNotMatch(script,/setTerrain\(|raster-dem|api\.maptiler\.com/);
+});
 
 test('HTML verweist auf vorhandene lokale Kernressourcen', async () => {
   const html = await readFile(new URL('index.html', root), 'utf8');
@@ -36,6 +97,86 @@ test('HTML verweist auf vorhandene lokale Kernressourcen', async () => {
   assert.match(html, /id="pirate-dossier-modal"/);
   assert.match(html, /Piraterie ist nicht automatisch Anarchie/);
   assert.match(html, /class="reader-settings"/);
+});
+
+test('Produktname und lokale Markenassets bleiben über Shell und Simulator konsistent', async () => {
+  const [html, manifestText, simulator, icon, embedding, readme, wideSvg, markSvg, wideBytes, markBytes] = await Promise.all([
+    readFile(new URL('index.html', root), 'utf8'),
+    readFile(new URL('manifest.webmanifest', root), 'utf8'),
+    readFile(new URL('mobile-simulator.html', root), 'utf8'),
+    readFile(new URL('icons/atlas-icon.svg', root), 'utf8'),
+    readFile(new URL('docs/embedding.md', root), 'utf8'),
+    readFile(new URL('README.md', root), 'utf8'),
+    readFile(new URL('assets/brand/world-revolution-atlas-logo-v1.svg', root), 'utf8'),
+    readFile(new URL('assets/brand/world-revolution-atlas-mark-v1.svg', root), 'utf8'),
+    readFile(new URL('assets/brand/world-revolution-atlas-logo-v1.png', root)),
+    readFile(new URL('assets/brand/world-revolution-atlas-mark-v1.png', root))
+  ]);
+  const manifest = JSON.parse(manifestText);
+  assert.equal(manifest.name, 'World Revolution Atlas');
+  for (const text of [html, simulator, icon, embedding, readme]) assert.match(text, /World Revolution Atlas/);
+  const suppliedLogo = await readFile(new URL('assets/brand/world-revolution-atlas-user-v1.png', root));
+  assert.equal(createHash('sha256').update(suppliedLogo).digest('hex'), '0235c9cea2a9e9df1efac281e463000a3649c59f31a4c6865d1d1de92dab138d', 'Das bereitgestellte Logo muss bytegleich erhalten bleiben');
+  assert.equal(suppliedLogo.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
+  assert.equal(suppliedLogo.readUInt32BE(16), 1254);
+  assert.equal(suppliedLogo.readUInt32BE(20), 1254);
+  assert.equal(suppliedLogo[25], 2, 'RGB-Original: keine erfundene Transparenzbehauptung');
+  const parchmentLogo = await readFile(new URL('assets/brand/world-revolution-atlas-parchment-v2.png', root));
+  assert.equal(createHash('sha256').update(parchmentLogo).digest('hex'), '8ebe0eec9b4faceb7995506714b12eda14c9bdc268d63a3a27635f603b52f1db');
+  assert.equal(parchmentLogo.readUInt32BE(16), 1254);
+  assert.equal(parchmentLogo.readUInt32BE(20), 1254);
+  assert.match(html, /id="brand-open"[^>]*aria-haspopup="dialog"[^>]*aria-controls="welcome-modal"/);
+  assert.equal((html.match(/<img class="brand-logo"[^>]+src="assets\/brand\/world-revolution-atlas-parchment-v2\.png"[^>]+alt=""[^>]+width="1254" height="1254"/g) || []).length, 2);
+  assert.match(html, /<figcaption>World Revolution Atlas<\/figcaption>/);
+  assert.match(html, /rel="icon" href="assets\/brand\/world-revolution-atlas-parchment-v2\.png"/);
+  assert.doesNotMatch(html + manifestText, /world-revolution-atlas-(?:logo|mark)-v1\./);
+  assert.deepEqual(manifest.icons, [{ src: 'assets/brand/world-revolution-atlas-parchment-v2.png', sizes: '1254x1254', type: 'image/png', purpose: 'any' }]);
+  // Retained draft files are no longer active; keep their existing format checks.
+  for (const svg of [wideSvg, markSvg]) {
+    assert.match(svg, /<svg[^>]+viewBox=/);
+    assert.match(svg, /<title id="title">World Revolution Atlas<\/title>/);
+    assert.doesNotMatch(svg, /<(?:image|foreignObject)\b|(?:href|xlink:href)=/i);
+    assert.doesNotMatch(svg, /<rect\b/i, 'Markenquelle darf keine eingebrannte Hintergrundplatte enthalten');
+  }
+  assert.match(wideSvg, />WORLD REVOLUTION ATLAS<\/text>/);
+  const assets = [
+    { name: 'Wortmarke', decoded: decodeRgbaPng(wideBytes), expected: [1200, 400] },
+    { name: 'Signet', decoded: decodeRgbaPng(markBytes), expected: [512, 512] }
+  ];
+  for (const { name, decoded, expected } of assets) {
+    assert.deepEqual([decoded.width, decoded.height], expected);
+    let transparent = 0;
+    let opaque = 0;
+    let cyan = 0;
+    let red = 0;
+    let white = 0;
+    for (let y = 0; y < decoded.height; y += 1) {
+      for (let x = 0; x < decoded.width; x += 1) {
+        const offset = (y * decoded.width + x) * 4;
+        const [r, g, b, a] = decoded.pixels.subarray(offset, offset + 4);
+        if (a === 0) transparent += 1;
+        if (a >= 220) {
+          opaque += 1;
+          if (r < 80 && g > 170 && b > 190) cyan += 1;
+          if (r > 210 && g < 120 && b < 140) red += 1;
+          if (r > 225 && g > 225 && b > 225) white += 1;
+        }
+        if (x < 8 || y < 8 || x >= decoded.width - 8 || y >= decoded.height - 8) assert.equal(a, 0, `${name}: Außenbereich muss transparent und frei von Schachbrettflächen sein`);
+      }
+    }
+    assert.ok(transparent > decoded.width * decoded.height * .2, `${name}: zu wenig transparente Fläche`);
+    assert.ok(opaque > 1000 && cyan > 100 && red > 100 && white > 100, `${name}: erwartete Cyan-/Rot-/Weiß-Vektormarke fehlt`);
+  }
+});
+
+test('Nutzerlogo sitzt unbeschnitten in einer tastaturbedienbaren Archivplakette', async () => {
+  const [css, script, server] = await Promise.all(['styles.css', 'script.js', 'scripts/serve.mjs'].map(path => readFile(new URL(path, root), 'utf8')));
+  assert.match(css, /\.brand-logo\s*\{[^}]*object-fit:\s*contain/);
+  assert.match(css, /\.brand-frontispiece\s*\{[^}]*border:\s*3px double/);
+  assert.match(css, /\.brand-visual:focus-visible/);
+  assert.match(script, /ui\.brandOpen\.addEventListener\('click', \(\) => openModal\(ui\.welcomeModal\)\)/);
+  assert.match(server, /'\.png': 'image\/png'/);
+  assert.match(server, /'\.webmanifest': 'application\/manifest\+json'/);
 });
 
 test('Fallback-Archiv enthält valide, eindeutige und belegte Ereignisse', async () => {
@@ -92,6 +233,9 @@ test('Datenvertrag, Koordinatenschutz, Vertiefungen und Routen bleiben konsisten
   assert.equal(taxonomy.mapStyles.length, 3);
   assert.equal(taxonomy.network.maximumNodes, 72);
   assert.equal(relations.relations.length, 33);
+  assert.equal(contract.visualMediaModel.eventField, 'visualMedia');
+  assert.equal(contract.visualMediaModel.reviewStatus, 'rights-reviewed');
+  assert.deepEqual(contract.visualMediaModel.allowedAssetHosts, ['upload.wikimedia.org']);
   assert.ok(routes.routes.every(route => route.eventIds.every(id => ids.has(id)) && route.sensitivityMode === 'neutral-progress'));
   for (const id of ['standing-rock', 'muskrat-falls-land-protectors', '1492-land-back-lane', 'camp-morgan-landfill-search', 'aboriginal-tent-embassy']) {
     assert.equal(precisionById.get(id), 'hidden');
@@ -274,19 +418,23 @@ test('Offline-Shell aktiviert nur eine vollständige atomare lokale Generation',
   const biographyCatalog = JSON.parse(await readFile(new URL('data/biography-catalog.json', root), 'utf8'));
   assert.equal(eventCatalog.length, 25);
   assert.equal(biographyCatalog.files.length, 3);
-  assert.match(worker, /atlas-local-v2\.9\.0-rc2-r11/);
+  assert.match(worker, /atlas-local-v2\.9\.0-rc2-r23/);
   const coreMatch = worker.match(/const CORE_RESOURCES = \[([\s\S]*?)\];/);
   assert.ok(coreMatch, 'CORE_RESOURCES muss für die Offline-Generation deklarativ bleiben');
   const coreResources = [...coreMatch[1].matchAll(/'([^']+)'/g)].map(match => match[1]);
   const digest = createHash('sha256');
   for (const resource of coreResources) {
     const normalizedPath = resource === './' ? 'index.html' : resource.replace(/^\.\//, '');
-    const content = (await readFile(new URL(normalizedPath, root), 'utf8')).replace(/\r\n/g, '\n');
-    digest.update(`${resource}\0${content}\0`);
+    const bytes = await readFile(new URL(normalizedPath, root));
+    const isText = /\.(?:css|html|js|json|mjs|svg|webmanifest)$/i.test(normalizedPath);
+    const content = isText ? Buffer.from(bytes.toString('utf8').replace(/\r\n/g, '\n')) : bytes;
+    digest.update(`${resource}\0`);
+    digest.update(content);
+    digest.update('\0');
   }
   assert.equal(
     digest.digest('hex'),
-    'a5cabb165c7c2c430891e0ee5b89f25962ffed82bf7cdf42cc3ae82198240d14',
+    'abd408ca17e38c177d156e5c06f43bfaeab66baf279890f08e75a300f0dfb522',
     'Vorab gecachte Kernressourcen haben sich geändert: CACHE_VERSION erhöhen und den geprüften Generations-Digest aktualisieren.'
   );
   assert.match(worker, /STAGING_CACHE/);
@@ -302,8 +450,13 @@ test('Offline-Shell aktiviert nur eine vollständige atomare lokale Generation',
   assert.match(worker, /fetch\(request, \{ cache: 'no-cache', signal: controller\.signal \}\)/);
   assert.match(worker, /controller\.abort\(\), 500/);
   assert.match(worker, /cache\.match\(fallbackUrl\)/);
+  assert.match(worker, /function navigationFallbackUrl\(url\)/);
+  assert.match(worker, /endsWith\('\/mobile-simulator\.html'\) \? '\.\/mobile-simulator\.html' : '\.\/index\.html'/);
+  assert.match(worker, /request\.mode === 'navigate' \? navigationFallbackUrl\(url\) : request/);
   assert.match(worker, /url\.origin !== self\.location\.origin/);
   assert.doesNotMatch(worker, /https:\/\/(?:api\.maptiler|tiles|carto|wikimedia)/i);
+  for (const resource of ['world-revolution-atlas-parchment-v2.png', 'src/map-focus.js']) assert.match(worker, new RegExp(resource.replaceAll('.', '\\.')));
+  assert.doesNotMatch(worker, /world-revolution-atlas-(?:logo|mark)-v1\./);
   assert.ok(worker.indexOf('await verifyGeneration(cache') < worker.indexOf("keys.filter(key => key.startsWith('atlas-local-')"));
 });
 
@@ -327,13 +480,17 @@ test('Biografien und Routen werden auch nach einem Sprachwechsel digestgebunden 
   assert.match(biographies, /localizeTranslatedRecord\(row, defaults\.language \|\| 'de', BIOGRAPHY_TRANSLATION_FIELDS\)/);
 });
 
-test('Remote-Daten und -Bilder sind im RC standardmäßig deaktiviert', async () => {
+test('Remote-Daten und ungeprüfte Bilder sind standardmäßig deaktiviert', async () => {
   const script = await readFile(new URL('script.js', root), 'utf8');
   const config = await readFile(new URL('src/atlas-config.js', root), 'utf8');
+  const focus = await readFile(new URL('src/map-focus.js', root), 'utf8');
   assert.match(config, /useSupabase: parseBoolean\([^\n]+, false\)/);
   assert.match(script, /SUPABASE_SDK_INTEGRITY/);
   assert.match(script, /if \(!runtimeConfig\.useSupabase\)/);
   assert.doesNotMatch(script, /upload\.wikimedia\.org|wikipedia\.org/);
+  assert.match(focus, /reviewStatus !== 'rights-reviewed'/);
+  assert.match(focus, /upload\.wikimedia\.org/);
+  assert.match(focus, /commons\.wikimedia\.org/);
 });
 
 test('Design berücksichtigt reduzierte Bewegung und mobile Ansichten', async () => {
@@ -361,7 +518,63 @@ test('Design berücksichtigt reduzierte Bewegung und mobile Ansichten', async ()
   assert.match(script, /sensitive \? '○' : isMaritimeEvent\(event\) \? '≈' : '✦'/);
   assert.match(script, /event-maritime-rings/);
   assert.match(script, /maritime-route-guides/);
+  assert.match(script, /selected-event-halo/);
+  assert.match(script, /selected-event-symbol/);
+  assert.match(script, /function clearSelectedEvent/);
+  assert.match(script, /if \(!app\.popupReplacing\) clearSelectedEvent\(event\.id\)/);
+  assert.match(css, /\.event-focus-active \.map-vignette/);
+  assert.match(css, /\.map-focus-card\.is-sensitive/);
+  assert.match(css, /prefers-reduced-motion[\s\S]*\.map-focus-card/);
   assert.match(script, /biographyVisualAccent\(bio\.id\)/);
+});
+
+test('Mobile Oberfläche wahrt Navigation, Safe Areas, Typografie und Bottom-Sheet-Vertrag', async () => {
+  const [html, css, script, translations, simulator, worker] = await Promise.all([
+    readFile(new URL('index.html', root), 'utf8'),
+    readFile(new URL('styles.css', root), 'utf8'),
+    readFile(new URL('script.js', root), 'utf8'),
+    readFile(new URL('src/i18n.js', root), 'utf8'),
+    readFile(new URL('mobile-simulator.html', root), 'utf8'),
+    readFile(new URL('service-worker.js', root), 'utf8')
+  ]);
+  assert.match(html, /width=device-width, initial-scale=1, viewport-fit=cover/);
+  assert.equal((html.match(/class="mobile-nav-button/g) || []).length, 5);
+  for (const action of ['map', 'filters', 'discover', 'saved', 'more']) assert.match(html, new RegExp(`data-mobile-action="${action}"`));
+  assert.equal((html.match(/class="nav-button desktop-nav-button/g) || []).length, 11);
+  assert.match(html, /id="mobile-more-drawer"[\s\S]*data-panel-target="biographies"[\s\S]*data-panel-target="quiz"/);
+  assert.match(html, /id="mobile-show-results"/);
+  assert.match(css, /grid-template-columns: repeat\(5, minmax\(0, 1fr\)\)/);
+  assert.match(css, /env\(safe-area-inset-top\)/);
+  assert.match(css, /env\(safe-area-inset-bottom\)/);
+  assert.match(css, /font-size: 16px/);
+  assert.match(css, /min-height: 44px/);
+  assert.match(css, /height: min\(38dvh, 360px\)/);
+  assert.match(css, /data-sheet-state="expanded"/);
+  assert.match(css, /min-width: 700px[\s\S]*orientation: landscape/);
+  assert.match(css, /max-width: 820px\), \(max-width: 1000px\) and \(max-height: 520px\) and \(orientation: landscape\)/);
+  assert.match(css, /summary\.maplibregl-ctrl-attrib-button[\s\S]*width: 44px !important;[\s\S]*height: 44px !important;/);
+  assert.match(css, /\.mobile-nav-button \{[\s\S]*font-size: 12px;/);
+  assert.match(css, /@media \(max-width: 360px\)[\s\S]*\.mobile-nav-button \{ font-size: 11px; line-height: 1\.15; \}/);
+  assert.match(css, /@media \(max-width: 560px\)[\s\S]*\.brand-copy[\s\S]*clip-path: inset\(50%\)/);
+  assert.match(css, /\.mobile-nav-button > span:last-child \{[\s\S]*overflow-wrap: normal;[\s\S]*white-space: nowrap;/);
+  assert.match(css, /\.event-popup-meta \{[\s\S]*flex-wrap: wrap;/);
+  assert.match(css, /\.drawer-header h2 \{ overflow-wrap: break-word; \}/);
+  assert.match(css, /event-focus-active \.maplibregl-ctrl-top-right \{ right: 406px; \}/);
+  assert.match(css, /min-width: 821px\) and \(max-width: 1319px\)[\s\S]*\.maplibregl-popup \{ bottom: 88px; \}/);
+  assert.match(css, /min-width: 1320px[\s\S]*event-focus-active \.mission-card \{ right: 412px; \}/);
+  assert.match(css, /min-width: 1320px[\s\S]*event-focus-active \.maplibregl-ctrl-top-right \{ right: 708px; \}/);
+  assert.match(css, /\.event-sheet-actions \[data-sheet-action="expand"\],[\s\S]*\.event-sheet-actions \[data-sheet-action="collapse"\] \{ display: none; \}/);
+  assert.match(script, /MOBILE_LAYOUT_QUERY/);
+  assert.match(script, /closeButton: !mobilePopup/);
+  assert.match(script, /updateEventSheetState\(content, 'collapse'\)/);
+  assert.match(script, /setMobileNavigationState/);
+  assert.equal((translations.match(/showFilteredEvents:/g) || []).length, 9);
+  assert.equal((translations.match(/expandEventSheet:/g) || []).length, 9);
+  assert.equal((translations.match(/collapseEventSheet:/g) || []).length, 9);
+  assert.match(simulator, /iPhone SE · 320 × 568/);
+  assert.match(simulator, /prefers-reduced-motion/);
+  assert.match(worker, /'\.\/mobile-simulator\.html'/);
+  assert.match(worker, /'\.\/src\/mobile-ui\.js'/);
 });
 
 test('Quellenprüfung trennt definitive Fehler von Netzwerkunsicherheit', async () => {

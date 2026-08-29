@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" role="img" aria-labelledby="title desc">
+  <title id="title">World Revolution Atlas</title>
+  <desc id="desc">Transparente horizontale Wortmarke mit Globus und Kompassrose in Cyan, Rot und Weiß.</desc>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(200 200)">
+      <circle r="142" stroke="#ffffff" stroke-width="10"/>
+      <ellipse rx="68" ry="142" stroke="#33d9ef" stroke-width="6" opacity=".9"/>
+      <ellipse rx="116" ry="142" stroke="#33d9ef" stroke-width="4" opacity=".48"/>
+      <path d="M-134-48C-70-20 70-20 134-48M-142 0H142M-134 48C-70 20 70 20 134 48" stroke="#33d9ef" stroke-width="5" opacity=".72"/>
+      <path d="M-108-79l27-22 31 8 15 24 28 9 18 30-23 13-27-11-25 18-34-12-5-25-22-12zM42 9l30-18 40 13 9 28-22 18-12 40-29 14-13-35-27-17z" fill="#ffffff" stroke="#071711" stroke-width="4"/>
+      <circle r="58" fill="#071711" fill-opacity=".92" stroke="#ffffff" stroke-width="6"/>
+      <path d="M0-112 20-25 0-43-20-25z" fill="#ff4b55" stroke="#ffffff" stroke-width="3"/>
+      <path d="M0 112 20 25 0 43-20 25z" fill="#ff4b55" stroke="#ffffff" stroke-width="3"/>
+      <path d="M112 0 25 20 43 0 25-20zM-112 0-25 20-43 0-25-20z" fill="#33d9ef" stroke="#ffffff" stroke-width="3"/>
+      <path d="M72-72 21-13 31-31 13-21zM72 72 13 21 31 31 21 13zM-72 72-21 13-31 31-13 21zM-72-72-13-21-31-31-21-13z" fill="#ffffff"/>
+      <circle r="17" fill="#ffffff" stroke="#071711" stroke-width="5"/>
+      <circle r="7" fill="#ff4b55"/>
+    </g>
+    <path d="M365 128H1144" stroke="#33d9ef" stroke-width="5"/>
+    <path d="M365 274H885" stroke="#33d9ef" stroke-width="5"/>
+    <path d="M909 274H1144" stroke="#ff4b55" stroke-width="5"/>
+  </g>
+  <text x="365" y="218" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="50" font-weight="800" letter-spacing="2.5">WORLD REVOLUTION ATLAS</text>
+</svg>

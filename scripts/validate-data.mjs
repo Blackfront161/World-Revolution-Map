@@ -21,6 +21,19 @@ const metadata = JSON.parse(await readFile('data/event-metadata.json', 'utf8'));
 const precisionById = new Map((metadata.events || []).map(row => [row.id, row.coordinatePrecision]));
 const rawCoordinateFields = ['coordinates', 'longitude', 'latitude', 'lng', 'lat'];
 
+function validateVisualMedia(value, label) {
+  if (value === undefined) return;
+  const model = contract.visualMediaModel;
+  if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error(`${label}: visualMedia muss ein Objekt sein.`);
+  for (const field of model.requiredFields) if (typeof value[field] !== 'string' || !value[field].trim()) throw new Error(`${label}: visualMedia.${field} fehlt.`);
+  if (value.reviewStatus !== model.reviewStatus) throw new Error(`${label}: visualMedia ist nicht rights-reviewed.`);
+  let url;
+  let sourceUrl;
+  try { url = new URL(value.url); sourceUrl = new URL(value.sourceUrl); } catch { throw new Error(`${label}: visualMedia enthält eine ungültige URL.`); }
+  if (url.protocol !== 'https:' || !model.allowedAssetHosts.includes(url.hostname)) throw new Error(`${label}: visualMedia.url nutzt keinen freigegebenen Host.`);
+  if (sourceUrl.protocol !== 'https:' || sourceUrl.hostname !== model.allowedSourceHost || !sourceUrl.pathname.startsWith('/wiki/File:')) throw new Error(`${label}: visualMedia.sourceUrl muss eine konkrete Commons-Dateiseite sein.`);
+}
+
 const ids = new Set();
 const rawById = new Map();
 let activeCount = 0;
@@ -33,6 +46,7 @@ for (const filename of catalog) {
     const label = `${filename}[${index}]`;
     const editorialIssues = validateEditorialFields(row);
     if (editorialIssues.length) throw new Error(`${label}: ${editorialIssues.join('; ')}`);
+    validateVisualMedia(row.visualMedia, label);
     if (row.archived) return;
     if (Array.isArray(row.relatedEventIds)) {
       for (const relatedId of row.relatedEventIds) if (!EVENT_ID_PATTERN.test(String(relatedId))) throw new Error(`${label}: relatedEventIds enthält eine ungültige ID.`);
@@ -73,6 +87,7 @@ for (const field of ['code', 'data', 'images', 'mapData', 'notice']) {
   if (!contract.license?.[field]) throw new Error(`archive-contract.json: license.${field} fehlt.`);
 }
 if (!contract.mapModel?.hiddenCoordinateRule || contract.mapModel.layerMode !== 'multi-select-or') throw new Error('archive-contract.json: Kartenmodell fehlt.');
+if (contract.visualMediaModel?.eventField !== 'visualMedia' || contract.visualMediaModel?.reviewStatus !== 'rights-reviewed' || !contract.visualMediaModel?.allowedAssetHosts?.includes('upload.wikimedia.org')) throw new Error('archive-contract.json: Modell für einzeln geprüfte Ereignisbilder fehlt.');
 if (contract.achievementModel?.category !== 'Soziale Errungenschaft' || !Array.isArray(contract.achievementModel?.requiredPerspectiveFields)) throw new Error('archive-contract.json: Errungenschaftsmodell fehlt.');
 const translationModel = contract.translationModel;
 if (!translationModel || translationModel.matrixVersion !== 1 || translationModel.policyVersion !== TRANSLATION_POLICY_VERSION) throw new Error('archive-contract.json: Übersetzungsmodell fehlt oder hat die falsche Policyversion.');
