@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "files": [
+    { "file": "biographies-black.json", "defaultTradition": "Schwarze Befreiung" },
+    { "file": "biographies-indigenous.json", "defaultTradition": "Indigene Selbstbestimmung" },
+    { "file": "biographies-libertarian.json", "defaultTradition": "Libertäre und antiautoritäre Traditionen" }
+  ]
+}

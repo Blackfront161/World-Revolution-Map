@@ -1,0 +1,14 @@
+{
+  "name": "World Revolution Atlas",
+  "short_name": "World Revolution Atlas",
+  "description": "Lokales Archiv-Spiel für Geschichte und Lebenswege von unten.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07130f",
+  "theme_color": "#07130f",
+  "lang": "de",
+  "icons": [
+    { "src": "assets/brand/world-revolution-atlas-parchment-v2.png", "sizes": "1254x1254", "type": "image/png", "purpose": "any" }
+  ]
+}

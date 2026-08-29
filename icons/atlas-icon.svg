@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">World Revolution Atlas</title>
+  <rect width="512" height="512" rx="96" fill="#07130f"/>
+  <circle cx="256" cy="256" r="154" fill="none" stroke="#65f3a6" stroke-width="24"/>
+  <path d="M256 82l30 126 126 48-126 48-30 126-30-126-126-48 126-48z" fill="#65f3a6"/>
+</svg>

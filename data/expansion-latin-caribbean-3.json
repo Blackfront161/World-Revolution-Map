@@ -1,0 +1,648 @@
+[
+  {
+    "archived": true,
+    "id": "morant-bay-rebellion",
+    "title": "Morant-Bay-Aufstand",
+    "location": "Morant Bay",
+    "country": "Jamaika",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Antikolonialer Widerstand",
+    "tags": [
+      "Bäuerlicher Widerstand",
+      "Schwarze Befreiungsbewegung"
+    ],
+    "yearStart": 1865,
+    "yearEnd": 1865,
+    "coordinates": [
+      -76.41,
+      17.88
+    ],
+    "description": "Schwarze Bäuer*innen marschierten gegen Landnot, rassistische Justiz und politische Entrechtung; Kolonialtruppen übten blutige Vergeltung.",
+    "significance": "Der Aufstand legte die unvollendete Emanzipation nach der Sklaverei offen.",
+    "clue": "Suche im Osten Jamaikas.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Morant_Bay_rebellion",
+    "difficulty": 1
+  },
+  {
+    "id": "santa-maria-iquique",
+    "title": "Streik von Santa María de Iquique",
+    "location": "Iquique",
+    "country": "Chile",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Gedächtnis der Besiegten",
+      "Anarchistische Bewegung"
+    ],
+    "yearStart": 1907,
+    "yearEnd": 1907,
+    "coordinates": [
+      -70.15,
+      -20.21
+    ],
+    "description": "Salpeterarbeiter*innen und ihre Familien zogen in die Hafenstadt und forderten Lohn und Würde; das Militär massakrierte sie in einer Schule.",
+    "significance": "Die Erinnerung wurde zu einem Grundmotiv der chilenischen Arbeiter*innenbewegung.",
+    "clue": "Suche in einer Schule in der Atacama.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Santa_Mar%C3%ADa_School_massacre",
+    "difficulty": 1
+  },
+  {
+    "id": "independent-party-color-1912",
+    "title": "Aufstand der Partido Independiente de Color",
+    "location": "Oriente",
+    "country": "Kuba",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Schwarze Befreiungsbewegung",
+    "tags": [
+      "Antirassistischer Widerstand",
+      "Gedächtnis der Besiegten"
+    ],
+    "yearStart": 1912,
+    "yearEnd": 1912,
+    "coordinates": [
+      -75.82,
+      20.02
+    ],
+    "description": "Afrokubanische Organisierte protestierten gegen das Verbot ihrer Partei und fortbestehenden Rassismus; Armee und Milizen töteten Tausende.",
+    "significance": "Die Republik beantwortete Schwarze politische Selbstorganisation mit einem lange verschwiegenen Massaker.",
+    "clue": "Suche im Osten Kubas zwanzig Jahre nach der Unabhängigkeit.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Negro_Rebellion",
+    "difficulty": 2
+  },
+  {
+    "id": "cordoba-university-reform",
+    "title": "Universitätsreform von Córdoba",
+    "location": "Córdoba",
+    "country": "Argentinien",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Studierendenbewegung",
+    "tags": [
+      "Bildungsbewegung",
+      "Basisdemokratie"
+    ],
+    "yearStart": 1918,
+    "yearEnd": 1918,
+    "coordinates": [
+      -64.19,
+      -31.42
+    ],
+    "description": "Studierende forderten Mitbestimmung, wissenschaftliche Freiheit und eine Universität im Dienst gesellschaftlicher Veränderung.",
+    "significance": "Das Manifest inspirierte Studierendenbewegungen in ganz Lateinamerika.",
+    "clue": "Suche an Argentiniens ältester Universität.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/University_Reform_of_1918",
+    "difficulty": 1
+  },
+  {
+    "id": "tragic-week-argentina",
+    "title": "Semana Trágica",
+    "location": "Buenos Aires",
+    "country": "Argentinien",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Anarchistische Bewegung",
+      "Gedächtnis der Besiegten"
+    ],
+    "yearStart": 1919,
+    "yearEnd": 1919,
+    "coordinates": [
+      -58.38,
+      -34.6
+    ],
+    "description": "Ein Metallarbeiterstreik wuchs zum Generalstreik; Polizei, Armee und rechte Banden töteten Arbeiter*innen und griffen jüdische Viertel an.",
+    "significance": "Klassenrepression verband sich offen mit Antisemitismus und nationalistischer Gewalt.",
+    "clue": "Suche im Januar 1919 in Buenos Aires.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Tragic_Week_(Argentina)",
+    "difficulty": 1
+  },
+  {
+    "archived": true,
+    "id": "patagonia-rebelde",
+    "title": "Patagonia Rebelde",
+    "location": "Santa Cruz",
+    "country": "Argentinien",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Anarchistische Bewegung",
+    "tags": [
+      "Arbeiter*innenbewegung",
+      "Gedächtnis der Besiegten"
+    ],
+    "yearStart": 1920,
+    "yearEnd": 1922,
+    "coordinates": [
+      -69.22,
+      -51.62
+    ],
+    "description": "Landarbeiter*innen organisierten Streiks gegen extreme Ausbeutung; die Armee exekutierte Hunderte nach ihrer Kapitulation.",
+    "significance": "Der Kampf erinnert an anarchosyndikalistische Organisierung und staatlichen Terror im agrarischen Süden.",
+    "clue": "Suche auf den Schaffarmen Patagoniens.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Patagonia_Rebelde",
+    "difficulty": 1
+  },
+  {
+    "id": "guayaquil-general-strike-1922",
+    "title": "Generalstreik von Guayaquil",
+    "location": "Guayaquil",
+    "country": "Ecuador",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Anarchistische Bewegung",
+      "Gedächtnis der Besiegten"
+    ],
+    "yearStart": 1922,
+    "yearEnd": 1922,
+    "coordinates": [
+      -79.9,
+      -2.19
+    ],
+    "description": "Arbeiter*innenverbände legten die Hafenstadt gegen Teuerung und niedrige Löhne lahm; das Militär massakrierte die Demonstrierenden.",
+    "significance": "Der 15. November wurde zum zentralen Gedenktag der ecuadorianischen Arbeiter*innenbewegung.",
+    "clue": "Suche am Río Guayas.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/1922_Guayaquil_general_strike",
+    "difficulty": 2
+  },
+  {
+    "id": "banana-massacre",
+    "title": "Bananenmassaker",
+    "location": "Ciénaga",
+    "country": "Kolumbien",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Antiimperialistischer Widerstand",
+      "Gedächtnis der Besiegten"
+    ],
+    "yearStart": 1928,
+    "yearEnd": 1928,
+    "coordinates": [
+      -74.24,
+      11.01
+    ],
+    "description": "Streikende Plantagenarbeiter*innen der United Fruit Company wurden von der kolumbianischen Armee beschossen.",
+    "significance": "Das Massaker wurde zum Symbol der Verbindung von Konzernmacht, Imperialismus und staatlicher Gewalt.",
+    "clue": "Suche nahe Santa Marta zwischen Bananenplantagen.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Banana_Massacre",
+    "difficulty": 1
+  },
+  {
+    "archived": true,
+    "id": "el-salvador-uprising-1932",
+    "title": "Bauernaufstand in El Salvador 1932",
+    "location": "Westliches El Salvador",
+    "country": "El Salvador",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Bäuerlicher Widerstand",
+    "tags": [
+      "Indigener Widerstand",
+      "Gedächtnis der Besiegten"
+    ],
+    "yearStart": 1932,
+    "yearEnd": 1932,
+    "coordinates": [
+      -89.68,
+      13.84
+    ],
+    "description": "Indigene und bäuerliche Gemeinden erhoben sich gegen Landenteignung und Diktatur; das Militär ermordete Zehntausende.",
+    "significance": "La Matanza zerstörte offene indigene Sichtbarkeit und prägte Generationen politischer Angst.",
+    "clue": "Suche nach Farabundo Martí und Feliciano Ama.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/1932_Salvadoran_peasant_massacre",
+    "difficulty": 1
+  },
+  {
+    "archived": true,
+    "id": "cuban-general-strike-1933",
+    "title": "Kubas Generalstreik von 1933",
+    "location": "Havanna und landesweit",
+    "country": "Kuba",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Antirepression",
+      "Antiimperialistischer Widerstand"
+    ],
+    "yearStart": 1933,
+    "yearEnd": 1933,
+    "coordinates": [
+      -82.37,
+      23.11
+    ],
+    "description": "Streiks, Studierendenproteste und Militärmeuterei stürzten die Diktatur Gerardo Machados.",
+    "significance": "Die revolutionäre Krise zeigte gesellschaftliche Macht, aber auch die rasche Neuordnung durch Militär und US-Einfluss.",
+    "clue": "Suche im August 1933 in Havanna.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Cuban_Revolution_of_1933",
+    "difficulty": 2
+  },
+  {
+    "id": "st-kitts-labour-riots",
+    "title": "Buckley-Aufstand",
+    "location": "Basseterre",
+    "country": "St. Kitts und Nevis",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Antikolonialer Widerstand",
+      "Schwarze Befreiungsbewegung"
+    ],
+    "yearStart": 1935,
+    "yearEnd": 1935,
+    "coordinates": [
+      -62.73,
+      17.3
+    ],
+    "description": "Zuckerarbeiter*innen streikten gegen gekürzte Löhne; Kolonialpolizei tötete mehrere Streikende.",
+    "significance": "Der Konflikt eröffnete die Welle karibischer Arbeiter*innenaufstände der 1930er Jahre.",
+    "clue": "Suche auf der Buckley-Plantage.",
+    "sourceUrl": "https://stkittsnevisflag.com/discover-stkitts-nevis/historical-overview/significant-historical-events-in-st-kitts-and-nevis/1932-founding-of-the-st-kitts-workers-league/",
+    "difficulty": 3
+  },
+  {
+    "id": "barbados-labour-rebellion",
+    "title": "Arbeiter*innenaufstand auf Barbados",
+    "location": "Bridgetown",
+    "country": "Barbados",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Antikolonialer Widerstand",
+      "Schwarze Befreiungsbewegung"
+    ],
+    "yearStart": 1937,
+    "yearEnd": 1937,
+    "coordinates": [
+      -59.61,
+      13.1
+    ],
+    "description": "Nach der Deportation Clement Paynes protestierten Arbeiter*innen gegen Armut, Rassismus und Kolonialherrschaft.",
+    "significance": "Der Aufstand trieb Gewerkschaftsbildung und politische Organisierung voran.",
+    "clue": "Suche Ende Juli in Bridgetown.",
+    "sourceUrl": "https://www.barbadospocketguide.com/our-island-barbados/national-heroes/clement-osbourne-payne.html",
+    "difficulty": 2
+  },
+  {
+    "id": "trinidad-oilfield-strike",
+    "title": "Ölfeldstreik in Trinidad",
+    "location": "Fyzabad",
+    "country": "Trinidad und Tobago",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Antikolonialer Widerstand",
+      "Schwarze Befreiungsbewegung"
+    ],
+    "yearStart": 1937,
+    "yearEnd": 1937,
+    "coordinates": [
+      -61.48,
+      10.18
+    ],
+    "description": "Ölarbeiter*innen um Tubal Uriah Butler streikten gegen rassistische Löhne und koloniale Arbeitsbedingungen.",
+    "significance": "Die Bewegung begründete moderne Gewerkschaftsmacht in Trinidad und strahlte in die Karibik aus.",
+    "clue": "Suche an den Ölfeldern im Süden Trinidads.",
+    "sourceUrl": "https://nationaltrust.tt/locales-of-the-1937-labour-revolution/",
+    "demands": ["höhere und gleiche Löhne", "bessere Arbeitsbedingungen", "gewerkschaftliche Anerkennung und politische Rechte"],
+    "participants": ["Ölfeldarbeiter*innen", "Tubal Uriah Butler und lokale Organisator*innen", "solidarische Beschäftigte und Gemeinden"],
+    "powerStructures": ["koloniale Regierung Trinidads", "ausländische Ölunternehmen", "rassistisch gegliederte Arbeitsordnung und Polizei"],
+    "tactics": ["Streiks in den Ölfeldern", "Massenversammlungen", "Ausweitung der Arbeitsniederlegungen auf weitere Branchen"],
+    "immediateConsequences": "Der Konflikt in Fyzabad löste eine breitere Streik- und Protestwelle aus und erschütterte die koloniale Arbeitsordnung.",
+    "longTermImpact": "Die Bewegung stärkte moderne Gewerkschaften und antikoloniale Massenpolitik in Trinidad und der weiteren Karibik.",
+    "repression": "Kolonialpolizei ging gegen Versammlungen und Streikende vor; der Konflikt eskalierte gewaltsam.",
+    "humanCosts": "Menschen wurden in den Auseinandersetzungen getötet und verletzt; genaue Zahlen und Verantwortlichkeiten müssen in weiterführenden Quellen differenziert werden.",
+    "aftermath": "Untersuchungen und Reformen folgten, während Gewerkschaften dauerhafte politische Organisationen aufbauten.",
+    "openQuestions": "Wie verbanden sich Schwarze Arbeiter*innenpolitik, indische Arbeitsmigration und lokale Gemeindeorganisation in der Streikwelle?",
+    "sourceType": "Nationales Kulturerbe- und Erinnerungsarchiv Trinidad und Tobago",
+    "sourceQuality": "Ortsbezogener historischer Überblick; Gewerkschaftsarchive, Kolonialakten und Arbeiter*innenzeugnisse ergänzen",
+    "uncertainty": "Die Protestwelle umfasste mehrere Orte und Branchen; Opferzahlen und Abläufe variieren zwischen Darstellungen.",
+    "sensitivity": "Thematisiert tödliche koloniale Gewalt gegen eine Arbeiter*innenbewegung.",
+    "reviewStatus": "Redaktioneller Pilotstand",
+    "difficulty": 2
+  },
+  {
+    "id": "jamaica-labour-rebellion-1938",
+    "title": "Jamaikanischer Arbeiter*innenaufstand 1938",
+    "location": "Frome, Kingston und landesweit",
+    "country": "Jamaika",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Antikolonialer Widerstand",
+      "Schwarze Befreiungsbewegung"
+    ],
+    "yearStart": 1938,
+    "yearEnd": 1938,
+    "coordinates": [
+      -77.3,
+      18
+    ],
+    "description": "Zucker- und Hafenarbeiter*innen streikten gegen Hungerlohn und koloniale Ungleichheit.",
+    "significance": "Der Aufstand beschleunigte Gewerkschaften, allgemeines Wahlrecht und Selbstregierung.",
+    "clue": "Suche auf der Frome-Zuckerplantage.",
+    "sourceUrl": "https://www.nationalarchives.gov.uk/education/resources/commonwealth-migration-since-1945/disturbance-tate-lyle-estate/",
+    "demands": ["höhere Löhne", "bessere Arbeits- und Lebensbedingungen", "gewerkschaftliche Vertretung", "politische Mitsprache"],
+    "participants": ["Zuckerarbeiter*innen in Frome", "Hafen- und weitere Arbeiter*innen", "Arbeitslose und unterstützende Gemeinden"],
+    "powerStructures": ["britische Kolonialverwaltung", "Zuckerplantagen und Hafenunternehmen", "Kolonialpolizei"],
+    "tactics": ["Streiks", "Demonstrationen und Versammlungen", "Ausweitung lokaler Arbeitskämpfe zu einer inselweiten Erhebung"],
+    "immediateConsequences": "Der Arbeitskampf breitete sich über Branchen und Orte aus und zwang die koloniale Regierung, soziale und politische Missstände zu untersuchen.",
+    "longTermImpact": "Die Erhebung beschleunigte Gewerkschaftsaufbau, Parteienbildung, allgemeines Wahlrecht und den Weg zur Selbstregierung.",
+    "repression": "Polizei und Kolonialbehörden reagierten mit Gewalt, Festnahmen und Notstandsmaßnahmen.",
+    "humanCosts": "Bei der Niederschlagung wurden Menschen getötet und verletzt; einzelne Zahlen unterscheiden sich nach Ort und Quelle.",
+    "aftermath": "Reformen und neue Organisationen folgten, ohne koloniale und ökonomische Ungleichheit sofort zu beseitigen.",
+    "openQuestions": "Wie werden Frauen, Landarbeiter*innen und lokale Organisator*innen jenseits späterer Parteiführungen erinnert?",
+    "sourceType": "Britisches Nationalarchiv / digitalisiertes Kolonialdokument",
+    "sourceQuality": "Primärnahes Verwaltungs- und Bildungsarchiv, dessen koloniale Perspektive gegen Gewerkschafts-, Presse- und Oral-History-Quellen gelesen werden muss",
+    "uncertainty": "Kolonialakten verwenden institutionelle Kategorien und können Gewalt und Forderungen der Streikenden verzerrt darstellen.",
+    "sensitivity": "Thematisiert tödliche Kolonialgewalt, Verletzungen und Haft.",
+    "reviewStatus": "Redaktioneller Pilotstand",
+    "difficulty": 2
+  },
+  {
+    "id": "jayuya-uprising",
+    "title": "Jayuya-Aufstand",
+    "location": "Jayuya",
+    "country": "Puerto Rico",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Antikolonialer Widerstand",
+    "tags": [
+      "Antiimperialistischer Widerstand",
+      "Gedächtnis der Besiegten"
+    ],
+    "yearStart": 1950,
+    "yearEnd": 1950,
+    "coordinates": [
+      -66.59,
+      18.22
+    ],
+    "description": "Puertoricanische Nationalist*innen erklärten eine freie Republik; US- und Inselkräfte schlugen den Aufstand nieder.",
+    "significance": "Die Bombardierung erinnert an den gewaltsam unterdrückten Kampf gegen US-Kolonialstatus.",
+    "clue": "Suche in einer Bergstadt im Zentrum Puerto Ricos.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Jayuya_Uprising",
+    "difficulty": 1
+  },
+  {
+    "archived": true,
+    "id": "curacao-uprising-1969",
+    "title": "Aufstand von Curaçao 1969",
+    "location": "Willemstad",
+    "country": "Curaçao",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Antirassistischer Widerstand",
+      "Antikolonialer Widerstand"
+    ],
+    "yearStart": 1969,
+    "yearEnd": 1969,
+    "coordinates": [
+      -68.93,
+      12.11
+    ],
+    "description": "Ein Streik von Raffineriearbeiter*innen wurde zum Aufstand gegen rassistische Lohnhierarchien und niederländische Kolonialordnung.",
+    "significance": "Der 30. Mai veränderte Politik und Selbstverständnis der Insel.",
+    "clue": "Suche nahe einer Shell-Raffinerie.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/1969_Cura%C3%A7ao_uprising",
+    "difficulty": 2
+  },
+  {
+    "id": "trinidad-black-power-revolution",
+    "title": "Black-Power-Revolution in Trinidad",
+    "location": "Port of Spain",
+    "country": "Trinidad und Tobago",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Schwarze Befreiungsbewegung",
+    "tags": [
+      "Arbeiter*innenbewegung",
+      "Antirassistischer Widerstand"
+    ],
+    "yearStart": 1970,
+    "yearEnd": 1970,
+    "coordinates": [
+      -61.52,
+      10.66
+    ],
+    "description": "Studierende, Arbeitslose, Gewerkschaften und meuternde Soldaten mobilisierten gegen Rassismus, ausländisches Kapital und Elitenherrschaft.",
+    "significance": "Panafrikanismus traf auf karibische Klassenpolitik und bedrohte die bestehende Ordnung.",
+    "clue": "Suche nach einem Marsch von Port of Spain nach Caroni.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Black_Power_Revolution",
+    "difficulty": 1
+  },
+  {
+    "archived": true,
+    "id": "uruguay-general-strike-1973",
+    "title": "Uruguayischer Generalstreik 1973",
+    "location": "Montevideo und landesweit",
+    "country": "Uruguay",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Antifaschistischer Widerstand",
+      "Direkte Aktion"
+    ],
+    "yearStart": 1973,
+    "yearEnd": 1973,
+    "coordinates": [
+      -56.16,
+      -34.9
+    ],
+    "description": "Gewerkschaften besetzten Betriebe und legten das Land fünfzehn Tage gegen den zivil-militärischen Putsch lahm.",
+    "significance": "Der vorbereitete Widerstand machte die Diktatur vom ersten Tag an umkämpft.",
+    "clue": "Suche in Fabriken nach dem 27. Juni.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/1973_Uruguayan_coup_d%27%C3%A9tat",
+    "difficulty": 1
+  },
+  {
+    "id": "mothers-plaza-mayo-first-march",
+    "title": "Erster Marsch der Mütter der Plaza de Mayo",
+    "location": "Buenos Aires",
+    "country": "Argentinien",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Feministischer & antisexistischer Widerstand",
+    "tags": [
+      "Menschenrechtsbewegung",
+      "Gedächtnis der Besiegten"
+    ],
+    "yearStart": 1977,
+    "yearEnd": 1977,
+    "coordinates": [
+      -58.37,
+      -34.61
+    ],
+    "description": "Mütter Verschwundener gingen im Kreis, weil die Diktatur stehende Versammlungen verbot.",
+    "significance": "Die weißen Kopftücher verwandelten Sorgearbeit in beharrlichen öffentlichen Widerstand.",
+    "clue": "Suche jeden Donnerstag auf dem Platz vor dem Präsidentenpalast.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Mothers_of_Plaza_de_Mayo",
+    "difficulty": 1
+  },
+  {
+    "id": "caracazo",
+    "title": "Caracazo",
+    "location": "Caracas und Venezuela",
+    "country": "Venezuela",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Antikapitalistische Bewegung",
+    "tags": [
+      "Direkte Aktion",
+      "Gedächtnis der Besiegten"
+    ],
+    "yearStart": 1989,
+    "yearEnd": 1989,
+    "coordinates": [
+      -66.9,
+      10.48
+    ],
+    "description": "Nach Fahrpreis- und Benzinerhöhungen explodierten Proteste gegen ein IWF-Paket; Militär und Polizei töteten Hunderte oder mehr.",
+    "significance": "Der Aufstand zerstörte den Konsens der alten Parteienordnung.",
+    "clue": "Suche Ende Februar in Venezuelas Hauptstadt.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Caracazo",
+    "difficulty": 1
+  },
+  {
+    "id": "bagua-protests",
+    "title": "Amazonas-Aufstand und Bagua",
+    "location": "Bagua",
+    "country": "Peru",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Indigener Widerstand",
+    "tags": [
+      "Ökologischer Widerstand",
+      "Landverteidigung"
+    ],
+    "yearStart": 2009,
+    "yearEnd": 2009,
+    "coordinates": [
+      -78.53,
+      -5.64
+    ],
+    "description": "Indigene Gemeinden blockierten Straßen gegen Dekrete, die Extraktion im Amazonasgebiet erleichterten; eine Räumung endete tödlich.",
+    "significance": "Der Kampf erzwang die Rücknahme von Gesetzen und machte freie, vorherige Zustimmung zentral.",
+    "clue": "Suche an der Teufelskurve im Norden Perus.",
+    "sourceUrl": "https://www.oas.org/en/iachr/reports/pdfs/panamazonia2019-en.pdf",
+    "difficulty": 1,
+    "demands": [
+      "Rücknahme von Dekreten, die indigene Land- und Territorialrechte gefährdeten",
+      "Achtung kollektiver Eigentums- und Konsultationsrechte",
+      "Aufklärung und Wiedergutmachung nach der Gewalt"
+    ],
+    "participants": [
+      "Indigene Völker des peruanischen Amazonasgebiets",
+      "Indigene Führungspersonen und Protestierende",
+      "Polizeikräfte"
+    ],
+    "powerStructures": [
+      "Peruanische Regierung und Gesetzgebung",
+      "Nationale Polizei",
+      "Extraktive Interessen an Amazonas-Territorien"
+    ],
+    "tactics": [
+      "Längerer Straßenblockade",
+      "Regionale Mobilisierung und Protest",
+      "Menschenrechtliche und gerichtliche Forderungen nach Aufklärung"
+    ],
+    "immediateConsequences": "Am 5. Juni 2009 räumte die Polizei die Blockade bei Bagua; laut IACHR starben mindestens 30 Menschen und weitere wurden verletzt.",
+    "longTermImpact": "Bagua wurde zu einem zentralen Bezugspunkt für indigene Konsultations-, Land- und Menschenrechte in Peru und der Pan-Amazonas-Region.",
+    "repression": "Die Nationale Polizei setzte eine Operation zur Auflösung der Blockade ein; die IACHR verlangte gerichtliche Untersuchung und Wiedergutmachung.",
+    "humanCosts": "Mindestens 30 Tote sowie weitere Verletzte, darunter indigene Führungspersonen und Angehörige der Sicherheitskräfte; Gesundheitseinrichtungen waren überfordert.",
+    "aftermath": "Die Verantwortung, genaue Opferbilanz und strafrechtliche Aufarbeitung blieben Gegenstand langjähriger Konflikte.",
+    "openQuestions": "Opferzahlen, Verantwortungsanteile und der Umfang späterer Wiedergutmachung werden unterschiedlich bewertet.",
+    "voices": [
+      "Die IACHR beschreibt den Protest als Reaktion indigener Amazonasvölker auf Dekrete, die ihre Land- und Territorialrechte berührten (paraphrasiert nach der verlinkten Quelle)."
+    ],
+    "sourceType": "Menschenrechtsdokumentation",
+    "sourceQuality": "Hoch – direkte oder kuratierte Quelle",
+    "uncertainty": "Die IACHR verwendete 2009 vorläufige Mindestzahlen; spätere Berichte können differenziertere Bilanzen enthalten.",
+    "sensitivity": "Tödliche Polizeigewalt und Verletzungen",
+    "reviewStatus": "Redaktioneller Pilotstand"
+  },
+  {
+    "id": "guadeloupe-general-strike",
+    "title": "Generalstreik auf Guadeloupe",
+    "location": "Guadeloupe",
+    "country": "Guadeloupe",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Antikolonialer Widerstand",
+      "Antikapitalistische Bewegung"
+    ],
+    "yearStart": 2009,
+    "yearEnd": 2009,
+    "coordinates": [
+      -61.55,
+      16.25
+    ],
+    "description": "Das Bündnis LKP legte die Insel 44 Tage gegen hohe Preise, niedrige Löhne und koloniale Wirtschaftsstrukturen lahm.",
+    "significance": "Breite Selbstorganisation gewann Lohnerhöhungen und verband soziale mit antikolonialer Kritik.",
+    "clue": "Suche in einem französischen Überseegebiet der Karibik.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/2009_French_Caribbean_general_strikes",
+    "difficulty": 1
+  },
+  {
+    "archived": true,
+    "id": "chile-student-protests-2011",
+    "title": "Chilenischer Bildungsaufstand",
+    "location": "Santiago und Chile",
+    "country": "Chile",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Studierendenbewegung",
+    "tags": [
+      "Bildungsbewegung",
+      "Antikapitalistische Bewegung"
+    ],
+    "yearStart": 2011,
+    "yearEnd": 2013,
+    "coordinates": [
+      -70.67,
+      -33.45
+    ],
+    "description": "Schüler*innen und Studierende besetzten Einrichtungen und forderten kostenlose öffentliche Bildung statt Pinochet-Erbe und Verschuldung.",
+    "significance": "Kreative Massenaktionen verschoben die Debatte über Markt, Verfassung und soziale Rechte.",
+    "clue": "Suche nach Tänzen, Küssen und Läufen als Protestformen.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/2011_Chilean_student_protests",
+    "difficulty": 1
+  },
+  {
+    "id": "puerto-rico-university-strike-2017",
+    "title": "Universitätsstreik in Puerto Rico",
+    "location": "San Juan und Inselcampus",
+    "country": "Puerto Rico",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Studierendenbewegung",
+    "tags": [
+      "Antiimperialistischer Widerstand",
+      "Bildungsbewegung"
+    ],
+    "yearStart": 2017,
+    "yearEnd": 2017,
+    "coordinates": [
+      -66.05,
+      18.4
+    ],
+    "description": "Studierende bestreikten die Universität gegen Kürzungen, Studiengebühren und die koloniale Schuldenaufsicht.",
+    "significance": "Der Ausstand verband öffentliche Bildung mit Kritik an Austerität und US-Fiskalkontrolle.",
+    "clue": "Suche am Río-Piedras-Campus.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/University_of_Puerto_Rico_strikes,_2017",
+    "difficulty": 2
+  },
+  {
+    "id": "telegramgate-puerto-rico",
+    "title": "Telegramgate und Verano del 19",
+    "location": "San Juan",
+    "country": "Puerto Rico",
+    "continent": "Lateinamerika & Karibik",
+    "category": "Antirepression",
+    "tags": [
+      "Queerer Widerstand",
+      "Feministischer & antisexistischer Widerstand"
+    ],
+    "yearStart": 2019,
+    "yearEnd": 2019,
+    "coordinates": [
+      -66.11,
+      18.47
+    ],
+    "description": "Nach geleakten sexistischen und homophoben Chats erzwangen Massenproteste den Rücktritt von Gouverneur Ricardo Rosselló.",
+    "significance": "Queere, feministische und diasporische Kräfte machten Empörung zu einer tanzenden, vielfältigen Volksbewegung.",
+    "clue": "Suche nach Perreo Combativo in San Juan.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Telegramgate",
+    "difficulty": 1
+  }
+]

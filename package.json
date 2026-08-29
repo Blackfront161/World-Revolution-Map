@@ -1,0 +1,24 @@
+{
+  "name": "world-revolution-map",
+  "version": "2.9.0",
+  "private": true,
+  "type": "module",
+  "description": "Ein spielerischer Atlas historischer Widerstandsbewegungen.",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "test": "node --test",
+    "check:sources": "node scripts/check-sources.mjs",
+    "check:encoding": "node scripts/check-encoding.mjs",
+    "check:js": "node scripts/check-js.mjs",
+    "check:translations": "node scripts/language-inventory.mjs",
+    "check:translations:strict": "node scripts/language-inventory.mjs --strict",
+    "inventory:translations": "node scripts/language-inventory.mjs --write",
+    "update:translation-baseline": "node scripts/language-inventory.mjs --refresh-baseline",
+    "check:inclusive-language": "node scripts/check-inclusive-language.mjs",
+    "validate:data": "node scripts/validate-data.mjs",
+    "verify": "npm run check:encoding && npm run check:js && npm run validate:data && npm run check:translations && npm run check:inclusive-language && npm test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

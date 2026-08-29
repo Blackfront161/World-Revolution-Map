@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "time": { "minimum": -1200, "maximum": 2030, "defaultFrom": -1200, "defaultTo": 2030, "undatedPolicy": "explicit-toggle" },
+  "layers": [
+    { "id": "indigenous", "labelKey": "layerIndigenous", "terms": ["Indigener Widerstand", "Landverteidigung", "Fischereirechte"] },
+    { "id": "labour", "labelKey": "layerLabour", "terms": ["Arbeiter*innenbewegung", "Bäuerlicher Widerstand", "Migrantischer Widerstand", "Rätebewegung"] },
+    { "id": "anticolonial", "labelKey": "layerAnticolonial", "terms": ["Antikolonialer Widerstand", "Antiimperialistischer Widerstand", "Sklav*innenwiderstand"] },
+    { "id": "feminist", "labelKey": "layerFeminist", "terms": ["Feministischer Widerstand", "Feministischer & antisexistischer Widerstand", "Antisexistischer Widerstand"] },
+    { "id": "queer", "labelKey": "layerQueer", "terms": ["Queerer Widerstand", "Queer Liberation", "LGBTQ+"] },
+    { "id": "black-liberation", "labelKey": "layerBlack", "terms": ["Schwarze Befreiungsbewegung"] },
+    { "id": "ecological", "labelKey": "layerEcological", "terms": ["Ökologischer Widerstand", "Klimagerechtigkeit", "Landverteidigung"] },
+    { "id": "commons", "labelKey": "layerCommons", "terms": ["Commons-Bewegung", "Rätebewegung", "Selbstverwaltung", "Libertärer Kommunismus"] },
+    { "id": "abolition", "labelKey": "layerAbolition", "terms": ["Gefängnisabolitionismus", "Antirepression", "Polizeikritik"] },
+    { "id": "mutual-aid", "labelKey": "layerMutualAid", "terms": ["Mutual Aid", "Gegenseitige Hilfe", "Gesundheitsgerechtigkeit", "Care"] },
+    { "id": "maritime", "labelKey": "layerMaritime", "terms": ["Maritime Gegenmacht", "Meeresrechte", "Meeresschutz", "Hafenwiderstand"] }
+  ],
+  "tactics": [
+    { "id": "strike", "labelKey": "tacticStrike", "symbol": "S", "terms": ["streik", "strike", "arbeitsniederlegung"] },
+    { "id": "occupation", "labelKey": "tacticOccupation", "symbol": "O", "terms": ["besetzung", "occupation", "besetzten"] },
+    { "id": "blockade", "labelKey": "tacticBlockade", "symbol": "B", "terms": ["blockade", "blockieren"] },
+    { "id": "boycott", "labelKey": "tacticBoycott", "symbol": "Y", "terms": ["boykott", "boycott"] },
+    { "id": "uprising", "labelKey": "tacticUprising", "symbol": "A", "terms": ["aufstand", "revolte", "uprising", "rebellion", "erhebung"] },
+    { "id": "land-defence", "labelKey": "tacticLandDefence", "symbol": "L", "terms": ["landverteidigung", "land defense", "land defence", "land back", "schutzcamp", "water protectors", "verteidigten wasser"] },
+    { "id": "mutual-aid", "labelKey": "tacticMutualAid", "symbol": "M", "terms": ["gegenseitige hilfe", "mutual aid", "versorgung", "solidarität"] },
+    { "id": "arts-media", "labelKey": "tacticArtsMedia", "symbol": "K", "terms": ["kunst", "medien", "theater", "radio", "zeitung"] },
+    { "id": "self-governance", "labelKey": "tacticSelfGovernance", "symbol": "V", "terms": ["selbstverwaltung", "autonomie", "council", "räte", "commons"] },
+    { "id": "prison-strike", "labelKey": "tacticPrisonStrike", "symbol": "G", "terms": ["gefangenenstreik", "prison strike"] }
+  ],
+  "mapStyles": [
+    { "id": "dark", "labelKey": "styleDark", "basemap": "carto-dark", "localVariant": "none" },
+    { "id": "mono", "labelKey": "styleMono", "basemap": "carto-dark", "localVariant": "monochrome" },
+    { "id": "paper", "labelKey": "stylePaper", "basemap": "carto-dark", "localVariant": "paper" }
+  ],
+  "network": { "maximumNodes": 72, "maximumEdges": 140, "layout": "deterministic-radial" }
+}

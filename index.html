@@ -1,42 +1,430 @@
-<!DOCTYPE html>
-<html lang="de">
+<!doctype html>
+<html lang="de" data-atlas-version="2.9.0">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="no-referrer">
-    <title>Archiv des Widerstands</title>
-    
-    <script src="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.js"></script>
-    <link href="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.css" rel="stylesheet" />
-    
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    
-    <style>
-        body { margin: 0; padding: 0; background-color: #111; font-family: 'Courier New', Courier, monospace; }
-        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
-        #filter-container { position: absolute; top: 20px; left: 20px; background-color: rgba(10, 15, 20, 0.9); border: 1px solid #00ffcc; border-radius: 8px; padding: 15px; z-index: 1; box-shadow: 0 0 15px rgba(0, 255, 204, 0.4); color: #00ffcc; width: 250px; }
-        #filter-container label { display: block; margin-bottom: 8px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-top: 10px; }
-        #filter-container select, #filter-container input { background-color: #111; color: #e0e0e0; border: 1px solid rgba(0, 255, 204, 0.5); padding: 8px; border-radius: 4px; font-family: inherit; width: 100%; box-sizing: border-box; outline: none; }
-        .maplibregl-popup-content { background-color: rgba(10, 15, 20, 0.9); border: 1px solid #00ffcc; border-radius: 8px; color: #e0e0e0; box-shadow: 0 0 15px rgba(0, 255, 204, 0.4); padding: 15px; max-width: 300px; }
-        .popup-image { width: 100%; height: auto; border-radius: 4px; margin-bottom: 12px; border: 1px solid rgba(0, 255, 204, 0.3); object-fit: cover; }
-        .category-badge { display: inline-block; background-color: rgba(0, 255, 204, 0.15); color: #00ffcc; font-size: 11px; padding: 3px 8px; border-radius: 4px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; border: 1px solid rgba(0, 255, 204, 0.5); }
-        .maplibregl-popup-content h3 { margin: 0 0 5px 0; color: #00ffcc; font-size: 16px; text-transform: uppercase; letter-spacing: 1px; }
-        .popup-location { color: #a0a0a0; font-size: 12px; margin-bottom: 10px; letter-spacing: 0.5px; }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#07130f">
+  <meta name="description" id="meta-description" content="Ein spielerischer Atlas historischer Bewegungen, Aufstände und solidarischer Kämpfe.">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; manifest-src 'self'; script-src 'self' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co https://*.cartocdn.com; worker-src 'self' blob:; child-src blob:; upgrade-insecure-requests">
+  <title>World Revolution Atlas</title>
+
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://basemaps.cartocdn.com">
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.css" integrity="sha384-uTttxo/aOKbdE5RlD/SPzSDoDmNvGlUYPjONi2MN/b7c9HPSvW07OIuyP7uL6jxK" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/brand/world-revolution-atlas-parchment-v2.png" type="image/png">
+  <script defer src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js" integrity="sha384-5+cfbwT0iiub6VsQAdn6yz16nr6sDiQoHx6tm4O8OVYXHYOxcffFmCJBL0dgdvGp" crossorigin="anonymous"></script>
+  <script type="module" src="script.js"></script>
 </head>
 <body>
-    <div id="map"></div>
-    <div id="filter-container">
-        <label for="search-bar">Suchbegriff:</label>
-        <input type="text" id="search-bar" placeholder="Stadt, Person, Jahr...">
-        <label for="category-filter">Kategorie:</label>
-        <select id="category-filter">
-            <option value="alle">Alle Ereignisse</option>
-            <option value="Arbeiter*innenbewegung">Arbeiter*innenbewegung</option>
-            <option value="Antiautoritäre Revolution">Antiautoritäre Revolution</option>
-            <option value="Antikolonialer Widerstand">Antikolonialer Widerstand</option>
-        </select>
+  <a class="skip-link" href="#map" data-i18n="skipMap">Direkt zur Karte</a>
+  <a class="skip-link skip-link-list" href="#event-list-drawer" data-i18n="skipList">Direkt zur Ereignisliste</a>
+
+  <main class="app-shell" id="app" aria-label="World Revolution Atlas">
+    <div id="map" aria-label="Interaktive Weltkarte historischer Widerstandsereignisse" data-i18n-aria="mapAria"></div>
+    <div class="map-vignette" aria-hidden="true"></div>
+    <div class="map-focus-card" id="map-focus-card" aria-hidden="true" hidden></div>
+
+    <header class="topbar glass-panel">
+      <button class="icon-button mobile-only" id="menu-toggle" type="button" aria-label="Filter öffnen" data-i18n-aria="openFilters" aria-controls="control-panel" aria-expanded="false">☰</button>
+      <div class="brand" aria-labelledby="product-title">
+        <button class="brand-visual" id="brand-open" type="button" aria-label="Hilfe und Spielregeln" data-i18n-aria="help" aria-haspopup="dialog" aria-controls="welcome-modal">
+          <img class="brand-logo" src="assets/brand/world-revolution-atlas-parchment-v2.png" alt="" width="1254" height="1254" decoding="async">
+        </button>
+        <div class="brand-copy">
+          <p class="eyebrow" data-i18n="archiveType">Interaktives Geschichtsarchiv</p>
+          <h1 id="product-title" data-i18n="appTitle">World Revolution Atlas</h1>
+        </div>
+      </div>
+      <div class="player-hud" aria-label="Spielfortschritt" data-i18n-aria="progress">
+        <label class="language-picker"><span data-i18n="language">Sprache</span><select id="language-select" aria-label="Sprache"></select></label>
+        <div class="hud-stat"><span class="hud-label">Level</span><strong id="level-value">1</strong></div>
+        <div class="hud-stat"><span class="hud-label">XP</span><strong id="xp-value">0</strong></div>
+        <div class="xp-track" title="Fortschritt zum nächsten Level" data-i18n-title="nextLevel"><span id="xp-progress"></span></div>
+        <button class="icon-button" id="help-button" type="button" aria-label="Hilfe und Spielregeln" data-i18n-aria="help">?</button>
+      </div>
+    </header>
+
+    <aside class="control-panel glass-panel" id="control-panel" aria-label="Kartensuche und Filter" data-i18n-aria="filterPanel">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow" data-i18n="expedition">Deine Expedition</p>
+          <h2 data-i18n="findTraces">Spuren finden</h2>
+        </div>
+        <button class="icon-button mobile-only" id="menu-close" type="button" aria-label="Filter schließen" data-i18n-aria="closeFilters">×</button>
+      </div>
+
+      <div class="projection-controls">
+        <label class="field-label" for="map-projection-select" data-i18n="mapProjection">Ansicht</label>
+        <div class="projection-control-row">
+          <select id="map-projection-select" aria-describedby="globe-note" disabled>
+            <option value="mercator" data-i18n="projectionMap">Flache Karte</option>
+            <option value="globe" data-i18n="projectionGlobe">Globus · Testversion</option>
+          </select>
+          <button id="world-overview" class="icon-button" type="button" data-i18n-aria="backToWorld" aria-label="Zur Weltübersicht" disabled>◎</button>
+        </div>
+        <p id="globe-note" class="field-hint" data-i18n="globeHint" hidden>Zum Drehen ziehen oder wischen. Die Rückseite ist verdeckt; die Liste enthält alle Treffer.</p>
+      </div>
+
+      <label class="field-label" for="search-input" data-i18n="search">Suche</label>
+      <div class="search-wrap">
+        <span aria-hidden="true">⌕</span>
+        <input id="search-input" type="search" autocomplete="off" list="search-suggestions" placeholder="Ort, Bewegung, Jahr …" data-i18n-placeholder="searchPlaceholder">
+        <datalist id="search-suggestions"></datalist>
+        <button class="search-clear" id="clear-search" type="button" aria-label="Suche leeren" data-i18n-aria="clearSearch" hidden>×</button>
+        <kbd>F</kbd>
+      </div>
+
+      <label class="field-label" for="category-filter" data-i18n="spectrum">Spektrum oder Bewegung</label>
+      <select id="category-filter">
+        <option value="all" data-i18n="allMovements">Alle Bewegungen</option>
+      </select>
+
+      <div class="field-row">
+        <div>
+          <label class="field-label" for="era-from" data-i18n="from">Von</label>
+          <input id="era-from" type="number" inputmode="numeric" min="-1200" max="2030" value="-1200" aria-describedby="deep-time-hint">
+        </div>
+        <span class="range-dash" aria-hidden="true">—</span>
+        <div>
+          <label class="field-label" for="era-to" data-i18n="to">Bis</label>
+          <input id="era-to" type="number" inputmode="numeric" min="-1200" max="2030" value="2030">
+        </div>
+      </div>
+      <div class="time-range-controls" aria-labelledby="time-range-label">
+        <span class="field-label" id="time-range-label" data-i18n="timeRange">Zeitraumregler</span>
+        <label for="era-from-range"><span data-i18n="from">Von</span><input id="era-from-range" type="range" min="-1200" max="2030" value="-1200" step="1"></label>
+        <label for="era-to-range"><span data-i18n="to">Bis</span><input id="era-to-range" type="range" min="-1200" max="2030" value="2030" step="1"></label>
+      </div>
+      <small class="field-hint" id="deep-time-hint" data-i18n="deepTime">Negative Zahlen stehen für Jahre vor unserer Zeitrechnung; der Atlas beginnt 1157 v. u. Z.</small>
+
+      <label class="check-row compact-check" for="include-undated">
+        <input id="include-undated" type="checkbox" checked>
+        <span data-i18n="includeUndated">Undatierte Einträge einschließen</span>
+      </label>
+
+      <fieldset class="layer-fieldset">
+        <legend data-i18n="thematicLayers">Thematische Ebenen</legend>
+        <p class="field-hint" data-i18n="layerHint">Mehrere Ebenen wirken gemeinsam als Oder-Filter.</p>
+        <div class="layer-filter-grid" id="layer-filters"></div>
+        <button class="text-button" id="reset-layers" type="button" data-i18n="resetLayers">Ebenen zurücksetzen</button>
+      </fieldset>
+
+      <label class="field-label" for="map-style-select" data-i18n="mapStyle">Kartenstil</label>
+      <select id="map-style-select"></select>
+      <label class="map-depth-option" for="map-depth-toggle">
+        <input id="map-depth-toggle" type="checkbox" aria-describedby="map-depth-note" disabled>
+        <span data-i18n="mapDepth">Sanfte 3D-Perspektive</span>
+      </label>
+      <p id="map-depth-note" class="map-depth-note" data-i18n="mapDepthNote">Leichte Kameraneigung, kein Geländemodell. Sensible Orte und reduzierte Bewegung bleiben in 2D.</p>
+
+      <details class="map-legend">
+        <summary data-i18n="mapLegend">Kartenlegende</summary>
+        <p class="field-hint" data-i18n="legendNotColorOnly">Buchstaben kennzeichnen Taktiken zusätzlich zur Farbe; Ringformen erklären die Ortspräzision.</p>
+        <div class="tactic-legend" id="tactic-legend"></div>
+        <ul class="precision-legend">
+          <li><i class="precision-sample is-exact"></i><span data-i18n="coordinatePrecisionExact">Historisch genauer öffentlicher Ort</span></li>
+          <li><i class="precision-sample is-approximate"></i><span data-i18n="coordinatePrecisionApproximate">Ungefährer Ort</span></li>
+          <li><i class="precision-sample is-region"></i><span data-i18n="coordinatePrecisionRegion">Regionaler Kartenpunkt</span></li>
+          <li><i class="precision-sample is-hidden"></i><span data-i18n="coordinatePrecisionHidden">Absichtlich grobe Ortsangabe</span></li>
+        </ul>
+        <p class="maritime-route-note" id="maritime-route-note" hidden><span aria-hidden="true">≈ ⋯ ≈</span> <span data-i18n="maritimeRouteNote">Gestrichelte Linien zeigen kuratierte Vergleiche, keine Reise- oder Einflusswege.</span></p>
+      </details>
+
+      <label class="check-row" for="undiscovered-only">
+        <input id="undiscovered-only" type="checkbox">
+        <span data-i18n="undiscovered">Nur unentdeckte Spuren</span>
+      </label>
+
+      <div class="filter-summary" aria-live="polite">
+        <span id="result-count">0 Ereignisse</span>
+        <span class="filter-actions">
+          <button class="text-button" id="fit-results" type="button" data-i18n="showResults">Treffer zeigen</button>
+          <button class="text-button" id="reset-filters" type="button" data-i18n="resetFilters">Filter zurücksetzen</button>
+        </span>
+      </div>
+      <div class="active-filters" id="active-filters" aria-label="Aktive Filter" data-i18n-aria="activeFilters"></div>
+      <button class="text-button" id="copy-filter-preset" type="button" data-i18n="copyFilterPreset">Filter-Link kopieren</button>
+
+      <div class="action-grid">
+        <button class="primary-button" id="random-event" type="button"><span aria-hidden="true">⚄</span> <span data-i18n="surprise">Überrasch mich</span></button>
+        <button class="secondary-button" id="start-mission" type="button"><span aria-hidden="true">◎</span> <span data-i18n="newMission">Neue Mission</span></button>
+      </div>
+
+      <div class="data-status" id="data-status" role="status">
+        <span class="status-dot"></span>
+        <span data-i18n="loadingData">Daten werden geladen …</span>
+      </div>
+      <p class="online-map-note" id="online-map-note"><span aria-hidden="true">◉</span> <span data-i18n="onlineMapNote">Die Karte benötigt eine Online-Verbindung; Listen, Lebenswege, Routen und Sammlungen bleiben offline verfügbar.</span></p>
+      <section class="continue-card" id="continue-card" aria-labelledby="continue-title" hidden>
+        <p class="eyebrow" data-i18n="continueReading">Hier weiterlesen</p>
+        <h3 id="continue-title"></h3>
+        <button class="text-button" id="continue-button" type="button" data-i18n="continueButton">Weiterlesen →</button>
+      </section>
+      <details class="reader-settings">
+        <summary data-i18n="readingMode">Ruhiger Lesemodus</summary>
+        <label class="check-row compact-check"><input id="reader-enabled" type="checkbox"><span data-i18n="readingModeEnable">Lesemodus aktivieren</span></label>
+        <label class="field-label" for="reader-font"><span data-i18n="fontSize">Schriftgröße</span> <output id="reader-font-output">100%</output></label>
+        <input id="reader-font" type="range" min="90" max="140" step="5" value="100">
+        <label class="field-label" for="reader-width"><span data-i18n="lineWidth">Zeilenbreite</span> <output id="reader-width-output">68ch</output></label>
+        <input id="reader-width" type="range" min="48" max="90" step="2" value="68">
+        <label class="check-row compact-check"><input id="reader-contrast" type="checkbox"><span data-i18n="highReadingContrast">Hoher Lesekontrast</span></label>
+      </details>
+      <button class="text-button maritime-dossier-open" id="pirate-dossier-button" type="button"><span aria-hidden="true">≈</span> <span data-i18n="pirateDossierButton">Quellenkritisches Pirat*innen-Dossier</span></button>
+      <button class="text-button about-map-link" id="about-map-button" type="button" data-i18n="aboutMap">Über diese Karte und Methodik</button>
+      <div class="mobile-filter-footer mobile-only">
+        <button class="primary-button" id="mobile-show-results" type="button" data-i18n="showFilteredEvents">0 Ereignisse anzeigen</button>
+      </div>
+    </aside>
+
+    <section class="mission-card glass-panel" id="mission-card" aria-labelledby="mission-title">
+      <div class="mission-topline">
+        <span class="mission-kicker" data-i18n="activeMission">Aktive Mission</span>
+        <span class="mission-reward" id="mission-reward">+60 XP</span>
+      </div>
+      <h2 id="mission-title">Erste Spuren</h2>
+      <p id="mission-description">Entdecke drei Ereignisse auf der Karte.</p>
+      <div class="mission-progress">
+        <span id="mission-progress-text">0 / 3</span>
+        <div class="mission-track"><span id="mission-progress-bar"></span></div>
+      </div>
+    </section>
+
+    <nav class="bottom-nav glass-panel" aria-label="Spielbereiche" data-i18n-aria="navigationAreas">
+      <button class="nav-button desktop-nav-button is-active" type="button" data-panel="map"><span>◉</span><span data-i18n="map">Karte</span></button>
+      <button class="nav-button desktop-nav-button" type="button" data-panel="archive"><span>▤</span><span data-i18n="archive">Archiv</span> <b id="archive-count">0</b></button>
+      <button class="nav-button desktop-nav-button" type="button" data-panel="biographies"><span>♙</span><span data-i18n="biographies">Lebenswege</span> <b id="biography-count">0</b></button>
+      <button class="nav-button desktop-nav-button" type="button" data-panel="timeline"><span>⌛</span><span data-i18n="timeline">Zeitleiste</span></button>
+      <button class="nav-button desktop-nav-button" type="button" data-panel="routes"><span>↝</span><span data-i18n="routes">Routen</span></button>
+      <button class="nav-button desktop-nav-button" type="button" data-panel="list"><span>☷</span><span data-i18n="listView">Liste</span></button>
+      <button class="nav-button desktop-nav-button" type="button" data-panel="network"><span>⌘</span><span data-i18n="network">Netzwerk</span></button>
+      <button class="nav-button desktop-nav-button" type="button" data-panel="compare"><span>⇄</span><span data-i18n="compare">Vergleichen</span> <b id="compare-count">0</b></button>
+      <button class="nav-button desktop-nav-button" type="button" data-panel="achievements"><span>◇</span><span data-i18n="achievements">Erfolge</span> <b id="achievement-count">0</b></button>
+      <button class="nav-button desktop-nav-button" type="button" data-panel="connections"><span>⚡</span><span data-i18n="sparks">Funken</span></button>
+      <button class="nav-button desktop-nav-button" id="quiz-button" type="button" data-panel="quiz"><span>?</span><span data-i18n="quizNav">Quiz</span></button>
+
+      <button class="mobile-nav-button is-active" type="button" data-mobile-action="map" aria-current="page"><span aria-hidden="true">◉</span><span data-i18n="map">Karte</span></button>
+      <button class="mobile-nav-button" type="button" data-mobile-action="filters" aria-controls="control-panel" aria-expanded="false"><span aria-hidden="true">⌕</span><span data-i18n="mobileSearchFilters">Suchen</span></button>
+      <button class="mobile-nav-button" type="button" data-mobile-action="discover"><span aria-hidden="true">✦</span><span data-i18n="mobileDiscover">Entdecken</span></button>
+      <button class="mobile-nav-button" type="button" data-mobile-action="saved"><span aria-hidden="true">▤</span><span data-i18n="mobileSaved">Gespeichert</span></button>
+      <button class="mobile-nav-button" type="button" data-mobile-action="more" aria-controls="mobile-more-drawer" aria-expanded="false"><span aria-hidden="true">•••</span><span data-i18n="mobileMore">Mehr</span></button>
+    </nav>
+
+    <section class="drawer glass-panel mobile-more-drawer" id="mobile-more-drawer" role="dialog" aria-modal="false" aria-labelledby="mobile-more-title" tabindex="-1" hidden>
+      <div class="drawer-header">
+        <div><p class="eyebrow" data-i18n="mobileMore">Mehr</p><h2 id="mobile-more-title" data-i18n="moreAreas">Weitere Bereiche</h2></div>
+        <button class="icon-button drawer-close" type="button" aria-label="Weitere Bereiche schließen" data-i18n-aria="closeMore">×</button>
+      </div>
+      <div class="mobile-more-grid">
+        <button type="button" data-panel-target="biographies"><span aria-hidden="true">♙</span><span data-i18n="biographies">Lebenswege</span></button>
+        <button type="button" data-panel-target="timeline"><span aria-hidden="true">⌛</span><span data-i18n="timeline">Zeitleiste</span></button>
+        <button type="button" data-panel-target="routes"><span aria-hidden="true">↝</span><span data-i18n="routes">Routen</span></button>
+        <button type="button" data-panel-target="network"><span aria-hidden="true">⌘</span><span data-i18n="network">Netzwerk</span></button>
+        <button type="button" data-panel-target="compare"><span aria-hidden="true">⇄</span><span data-i18n="compare">Vergleichen</span></button>
+        <button type="button" data-panel-target="achievements"><span aria-hidden="true">◇</span><span data-i18n="achievements">Erfolge</span></button>
+        <button type="button" data-panel-target="connections"><span aria-hidden="true">⚡</span><span data-i18n="sparks">Funken</span></button>
+        <button type="button" data-panel-target="quiz"><span aria-hidden="true">?</span><span data-i18n="quizNav">Quiz</span></button>
+      </div>
+    </section>
+
+    <section class="drawer glass-panel event-list-drawer" id="event-list-drawer" role="dialog" aria-modal="false" aria-labelledby="event-list-title" tabindex="-1" hidden>
+      <div class="drawer-header">
+        <div><p class="eyebrow" data-i18n="accessibleAlternative">Zugängliche Kartenalternative</p><h2 id="event-list-title" data-i18n="eventList">Ereignisliste</h2></div>
+        <button class="icon-button drawer-close" type="button" aria-label="Ereignisliste schließen" data-i18n-aria="closeList">×</button>
+      </div>
+      <p class="drawer-intro" data-i18n="listIntro">Alle sichtbaren Kartentreffer als tastaturbedienbare Tabelle.</p>
+      <div class="table-scroll">
+        <table class="event-table">
+          <thead><tr><th scope="col" data-i18n="year">Jahr</th><th scope="col" data-i18n="event">Ereignis</th><th scope="col" data-i18n="place">Ort</th><th scope="col" data-i18n="movement">Bewegung</th><th scope="col" data-i18n="tactics">Taktiken</th><th scope="col" data-i18n="locationProtection">Ortsschutz</th></tr></thead>
+          <tbody id="event-list-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="drawer glass-panel timeline-drawer" id="timeline-drawer" role="dialog" aria-modal="false" aria-labelledby="timeline-title" tabindex="-1" hidden>
+      <div class="drawer-header">
+        <div><p class="eyebrow" data-i18n="timeTravel">Optionale Zeitreise</p><h2 id="timeline-title" data-i18n="timeline">Zeitleiste</h2></div>
+        <button class="icon-button drawer-close" type="button" aria-label="Zeitleiste schließen" data-i18n-aria="closeTimeline">×</button>
+      </div>
+      <p class="drawer-intro" data-i18n="timelineIntro">Die Zeitleiste zeigt die aktuell gefilterten Ereignisse. Abspielen verändert nur das Endjahr und behauptet keine exakte Datierung.</p>
+      <div class="timeline-actions">
+        <button class="primary-button" id="time-play" type="button" aria-pressed="false"><span aria-hidden="true">▶</span> <span data-i18n="playTime">Zeitreise abspielen</span></button>
+        <button class="secondary-button" id="time-reset" type="button" data-i18n="resetTime">Gesamten Zeitraum zeigen</button>
+      </div>
+      <p class="motion-note" id="motion-note" role="status"></p>
+      <ol class="timeline-list" id="timeline-list"></ol>
+    </section>
+
+    <section class="drawer glass-panel" id="archive-drawer" role="dialog" aria-modal="false" aria-labelledby="archive-title" tabindex="-1" hidden>
+      <div class="drawer-header">
+        <div><p class="eyebrow" data-i18n="collection">Deine Sammlung</p><h2 id="archive-title" data-i18n="discoveredArchive">Entdecktes Archiv</h2></div>
+        <button class="icon-button drawer-close" type="button" aria-label="Archiv schließen" data-i18n-aria="closeArchive">×</button>
+      </div>
+      <section class="collection-tools" aria-labelledby="collection-title">
+        <h3 id="collection-title" data-i18n="namedCollections">Benannte Sammlungen</h3>
+        <div class="collection-create"><label for="collection-name" data-i18n="collectionName">Name</label><input id="collection-name" maxlength="80"><button class="secondary-button" id="collection-create" type="button" data-i18n="createCollection">Anlegen</button></div>
+        <label class="field-label" for="collection-select" data-i18n="activeCollection">Aktive Sammlung</label>
+        <select id="collection-select"></select>
+        <div class="collection-actions"><button class="text-button" id="collection-export" type="button" data-i18n="exportCollections">JSON exportieren</button><button class="text-button" id="collection-import-toggle" type="button" data-i18n="importCollections">JSON importieren</button></div>
+        <div id="collection-import-panel" hidden><label class="field-label" for="collection-import" data-i18n="collectionJson">Sammlungs-JSON</label><textarea id="collection-import" maxlength="200000" rows="5"></textarea><button class="secondary-button" id="collection-import-apply" type="button" data-i18n="applyImport">Import prüfen und übernehmen</button></div>
+        <div class="collection-list" id="collection-list"></div>
+      </section>
+      <h3 data-i18n="discoveredTraces">Gespeicherte Ereignisse</h3>
+      <div class="archive-list" id="archive-list"></div>
+    </section>
+
+    <section class="drawer glass-panel biographies-drawer" id="biographies-drawer" role="dialog" aria-modal="false" aria-labelledby="biographies-title" tabindex="-1" hidden>
+      <div class="drawer-header">
+        <div><p class="eyebrow" data-i18n="livesFromBelow">Widersprüchliche Lebenswege von unten</p><h2 id="biographies-title" data-i18n="biographies">Lebenswege</h2></div>
+        <button class="icon-button drawer-close" type="button" aria-label="Lebenswege schließen" data-i18n-aria="closeBiographies">×</button>
+      </div>
+      <p class="drawer-intro" data-i18n="biographiesIntro">Kein Personenkult: Praxis, Repression, Spannungen, Kritik und Vermächtnis werden gemeinsam lesbar.</p>
+      <div class="biography-filters" id="biography-filters">
+        <label><span data-i18n="searchPerson">Person suchen</span><input id="biography-search" type="search" autocomplete="off"></label>
+        <label><span data-i18n="regionCommunity">Gemeinschaft oder Region</span><select id="biography-region"><option value="all" data-i18n="allValues">Alle</option></select></label>
+        <label><span data-i18n="tradition">Tradition oder Strömung</span><select id="biography-tradition"><option value="all" data-i18n="allValues">Alle</option></select></label>
+        <label><span data-i18n="from">Von</span><input id="biography-from" type="number" min="-1200" max="2030" value="-1200"></label>
+        <label><span data-i18n="to">Bis</span><input id="biography-to" type="number" min="-1200" max="2030" value="2030"></label>
+      </div>
+      <p id="biography-result-count" aria-live="polite"></p>
+      <div class="biography-list" id="biography-list"></div>
+      <article class="biography-detail reading-surface" id="biography-detail" tabindex="-1" hidden></article>
+    </section>
+
+    <section class="drawer glass-panel compare-drawer" id="compare-drawer" role="dialog" aria-modal="false" aria-labelledby="compare-title" tabindex="-1" hidden>
+      <div class="drawer-header">
+        <div><p class="eyebrow" data-i18n="compareContext">Kontexte nebeneinander</p><h2 id="compare-title" data-i18n="compare">Vergleichen</h2></div>
+        <button class="icon-button drawer-close" type="button" aria-label="Vergleich schließen" data-i18n-aria="closeCompare">×</button>
+      </div>
+      <p class="drawer-intro" data-i18n="compareIntro">Bis zu drei Ereignisse oder Lebenswege vergleichen. Ähnlichkeit bedeutet nicht automatisch Einfluss.</p>
+      <div id="compare-content" class="compare-content"></div>
+      <button id="compare-clear" class="text-button" type="button" data-i18n="clearComparison">Vergleich leeren</button>
+    </section>
+
+    <section class="drawer glass-panel routes-drawer" id="routes-drawer" role="dialog" aria-modal="false" aria-labelledby="routes-title" tabindex="-1" hidden>
+      <div class="drawer-header">
+        <div><p class="eyebrow" data-i18n="guidedRoutes">Geführtes Archiv-Spiel</p><h2 id="routes-title" data-i18n="routes">Historische Routen</h2></div>
+        <button class="icon-button drawer-close" type="button" aria-label="Routen schließen" data-i18n-aria="closeRoutes">×</button>
+      </div>
+      <p class="drawer-intro" data-i18n="routesIntro">Folge belegten Ereignissen in einer vorgeschlagenen Reihenfolge. Fortschritt bedeutet gelesen oder gespeichert – nicht gewonnen.</p>
+      <p class="event-language-note" data-i18n="routeLanguageNotice">Routentitel und Einordnungen liegen derzeit als deutsches Original vor; Ereignisübersetzungen werden separat gekennzeichnet.</p>
+      <div class="routes-list" id="routes-list"></div>
+    </section>
+
+    <section class="drawer glass-panel network-drawer" id="network-drawer" role="dialog" aria-modal="false" aria-labelledby="network-title" tabindex="-1" hidden>
+      <div class="drawer-header">
+        <div><p class="eyebrow" data-i18n="relationArchive">Belegte und gekennzeichnete Ähnlichkeiten</p><h2 id="network-title" data-i18n="network">Netzwerk</h2></div>
+        <button class="icon-button drawer-close" type="button" aria-label="Netzwerk schließen" data-i18n-aria="closeNetwork">×</button>
+      </div>
+      <p class="drawer-intro" data-i18n="networkIntro">Linien bedeuten gemeinsame Route oder ausdrücklich als ähnlich gekennzeichnete Taktik beziehungsweise Bewegung – keine automatisch behauptete historische Beeinflussung.</p>
+      <p class="network-summary" id="network-summary" aria-live="polite"></p>
+      <div class="network-legend" id="network-legend" aria-label="Legende der Beziehungstypen" data-i18n-aria="relationLegend"></div>
+      <div class="network-visual" id="network-visual" role="img" aria-label="Visuelle Netzwerkansicht" data-i18n-aria="networkVisual"></div>
+      <h3 data-i18n="relationList">Zugängliche Beziehungsliste</h3>
+      <ul class="relation-list" id="relation-list"></ul>
+    </section>
+
+    <section class="drawer glass-panel" id="achievements-drawer" role="dialog" aria-modal="false" aria-labelledby="achievements-title" tabindex="-1" hidden>
+      <div class="drawer-header">
+        <div><p class="eyebrow" data-i18n="milestones">Meilensteine</p><h2 id="achievements-title" data-i18n="achievements">Erfolge</h2></div>
+        <button class="icon-button drawer-close" type="button" aria-label="Erfolge schließen" data-i18n-aria="closeAchievements">×</button>
+      </div>
+      <div class="achievement-grid" id="achievement-list"></div>
+    </section>
+
+    <section class="drawer glass-panel connections-drawer" id="connections-drawer" role="dialog" aria-modal="false" aria-labelledby="connections-title" tabindex="-1" hidden>
+      <div class="drawer-header">
+        <div><p class="eyebrow" data-i18n="connectionsLab">Labor für historische Funken</p><h2 id="connections-title" data-i18n="unlikelyAlliances">Unwahrscheinliche Allianzen</h2></div>
+        <button class="icon-button drawer-close" type="button" aria-label="Funkenlabor schließen" data-i18n-aria="closeConnections">×</button>
+      </div>
+      <p class="drawer-intro" data-i18n="connectionsIntro">Zwei Kämpfe betreten ein Archiv. Der gemeinsame Nenner verlässt es nicht mehr.</p>
+      <div id="connection-content" aria-live="polite"></div>
+      <div class="lab-actions">
+        <button class="primary-button" id="new-connection" type="button">⚡ <span data-i18n="newConnection">Neue Verbindung</span></button>
+        <button class="secondary-button" id="copy-connection" type="button" data-i18n="copyConnection">Verbindung kopieren</button>
+      </div>
+      <aside class="excuse-machine" aria-labelledby="excuse-title">
+        <p class="eyebrow" data-i18n="satiricalCritique">Satirische Quellenkritik</p>
+        <h3 id="excuse-title" data-i18n="excuseTitle">Ausrede der Herrschenden</h3>
+        <blockquote id="power-excuse" data-i18n="defaultExcuse">„Jetzt ist wirklich nicht der richtige Zeitpunkt.“</blockquote>
+        <p id="power-counter" data-i18n="defaultCounter">Historische Gegenprobe wird geladen.</p>
+        <button class="text-button" id="new-excuse" type="button" data-i18n="anotherExcuse">Noch eine Ausrede entlarven →</button>
+      </aside>
+    </section>
+
+    <div class="modal-backdrop" id="modal-backdrop" hidden></div>
+
+    <section class="modal glass-panel" id="welcome-modal" role="dialog" aria-modal="true" aria-labelledby="welcome-title" hidden>
+      <button class="icon-button modal-close" type="button" aria-label="Einführung schließen" data-i18n-aria="closeIntro">×</button>
+      <figure class="brand-frontispiece">
+        <img class="brand-logo" src="assets/brand/world-revolution-atlas-parchment-v2.png" alt="" width="1254" height="1254" decoding="async">
+        <figcaption>World Revolution Atlas</figcaption>
+      </figure>
+      <p class="eyebrow" data-i18n="welcome">Willkommen, Chronist*in</p>
+      <h2 id="welcome-title" data-i18n="welcomeTitle">Geschichte ist voller verborgener Spuren.</h2>
+      <p data-i18n="welcomeBody">Reise über die Karte, öffne Ereignisse und sichere sie für dein Archiv. Löse Missionen und Quizfragen, schmiede im Funkenlabor überraschende Verbindungen und sammle Solidaritäts-Combos.</p>
+      <ol class="how-to-play">
+        <li><span>1</span><div><strong data-i18n="step1Title">Spur auswählen</strong><small data-i18n="step1Body">Öffne einen leuchtenden Punkt auf der Karte.</small></div></li>
+        <li><span>2</span><div><strong data-i18n="step2Title">Ins Archiv aufnehmen</strong><small data-i18n="step2Body">Lies den Eintrag und sichere die Entdeckung.</small></div></li>
+        <li><span>3</span><div><strong data-i18n="step3Title">Wissen verknüpfen</strong><small data-i18n="step3Body">Erfülle Missionen und teste dich im Quiz.</small></div></li>
+        <li><span>4</span><div><strong data-i18n="step4Title">Funken schlagen</strong><small data-i18n="step4Body">Verbinde Kämpfe über Zeiten und Kontinente hinweg. Bürokratische Genehmigung nicht erforderlich.</small></div></li>
+      </ol>
+      <button class="primary-button wide" id="begin-button" type="button" data-i18n="begin">Expedition beginnen</button>
+      <button class="text-button methodology-open" id="methodology-button" type="button" data-i18n="aboutMap">Über diese Karte und Methodik</button>
+      <p class="editorial-note" data-i18n="editorial">Ein Bildungsprototyp: Die kurzen Texte ersetzen keine historische Quellenprüfung.</p>
+    </section>
+
+  <section class="modal glass-panel methodology-modal" id="methodology-modal" role="dialog" aria-modal="true" aria-labelledby="methodology-title" hidden>
+      <button class="icon-button modal-close" type="button" aria-label="Methodik schließen" data-i18n-aria="closeMethodology">×</button>
+      <p class="eyebrow" data-i18n="methodologyEyebrow">Geschichte von unten</p>
+      <h2 id="methodology-title" data-i18n="aboutMap">Über diese Karte und Methodik</h2>
+      <div class="methodology-content">
+        <section><h3 data-i18n="perspectiveTitle">Perspektive</h3><p data-i18n="perspectiveBody">Ausgangspunkt sind Beteiligte, Betroffene, Basisbewegungen und lokale Gemeinschaften. Rechte erscheinen nicht als Geschenke von oben.</p></section>
+        <section><h3 data-i18n="sourcesTitle">Quellenpolitik</h3><p data-i18n="sourcesBody">Quellenarten und redaktioneller Prüfstand werden sichtbar benannt. Eine weiterführende Quelle ist kein Beweis vollständiger oder neutraler Darstellung.</p></section>
+        <section><h3 data-i18n="uncertaintyTitle">Unsicherheit und Widerspruch</h3><p data-i18n="uncertaintyBody">Umstrittene Zahlen, Datierungen und Deutungen werden offengelegt. Ergebnisse werden konkret beschrieben, nicht als gewonnen oder verloren bewertet.</p></section>
+        <section><h3 data-i18n="sensitivityTitle">Sensible Inhalte</h3><p data-i18n="sensitivityBody">Massaker, Lynchmorde, Femizide und andere schwere Gewalt werden sachlich gezeigt. Spielerische Belohnungen und Satire sind dort deaktiviert.</p></section>
+        <section><h3 data-i18n="namesTitle">Namen und Selbstbezeichnungen</h3><p data-i18n="namesBody">Selbstbezeichnungen betroffener Gemeinschaften haben Vorrang. Historisch belastete Fremdbezeichnungen werden nur erklärt verwendet.</p></section>
+        <section><h3 data-i18n="contributeTitle">Korrekturen und Beiträge</h3><p data-i18n="contributeBody">Fehler, fehlende Perspektiven oder bessere Quellen können über den GitHub-Repository-Link gemeldet werden. Änderungen bleiben nachvollziehbar.</p><a class="source-link methodology-link" href="https://github.com/Blackfront161/World-Revolution-Map/issues" target="_blank" rel="noopener noreferrer" data-i18n="reportCorrection">Korrektur oder Ergänzung melden ↗</a></section>
+      </div>
+  </section>
+
+  <section class="modal glass-panel pirate-dossier-modal" id="pirate-dossier-modal" role="dialog" aria-modal="true" aria-labelledby="pirate-dossier-title" hidden>
+    <button class="icon-button modal-close" type="button" aria-label="Pirat*innen-Dossier schließen" data-i18n-aria="closePirateDossier">×</button>
+    <p class="eyebrow" data-i18n="pirateEyebrow">Nautische Quellenkritik</p>
+    <h2 id="pirate-dossier-title" data-i18n="pirateTitle">Piraterie ist nicht automatisch Anarchie</h2>
+    <p class="pirate-dossier-intro" data-i18n="pirateIntro">Bordordnungen können anti-hierarchische Praxis zeigen. Sie machen gewaltsamen Raub, Versklavung und koloniale Verflechtung nicht unsichtbar.</p>
+    <div class="pirate-logbook">
+      <section><b aria-hidden="true">I</b><div><h3 data-i18n="piratePracticeTitle">Begrenzte Gegenmacht an Bord</h3><p data-i18n="piratePracticeBody">Manche Besatzungen wählten und entließen Kapitän*innen, regelten Beuteanteile in Bordartikeln und sahen Kompensation für Verletzungen vor. Das waren konkrete, aber auf die Crew begrenzte Ordnungen.</p></div></section>
+      <section><b aria-hidden="true">II</b><div><h3 data-i18n="pirateViolenceTitle">Raub und koloniale Gewalt</h3><p data-i18n="pirateViolenceBody">Piraterie blieb gewaltsamer Raub. Pirat*innen operierten in kolonialen Handelsräumen, griffen Schiffe an und verkauften versklavte Menschen häufig weiter. Interne Teilhabe bedeutete keine allgemeine Befreiung.</p></div></section>
+      <section><b aria-hidden="true">III</b><div><h3 data-i18n="pirateMythTitle">Libertalia: Mythos, kein Kartenpunkt</h3><p data-i18n="pirateMythBody">Die Erzählung über Kapitän Misson und Libertalia erschien 1728 im zweiten Band der „General History“. Eine historische Studie beschreibt Misson und Libertalia als literarische Erfindungen; ohne unabhängige zeitgenössische Belege behandelt der Atlas sie nicht als nachgewiesene Republik.</p></div></section>
+      <section><b aria-hidden="true">IV</b><div><h3 data-i18n="pirateUncertaintyTitle">Anne Bonny und Mary Read</h3><p data-i18n="pirateUncertaintyBody">Ein 1721 gedruckter Bericht des Vizeadmiralitätsverfahrens dokumentiert Anklage, Schuldsprüche und ihre Schwangerschaftseinreden. Viele Angaben zu Herkunft, Beziehungen und späterem Leben beruhen dagegen auf späteren Erzählungen oder bleiben unbelegt. Der Atlas trennt Prozessbeleg und Überlieferung.</p></div></section>
     </div>
-    <script src="script.js?v=10"></script>
+    <h3 data-i18n="pirateSourcesTitle">Quellen und Gegenlesen</h3>
+    <ul class="pirate-source-list">
+      <li><a href="https://www.rmg.co.uk/stories/maritime-history/pirates-fact-or-fiction" target="_blank" rel="noopener noreferrer">Royal Museums Greenwich: Pirates – fact or fiction ↗</a></li>
+      <li><a href="https://www.rmg.co.uk/stories/maritime-history/pirates-history-golden-age-piracy" target="_blank" rel="noopener noreferrer">Royal Museums Greenwich: Golden Age in colonial context ↗</a></li>
+      <li><a href="https://ocean.si.edu/human-connections/exploration/william-dampier-pirate-who-collected-plants" target="_blank" rel="noopener noreferrer">Smithsonian Ocean: William Dampier ↗</a></li>
+      <li><a href="https://guides.loc.gov/golden-age-of-piracy" target="_blank" rel="noopener noreferrer">Library of Congress: primary-source guide ↗</a></li>
+      <li><a href="https://www.loc.gov/item/10031667/" target="_blank" rel="noopener noreferrer">Library of Congress: A General History of the Pyrates ↗</a></li>
+      <li><a href="https://www.persee.fr/doc/dhs_0070-6760_1998_num_30_1_2258" target="_blank" rel="noopener noreferrer">Persée: The non-existence of the pirate Misson ↗</a></li>
+      <li><a href="https://archive.org/details/the-tryals-of-captain-john-rackham" target="_blank" rel="noopener noreferrer">National Library of Jamaica: The Tryals of Captain John Rackam (1721) ↗</a></li>
+      <li><a href="https://blogs.loc.gov/law/2024/07/the-life-and-trial-of-anne-bonny/" target="_blank" rel="noopener noreferrer">Law Library of Congress: Anne Bonny trial and sources ↗</a></li>
+      <li><a href="https://www.york.ac.uk/eighteenth-century-studies/news/2018/fictional-facts/" target="_blank" rel="noopener noreferrer">University of York: Fictional facts and the archive ↗</a></li>
+    </ul>
+  </section>
+
+  <section class="modal glass-panel" id="quiz-modal" role="dialog" aria-modal="true" aria-labelledby="quiz-title" hidden>
+      <button class="icon-button modal-close" type="button" aria-label="Quiz schließen" data-i18n-aria="closeQuiz">×</button>
+      <p class="eyebrow" data-i18n="knowledgeTest">Wissensprobe</p>
+      <h2 id="quiz-title" data-i18n="quizDefault">Wann begann dieses Ereignis?</h2>
+      <div id="quiz-content"></div>
+    </section>
+
+    <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+  </main>
+
+  <noscript>JavaScript erforderlich · JavaScript required · JavaScript necesario · JavaScript requis.</noscript>
 </body>
 </html>

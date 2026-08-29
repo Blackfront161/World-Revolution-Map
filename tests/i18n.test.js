@@ -1,0 +1,75 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { LANGUAGES, PRODUCT_NAME, createI18n, formatLocalizedYear, normalizeLanguage, translateCategory, translateEditorialMetadata } from '../src/i18n.js';
+
+const expected = ['de', 'en', 'es', 'fr', 'it', 'pt', 'ru', 'el', 'tr'];
+
+test('Globusbeschriftungen sind lokalisiert und bewahren den Produktnamen', () => {
+  for (const language of expected) {
+    const i18n = createI18n({search:`?lang=${language}`});
+    for (const key of ['mapProjection','projectionMap','projectionGlobe','globeHint','projectionUnavailable']) {
+      assert.notEqual(i18n.t(key),key);
+      if (language !== 'en') assert.notEqual(i18n.t(key),createI18n({search:'?lang=en'}).t(key));
+    }
+    assert.equal(i18n.t('appTitle'),'World Revolution Atlas');
+  }
+});
+
+test('3D-Bedienung besitzt explizite Fassungen in allen neun Sprachen', () => {
+  for (const key of ['mapDepth', 'mapDepthNote']) {
+    const values = expected.map(language => createI18n({ search: `?lang=${language}` }).t(key));
+    assert.equal(new Set(values).size, 9, `${key}: keine stille Fallbackfassung`);
+    assert.ok(values.every(value => value !== key && value.length > 5));
+  }
+});
+
+test('bietet dieselben neun Sprachen wie World Revolution News', () => {
+  assert.deepEqual(LANGUAGES.map(language => language.code), expected);
+  expected.forEach(language => {
+    const i18n = createI18n({ search: `?lang=${language}` });
+    assert.notEqual(i18n.t('appTitle'), 'appTitle');
+    assert.notEqual(i18n.t('welcomeBody'), 'welcomeBody');
+    assert.match(i18n.t('missionCategory', { count: 3, category: 'X' }), /3/);
+  });
+});
+
+test('priorisiert URL-Sprache, normalisiert Browserwerte und speichert Wechsel lokal', () => {
+  const values = new Map([['atlas-language-v1', 'fr']]);
+  const storage = { getItem: key => values.get(key), setItem: (key, value) => values.set(key, value) };
+  const i18n = createI18n({ search: '?lang=tr', storage, navigatorLanguage: 'en-US' });
+  assert.equal(i18n.language, 'tr');
+  assert.equal(i18n.setLanguage('EL-gr'), 'el');
+  assert.equal(values.get('atlas-language-v1'), 'el');
+  assert.equal(normalizeLanguage('xx'), 'de');
+});
+
+test('lokalisiert Kategorien und tiefe Jahresangaben ohne Netzzugriff', () => {
+  const i18n = createI18n({ search: '?lang=en' });
+  assert.equal(translateCategory('Arbeiter*innenbewegung', 'en'), 'Labour movement');
+  assert.match(formatLocalizedYear({ yearStart: -1157, yearEnd: -1157 }, i18n), /1,157/);
+  assert.equal(formatLocalizedYear({ yearStart: 1918, yearEnd: 1921 }, i18n), '1918–1921');
+});
+
+test('lokalisiert die Komfortfunktionen in allen neun Sprachen', () => {
+  for (const language of LANGUAGES.map(item => item.code)) {
+    const i18n = createI18n({ search: `?lang=${language}` });
+    for (const key of ['clearSearch', 'showResults', 'copyEventLink', 'eventLinkCopied', 'aboutMap', 'eventList', 'sensitiveNotice', 'immediateConsequences', 'sourceTypeLabel', 'sourceQualityLabel', 'reviewStatusLabel', 'eventTextGermanNotice', 'partialEventTranslation', 'routes', 'guidedRoutes', 'routesIntro', 'routeProgress', 'routeSensitive', 'routeSource', 'coordinatePrecisionLabel', 'coordinatePrecisionHidden']) {
+      assert.notEqual(i18n.t(key), key);
+    }
+    for (const key of ['timeRange', 'includeUndated', 'thematicLayers', 'mapStyle', 'timeline', 'playTime', 'motionDisabled', 'network', 'networkIntro', 'relationList', 'relationSimilarTactic', 'heuristicSimilarity', 'layerIndigenous', 'layerLabour', 'layerAnticolonial', 'layerFeminist', 'layerQueer', 'layerBlack', 'layerEcological', 'layerCommons', 'layerAbolition', 'layerMutualAid', 'layerMaritime', 'tacticStrike', 'tacticOccupation', 'tacticBlockade', 'tacticBoycott', 'tacticUprising', 'tacticLandDefence', 'tacticMutualAid', 'tacticArtsMedia', 'tacticSelfGovernance', 'tacticPrisonStrike', 'styleDark', 'styleMono', 'stylePaper', 'precisionExactReason', 'precisionApproximateReason', 'precisionRegionReason', 'precisionHiddenReason', 'previousEvent', 'nextEvent', 'backToWorld', 'mapLegend', 'bottomUpPressure', 'achievementOutcome', 'achievementLimits', 'pirateDossierButton', 'pirateTitle', 'pirateMythBody', 'pirateUncertaintyBody', 'maritimeRouteNote']) {
+      assert.notEqual(i18n.t(key), key);
+    }
+    assert.match(i18n.t('pirateMythBody'), /1728/);
+    assert.match(i18n.t('pirateUncertaintyBody'), /1721/);
+    for (const key of ['biographies', 'livesFromBelow', 'biographiesIntro', 'biographyStance', 'ideasPractice', 'organizingAchievements', 'repressionRisks', 'tensionsCriticism', 'relatedEvents', 'namedCollections', 'exportCollections', 'importCollections', 'compare', 'compareIntro', 'continueReading', 'readingMode', 'onlineMapNote', 'filterPresetCopied', 'similarHistory', 'unknownFriendly', 'archiveLoadFailed', 'archiveLoadFailedBody', 'bioReviewReviewed', 'bioReviewDeepReviewed', 'bioSourcePrimary', 'bioSourceCommunity', 'bioSourceMovement', 'bioSourceArchive', 'bioSourceOralHistory', 'bioSourceMuseum', 'bioSourceAcademic', 'bioSourcePublicInstitution', 'bioSourceHumanRights']) {
+      assert.notEqual(i18n.t(key), key);
+    }
+  }
+  assert.equal(translateEditorialMetadata('Redaktioneller Pilotstand', 'en'), 'Editorial pilot');
+  assert.equal(translateEditorialMetadata('Redaktionell vertieft', 'en'), 'Editorially deepened');
+});
+
+test('Produktname bleibt in allen neun Sprachen unverändert', () => {
+  assert.equal(PRODUCT_NAME, 'World Revolution Atlas');
+  assert.deepEqual(expected.map(language => createI18n({ search: `?lang=${language}` }).t('appTitle')), Array(9).fill(PRODUCT_NAME));
+});

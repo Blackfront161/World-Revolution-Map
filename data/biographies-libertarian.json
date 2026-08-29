@@ -1,0 +1,513 @@
+[
+  {
+    "id": "bio-lucy-parsons",
+    "personName": "Lucy Parsons",
+    "birth": {"date": "ca. 1851", "place": "Texas oder Virginia, USA", "certainty": "umstritten"},
+    "death": {"date": "1942-03-07", "place": "Chicago, USA", "certainty": "belegt"},
+    "places": ["Texas", "Chicago", "USA"],
+    "communities": ["Arbeiter*innenbewegung", "anarchistische Bewegung", "Industrial Workers of the World", "Schwarze und indigene Erinnerungsgeschichte"],
+    "shortDescription": "US-amerikanische Arbeiter*innenorganisatorin, Rednerin und Publizistin, die Klassenkampf, freie Rede und revolutionären Gewerkschaftskampf über sechs Jahrzehnte verband.",
+    "lifeStages": [
+      {"period": "ca. 1851–1873", "description": "Ihre Herkunft ist durch rassistische Entrechtung und widersprüchliche Selbstauskünfte schwer zu rekonstruieren; Forschende diskutieren eine versklavte, Schwarze und/oder indigene Familiengeschichte."},
+      {"period": "1873–1887", "description": "Übersiedlung mit Albert Parsons nach Chicago, Organisierung in der Arbeiter*innenbewegung und Radikalisierung im Umfeld des Haymarket-Konflikts."},
+      {"period": "1887–1942", "description": "Nach der Hinrichtung ihres Mannes internationale Agitation, Herausgabe von Freedom, Mitgründung der IWW und fortgesetzte Organisierung bis ins hohe Alter."}
+    ],
+    "ideasAndPractices": ["revolutionärer Gewerkschaftskampf", "Klassenkampf und direkte Aktion", "freie Rede", "Gefangenen- und Antirepressionsarbeit"],
+    "organizingAndAchievements": ["Mitwirkung am Gründungskongress der Industrial Workers of the World 1905", "jahrzehntelange Vortrags- und Publikationstätigkeit", "Bewahrung der Erinnerung an die Haymarket-Verurteilten"],
+    "repressionAndRisks": ["Polizeiliche Überwachung, Veranstaltungsverbote und wiederholte Festnahmen", "Beschlagnahmung ihrer Bibliothek und Papiere unmittelbar nach ihrem Tod", "politische und rassistische Auslöschung in Teilen der Geschichtsschreibung"],
+    "tensionsAndCritique": ["Parsons stellte die Klassenfrage meist vor eigenständige feministische oder antirassistische Organisierung und geriet darüber unter anderem mit Emma Goldman in Konflikt.", "Ihre wechselnden Angaben zur eigenen Herkunft müssen im Kontext von Rassismus, Mischehenverboten und Selbstschutz gelesen werden; eine eindeutige Identitätszuschreibung ist nicht gesichert.", "Ihre zeitweilige Nähe zur Communist Party in den 1930er Jahren wird unterschiedlich bewertet; eine formelle Mitgliedschaft ist nicht zweifelsfrei belegt."],
+    "legacy": "Parsons bleibt ein Bezugspunkt für revolutionären Syndikalismus und Schwarze radikale Geschichte; neuere Forschung rückt zugleich die Unsicherheit ihrer Biografie und ihre politischen Konflikte ins Zentrum.",
+    "relatedEventIds": ["haymarket"],
+    "sourceRefs": [
+      {"title": "Parsons, Lucy", "url": "https://www.tshaonline.org/handbook/entries/parsons-lucy", "publisher": "Texas State Historical Association", "language": "en", "type": "wissenschaftliches Nachschlagewerk", "accessedAt": "2026-08-24"},
+      {"title": "A Woman’s Place in Anarchy: Lucy E. Parsons and the Haymarket Riots", "url": "https://www.library.illinois.edu/rbx/2019/02/28/lucy-e-parsons/", "publisher": "University of Illinois Rare Book & Manuscript Library", "language": "en", "type": "Universitätsbibliothek mit Primärmaterial", "accessedAt": "2026-08-24"}
+    ],
+    "review": {"status": "Redaktioneller Pilotstand", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "mittel", "displayRule": "Unsichere Herkunft nicht vereindeutigen; rassistische Entrechtung, Hinrichtung und Repression kontextualisiert darstellen."},
+    "provenance": {"method": "Deutschsprachige redaktionelle Zusammenfassung aus den verlinkten Archiv- und Forschungsquellen; keine wörtlichen Zitate.", "editorialNote": "Biografische Unsicherheit sichtbar belassen."},
+    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Rechte an Quellen und Archivmaterial verbleiben bei den jeweiligen Institutionen."}
+  },
+  {
+    "id": "bio-emma-goldman",
+    "personName": "Emma Goldman",
+    "birth": {"date": "1869-06-27", "place": "Kowno, Russisches Reich (heute Kaunas, Litauen)", "certainty": "belegt"},
+    "death": {"date": "1940-05-14", "place": "Toronto, Kanada", "certainty": "belegt"},
+    "places": ["Kaunas", "Rochester", "New York", "Russland", "London", "Spanien", "Toronto"],
+    "communities": ["jüdische Migrant*innen", "anarchistische Bewegung", "freie-Redebewegung", "Geburtenkontrollbewegung", "Antimilitarismus"],
+    "shortDescription": "Jüdisch-litauisch-US-amerikanische Anarchistin, Rednerin und Herausgeberin, die freie Rede, sexuelle und reproduktive Selbstbestimmung, Antimilitarismus und soziale Revolution verband.",
+    "lifeStages": [
+      {"period": "1869–1889", "description": "Kindheit im Russischen Reich, Migration in die USA und Fabrikarbeit in Rochester."},
+      {"period": "1889–1919", "description": "Anarchistische Agitation in den USA, Herausgabe von Mother Earth, Kampagnen für freie Rede und Geburtenkontrolle; Gefängnis und Deportation wegen Widerstands gegen die Wehrpflicht."},
+      {"period": "1919–1940", "description": "Bruch mit der bolschewistischen Herrschaft nach eigener Anschauung, Exil in Europa und Unterstützung der spanischen Anarchist*innen im Bürgerkrieg."}
+    ],
+    "ideasAndPractices": ["Anarchismus und individuelle Freiheit", "reproduktive Selbstbestimmung", "Antimilitarismus", "freie Rede", "Kritik an Gefängnis und staatlichem Sozialismus"],
+    "organizingAndAchievements": ["Herausgabe der Zeitschrift Mother Earth 1906–1917", "landesweite Vortragskampagnen", "Dokumentation der Repression in Sowjetrussland", "internationale Öffentlichkeitsarbeit für die CNT-FAI in Spanien"],
+    "repressionAndRisks": ["Mehrfache Verhaftungen und Haftstrafen", "Verurteilung wegen Widerstands gegen die Einberufung", "Deportation aus den USA 1919", "dauerhafte Überwachung"],
+    "tensionsAndCritique": ["Goldman verteidigte zeitweise politische Gewalttaten und unterstützte Alexander Berkmans Attentatsversuch auf Henry Clay Frick, distanzierte sich später aber von schematischer Gewaltpropaganda.", "Ihre individualistisch-sexualpolitischen Akzente führten zu Konflikten mit stärker klassenzentrierten Genoss*innen wie Lucy Parsons.", "Ihre Arbeit für die spanische Revolution bewegte sich zwischen Solidarität und Kritik an der Regierungsbeteiligung führender Anarchist*innen."],
+    "legacy": "Goldmans Schriften prägen anarchistische, feministische und bürgerrechtliche Debatten; ihre Kritik am Bolschewismus und ihre Haltung zu politischer Gewalt bleiben produktiv umstritten.",
+    "relatedEventIds": ["haymarket", "paterson-silk-strike", "spanische-revolution"],
+    "sourceRefs": [
+      {"title": "The Papers of Emma Goldman", "url": "https://www.archives.gov/nhprc/projects/catalog/emma-goldman", "publisher": "U.S. National Archives / University of California, Berkeley", "language": "en", "type": "Archiv- und Editionsprojekt", "accessedAt": "2026-08-24"},
+      {"title": "Emma Goldman papers", "url": "https://digitalcollections.nypl.org/collections/emma-goldman-papers", "publisher": "New York Public Library", "language": "en", "type": "Archivsammlung", "accessedAt": "2026-08-24"}
+    ],
+    "review": {"status": "Redaktioneller Pilotstand", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "mittel", "displayRule": "Attentat, Haft und Deportation sachlich und ohne Aktionsromantik darstellen."},
+    "provenance": {"method": "Deutschsprachige redaktionelle Zusammenfassung aus Archivsammlungen und Editionsmetadaten; keine wörtlichen Zitate.", "editorialNote": "Konflikte innerhalb anarchistischer Bewegungen ausdrücklich aufgenommen."},
+    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Quellenrechte werden nicht übertragen."}
+  },
+  {
+    "id": "bio-pierre-joseph-proudhon",
+    "personName": "Pierre-Joseph Proudhon",
+    "searchAliases": ["Proudon", "Joseph Proudon", "Pierre Joseph Proudon"],
+    "birth": {"date": "1809-01-15", "place": "Besançon, Frankreich", "certainty": "belegt"},
+    "death": {"date": "1865-01-19", "place": "Passy, Frankreich", "certainty": "belegt"},
+    "places": ["Besançon", "Paris", "Brüssel"],
+    "communities": ["französischer Frühsozialismus", "Mutualismus", "Arbeiter*innenassoziationen", "anarchistische Ideengeschichte"],
+    "shortDescription": "Französischer Drucker, Sozialtheoretiker und Abgeordneter, der Eigentum, Staat und Zentralismus kritisierte und mutualistische Föderationen entwarf, zugleich aber offen sexistische und antisemitische Positionen vertrat.",
+    "lifeStages": [
+      {"period": "1809–1840", "description": "Aufstieg aus einer Handwerkerfamilie, Arbeit als Setzer und Selbststudium; Bekanntheit durch Was ist das Eigentum?."},
+      {"period": "1840–1852", "description": "Entwicklung mutualistischer Ideen, Konflikt mit Marx, Beteiligung an der Revolution von 1848, Abgeordnetenmandat und Haft."},
+      {"period": "1852–1865", "description": "Ausarbeitung von Föderalismus und Arbeiter*innenassoziation, Exil in Belgien und späte Schriften zu politischer Fähigkeit der Arbeiterklasse."}
+    ],
+    "ideasAndPractices": ["Mutualismus", "Föderalismus", "Arbeiter*innenassoziationen", "Kritik an Privateigentum und Staatszentralismus", "Volksbank und gegenseitiger Kredit"],
+    "organizingAndAchievements": ["prägte die frühe Selbstbezeichnung als Anarchist", "beeinflusste mutualistische Strömungen der Ersten Internationale", "formulierte ein dauerhaft einflussreiches föderalistisches Gegenmodell zum Zentralstaat"],
+    "repressionAndRisks": ["Haft 1849–1852 wegen Presseangriffen auf Louis-Napoléon", "Exil in Belgien nach erneuter Verfolgung"],
+    "tensionsAndCritique": ["Proudhon schloss Frauen aus politischer und ökonomischer Gleichheit aus und verteidigte patriarchale Familienrollen; die verlinkte Forschung rekonstruiert auch die zeitgenössischen feministischen Gegenpositionen.", "Seine privaten Notizbücher enthalten offen antisemitische und gewaltbezogene Aussagen. Die verlinkte Carnets-Ausgabe und Forschung belegen diesen Befund; die Aussagen werden hier bewusst nicht ausgeschrieben."],
+    "legacy": "Proudhons Mutualismus und Föderalismus wirkten weit über Frankreich hinaus. Seine antisemitischen, sexistischen und patriarchalen Positionen begrenzen diesen Beitrag grundlegend und müssen gemeinsam mit ihm erinnert werden.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {"title": "Proudhon, Pierre-Joseph (1809–1865)", "url": "https://catalogue.bnf.fr/ark:/12148/cb11920705x", "publisher": "Bibliothèque nationale de France", "language": "fr", "type": "Normdaten- und Werkarchiv", "accessedAt": "2026-08-24"},
+      {"title": "The Straight Path That Leads to Sodom: Pierre-Joseph Proudhon’s Sexual Politics and 19th Century French Feminist Responses", "url": "https://dspace.library.uvic.ca/items/22df17ce-f26d-4139-aa7b-d8d20c7638a0", "publisher": "University of Victoria Libraries", "language": "en", "type": "Wissenschaftliche Dissertation", "accessedAt": "2026-08-24"},
+      {"title": "Anarchism and Gender", "url": "https://onlinelibrary.wiley.com/doi/abs/10.1002/9781405198073.wbierp0055", "publisher": "Wiley", "language": "en", "type": "Wissenschaftlicher Überblick", "accessedAt": "2026-08-24"},
+      {"title": "Carnets de P.-J. Proudhon, Pierre Haubtmann ed.", "url": "https://www.persee.fr/doc/ahess_0395-2649_1962_num_17_5_420910_t1_1015_0000_2", "publisher": "Persée / Annales. Histoire, Sciences Sociales", "language": "fr", "type": "Wissenschaftliche Editionsbesprechung mit Fundstellen", "accessedAt": "2026-08-24"}
+    ],
+    "review": {"status": "Redaktioneller Pilotstand", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "hoch", "displayRule": "Antisemitische und sexistische Positionen klar benennen, nicht ausschreiben oder reproduzieren; Kontext und Betroffenheit sichtbar machen."},
+    "provenance": {"method": "Redaktionelle Synthese aus BnF-Normdaten, einer Dissertation zur Sexualpolitik, einem wissenschaftlichen Überblick und der Editionsbesprechung der Carnets; problematische Positionen paraphrasiert.", "editorialNote": "Kritiklinien ohne punktgenauen Beleg wurden entfernt; belastende Passagen werden nicht ausgeschrieben."},
+    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Digitalisate und Editionen unterliegen eigenen Rechten."}
+  },
+  {
+    "id": "bio-michail-bakunin",
+    "personName": "Michail Bakunin",
+    "birth": {"date": "1814-05-30", "place": "Prjamuchino, Russisches Reich", "certainty": "gregorianisches Datum"},
+    "death": {"date": "1876-07-01", "place": "Bern, Schweiz", "certainty": "belegt"},
+    "places": ["Prjamuchino", "Moskau", "Dresden", "Sibirien", "Genf", "Locarno", "Bern"],
+    "communities": ["europäische Revolutionsbewegungen von 1848", "Internationale Arbeiterassoziation", "antiautoritärer Sozialismus", "slawische Föderalismen"],
+    "shortDescription": "Russischer Revolutionär und zentraler Theoretiker des kollektivistischen Anarchismus, Gegner von Staat und autoritärer Parteiherrschaft, dessen Werk zugleich nationalistische und antisemitische Passagen enthält.",
+    "lifeStages": [
+      {"period": "1814–1848", "description": "Adlige Herkunft, Abbruch der Militärlaufbahn, philosophische Kreise in Moskau und revolutionäres Exil in Westeuropa."},
+      {"period": "1848–1861", "description": "Teilnahme an europäischen Aufständen, Todesurteile, lange Festungs- und sibirische Haft; Flucht über Japan und die USA nach Europa."},
+      {"period": "1861–1876", "description": "Organisierung in internationalen sozialistischen Netzwerken, Konflikt mit Marx in der Internationale und Mitprägung des antiautoritären Lagers."}
+    ],
+    "ideasAndPractices": ["kollektivistischer Anarchismus", "revolutionärer Internationalismus", "Föderalismus", "Kritik an Staat, Kirche und Parteidiktatur", "geheime revolutionäre Bündnisse"],
+    "organizingAndAchievements": ["Mitwirkung an Aufständen von 1848/49", "Aufbau der Allianz der sozialistischen Demokratie", "Mitprägung des antiautoritären Sozialismus und des Umfelds von Saint-Imier"],
+    "repressionAndRisks": ["Todesurteile in Sachsen und Österreich", "Festungshaft in Russland und Verbannung nach Sibirien", "staatliche Überwachung und Exil"],
+    "tensionsAndCritique": ["Bakunins Kritik an einer revolutionären Diktatur stand in Spannung zu seinen eigenen konspirativen Organisationsentwürfen und informellen Führungsansprüchen.", "Briefe und Polemiken enthalten antisemitische Stereotype, besonders im Konflikt mit Marx; seine Vision universeller Befreiung war dadurch real begrenzt.", "Sein revolutionärer Slawismus schwankte zwischen föderaler Befreiung und ethnisch-nationalen Verallgemeinerungen.", "Seine Erwartung spontaner bäuerlicher Revolte unterschätzte dauerhafte Institutionen, Care-Arbeit und demokratische Rechenschaft."],
+    "legacy": "Bakunins Staats- und Autoritarismuskritik prägte den sozialen Anarchismus; seine konspirative Praxis und antisemitische Rhetorik bleiben unauflösbare Gegenstände kritischer Rezeption.",
+    "relatedEventIds": ["saint-imier-kongress"],
+    "sourceRefs": [
+      {"title": "Michail Aleksandrovič Bakunin Papers", "url": "https://search.socialhistory.org/Record/ARCH00018", "publisher": "International Institute of Social History", "language": "en", "type": "Archiv-Findbuch", "accessedAt": "2026-08-24"},
+      {"title": "Mikhail Bakunin", "url": "https://www.britannica.com/biography/Mikhail-Bakunin", "publisher": "Encyclopaedia Britannica", "language": "en", "type": "wissenschaftliches Nachschlagewerk", "accessedAt": "2026-08-24"}
+    ],
+    "review": {"status": "Redaktioneller Pilotstand", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "hoch", "displayRule": "Antisemitismus und politische Gewalt paraphrasieren und kritisch kontextualisieren."},
+    "provenance": {"method": "Redaktionelle Zusammenfassung aus Archivmetadaten und wissenschaftlichem Nachschlagewerk.", "editorialNote": "Julianische und gregorianische Datierung berücksichtigt."},
+    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Quellenrechte verbleiben bei den herausgebenden Stellen."}
+  },
+  {
+    "id": "bio-pjotr-kropotkin",
+    "personName": "Pjotr Kropotkin",
+    "birth": {"date": "1842-12-09", "place": "Moskau, Russisches Reich", "certainty": "gregorianisches Datum"},
+    "death": {"date": "1921-02-08", "place": "Dmitrow, Sowjetrussland", "certainty": "belegt"},
+    "places": ["Moskau", "Sibirien", "Sankt Petersburg", "Genf", "London", "Dmitrow"],
+    "communities": ["Geografie und Naturforschung", "anarchokommunistische Bewegung", "Freedom Press", "russische Revolutionsbewegung"],
+    "shortDescription": "Russischer Geograf und anarchokommunistischer Autor, der gegenseitige Hilfe, dezentrale Föderation und gemeinsame Bedürfnisbefriedigung systematisch verband.",
+    "lifeStages": [
+      {"period": "1842–1876", "description": "Adlige Herkunft, Dienst und geografische Forschung in Sibirien, Hinwendung zum Sozialismus, Haft und Flucht."},
+      {"period": "1876–1917", "description": "Exil in der Schweiz, Frankreich und Großbritannien; wissenschaftliche und anarchistische Publizistik sowie Mitwirkung an Freedom."},
+      {"period": "1917–1921", "description": "Rückkehr nach Russland, Unterstützung der sozialen Revolution bei deutlicher Kritik an bolschewistischer Zentralisierung und Terror."}
+    ],
+    "ideasAndPractices": ["gegenseitige Hilfe", "Anarchokommunismus", "freie Föderation", "Integration von Hand- und Kopfarbeit", "dezentrale Produktion"],
+    "organizingAndAchievements": ["Popularisierung anarchokommunistischer Ideen", "Mitgründung und Unterstützung von Freedom", "Verknüpfung naturwissenschaftlicher Argumente mit Kooperation und Gesellschaftskritik"],
+    "repressionAndRisks": ["Haft in der Peter-und-Paul-Festung", "Gefängnis in Frankreich", "jahrzehntelanges Exil"],
+    "tensionsAndCritique": ["Kropotkin unterstützte 1914 die alliierte Kriegsführung gegen Deutschland und unterzeichnete das Manifest der Sechzehn; viele Anarchist*innen sahen darin einen Bruch mit dem Antimilitarismus.", "Seine evolutionsbiologischen Argumente zur Kooperation waren einflussreich, dürfen aber nicht als einfacher naturwissenschaftlicher Beweis einer politischen Ordnung gelesen werden.", "Seine kommunalen Entwürfe unterschätzten teils Konflikte, Machtasymmetrien und die institutionelle Absicherung von Minderheitenrechten."],
+    "legacy": "Kropotkins gegenseitige Hilfe und Anarchokommunismus wirken in Commons-, Ökologie- und Solidaritätsdebatten fort; seine Kriegsposition von 1914 markiert eine zentrale politische Grenze.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {"title": "Peter Kropotkin Archive", "url": "https://pzacad.pitzer.edu/Anarchist_Archives/kropotkin/Kropotkinarchive.html", "publisher": "Pitzer College Anarchy Archives", "language": "en", "type": "Universitätsarchiv und Primärtexte", "accessedAt": "2026-08-24"},
+      {"title": "Peter Alekseyevich Kropotkin", "url": "https://www.britannica.com/biography/Peter-Alekseyevich-Kropotkin", "publisher": "Encyclopaedia Britannica", "language": "en", "type": "wissenschaftliches Nachschlagewerk", "accessedAt": "2026-08-24"}
+    ],
+    "review": {"status": "Redaktioneller Pilotstand", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "mittel", "displayRule": "Haft und Kriegskontroverse ohne Verklärung darstellen."},
+    "provenance": {"method": "Redaktionelle Zusammenfassung aus Universitätsarchiv und Referenzwerk.", "editorialNote": "Datierung auf gregorianischen Kalender normalisiert."},
+    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Rechte an Digitalisaten bleiben unberührt."}
+  },
+  {
+    "id": "bio-louise-michel",
+    "personName": "Louise Michel",
+    "birth": {"date": "1830-05-29", "place": "Vroncourt-la-Côte, Frankreich", "certainty": "belegt"},
+    "death": {"date": "1905-01-09", "place": "Marseille, Frankreich", "certainty": "belegt"},
+    "places": ["Haute-Marne", "Paris", "Neukaledonien/Kanaky", "London", "Marseille"],
+    "communities": ["Pariser Kommune", "anarchistische Bewegung", "freie Bildung", "Kanakischer antikolonialer Widerstand"],
+    "shortDescription": "Französische Lehrerin, Kommunardin, Autorin und Anarchistin, die Bildung, soziale Revolution und später Solidarität mit dem kanakischen Widerstand verband.",
+    "lifeStages": [
+      {"period": "1830–1870", "description": "Ausbildung zur Lehrerin, Verweigerung des Eids auf Napoleon III. und Aufbau freier Schulen."},
+      {"period": "1870–1880", "description": "Aktive Rolle in Belagerung und Pariser Kommune, Kriegsgericht und Deportation nach Neukaledonien; Kontakt mit Kanak*innen und Unterstützung ihres Aufstands."},
+      {"period": "1880–1905", "description": "Rückkehr nach Amnestie, Hinwendung zum Anarchismus, europaweite Agitation, weitere Haft und Exil in London."}
+    ],
+    "ideasAndPractices": ["libertäre Pädagogik", "soziale Revolution", "feministische Praxis", "Antiklerikalismus", "Solidarität mit antikolonialem Widerstand"],
+    "organizingAndAchievements": ["Organisation in Montmartre während der Kommune", "Aufbau und Unterstützung freier Schulen", "öffentliche Solidarisierung mit dem Kanak-Aufstand von 1878", "umfangreiche politische und literarische Publizistik"],
+    "repressionAndRisks": ["Kriegsgericht und Deportation", "mehrfache Haft nach Demonstrationen", "Attentat auf sie 1888", "Exil und dauerhafte Überwachung"],
+    "tensionsAndCritique": ["Die Ikonisierung als rote Jungfrau reduzierte Michel oft auf Opfer oder Heldin und verdeckte kollektive Frauenorganisation in der Kommune.", "Ihre Schilderungen Kanakys verbinden bemerkenswerte antikoloniale Solidarität mit einzelnen zeittypisch paternalistischen und romantisierenden Blicken.", "Ihre Offenheit für revolutionäre Gewalt muss von konkreter Selbstverteidigung, symbolischer Rhetorik und späterer Mythenbildung unterschieden werden."],
+    "legacy": "Michel verbindet die Erinnerung an Kommune, libertäre Pädagogik und antikoloniale Solidarität. Eine kritische Rezeption vermeidet sowohl Dämonisierung als auch Märtyrerinnenkult.",
+    "relatedEventIds": ["pariser-kommune", "union-des-femmes-paris"],
+    "sourceRefs": [
+      {"title": "Michel, Louise (1830–1905)", "url": "https://rdf.archives-nationales.culture.gouv.fr/garance/entities/agent/052652/?lang=en", "publisher": "Archives nationales de France", "language": "fr", "type": "Archivische Normdatei und Biografie", "accessedAt": "2026-08-24"},
+      {"title": "Louise Michel, une héroïne de la Commune", "url": "https://www.bnf.fr/fr/louise-michel-une-heroine-de-la-commune", "publisher": "Bibliothèque nationale de France", "language": "fr", "type": "Bibliotheksausstellung mit Primärmanuskript", "accessedAt": "2026-08-24"}
+    ],
+    "review": {"status": "Redaktioneller Pilotstand", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "mittel", "displayRule": "Kolonialbegriffe vermeiden; Deportation, Krieg und Gewalt quellenkritisch kontextualisieren."},
+    "provenance": {"method": "Redaktionelle Zusammenfassung aus französischen Nationalarchiven und BnF-Sammlungen.", "editorialNote": "Kanakische Eigenbezeichnung und kolonialen Kontext sichtbar machen."},
+    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Reproduktionsrechte der Archive gelten separat."}
+  },
+  {
+    "id": "bio-errico-malatesta",
+    "personName": "Errico Malatesta",
+    "birth": {"date": "1853-12-04", "place": "Santa Maria Capua Vetere, Italien", "certainty": "belegt"},
+    "death": {"date": "1932-07-22", "place": "Rom, Italien", "certainty": "belegt"},
+    "places": ["Kampanien", "Neapel", "London", "Buenos Aires", "Ancona", "Rom"],
+    "communities": ["italienische anarchistische Bewegung", "Erste Internationale", "Arbeiter*innenbewegung", "Antimilitarismus", "Antifaschismus"],
+    "shortDescription": "Italienischer Anarchist, Organisator und Journalist, der freiwillige Organisation, Massenbewegung und revolutionäre Praxis gegen Individualismus wie Parteidiktatur verteidigte.",
+    "lifeStages": [
+      {"period": "1853–1889", "description": "Medizinstudium, Anschluss an die Internationale, Aufstandsversuche, Haft und Exil; Organisierung auch in Argentinien."},
+      {"period": "1889–1919", "description": "Publizistik, illegale Rückkehrversuche, Aufbau anarchistischer Netzwerke und zentrale Rolle in der Roten Woche 1914."},
+      {"period": "1919–1932", "description": "Rückkehr in die italienische Massenbewegung, Herausgabe von Umanità Nova, Haft und schließlich Überwachung unter dem Faschismus."}
+    ],
+    "ideasAndPractices": ["organisierter Anarchismus", "Massenaktion und Gewerkschaftsarbeit", "revolutionärer Antimilitarismus", "Ziel-Mittel-Kohärenz", "Kritik an Herrschaft durch Mehrheiten"],
+    "organizingAndAchievements": ["jahrzehntelanger Aufbau internationaler anarchistischer Netzwerke", "Mitwirkung an der Roten Woche 1914", "Herausgabe von L’Associazione, Volontà, Umanità Nova und Pensiero e Volontà", "theoretische Klärung des Verhältnisses von Organisation, Gewalt und Freiheit"],
+    "repressionAndRisks": ["wiederholte Haft, Prozesse, Flucht und Exil", "Gefängnis 1921/22", "Hausarrest und Zensur unter Mussolini"],
+    "tensionsAndCritique": ["Malatesta beteiligte sich an schlecht vorbereiteten Aufstandsversuchen; sein späteres Denken betonte stärker Bedingungen, Masseninitiative und Grenzen revolutionärer Minderheiten.", "Er hielt revolutionäre Gewalt unter Umständen für notwendig, warnte aber vor Rache, Terror und der Verwandlung von Mitteln in neue Herrschaft.", "Sein Organisationsmodell blieb zwischen informellen Netzwerken, spezifischer anarchistischer Organisation und Gewerkschaftsautonomie umstritten."],
+    "legacy": "Malatestas pragmatischer, nicht-dogmatischer Organisationsbegriff beeinflusst bis heute soziale Anarchist*innen; seine Praxis zeigt zugleich die Kosten von Insurrektion, Exil und Niederlage.",
+    "relatedEventIds": ["red-week-italy", "arditi-del-popolo"],
+    "sourceRefs": [
+      {"title": "Errico Malatesta Reference Archive", "url": "https://www.marxists.org/archive/malatesta/", "publisher": "Marxists Internet Archive", "language": "en", "type": "Primärtextarchiv", "accessedAt": "2026-08-24"},
+      {"title": "Malatesta, Errico", "url": "https://www.treccani.it/enciclopedia/errico-malatesta_%28Dizionario-di-Storia%29/", "publisher": "Dizionario di Storia, Treccani", "language": "it", "type": "wissenschaftliches biografisches Lexikon", "accessedAt": "2026-08-24"}
+    ],
+    "review": {"status": "Redaktioneller Pilotstand", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "mittel", "displayRule": "Aufstandsversuche, Haft und politische Gewalt nüchtern und entwicklungsgeschichtlich darstellen."},
+    "provenance": {"method": "Redaktionelle Zusammenfassung aus Primärtextarchiv und biografischem Fachlexikon.", "editorialNote": "Taktische Positionsänderungen nicht als Widerspruch glätten."},
+    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Rechte an Editionen und Lexikontexten verbleiben bei den anbietenden Stellen."}
+  },
+  {
+    "id": "bio-voltairine-de-cleyre",
+    "personName": "Voltairine de Cleyre",
+    "birth": {"date": "1866-11-17", "place": "Leslie, Michigan, USA", "certainty": "belegt"},
+    "death": {"date": "1912-06-20", "place": "Chicago, USA", "certainty": "belegt"},
+    "places": ["Michigan", "Sarnia", "Philadelphia", "Chicago", "London"],
+    "communities": ["Freidenker*innenbewegung", "anarchistische Bewegung", "jüdische Migrant*innen in Philadelphia", "feministische Bewegung"],
+    "shortDescription": "US-amerikanische anarchistische Autorin, Rednerin und Lehrerin, die Patriarchat, Ehe, Religion, Staat und ökonomische Abhängigkeit kritisierte und für einen undogmatischen Anarchismus eintrat.",
+    "lifeStages": [
+      {"period": "1866–1887", "description": "Armut, Klosterschule in Ontario und Bruch mit Religion; Einstieg in die Freidenker*innenbewegung."},
+      {"period": "1887–1902", "description": "Radikalisierung nach Haymarket, Vorträge und Schreiben; Arbeit als Lehrerin in migrantischen Gemeinschaften Philadelphias."},
+      {"period": "1902–1912", "description": "Überleben eines Attentats durch einen ehemaligen Schüler, anhaltende gesundheitliche Folgen und Weiterarbeit für Anarchismus, Frauenfreiheit und mexikanische Revolutionäre."}
+    ],
+    "ideasAndPractices": ["Anarchismus ohne Adjektive", "feministische Kritik an Ehe und Sexualökonomie", "freie Bildung", "Antiklerikalismus", "Solidarität über Sprachgrenzen"],
+    "organizingAndAchievements": ["umfangreiches essayistisches und poetisches Werk", "Bildungsarbeit in Philadelphias jüdischen Migrant*innengemeinschaften", "Vermittlung zwischen individualistischen, mutualistischen und kommunistischen Anarchismen", "Unterstützung mexikanischer Anarchist*innen"],
+    "repressionAndRisks": ["gesellschaftliche Armut und prekäre Bildungsarbeit", "Schussattentat 1902 mit bleibenden Schäden", "staatliche Beobachtung radikaler Reden"],
+    "tensionsAndCritique": ["De Cleyres Verhältnis zu politischer Gewalt wandelte sich; sie lehnte einfache moralische Urteile ab, ohne jede Tat strategisch zu bejahen.", "Die Bezeichnung Anarchismus ohne Adjektive überbrückte Richtungsstreit, löste aber Konflikte über Eigentum, Organisation und Gewalt nicht auf.", "Frühere biografische Darstellungen stilisierten sie zur asketischen Gegenfigur Emma Goldmans und unterschätzten ihre Beziehungen, Ambivalenzen und Entwicklung."],
+    "legacy": "De Cleyres Verbindung von feministischer Alltagskritik, Bildung und undogmatischem Anarchismus wurde seit den 1970er Jahren neu erschlossen.",
+    "relatedEventIds": ["haymarket", "magonista-rebellion"],
+    "sourceRefs": [
+      {"title": "Voltairine de Cleyre (1866–1912)", "url": "https://www.pbs.org/wgbh/americanexperience/features/goldman-voltairine-de-cleyre-1866-1912/", "publisher": "PBS American Experience / Labadie Collection", "language": "en", "type": "redaktionelle Biografie mit Universitätsarchivmaterial", "accessedAt": "2026-08-24"},
+      {"title": "Gates of Freedom: Voltairine de Cleyre and the Revolution of the Mind", "url": "https://www.jstor.org/stable/10.3998/mpub.11482", "publisher": "University of Michigan Press / JSTOR", "language": "en", "type": "wissenschaftliche Edition", "accessedAt": "2026-08-24"}
+    ],
+    "review": {"status": "Redaktioneller Pilotstand", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "mittel", "displayRule": "Attentat und gesundheitliche Folgen ohne Sensationalisierung darstellen."},
+    "provenance": {"method": "Redaktionelle Zusammenfassung aus Archivmaterial-basierter Biografie und wissenschaftlicher Edition.", "editorialNote": "Keine unbelegten berühmten Zitate übernommen."},
+    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Publikations- und Bildrechte verbleiben bei den Quellen."}
+  },
+  {
+    "id": "bio-nestor-machno",
+    "personName": "Nestor Machno",
+    "birth": {"date": "1888-11-07", "place": "Huljajpole, Russisches Reich (heute Ukraine)", "certainty": "Quellen nennen 1888 oder 1889"},
+    "death": {"date": "1934-07-25", "place": "Paris, Frankreich", "certainty": "belegt"},
+    "places": ["Huljajpole", "Südukraine", "Moskau", "Rumänien", "Polen", "Paris"],
+    "communities": ["ukrainische Bauernbewegung", "anarchokommunistische Bewegung", "Revolutionäre Aufständische Armee der Ukraine", "Exilnetzwerke"],
+    "shortDescription": "Ukrainischer anarchokommunistischer Aufstandsführer, dessen bäuerliche Bewegung 1918–1921 gegen Besatzung, Weiße Armeen und bolschewistische Zentralisierung kämpfte und freie Sowjets propagierte.",
+    "lifeStages": [
+      {"period": "1888/89–1917", "description": "Arme bäuerliche Kindheit, Fabrikarbeit, anarchistische Untergrundgruppe, Todesurteil und langjährige Haft bis zur Februarrevolution."},
+      {"period": "1917–1921", "description": "Lokale Land- und Rätestrukturen in Huljajpole, Aufbau einer mobilen Aufstandsarmee und wechselnde militärische Bündnisse mit den Bolschewiki gegen weiße Armeen."},
+      {"period": "1921–1934", "description": "Flucht und Exil, Armut in Paris, Memoiren und Beteiligung an Debatten um die Organisationsplattform libertärer Kommunist*innen."}
+    ],
+    "ideasAndPractices": ["freie Sowjets", "bäuerliche Selbstverwaltung", "Anarchokommunismus", "mobile Guerillakriegsführung", "Organisationsplattform"],
+    "organizingAndAchievements": ["Aufbau einer breit getragenen bäuerlichen Aufstandsbewegung", "militärischer Widerstand gegen Besatzung und weiße Gegenrevolution", "zeitweilige Räume für lokale Räte und Kommunen", "Mitwirkung an der Plattformdebatte im Exil"],
+    "repressionAndRisks": ["Todesurteil und Zwangsarbeit im Zarenreich", "Krieg, Verwundungen und bolschewistische Verfolgung", "Internierung und prekäre Exiljahre"],
+    "tensionsAndCritique": ["Die Bewegung verband freiheitliche Räteziele mit militärischer Kommandostruktur; Reichweite und Unabhängigkeit ziviler Selbstverwaltung variierten unter Kriegsbedingungen.", "Hinrichtungen, Requisitionen und Übergriffe makhnowschtschinischer Einheiten sind belegt und dürfen nicht durch Freiheitsrhetorik verdeckt werden; Ausmaß, Befehlsketten und Quellenlage bleiben teils umstritten.", "Antisemitische Pogrome anderer Bürgerkriegsarmeen prägten die Region. Machno verurteilte Antisemitismus und bestrafte Täter, doch die vollständige Kontrolle über alle Verbände ist strittig.", "Personenkult um Batko Machno widersprach dem erklärten Antiautoritarismus und wird in Erinnerungspolitiken oft verstärkt."],
+    "legacy": "Die Machnowschtschina ist ein Schlüsselbeispiel libertärer Revolution unter Bürgerkriegsbedingungen, aber weder reine Utopie noch bloßes Banditentum; ihre Gewalt- und Quellenprobleme gehören zur Bewertung.",
+    "relatedEventIds": ["machnowschtschina"],
+    "sourceRefs": [
+      {"title": "Махно Нестор Іванович", "url": "https://esu.com.ua/article-67136", "publisher": "Encyclopedia of Modern Ukraine, National Academy of Sciences of Ukraine", "language": "uk", "type": "wissenschaftliches Nachschlagewerk", "accessedAt": "2026-08-24"},
+      {"title": "Makhno, Nestor Ivanovich", "url": "https://encyclopedia.1914-1918-online.net/article/makhno-nestor-ivanovich/", "publisher": "1914-1918-online, Freie Universität Berlin", "language": "en", "type": "wissenschaftliche Enzyklopädie", "accessedAt": "2026-08-24"}
+    ],
+    "review": {"status": "Redaktioneller Pilotstand", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "hoch", "displayRule": "Bürgerkriegsgewalt, Pogromkontext und umstrittene Verantwortlichkeit quellenkritisch darstellen; keine militärische Heroisierung."},
+    "provenance": {"method": "Redaktionelle Synthese aus ukrainischem Fachlexikon und universitärer Kriegsenzyklopädie.", "editorialNote": "Abweichende Geburtsjahre und Transliteration transparent gemacht."},
+    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Quellenrechte verbleiben bei den Institutionen."}
+  },
+  {
+    "id": "bio-buenaventura-durruti",
+    "personName": "Buenaventura Durruti",
+    "birth": {"date": "1896-07-14", "place": "León, Spanien", "certainty": "belegt"},
+    "death": {"date": "1936-11-20", "place": "Madrid, Spanien", "certainty": "Todesdatum belegt, Schussumstände umstritten"},
+    "places": ["León", "Barcelona", "Frankreich", "Lateinamerika", "Aragón", "Madrid"],
+    "communities": ["Confederación Nacional del Trabajo", "Federación Anarquista Ibérica", "Los Solidarios", "Durruti-Kolonne"],
+    "shortDescription": "Spanischer Mechaniker, Anarchosyndikalist und Milizionär, der in der CNT, im bewaffneten Untergrund und 1936 in revolutionären Milizen wirkte.",
+    "lifeStages": [
+      {"period": "1896–1920", "description": "Mechaniker, Gewerkschaftsarbeit und Beteiligung am Streik von 1917; Repression und Übergang zur CNT."},
+      {"period": "1920–1931", "description": "Militanz bei Los Solidarios, Exil und bewaffnete Geldbeschaffung in Europa und Lateinamerika; Prozesse und Ausweisungen."},
+      {"period": "1931–1936", "description": "Konflikte um insurrektionelle CNT-Strategien, Haft und Deportation; 1936 Führung einer Milizkolonne von Barcelona nach Aragón und Tod an der Madrider Front."}
+    ],
+    "ideasAndPractices": ["Anarchosyndikalismus", "direkte Aktion", "bewaffnete Selbstverteidigung", "Miliz statt stehendes Heer", "revolutionäre Kollektivierung"],
+    "organizingAndAchievements": ["Aufbau militanter CNT-Netzwerke unter Diktatur", "Beteiligung am Sieg über den Militärputsch in Barcelona", "Organisation der Durruti-Kolonne und Unterstützung sozialer Umwälzungen in Aragón"],
+    "repressionAndRisks": ["wiederholte Haft, Ausweisung und Staatenlosigkeit", "gezielte Verfolgung durch Diktaturen", "Tod durch Schussverletzung im Bürgerkrieg"],
+    "tensionsAndCritique": ["Los Solidarios und spätere Gruppen verübten Attentate und Banküberfälle; politische Motive heben die Opfer- und Eskalationsrisiken dieser Praxis nicht auf.", "Die Durruti-Kolonne verband egalitäre Ansprüche mit militärischer Disziplin; Berichte über Zwang, Erschießungen und antiklerikale Gewalt im republikanischen Hinterland erfordern lokale, quellenkritische Prüfung.", "Durrutis Tod wurde früh zum Märtyrermythos; die genaue Herkunft des tödlichen Schusses ist nicht abschließend geklärt."],
+    "legacy": "Durruti symbolisiert den bewaffneten Anarchosyndikalismus von 1936. Seine Bedeutung lässt sich nur zusammen mit Untergrundgewalt, Kriegszwang und kollektivem Handeln jenseits der Führungsfigur erfassen.",
+    "relatedEventIds": ["spanische-revolution"],
+    "sourceRefs": [
+      {"title": "Durruti, Buenaventura (1896–1936)", "url": "https://pares.mcu.es/ParesBusquedas20/catalogo/autoridad/123548", "publisher": "PARES, Archivos Estatales de España", "language": "es", "type": "Archivische Normdatei und Biografie", "accessedAt": "2026-08-24"},
+      {"title": "Durruti in the Spanish Revolution", "url": "https://www.akpress.org/durrutiinthespanishrevolution.html", "publisher": "AK Press", "language": "en", "type": "quellenbasierte Biografie von Abel Paz", "accessedAt": "2026-08-24"}
+    ],
+    "review": {"status": "Redaktioneller Pilotstand", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "hoch", "displayRule": "Attentate, Erschießungen und Krieg ohne Märtyrer- oder Kampfromantik darstellen; ungeklärte Todesumstände markieren."},
+    "provenance": {"method": "Redaktionelle Synthese aus Referenzwerk und quellenbasierter Bewegungsgeschichte.", "editorialNote": "Keine Durruti zugeschriebenen, quellenunsicheren Zitate verwendet."},
+    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Buch- und Quellenrechte verbleiben bei den Rechteinhaber*innen."}
+  },
+  {
+    "id": "bio-ricardo-flores-magon",
+    "personName": "Ricardo Flores Magón",
+    "birth": {"date": "1874-09-16", "place": "Eloxochitlán, Oaxaca, Mexiko", "certainty": "Archivquellen widersprechen sich teils zwischen 1873 und 1874"},
+    "death": {"date": "1922-11-21", "place": "Bundesgefängnis Leavenworth, Kansas, USA", "certainty": "Datum in Quellen teils als 21. oder 22. November geführt"},
+    "places": ["Oaxaca", "Mexiko-Stadt", "St. Louis", "Los Angeles", "Leavenworth"],
+    "communities": ["Partido Liberal Mexicano", "Regeneración", "mexikanische und mexikanisch-US-amerikanische Arbeiter*innen", "anarchistische Bewegung"],
+    "shortDescription": "Mexikanischer Journalist, Organisator und Anarchist, dessen Zeitung Regeneración und Partido Liberal Mexicano die Diktatur Porfirio Díaz bekämpften und grenzüberschreitende soziale Revolution propagierten.",
+    "lifeStages": [
+      {"period": "1874–1904", "description": "Studierendenproteste, oppositioneller Journalismus, Gründung von Regeneración, Haft und erzwungenes Exil."},
+      {"period": "1904–1911", "description": "Aufbau der PLM-Junta in den USA, Programm von 1906, Streikunterstützung und bewaffnete Aufstandsversuche einschließlich Baja California."},
+      {"period": "1911–1922", "description": "Zunehmend expliziter Anarchismus, Konflikte mit Madero und anderen Revolutionären, US-Verfolgung, Verurteilung nach dem Espionage Act und Tod in Haft."}
+    ],
+    "ideasAndPractices": ["Land und Freiheit", "anarchokommunistische Revolution", "grenzüberschreitende Pressearbeit", "Antidiktatur", "Arbeiter*innen- und indigene Gemeinbesitztraditionen"],
+    "organizingAndAchievements": ["Gründung und jahrzehntelange Herausgabe von Regeneración", "Aufbau eines binationalen PLM-Netzwerks", "Einfluss auf Streiks und Vorläuferkämpfe der Mexikanischen Revolution", "Verbindung mexikanischer, migrantischer und US-radikaler Netzwerke"],
+    "repressionAndRisks": ["mehrfache Haft in Mexiko und den USA", "Zensur, Beschlagnahmung und Geheimdienstüberwachung", "schwere Erkrankung und Tod im US-Bundesgefängnis"],
+    "tensionsAndCritique": ["Der Name Magonismus wurde vielfach staatlich und später nationalrevolutionär vereinnahmt; Flores Magón selbst bevorzugte anarchistische und PLM-Bezeichnungen.", "Die Baja-California-Kampagne von 1911 litt unter widersprüchlichen Zielen, schwacher lokaler Verankerung und zeitgenössischer Fremdenlegions-Propaganda; ihr Verhältnis zu nationaler und sozialer Revolution bleibt umstritten.", "Das PLM-Programm von 1906 war reformorientierter als Flores Magóns spätere anarchokommunistische Position; diese Entwicklung darf nicht rückwirkend geglättet werden.", "Seine Berufung auf indigene Gemeinschaften war antikolonial anschlussfähig, konnte aber konkrete indigene Unterschiede vereinfachen."],
+    "legacy": "Flores Magón prägte radikale Presse, grenzüberschreitende Organisierung und den sozialen Horizont der Mexikanischen Revolution; staatliche Kanonisierung darf seinen Anarchismus und interne Konflikte nicht neutralisieren.",
+    "relatedEventIds": ["magonista-rebellion", "rio-blanco-strike"],
+    "sourceRefs": [
+      {"title": "Ricardo Flores Magón", "url": "https://www.constitucion1917.gob.mx/es/inehrm/magon", "publisher": "Instituto Nacional de Estudios Históricos de las Revoluciones de México", "language": "es", "type": "staatliches Forschungs- und Quellenportal", "accessedAt": "2026-08-24"},
+      {"title": "Digital Resources: Ricardo Flores Magón Archive", "url": "https://academic.oup.com/edited-volume/61800/chapter/546432065", "publisher": "Oxford Research Encyclopedia of Latin American History", "language": "en", "type": "wissenschaftlicher Archivführer", "accessedAt": "2026-08-24"},
+      {"title": "Biografía — Ricardo Flores Magón", "url": "https://archivomagon.net/it/biografia/", "publisher": "Archivo Digital Ricardo Flores Magón, INAH", "language": "es", "type": "Digitalarchiv und Primärquellenportal", "accessedAt": "2026-08-24"}
+    ],
+    "review": {"status": "Redaktioneller Pilotstand", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "hoch", "displayRule": "Hafttod, bewaffnete Kampagnen und indigene Bezüge differenziert; widersprüchliche Daten sichtbar darstellen."},
+    "provenance": {"method": "Redaktionelle Synthese aus mexikanischen Forschungsarchiven und Oxford-Archivführer.", "editorialNote": "Datumswidersprüche nicht still vereinheitlicht."},
+    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Archiv- und Pressefaksimiles unterliegen eigenen Bedingungen."}
+  },
+  {
+    "id": "bio-maria-lacerda-de-moura",
+    "personName": "Maria Lacerda de Moura",
+    "birth": {"date": "1887-05-16", "place": "Manhuaçu, Minas Gerais, Brasilien", "certainty": "belegt"},
+    "death": {"date": "1945-03-20", "place": "Rio de Janeiro, Brasilien", "certainty": "belegt"},
+    "places": ["Manhuaçu", "Barbacena", "São Paulo", "Guararema", "Rio de Janeiro", "Buenos Aires"],
+    "communities": ["brasilianische Frauenbewegung", "anarchistische Presse", "Arbeiter*innenbewegung", "Antifaschismus", "Freidenker*innen"],
+    "shortDescription": "Brasilianische Lehrerin, anarchistische Feministin und Antimilitaristin, die patriarchale Familie, Kirche, Faschismus, Krieg und eine auf Wahlrecht verengte Frauenpolitik kritisierte.",
+    "lifeStages": [
+      {"period": "1887–1921", "description": "Ausbildung und Arbeit als Lehrerin in Barbacena, Alphabetisierungsarbeit und Aufbau einer Liga für intellektuelle Frauenemanzipation."},
+      {"period": "1921–1937", "description": "Leben in São Paulo und einer Gemeinschaft in Guararema, Mitarbeit an anarchistischer Presse, internationale Vorträge und Schriften zu Sexualität, Bildung, Krieg und Faschismus."},
+      {"period": "1937–1945", "description": "Rückzug unter dem Estado Novo, spätere Arbeit beim Rundfunk und fortgesetztes Schreiben bis zu ihrem Tod."}
+    ],
+    "ideasAndPractices": ["anarchistischer Feminismus", "sexuelle Selbstbestimmung und freie Liebe", "libertäre Pädagogik", "Antimilitarismus", "Antifaschismus", "Kritik an Kirche und Familie"],
+    "organizingAndAchievements": ["Gründung der Liga para a Emancipação Intelectual da Mulher", "Mitarbeit an A Plebe und Herausgabe von Renascença", "frühe brasilianische Kritik an Faschismus und Krieg", "Verbindung feministischer, pädagogischer und anarchistischer Debatten im Cono Sur"],
+    "repressionAndRisks": ["Zensur und politischer Druck unter autoritären Regimen", "öffentliche misogyn geprägte Angriffe", "langjährige Marginalisierung aus dem historischen Kanon"],
+    "tensionsAndCritique": ["Sie verließ die bürgerliche Wahlrechtsbewegung, weil ihr deren Klassenhorizont zu eng war; damit gewann ihre Gesellschaftskritik an Tiefe, verlor aber einen Teil institutioneller Bündnisse.", "Ihre Nähe zu individualistischen und lebensreformerischen Milieus erzeugte Spannungen zur gewerkschaftlich-klassenkämpferischen Linken.", "Einzelne zeitgenössische eugenische und rassenhygienische Begriffe in ihrem Umfeld und Werk verlangen genaue Textkontexte; ihre entschiedene Gegnerschaft zu Faschismus darf nicht zur pauschalen Entlastung jeder biopolitischen Formulierung dienen."],
+    "legacy": "Lacerda de Moura ist eine zentrale Stimme des lateinamerikanischen anarchistischen Feminismus; ihre Wiederentdeckung zeigt zugleich, wie politische und geschlechtliche Kanonbildung wirkt.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {"title": "MOURA, Maria", "url": "https://cpdoc.fgv.br/sites/default/files/verbetes/primeira-republica/1%20Verbetes%20letra%20M.pdf", "publisher": "CPDOC, Fundação Getulio Vargas", "language": "pt", "type": "historisch-biografisches Fachlexikon", "accessedAt": "2026-08-24"},
+      {"title": "Maria Lacerda de Moura: Trajetória de uma Rebelde", "url": "https://lisa.fflch.usp.br/node/65", "publisher": "Universidade de São Paulo, LISA", "language": "pt", "type": "quellenbasierte Universitätsdokumentation", "accessedAt": "2026-08-24"},
+      {"title": "A documentação de Maria Lacerda de Moura", "url": "https://revistas.usp.br/rieb/article/download/73411/77109/98588", "publisher": "Revista do Instituto de Estudos Brasileiros, USP", "language": "pt", "type": "wissenschaftlicher Quellenbericht", "accessedAt": "2026-08-24"}
+    ],
+    "review": {"status": "Redaktioneller Pilotstand", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "mittel", "displayRule": "Eugenische Begriffe nur quellenkritisch und ohne Normalisierung wiedergeben; misogynen Ausschluss benennen."},
+    "provenance": {"method": "Redaktionelle Synthese aus brasilianischem Fachlexikon, USP-Dokumentation und Quellenbericht.", "editorialNote": "Wiederentdeckungsgeschichte und mögliche biopolitische Spannungen aufgenommen."},
+    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Rechte an Film, Artikeln und Quellen verbleiben bei den Institutionen."}
+  },
+  {
+    "id": "bio-ba-jin",
+    "personName": "Ba Jin",
+    "birth": {"date": "1904-11-25", "place": "Chengdu, Sichuan, China", "certainty": "belegt"},
+    "death": {"date": "2005-10-17", "place": "Shanghai, China", "certainty": "belegt"},
+    "places": ["Chengdu", "Nanjing", "Shanghai", "Paris", "Quanzhou"],
+    "communities": ["chinesische anarchistische Bewegung", "literarische Moderne", "Übersetzungsnetzwerke", "Opfer und Überlebende der Kulturrevolution"],
+    "shortDescription": "Chinesischer Schriftsteller, Übersetzer und in jungen Jahren aktiver Anarchist, der patriarchale Familienordnung und Autorität literarisch angriff und später die Kulturrevolution selbstkritisch erinnerte.",
+    "lifeStages": [
+      {"period": "1904–1927", "description": "Aufwachsen in einer wohlhabenden Großfamilie, Hinwendung zum Anarchismus, Publizistik und Organisierung in Nanjing und Shanghai."},
+      {"period": "1927–1949", "description": "Aufenthalt in Frankreich, Beginn der Romane, Übersetzung und Herausgabe anarchistischer Werke; breite literarische Wirkung in China."},
+      {"period": "1949–2005", "description": "Arbeit in staatlichen Kulturinstitutionen, Anpassungsdruck und Verfolgung während der Kulturrevolution; spätere Rehabilitation, Erinnerungsessays und Forderung nach einem Museum der Kulturrevolution."}
+    ],
+    "ideasAndPractices": ["Anarchismus und gegenseitige Hilfe", "Kritik patriarchaler Familienherrschaft", "Übersetzung als internationale Praxis", "literarische Erinnerung", "Selbstkritik nach politischer Verfolgung"],
+    "organizingAndAchievements": ["Übersetzung Kropotkins und anderer Anarchist*innen ins Chinesische", "Unterstützung anarchistischer Publikationsnetzwerke", "Romane wie Familie als Kritik feudaler und patriarchaler Autorität", "späte öffentliche Erinnerung an die Kulturrevolution"],
+    "repressionAndRisks": ["Zensur vor 1949", "öffentliche Demütigung, Zwangsarbeit und Verfolgung während der Kulturrevolution", "politischer Druck zur Anpassung"],
+    "tensionsAndCritique": ["Ba Jins institutionelle Rolle nach 1949 und seine öffentlichen Anpassungen standen in Spannung zu seinem früheren Anarchismus.", "In seinen späten Erinnerungen bekannte er, unter Druck an der Verfolgung anderer mitgewirkt oder geschwiegen zu haben; Opferstatus und Verantwortung müssen zusammen betrachtet werden.", "Sein literarischer Kanonstatus kann die konkrete kollektive anarchistische Bewegung verdecken, zu der Übersetzer*innen, Frauen und Arbeiter*innen beitrugen."],
+    "legacy": "Ba Jin verbindet chinesischen Anarchismus, Weltliteratur und die schwierige Ethik selbstkritischer Erinnerung nach der Kulturrevolution.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {"title": "Ba, Jin (1904–2005) archival sub-series", "url": "https://archives.lib.cuhk.edu.hk/repositories/5/archival_objects/254796", "publisher": "Chinese University of Hong Kong Library", "language": "zh", "type": "Archivsammlung mit Briefen", "accessedAt": "2026-08-24"},
+      {"title": "Ba Jin Archive", "url": "https://dwardmac.pitzer.edu/Anarchist_Archives/bright/bajin/bajinarchive.html", "publisher": "Pitzer College Anarchy Archives", "language": "en", "type": "Universitätsarchiv und Primärtexte", "accessedAt": "2026-08-24"},
+      {"title": "Ba Jin recipient profile", "url": "https://fukuoka-prize.org/files/download/en/LaureatesI18n/laureate_blocks/5688b02d-b6ab-48d4-9956-c46be711ecde/value01/value05", "publisher": "Fukuoka Prize", "language": "en", "type": "institutionelle Biografie", "accessedAt": "2026-08-24"}
+    ],
+    "review": {"status": "Redaktioneller Pilotstand", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "hoch", "displayRule": "Verfolgung, erzwungene Selbstkritik und eigene Mitverantwortung ohne Gleichsetzung oder Entlastung darstellen."},
+    "provenance": {"method": "Redaktionelle Synthese aus Universitätsarchiven, Briefmetadaten und institutioneller Biografie.", "editorialNote": "Frühen Anarchismus und spätere Staatsinstitutionen nicht zu einer geraden Entwicklung vereinfachen."},
+    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Rechte an Briefen und Werken bleiben bei Archiven und Rechteinhaber*innen."}
+  },
+  {
+    "id": "bio-ito-noe",
+    "personName": "Itō Noe",
+    "birth": {"date": "1895-01-21", "place": "Imajuku, Fukuoka, Japan", "certainty": "belegt"},
+    "death": {"date": "1923-09-16", "place": "Tokio, Japan", "certainty": "belegt"},
+    "places": ["Fukuoka", "Tokio"],
+    "communities": ["Seitō", "japanische Frauenbewegung", "anarchistische Bewegung", "Übersetzungsnetzwerke"],
+    "shortDescription": "Japanische Feministin, anarchistische Autorin, Übersetzerin und Redakteurin von Seitō, die arrangierte Ehe, patriarchale Moral und staatliche Autorität angriff.",
+    "lifeStages": [
+      {"period": "1895–1912", "description": "Ländliche Kindheit, höhere Mädchenschule in Tokio, erzwungene Heirat und Flucht aus der Ehe."},
+      {"period": "1912–1916", "description": "Mitarbeit und Redaktion der feministischen Zeitschrift Seitō, Übersetzungen unter anderem von Emma Goldman und Debatten über Sexualität und Selbstbestimmung."},
+      {"period": "1916–1923", "description": "Leben und politische Arbeit mit Ōsugi Sakae, Publizistik im anarchistischen Umfeld; Ermordung mit Ōsugi und seinem sechsjährigen Neffen durch Militärpolizei nach dem Kantō-Erdbeben."}
+    ],
+    "ideasAndPractices": ["Frauenautonomie", "Kritik an Ehe und Familie", "Anarchismus", "freie Liebe", "Übersetzung feministischer und anarchistischer Texte"],
+    "organizingAndAchievements": ["Redaktion von Seitō", "Vermittlung internationaler feministischer und anarchistischer Texte", "öffentliche Kritik patriarchaler Doppelmoral", "Mitprägung des japanischen anarchistischen Feminismus"],
+    "repressionAndRisks": ["Zensur und Publikationsverbote", "öffentliche sexualisierte Skandalisierung", "außergerichtliche Ermordung durch Militärpolizei im Amakasu-Zwischenfall"],
+    "tensionsAndCritique": ["Zeitgenössische und spätere Darstellungen reduzierten Itō häufig auf ihre Beziehungen zu Männern und verdeckten ihre eigene redaktionelle und theoretische Arbeit.", "Die Praxis freier Liebe war von realen Asymmetrien, Eifersucht und Gewalt in Beziehungen umgeben; Freiheitspostulate beseitigten patriarchale Macht nicht automatisch.", "Ihre Texte entstanden in einem imperialen Japan; die Verbindung feministischer Emanzipation mit Kritik an Kolonialismus und Klasse blieb uneinheitlich und muss werkbezogen geprüft werden."],
+    "legacy": "Itō Noe gilt als zentrale Stimme des japanischen anarchistischen Feminismus und als Opfer staatlicher Gewalt; ihre eigene Autorschaft darf nicht im Paarmythos mit Ōsugi verschwinden.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {"title": "Itō Noe — digital texts", "url": "https://www.aozora.gr.jp/index_pages/person416.html", "publisher": "Aozora Bunko", "language": "ja", "type": "Primärtextarchiv", "accessedAt": "2026-08-24"},
+      {"title": "Reflections on the Way to the Gallows: Rebel Women in Prewar Japan", "url": "https://www.ucpress.edu/book/9780520084216/reflections-on-the-way-to-the-gallows", "publisher": "University of California Press", "language": "en", "type": "wissenschaftliche Quellenedition", "accessedAt": "2026-08-24"}
+    ],
+    "review": {"status": "Redaktioneller Pilotstand", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "hoch", "displayRule": "Ermordung und Beziehungsgewalt nicht sensationalisieren; Itō als eigenständige Autorin darstellen."},
+    "provenance": {"method": "Redaktionelle Zusammenfassung aus japanischem Primärtextarchiv und wissenschaftlicher Quellenedition.", "editorialNote": "Namensform Itō Noe nach international gebräuchlicher Reihenfolge geführt."},
+    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Text- und Editionsrechte gelten separat."}
+  },
+  {
+    "id": "bio-osugi-sakae",
+    "personName": "Ōsugi Sakae",
+    "birth": {"date": "1885-01-17", "place": "Marugame, Kagawa, Japan", "certainty": "belegt"},
+    "death": {"date": "1923-09-16", "place": "Tokio, Japan", "certainty": "belegt"},
+    "places": ["Marugame", "Tokio", "Gefängnisse in Japan", "Paris"],
+    "communities": ["japanische sozialistische Bewegung", "Anarchosyndikalismus", "Esperanto-Bewegung", "internationale anarchistische Netzwerke"],
+    "shortDescription": "Japanischer Anarchist, Übersetzer und Gewerkschaftstheoretiker, der individuelle Selbstentwicklung, direkte Aktion, Anarchosyndikalismus und internationale Verständigung verband.",
+    "lifeStages": [
+      {"period": "1885–1906", "description": "Kindheit in einer Militärfamilie, Ausschluss aus der Kadettenschule, Sprachenstudium und Anschluss an sozialistische Kreise."},
+      {"period": "1906–1918", "description": "Antimilitaristische Proteste, wiederholte Haft, Übersetzungen und Entwicklung von direkter Aktion und Anarchosyndikalismus."},
+      {"period": "1918–1923", "description": "Publizistik und internationale Kontakte, heimliche Reise zum anarchistischen Kongress in Paris; Ermordung mit Itō Noe und seinem Neffen durch Militärpolizei."}
+    ],
+    "ideasAndPractices": ["Anarchosyndikalismus", "direkte Aktion", "individuelle Selbstentwicklung", "Esperanto und Internationalismus", "Übersetzung evolutionärer und anarchistischer Theorie"],
+    "organizingAndAchievements": ["Vermittlung europäischer anarchistischer und syndikalistischer Texte nach Japan", "Aufbau radikaler Zeitschriften", "Impulse für unabhängige Gewerkschaftsorganisierung", "internationale Vernetzung trotz Reiseverboten"],
+    "repressionAndRisks": ["zahlreiche Haftstrafen und Zensur", "Überwachung und Reisebeschränkungen", "außergerichtliche Ermordung im Amakasu-Zwischenfall"],
+    "tensionsAndCritique": ["Ōsugis Betonung persönlicher Freiheit kollidierte mit Verantwortung in intimen Beziehungen; das Beziehungsgeflecht um Kamichika Ichiko, Itō Noe und Yasuko Hori war von Eifersucht und schwerer Gewalt geprägt.", "Informelle charismatische Führung konnte seinen antiautoritären Anspruch unterlaufen.", "Seine Strategie direkter Aktion blieb gegenüber langfristigem Gewerkschaftsaufbau und breiter demokratischer Organisierung umstritten."],
+    "legacy": "Ōsugi prägte Japans Anarchosyndikalismus und internationale Übersetzungsarbeit; seine Ermordung steht für staatliche Gewalt nach dem Kantō-Erdbeben, ohne private Machtkonflikte aus der Biografie auszublenden.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {"title": "The Autobiography of Ōsugi Sakae", "url": "https://publishing.cdlib.org/ucpressebooks/public/book/the-autobiography-of-osugi-sakae.html", "publisher": "University of California Press", "language": "en", "type": "annotierte Primärtextedition", "accessedAt": "2026-08-24"},
+      {"title": "The trial of Military Police Captain Amakasu", "url": "https://rmda.kulib.kyoto-u.ac.jp/item/RB00029936", "publisher": "Kyoto University Rare Materials Digital Archive", "language": "ja", "type": "historische Primärquelle", "accessedAt": "2026-08-24"}
+    ],
+    "review": {"status": "Redaktioneller Pilotstand", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "hoch", "displayRule": "Staatsmord und Beziehungsgewalt klar, knapp und ohne voyeuristische Details darstellen."},
+    "provenance": {"method": "Redaktionelle Zusammenfassung aus annotierter Autobiografie und Kyotoer Primärquellenarchiv.", "editorialNote": "Diakritische Schreibweise Ōsugi Sakae verwendet."},
+    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Editions- und Digitalisatrechte gelten separat."}
+  },
+  {
+    "id": "bio-federica-montseny",
+    "personName": "Federica Montseny",
+    "birth": {"date": "1905-02-12", "place": "Madrid, Spanien", "certainty": "belegt"},
+    "death": {"date": "1994-01-14", "place": "Toulouse, Frankreich", "certainty": "belegt"},
+    "places": ["Madrid", "Barcelona", "Valencia", "Gurs", "Toulouse"],
+    "communities": ["Confederación Nacional del Trabajo", "Federación Anarquista Ibérica", "anarchistische Presse", "spanisches Exil", "Frauenbewegung"],
+    "shortDescription": "Spanische anarchistische Autorin, Rednerin und CNT-Funktionärin, die 1936 Gesundheitsministerin wurde und damit einen bis heute umstrittenen Schritt anarchistischer Regierungsbeteiligung verkörperte.",
+    "lifeStages": [
+      {"period": "1905–1936", "description": "Aufwachsen in einer anarchistischen Verleger*innenfamilie, frühe Publizistik und Aufstieg zur bekannten Rednerin in CNT und FAI."},
+      {"period": "1936–1939", "description": "Ministerin für Gesundheit und Soziale Fürsorge in Largo Caballeros Regierung, soziale Reformvorhaben und Konflikte um Krieg und Revolution."},
+      {"period": "1939–1994", "description": "Flucht, Internierung und Exil in Frankreich; Wiederaufbau der Exil-CNT, publizistische Arbeit und spätere Reisen nach Spanien."}
+    ],
+    "ideasAndPractices": ["anarchistischer Individualismus", "freie Föderation", "Gesundheits- und Sozialreform", "Frauenautonomie", "antifranquistisches Exil"],
+    "organizingAndAchievements": ["umfangreiche Presse- und Vortragstätigkeit", "erste Ministerin Spaniens und eine der ersten in Westeuropa", "Vorhaben zu Gesundheitsversorgung, Schwangerschaftsabbruch und sozialer Fürsorge", "jahrzehntelange Organisierung des libertären Exils"],
+    "repressionAndRisks": ["Flucht nach dem Sieg Francos", "Internierung im Lager Gurs und Auslieferungsgefahr", "langes Exil und Verlust von Unterlagen"],
+    "tensionsAndCritique": ["Der Eintritt in eine republikanische Regierung widersprach dem anarchistischen Antistaatismus und band CNT-Führungspersonen an Entscheidungen eines kriegführenden Staates.", "Montseny und andere CNT-Führungen riefen während der Mai-Ereignisse 1937 zur Einstellung der Kämpfe auf; Kritiker*innen sahen darin die Preisgabe revolutionärer Basispositionen.", "Ihre feministische Selbstbeschreibung blieb in Spannung zu Konflikten mit Mujeres Libres und zur Behauptung, eine eigenständige Frauenorganisation sei teils nachrangig gegenüber der sozialen Revolution.", "Viele Ministerialprojekte blieben wegen kurzer Amtszeit, Krieg und institutionellem Widerstand unvollständig; spätere Zuschreibungen müssen zwischen Plan und Umsetzung unterscheiden."],
+    "legacy": "Montseny steht für anarchistische Frauenöffentlichkeit, Exilkontinuität und das ungelöste Problem libertärer Regierungsbeteiligung im Bürgerkrieg.",
+    "relatedEventIds": ["spanische-revolution", "mujeres-libres", "barcelona-may-days"],
+    "sourceRefs": [
+      {"title": "Federica Montseny (1905–1994)", "url": "https://www.cultura.gob.es/cultura/areas/archivos/mc/centros/cida/4-difusion-cooperacion/4-1-guias-de-lectura/escritoras/montseny-federica.html", "publisher": "Ministerio de Cultura de España, CIDA", "language": "es", "type": "Archivführer und Biografie", "accessedAt": "2026-08-24"},
+      {"title": "Social and Political Thought of Federica Montseny, Spanish Anarchist, 1923–1937", "url": "https://digitalrepository.unm.edu/hist_etds/429/", "publisher": "University of New Mexico", "language": "en", "type": "wissenschaftliche Qualifikationsschrift", "accessedAt": "2026-08-24"}
+    ],
+    "review": {"status": "Redaktioneller Pilotstand", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "hoch", "displayRule": "Bürgerkrieg, Lagerhaft und Regierungskonflikte ohne Heroisierung oder pauschale Schuldzuweisung darstellen."},
+    "provenance": {"method": "Redaktionelle Synthese aus spanischem Archivführer und wissenschaftlicher Ideengeschichte.", "editorialNote": "Geplante und tatsächlich umgesetzte Ministerialpolitik unterschieden."},
+    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Archiv- und Publikationsrechte bleiben bei den Institutionen."}
+  },
+  {
+    "id": "bio-he-yin-zhen",
+    "personName": "He-Yin Zhen",
+    "birth": {"date": "ca. 1884", "place": "Yizheng, Jiangsu, Qing-Reich", "certainty": "ungefähr"},
+    "death": {"date": "unbekannt, nach 1920", "place": "China", "certainty": "unsicher"},
+    "places": ["Yizheng", "Tokio", "China"],
+    "communities": ["chinesischer Anarchismus", "früher chinesischer Feminismus", "Natural Justice", "chinesische Exilnetzwerke in Japan"],
+    "shortDescription": "Chinesische anarchistische Feministin und Herausgeberin, die um 1907 Geschlecht, Klasse, Arbeit und imperiale Macht gemeinsam analysierte und nationale wie männlich dominierte Emanzipationsprogramme kritisierte.",
+    "lifeStages": [
+      {"period": "ca. 1884–1907", "description": "Geburt als He Ban, Ausbildung und Heirat mit Liu Shipei; Übersiedlung nach Japan."},
+      {"period": "1907–1908", "description": "Gründung der Women’s Rights Recovery Association und Herausgabe von Natural Justice; zentrale Essays zu Frauenbefreiung, Arbeit und Kommunismus."},
+      {"period": "nach 1908", "description": "Rückkehr nach China; spätere Lebensdaten und Todesumstände sind widersprüchlich und archivalisch kaum gesichert."}
+    ],
+    "ideasAndPractices": ["anarchistischer Feminismus", "nannü als System geschlechtlicher Ungleichheit", "Kritik an Lohnarbeit und unbezahlter Reproduktionsarbeit", "Antinationalismus", "kommunale Ökonomie"],
+    "organizingAndAchievements": ["Mitgründung einer Frauenrechtsvereinigung", "Herausgabe der Zeitschrift Natural Justice", "frühe Verbindung von Geschlecht, Klasse und imperialer Weltordnung", "grundlegende Kritik männlich dominierter nationalistischer Frauenbefreiung"],
+    "repressionAndRisks": ["Exil und politische Unsicherheit", "spätere Auslöschung ihrer eigenständigen Autorschaft hinter der Biografie ihres Ehemanns", "lückenhafte Überlieferung"],
+    "tensionsAndCritique": ["He-Yin Zhens Zusammenarbeit mit Liu Shipei und dessen spätere konservative Wendung führte lange dazu, ihre Positionen abgeleitet statt eigenständig zu lesen.", "Ihre globale Kritik arbeitete mit Verallgemeinerungen über Frauen und Arbeit, die regionale, ethnische und sexuelle Unterschiede nur begrenzt ausführen.", "Die stark lückenhafte Biografie verlangt Zurückhaltung: spätere Krankheit, Institutionalisierung oder Todesdaten dürfen nicht als gesichert präsentiert werden."],
+    "legacy": "He-Yin Zhen erweitert die Geschichte anarchistischen Feminismus über Europa und Nordamerika hinaus und bietet eine frühe materialistische Analyse geschlechtlicher Arbeit; die unsichere Überlieferung ist Teil dieser Geschichte.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {"title": "What Women Should Know About Communism", "url": "https://afe.easia.columbia.edu/ps/cup/hezhen_women_communism.pdf", "publisher": "Asia for Educators, Columbia University", "language": "en", "type": "übersetzter Primärtext", "accessedAt": "2026-08-24"},
+      {"title": "The Birth of Chinese Feminism: Essential Texts in Transnational Theory", "url": "https://cup.columbia.edu/book/the-birth-of-chinese-feminism/9780231162913", "publisher": "Columbia University Press", "language": "en", "type": "wissenschaftliche Quellenedition", "accessedAt": "2026-08-24"}
+    ],
+    "review": {"status": "Redaktioneller Pilotstand", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "mittel", "displayRule": "Biografische Lücken ausdrücklich markieren; keine Pathologisierung oder vom Ehemann abgeleitete Darstellung."},
+    "provenance": {"method": "Redaktionelle Zusammenfassung aus Columbia-Primärtext und wissenschaftlicher Quellenedition.", "editorialNote": "He-Yin Zhen als bevorzugte Signatur geführt; Lebensende bewusst offen gelassen."},
+    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Übersetzungs- und Editionsrechte verbleiben beim Verlag."}
+  },
+  {
+    "id": "bio-sam-mbah",
+    "personName": "Sam Mbah",
+    "birth": {"date": "1963", "place": "Enugu, Nigeria", "certainty": "Jahr belegt, genaues Datum nicht gesichert"},
+    "death": {"date": "2014-11-06", "place": "Enugu, Nigeria", "certainty": "belegt"},
+    "places": ["Enugu", "Lagos", "Nigeria", "Nordamerika"],
+    "communities": ["Awareness League", "nigerianische Arbeiter*innen- und Demokratiebewegung", "afrikanischer Anarchismus", "Journalismus und Rechtsarbeit"],
+    "shortDescription": "Nigerianischer Anwalt, Journalist, Mitbegründer der Awareness League und Koautor der ersten buchlangen englischsprachigen Geschichte des Anarchismus in Afrika.",
+    "lifeStages": [
+      {"period": "1963–frühe 1990er", "description": "Studium und zunächst marxistische Orientierung; Neuorientierung nach der Krise staatssozialistischer Modelle."},
+      {"period": "1990er", "description": "Mitaufbau der Awareness League unter Militärherrschaft, Gewerkschafts- und Demokratiearbeit sowie Publikation von African Anarchism mit I. E. Igariwey."},
+      {"period": "2000–2014", "description": "Fortgesetzte Rechts-, Medien- und Bildungsarbeit, internationale Interviews und Reflexion über Kommunalismus, Kolonialismus und afrikanische soziale Bewegungen."}
+    ],
+    "ideasAndPractices": ["afrikanischer Anarchismus", "Anarchosyndikalismus", "gegenseitige Hilfe", "Kritik an Militärstaat, Kapitalismus und Staatssozialismus", "dezentrale kommunale Organisation"],
+    "organizingAndAchievements": ["Mitaufbau der Awareness League in Nigeria", "Verbindung anarchistischer Ideen mit Gewerkschafts- und Demokratiebewegungen", "Koautor von African Anarchism: The History of a Movement", "internationale Vermittlung afrikanischer libertärer Perspektiven"],
+    "repressionAndRisks": ["Organisierung unter nigerianischer Militärdiktatur", "Risiken für unabhängigen Journalismus und Opposition", "begrenzte Ressourcen und schwache Archivierung der Bewegung"],
+    "tensionsAndCritique": ["Mbah und Igariwey deuteten egalitäre Elemente vorkolonialer Gesellschaften als anarchisch; Kritiker*innen warnen, dass dies Hierarchien, Geschlechterverhältnisse und die Vielfalt afrikanischer Gesellschaften romantisieren kann.", "Die starke Orientierung an europäischen anarchosyndikalistischen Kategorien steht in produktiver, aber ungelöster Spannung zum Anspruch einer eigenständigen afrikanischen Theorie.", "Die Awareness League blieb im Verhältnis zur Größe und Vielfalt Nigerias eine kleine Organisation; Aussagen über Reichweite und Mitgliederzahlen beruhen teils auf Eigenangaben."],
+    "legacy": "Mbah machte afrikanische Erfahrungen zu einem eigenständigen Gegenstand anarchistischer Theorie und widersprach der Gleichsetzung von Anarchismus mit einer ausschließlich europäischen Tradition.",
+    "relatedEventIds": [],
+    "sourceRefs": [
+      {"title": "African Anarchism: An Interview with Sam Mbah", "url": "https://theanarchistlibrary.org/library/chuck-morse-african-anarchism-an-interview-with-sam-mbah", "publisher": "Perspectives on Anarchist Theory / The Anarchist Library", "language": "en", "type": "Primärinterview", "accessedAt": "2026-08-24"},
+      {"title": "African Anarchism: An interview with the late Sam Mbah", "url": "https://antidotezine.com/2014/11/19/african-anarchism-an-interview-with-the-late-sam-mbah/", "publisher": "Jura Books Collective / Antidote Zine", "language": "en", "type": "Primärinterview und biografischer Nachruf", "accessedAt": "2026-08-24"},
+      {"title": "Sam Mbah: mini biography", "url": "https://www.cwmorse.org/sam-mbah-mini-biography/", "publisher": "Chuck Morse; zuerst Perspectives on Anarchist Theory", "language": "en", "type": "zeitgenössische biografische Notiz", "accessedAt": "2026-08-24"}
+    ],
+    "review": {"status": "Redaktioneller Pilotstand", "reviewedAt": "2026-08-24"},
+    "sensitivity": {"level": "mittel", "displayRule": "Afrikanische Gesellschaften nicht als einheitlich oder zeitlos kommunal darstellen; Eigenangaben als solche markieren."},
+    "provenance": {"method": "Redaktionelle Zusammenfassung aus zwei Primärinterviews und einer zeitgenössischen biografischen Notiz.", "editorialNote": "Mangels institutionellen Personenarchivs wurde die Quellenlage durch mehrere unabhängige Bewegungspublikationen trianguliert."},
+    "license": {"status": "rights-unclear", "notice": "Redaktionelle Metadaten; Interview- und Publikationsrechte verbleiben bei Autor*innen und Herausgeber*innen."}
+  }
+]

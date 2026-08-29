@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "policyVersion": "1.0.0",
+  "scope": "Kanonische deutsche UI-Texte, sechs Routen, 40 Biografien und effektiver aktiver Ereignisbestand",
+  "rules": [
+    { "id": "generic-roles", "pattern": "Aktivisten|Organisatoren|Amtsträgern|Akteure|Auftraggeber|Gegner|Klägern?|Herausgebern|Anbietern|Rechteinhabern|Kapitäne|Fabrikbesitzern?|Bauern|Arbeitern?|Arbeiters|Arbeitgebern?|Eigentümern?|Studenten|Vertretern?|Anführern?|Matrosen|Soldaten|Agenten|Tätern?|Demonstranten|Teilnehmern?|Bewohnern?|Politiker|Unterstützern?|Unionssoldaten" },
+    { "id": "named-captain", "pattern": "Kapitän" }
+  ],
+  "allowedCategories": ["historically-male", "quotation", "proper-name", "institution", "manual-source-review"],
+  "exceptions": [
+    { "locator": "ui:pirateMythBody", "term": "Kapitän", "decision": "keep", "category": "proper-name", "reason": "Kapitän Misson ist die benannte männliche Figur der literarischen Überlieferung; eine Neutralisierung würde den Gegenstand verfälschen." },
+    { "locator": "biography:bio-harriet-tubman:communities.2", "term": "Unionssoldaten", "decision": "keep", "category": "historically-male", "reason": "Die bezeichneten Schwarzen Unionssoldaten gehörten einer damals männlich rekrutierten militärischen Einheit an." },
+    { "locator": "biography:bio-robert-smalls:organizingAndAchievements.1", "term": "Soldaten", "decision": "keep", "category": "historically-male", "reason": "Die konkrete historische Forderung betraf die Aufnahme Schwarzer Männer in die Unionsarmee." },
+    { "locator": "biography:bio-funmilayo-ransome-kuti:lifeStages.2.description", "term": "Soldaten", "decision": "manual", "category": "manual-source-review", "reason": "Die Quelle muss vor einer Neutralisierung bestätigen, ob der dokumentierte Angriff ausschließlich von männlichen Armeeangehörigen ausging." },
+    { "locator": "biography:bio-leonard-peltier:lifeStages.2.description", "term": "Agenten", "decision": "keep", "category": "historically-male", "reason": "Gemeint sind die zwei namentlich bekannten Männer Jack Coler und Ronald Williams." },
+    { "locator": "biography:bio-leonard-peltier:tensionsAndCritique.0", "term": "Agenten", "decision": "keep", "category": "historically-male", "reason": "Gemeint sind die zwei namentlich bekannten Männer Jack Coler und Ronald Williams." },
+    { "locator": "biography:bio-annie-mae-aquash:lifeStages.3.description", "term": "Tätern", "decision": "keep", "category": "historically-male", "reason": "Die Formulierung bezeichnet konkret verurteilte männliche Personen." },
+    { "locator": "biography:bio-nestor-machno:tensionsAndCritique.2", "term": "Täter", "decision": "manual", "category": "manual-source-review", "reason": "Die Quellenbasis soll bestätigen, ob hier ausschließlich männliche Angehörige bewaffneter Formationen bezeichnet werden." }
+  ],
+  "exceptionGroups": [
+    {
+      "decision": "manual",
+      "category": "manual-source-review",
+      "reason": "Für diese Fundstellen fehlt in der Phase-1-Auditspur noch ein locator-spezifischer sourceRef. Bis zur Einzelprüfung wird weder neutralisiert noch eine ausschließlich männliche Zusammensetzung behauptet.",
+      "items": [
+        { "locator": "biography:bio-robert-smalls:shortDescription", "terms": ["Politiker"] },
+        { "locator": "biography:bio-robert-smalls:lifeStages.1.description", "terms": ["Kapitän"] },
+        { "locator": "biography:bio-michail-bakunin:shortDescription", "terms": ["Gegner"] },
+        { "locator": "event:kronstadt:description", "terms": ["Matrosen", "Soldaten"] },
+        { "locator": "event:greensboro-sit-ins:description", "terms": ["Studenten"] },
+        { "locator": "event:greensboro-sit-ins:participants.0", "terms": ["Studenten"] },
+        { "locator": "event:zanj-rebellion:description", "terms": ["Arbeiter"] },
+        { "locator": "event:mosop-ogoni:significance", "terms": ["Aktivisten"] },
+        { "locator": "event:niger-delta-womens-protests:repression", "terms": ["Soldaten"] },
+        { "locator": "event:dazexiang-uprising:description", "terms": ["Bauern"] },
+        { "locator": "event:indian-rebellion-1857:description", "terms": ["Soldaten"] },
+        { "locator": "event:santa-cruz-massacre-resistance:description", "terms": ["Soldaten"] },
+        { "locator": "event:arditi-del-popolo:description", "terms": ["Soldaten"] },
+        { "locator": "event:rio-blanco-strike:description", "terms": ["Soldaten"] },
+        { "locator": "event:revolt-of-the-lash:description", "terms": ["Matrosen"] },
+        { "locator": "event:revolt-of-the-lash:participants.0", "terms": ["Matrosen"] },
+        { "locator": "event:revolt-of-the-lash:powerStructures.1", "terms": ["Matrosen"] },
+        { "locator": "event:brazil-general-strike-1917:description", "terms": ["Arbeiters"] },
+        { "locator": "event:enmore-martyrs-strike:description", "terms": ["Arbeiter"] },
+        { "locator": "event:enmore-martyrs-strike:immediateConsequences", "terms": ["Arbeiter"] },
+        { "locator": "event:enmore-martyrs-strike:humanCosts", "terms": ["Arbeiter"] },
+        { "locator": "event:enmore-martyrs-strike:sensitivity", "terms": ["Arbeiter"] },
+        { "locator": "event:amistad-revolt:immediateConsequences", "terms": ["Kapitän"] },
+        { "locator": "event:kileler-uprising:description", "terms": ["Soldaten"] },
+        { "locator": "event:royal-indian-navy-mutiny:description", "terms": ["Matrosen"] },
+        { "locator": "event:una-dalit-protests:description", "terms": ["Arbeitern"] },
+        { "locator": "event:ethiopian-general-strike-1974:description", "terms": ["Soldaten"] },
+        { "locator": "event:yen-bai-mutiny:description", "terms": ["Soldaten"] },
+        { "locator": "event:dili-massacre-resistance:description", "terms": ["Soldaten"] },
+        { "locator": "event:trinidad-black-power-revolution:description", "terms": ["Soldaten"] },
+        { "locator": "event:burkina-protests-2011:description", "terms": ["Soldaten"] },
+        { "locator": "event:dominican-april-revolution:description", "terms": ["Soldaten"] },
+        { "locator": "event:tsilhqotin-war-1864:description", "terms": ["Anführer"] },
+        { "locator": "event:tsilhqotin-war-1864:immediateConsequences", "terms": ["Anführer"] },
+        { "locator": "event:tsilhqotin-war-1864:repression", "terms": ["Anführern"] },
+        { "locator": "event:kiel-sailors-uprising-1918:description", "terms": ["Matrosen", "Soldaten"] },
+        { "locator": "event:kiel-sailors-uprising-1918:demands.0", "terms": ["Matrosen"] },
+        { "locator": "event:kiel-sailors-uprising-1918:demands.2", "terms": ["Soldaten"] },
+        { "locator": "event:kiel-sailors-uprising-1918:participants.0", "terms": ["Matrosen"] },
+        { "locator": "event:kiel-sailors-uprising-1918:participants.2", "terms": ["Soldaten"] },
+        { "locator": "event:kiel-sailors-uprising-1918:openQuestions", "terms": ["Matrosen"] },
+        { "locator": "event:invergordon-collective-refusal-1931:clue", "terms": ["Matrosen"] },
+        { "locator": "event:invergordon-collective-refusal-1931:participants.0", "terms": ["Matrosen"] },
+        { "locator": "event:invergordon-collective-refusal-1931:repression", "terms": ["Organisatoren"] }
+      ]
+    },
+    {
+      "decision": "keep",
+      "category": "institution",
+      "reason": "Die Formulierung ist Teil einer historisch etablierten Institutions- oder Ratsbezeichnung und wird nicht durch eine pauschale Ersetzung umgedeutet.",
+      "items": [
+        { "locator": "event:bremen-soviet-republic:description", "terms": ["Arbeiter"] }
+      ]
+    },
+    {
+      "decision": "manual",
+      "category": "manual-source-review",
+      "reason": "Die Beteiligten- oder Täterzusammensetzung ist aus dem kurzen Bestandstext nicht sicher ableitbar; vor einer Änderung ist die konkrete Quellenbasis zu prüfen.",
+      "items": [
+        { "locator": "event:aboriginal-tent-embassy:description", "terms": ["Aktivisten"] },
+        { "locator": "event:croquant-rebellions:description", "terms": ["Amtsträgern"] },
+        { "locator": "event:disability-day-of-mourning:significance", "terms": ["Täter"] },
+        { "locator": "event:galician-peasant-uprising-1846:description", "terms": ["Bauern"] },
+        { "locator": "event:moplah-rebellion:description", "terms": ["Bauern"] },
+        { "locator": "event:allied-tribes-bc-1916:description", "terms": ["Vertreter"] }
+      ]
+    }
+  ],
+  "auditedManualLocators": [
+    "aboriginal-tent-embassy::description", "pueblo-revolt::tactics.2", "pueblo-revolt::immediateConsequences",
+    "allied-tribes-bc-1916::description", "native-brotherhood-bc-1931::description", "burnt-church-fishery-resistance::description"
+  ],
+  "auditedHistoricalLocatorsPendingSourceReview": [
+    "haymarket::description", "haymarket::immediateConsequences", "haymarket::repression", "kronstadt::description",
+    "greensboro-sit-ins::description", "greensboro-sit-ins::participants.0", "deir-el-medina-strike::description",
+    "zanj-rebellion::description", "mosop-ogoni::significance", "revolt-of-the-lash::description",
+    "royal-indian-navy-mutiny::description", "kiel-sailors-uprising-1918::description", "invergordon-collective-refusal-1931::repression"
+  ]
+}

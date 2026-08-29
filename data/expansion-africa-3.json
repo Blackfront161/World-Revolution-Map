@@ -1,0 +1,623 @@
+[
+  {
+    "archived": true,
+    "id": "egyptian-revolution-1919",
+    "title": "Ägyptische Revolution von 1919",
+    "location": "Kairo und landesweit",
+    "country": "Ägypten",
+    "continent": "Afrika",
+    "category": "Antikolonialer Widerstand",
+    "tags": [
+      "Arbeiter*innenbewegung",
+      "Feministischer & antisexistischer Widerstand"
+    ],
+    "yearStart": 1919,
+    "yearEnd": 1919,
+    "coordinates": [
+      31.24,
+      30.04
+    ],
+    "description": "Streiks, Demonstrationen und ländliche Aufstände richteten sich gegen die britische Besatzung; Frauen organisierten eigene Märsche.",
+    "significance": "Die breite Mobilisierung verband nationale Befreiung mit sozialer Massenaktion.",
+    "clue": "Suche im Frühjahr 1919 am Nil.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/1919_Egyptian_Revolution",
+    "difficulty": 1
+  },
+  {
+    "id": "sudanese-revolution-1924",
+    "title": "Sudanesische Revolution von 1924",
+    "location": "Khartum und Omdurman",
+    "country": "Anglo-Ägyptischer Sudan",
+    "continent": "Afrika",
+    "category": "Antikolonialer Widerstand",
+    "tags": [
+      "Arbeiter*innenbewegung",
+      "Antiimperialistischer Widerstand"
+    ],
+    "yearStart": 1924,
+    "yearEnd": 1924,
+    "coordinates": [
+      32.56,
+      15.5
+    ],
+    "description": "Offiziere, Studierende und Stadtbewohner*innen organisierten gegen die britische Kolonialherrschaft und für sudanesische Selbstbestimmung.",
+    "significance": "Der Aufstand war ein früher Bruch mit der kolonialen Doppelherrschaft am Nil.",
+    "clue": "Suche zwischen Khartum und Omdurman.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/White_Flag_League",
+    "difficulty": 2
+  },
+  {
+    "id": "jos-riots-1945",
+    "title": "Jos-Arbeiteraufstand",
+    "location": "Jos",
+    "country": "Nigeria",
+    "continent": "Afrika",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Antikolonialer Widerstand",
+      "Gedächtnis der Besiegten"
+    ],
+    "yearStart": 1945,
+    "yearEnd": 1945,
+    "coordinates": [
+      8.9,
+      9.9
+    ],
+    "description": "Arbeiter*innen und Marktgemeinschaften widersetzten sich kolonialen Löhnen, Preisen und Polizeigewalt.",
+    "significance": "Der Konflikt gehört zur Welle organisierter Nachkriegsunruhe gegen britische Herrschaft.",
+    "clue": "Suche in einer Zinnbergbaustadt Zentralnigerias.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Jos_riots",
+    "difficulty": 2
+  },
+  {
+    "id": "dakar-niger-strike",
+    "title": "Streik der Dakar–Niger-Eisenbahn",
+    "location": "Französisch-Westafrika",
+    "country": "Senegal / Mali",
+    "continent": "Afrika",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Antikolonialer Widerstand",
+      "Schwarze Befreiungsbewegung"
+    ],
+    "yearStart": 1947,
+    "yearEnd": 1948,
+    "coordinates": [
+      -17.45,
+      14.69
+    ],
+    "description": "Rund 20.000 afrikanische Eisenbahner*innen streikten monatelang für gleichen Lohn und gleiche Rechte gegenüber europäischen Beschäftigten.",
+    "significance": "Familien und Gemeinden trugen einen Streik, der koloniale Rassentrennung am Arbeitsplatz erschütterte.",
+    "clue": "Folge den Schienen von Dakar nach Bamako.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Dakar%E2%80%93Niger_Railway",
+    "difficulty": 2
+  },
+  {
+    "archived": true,
+    "id": "madagascar-uprising-1947",
+    "title": "Madagassischer Aufstand",
+    "location": "Madagaskar",
+    "country": "Madagaskar",
+    "continent": "Afrika",
+    "category": "Antikolonialer Widerstand",
+    "tags": [
+      "Bäuerlicher Widerstand",
+      "Gedächtnis der Besiegten"
+    ],
+    "yearStart": 1947,
+    "yearEnd": 1949,
+    "coordinates": [
+      47.51,
+      -18.88
+    ],
+    "description": "Ein landesweiter Aufstand gegen die französische Kolonialherrschaft wurde mit massiver Gewalt niedergeschlagen.",
+    "significance": "Zehntausende Tote prägen das lange verdrängte Gedächtnis der Dekolonisierung.",
+    "clue": "Suche auf der großen Insel östlich von Mosambik.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Malagasy_Uprising",
+    "difficulty": 1
+  },
+  {
+    "id": "pijiguiti-massacre",
+    "title": "Streik und Massaker von Pidjiguiti",
+    "location": "Bissau",
+    "country": "Guinea-Bissau",
+    "continent": "Afrika",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Antikolonialer Widerstand",
+      "Gedächtnis der Besiegten"
+    ],
+    "yearStart": 1959,
+    "yearEnd": 1959,
+    "coordinates": [
+      -15.58,
+      11.86
+    ],
+    "description": "Hafenarbeiter*innen streikten für bessere Löhne; portugiesische Kräfte erschossen zahlreiche Streikende.",
+    "significance": "Das Massaker beschleunigte den Übergang zum organisierten Befreiungskampf.",
+    "clue": "Suche am Hafen von Bissau.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Pidjiguiti_massacre",
+    "difficulty": 2
+  },
+  {
+    "id": "dakar-1968",
+    "title": "Mai 1968 in Dakar",
+    "location": "Dakar",
+    "country": "Senegal",
+    "continent": "Afrika",
+    "category": "Studierendenbewegung",
+    "tags": [
+      "Arbeiter*innenbewegung",
+      "Antikolonialer Widerstand"
+    ],
+    "yearStart": 1968,
+    "yearEnd": 1968,
+    "coordinates": [
+      -17.46,
+      14.72
+    ],
+    "description": "Studierende besetzten die Universität; ein Generalstreik verband Bildungsfragen mit Kritik an postkolonialer Abhängigkeit.",
+    "significance": "Der afrikanische Mai 1968 widerspricht der Vorstellung eines rein europäischen Aufbruchs.",
+    "clue": "Suche an der Universität von Dakar.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/May_1968",
+    "difficulty": 2
+  },
+  {
+    "id": "rotaka-madagascar",
+    "title": "Rotaka in Madagaskar",
+    "location": "Antananarivo",
+    "country": "Madagaskar",
+    "continent": "Afrika",
+    "category": "Studierendenbewegung",
+    "tags": [
+      "Arbeiter*innenbewegung",
+      "Bäuerlicher Widerstand"
+    ],
+    "yearStart": 1972,
+    "yearEnd": 1972,
+    "coordinates": [
+      47.52,
+      -18.91
+    ],
+    "description": "Schüler*innen, Studierende, Arbeiter*innen und Bäuer*innen stürzten durch Proteste und Streiks die neokolonial wahrgenommene Regierung.",
+    "significance": "Die Bewegung verband Sprache, Bildung, Klasse und nationale Selbstbestimmung.",
+    "clue": "Rotaka bedeutet auf Malagasy Unruhe oder Aufstand.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Rotaka",
+    "difficulty": 2
+  },
+  {
+    "id": "ethiopian-general-strike-1974",
+    "title": "Äthiopischer Generalstreik 1974",
+    "location": "Addis Abeba",
+    "country": "Äthiopien",
+    "continent": "Afrika",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Studierendenbewegung",
+      "Antifeudaler Widerstand"
+    ],
+    "yearStart": 1974,
+    "yearEnd": 1974,
+    "coordinates": [
+      38.76,
+      9.03
+    ],
+    "description": "Gewerkschaften, Studierende und Soldaten rebellierten gegen Inflation, Hunger und die feudale Monarchie.",
+    "significance": "Massenaktionen öffneten den Sturz Haile Selassies, bevor eine Militärjunta die Revolution vereinnahmte.",
+    "clue": "Suche kurz vor dem Ende einer jahrhundertealten Monarchie.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Ethiopian_Revolution",
+    "difficulty": 1
+  },
+  {
+    "archived": true,
+    "id": "egyptian-bread-riots-1977",
+    "title": "Ägyptische Brotunruhen",
+    "location": "Kairo, Alexandria und landesweit",
+    "country": "Ägypten",
+    "continent": "Afrika",
+    "category": "Antikapitalistische Bewegung",
+    "tags": [
+      "Arbeiter*innenbewegung",
+      "Direkte Aktion"
+    ],
+    "yearStart": 1977,
+    "yearEnd": 1977,
+    "coordinates": [
+      31.24,
+      30.04
+    ],
+    "description": "Hunderttausende protestierten gegen die vom IWF verlangte Streichung von Subventionen für Grundnahrungsmittel.",
+    "significance": "Die Regierung musste Preiserhöhungen zurücknehmen; Brot wurde zum Symbol sozialer Würde.",
+    "clue": "Suche nach zwei Tagen, die als Intifada des Brotes erinnert werden.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/1977_Egyptian_bread_riots",
+    "difficulty": 1
+  },
+  {
+    "id": "casablanca-riots-1981",
+    "title": "Brotaufstand von Casablanca",
+    "location": "Casablanca",
+    "country": "Marokko",
+    "continent": "Afrika",
+    "category": "Antikapitalistische Bewegung",
+    "tags": [
+      "Arbeiter*innenbewegung",
+      "Gedächtnis der Besiegten"
+    ],
+    "yearStart": 1981,
+    "yearEnd": 1981,
+    "coordinates": [
+      -7.59,
+      33.57
+    ],
+    "description": "Ein Generalstreik gegen Preissteigerungen ging in einen städtischen Aufstand über, den Sicherheitskräfte blutig niederschlugen.",
+    "significance": "Die Proteste machten die Gewalt neoliberaler Strukturanpassung sichtbar.",
+    "clue": "Suche im Juni 1981 in Marokkos größter Stadt.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/1981_Moroccan_riots",
+    "difficulty": 2
+  },
+  {
+    "id": "sudan-april-uprising-1985",
+    "title": "Sudanesischer Aprilaufstand",
+    "location": "Khartum",
+    "country": "Sudan",
+    "continent": "Afrika",
+    "category": "Basisdemokratie",
+    "tags": [
+      "Arbeiter*innenbewegung",
+      "Antirepression"
+    ],
+    "yearStart": 1985,
+    "yearEnd": 1985,
+    "coordinates": [
+      32.56,
+      15.5
+    ],
+    "description": "Ärzt*innen, Gewerkschaften, Studierende und Nachbarschaften organisierten Generalstreik und Massenproteste gegen Jaafar Nimeiri.",
+    "significance": "Ziviler Ungehorsam stürzte eine sechzehnjährige Diktatur.",
+    "clue": "Suche nach einem Generalstreik im April.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/1985_Sudanese_coup_d%27%C3%A9tat",
+    "difficulty": 2
+  },
+  {
+    "id": "saba-saba-1990",
+    "title": "Saba-Saba-Proteste",
+    "location": "Nairobi",
+    "country": "Kenia",
+    "continent": "Afrika",
+    "category": "Antirepression",
+    "tags": [
+      "Basisdemokratie",
+      "Menschenrechtsbewegung"
+    ],
+    "yearStart": 1990,
+    "yearEnd": 1990,
+    "coordinates": [
+      36.82,
+      -1.29
+    ],
+    "description": "Trotz Verbots demonstrierten Menschen am 7. Juli für Mehrparteiendemokratie und gegen autoritäre Herrschaft.",
+    "significance": "Saba Saba wurde zum jährlichen Bezugspunkt demokratischer und sozialer Kämpfe in Kenia.",
+    "clue": "Der Name bedeutet sieben sieben auf Swahili.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Saba_Saba_Day",
+    "difficulty": 2
+  },
+  {
+    "id": "mali-revolution-1991",
+    "title": "Märzrevolution in Mali",
+    "location": "Bamako",
+    "country": "Mali",
+    "continent": "Afrika",
+    "category": "Antirepression",
+    "tags": [
+      "Studierendenbewegung",
+      "Arbeiter*innenbewegung"
+    ],
+    "yearStart": 1991,
+    "yearEnd": 1991,
+    "coordinates": [
+      -8,
+      12.64
+    ],
+    "description": "Studierende, Gewerkschaften und breite Demonstrationen brachten das Einparteienregime Moussa Traorés zu Fall.",
+    "significance": "Die Getöteten des März wurden zu Symbolen eines demokratischen Aufbruchs.",
+    "clue": "Suche am Märtyrerdenkmal in Bamako.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Moussa_Traor%C3%A9",
+    "difficulty": 2
+  },
+  {
+    "id": "togo-general-strike-1992",
+    "title": "Generalstreik in Togo",
+    "location": "Lomé und landesweit",
+    "country": "Togo",
+    "continent": "Afrika",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Antirepression",
+      "Basisdemokratie"
+    ],
+    "yearStart": 1992,
+    "yearEnd": 1993,
+    "coordinates": [
+      1.23,
+      6.13
+    ],
+    "description": "Opposition, Gewerkschaften und Zivilgesellschaft legten das Land über Monate gegen die Herrschaft Gnassingbé Eyadémas lahm.",
+    "significance": "Der lange Ausstand zeigte Macht und Risiko gesellschaftlicher Selbstorganisation unter einer Diktatur.",
+    "clue": "Suche an der Küste des Golfs von Guinea.",
+    "sourceUrl": "https://digitallibrary.un.org/nanna/record/182161/files/E_CN.4_1994_59-EN.pdf?registerDownload=1&version=1&withMetadata=0&withWatermark=0",
+    "demands": ["demokratischer Übergang", "Ende politischer Repression", "Umsetzung der Ergebnisse der Nationalkonferenz"],
+    "participants": ["Gewerkschaften", "demokratische Oppositionsgruppen", "zivilgesellschaftliche Organisationen und Beschäftigte"],
+    "powerStructures": ["Regime Gnassingbé Eyadémas", "Sicherheitskräfte", "staatliche Verwaltung und wirtschaftliche Kontrolle"],
+    "tactics": ["lang andauernder Generalstreik", "Arbeitsniederlegungen im öffentlichen und privaten Sektor", "politische Koordination von Opposition und Gewerkschaften"],
+    "immediateConsequences": "Der Ausstand legte große Teile von Verwaltung und Wirtschaft lahm und verschärfte den Konflikt um den demokratischen Übergang.",
+    "longTermImpact": "Der Streik zeigte die Reichweite gesellschaftlicher Selbstorganisation, zugleich aber ihre Verletzlichkeit unter autoritärer Herrschaft.",
+    "repression": "Der politische Konflikt war von staatlicher Gewalt, Einschüchterung und Menschenrechtsverletzungen begleitet.",
+    "aftermath": "Der Streik endete ohne einen eindeutigen demokratischen Bruch; autoritäre Macht und Opposition bestanden in veränderter Form fort.",
+    "openQuestions": "Welche Beschäftigtengruppen trugen die lange Dauer des Streiks, und wie wurden Versorgung und Einkommen organisiert?",
+    "sourceType": "UN-Menschenrechtsdokument / zeitnaher institutioneller Bericht",
+    "sourceQuality": "Zeitnahes Dokument zu Menschenrechtslage und politischem Konflikt; Gewerkschaftsarchive und togolesische Stimmen ergänzen",
+    "uncertainty": "Dauer, Reichweite und Beteiligung schwankten regional und über die Monate des Ausstands.",
+    "sensitivity": "Thematisiert autoritäre Repression und politische Gewalt.",
+    "reviewStatus": "Redaktioneller Pilotstand",
+    "difficulty": 3
+  },
+  {
+    "id": "swaziland-general-strike-1996",
+    "title": "Generalstreik in Swasiland",
+    "location": "Mbabane und Manzini",
+    "country": "Eswatini",
+    "continent": "Afrika",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Antirepression",
+      "Basisdemokratie"
+    ],
+    "yearStart": 1996,
+    "yearEnd": 1996,
+    "coordinates": [
+      31.14,
+      -26.32
+    ],
+    "description": "Gewerkschaften legten Wirtschaft und Verkehr für demokratische Rechte und gegen die absolute Monarchie lahm.",
+    "significance": "Der Streik machte Arbeiter*innenorganisation zur wichtigsten demokratischen Gegenmacht des Landes.",
+    "clue": "Suche in Afrikas letzter absoluter Monarchie.",
+    "sourceUrl": "https://webapps.ilo.org/public/english/standards/relm/gb/docs/gb268/gb-6c.htm",
+    "demands": ["demokratische Rechte", "Schutz gewerkschaftlicher Organisierung", "Arbeits- und Sozialreformen"],
+    "participants": ["Swaziland Federation of Trade Unions", "Beschäftigte in Industrie, Verkehr und öffentlichen Diensten", "demokratische Unterstützer*innen"],
+    "powerStructures": ["absolute Monarchie und Regierung", "Arbeitgeberverbände", "Polizei und arbeitsrechtliche Kontrollinstitutionen"],
+    "tactics": ["Generalstreik", "Stilllegung von Wirtschaft und Verkehr", "Gewerkschaftsversammlungen und politische Forderungskataloge"],
+    "immediateConsequences": "Der Streik unterbrach Produktion und Verkehr und machte Gewerkschaften zur sichtbarsten organisierten demokratischen Gegenmacht.",
+    "longTermImpact": "Arbeitskämpfe blieben ein zentraler Raum demokratischer Opposition in Eswatini.",
+    "repression": "Gewerkschaftliche Organisierung war staatlichen Eingriffen, Festnahmen und Einschränkungen der Vereinigungsfreiheit ausgesetzt.",
+    "aftermath": "Der Ausstand setzte demokratische Forderungen auf die Tagesordnung, ohne die absolute Monarchie unmittelbar zu beenden.",
+    "openQuestions": "Wie unterschieden sich Beteiligung und Risiken nach Branche, Geschlecht und Beschäftigungsstatus?",
+    "sourceType": "ILO-Ausschussdokument zu Vereinigungsfreiheit",
+    "sourceQuality": "Institutionelle Dokumentation mit Angaben von Gewerkschaften und Regierung; lokale Oral History und unabhängige Forschung ergänzen",
+    "uncertainty": "ILO-Dokumente bilden einen arbeitsrechtlichen Konflikt ab, aber nicht sämtliche Erfahrungen an der Basis.",
+    "sensitivity": "Thematisiert staatliche Repression gegen Gewerkschafter*innen.",
+    "reviewStatus": "Redaktioneller Pilotstand",
+    "difficulty": 3
+  },
+  {
+    "id": "kefaya-movement",
+    "title": "Kefaya-Bewegung",
+    "location": "Kairo",
+    "country": "Ägypten",
+    "continent": "Afrika",
+    "category": "Antirepression",
+    "tags": [
+      "Basisdemokratie",
+      "Antiimperialistischer Widerstand"
+    ],
+    "yearStart": 2004,
+    "yearEnd": 2011,
+    "coordinates": [
+      31.24,
+      30.04
+    ],
+    "description": "Das lose Bündnis organisierte öffentliche Proteste gegen Hosni Mubarak, Notstandsgesetze und die Vererbung der Präsidentschaft.",
+    "significance": "Kefaya – Genug – half, die Angst vor offenem Protest vor 2011 zu durchbrechen.",
+    "clue": "Suche nach einem einzigen arabischen Wort für Genug.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Kefaya",
+    "difficulty": 1
+  },
+  {
+    "archived": true,
+    "id": "abahlali-basemjondolo",
+    "title": "Abahlali baseMjondolo",
+    "location": "Durban und landesweit",
+    "country": "Südafrika",
+    "continent": "Afrika",
+    "category": "Commons-Bewegung",
+    "tags": [
+      "Antikapitalistische Bewegung",
+      "Basisdemokratie"
+    ],
+    "yearStart": 2005,
+    "yearEnd": 2026,
+    "coordinates": [
+      31.02,
+      -29.86
+    ],
+    "description": "Bewohner*innen informeller Siedlungen organisieren Landbesetzungen, Versammlungen und Würde gegen Räumung und Parteiklientelismus.",
+    "significance": "Die Bewegung fordert ein Recht auf Stadt von unten und bezeichnet sich als Politik der Lebenden.",
+    "clue": "Der Zulu-Name bedeutet Menschen, die in Hütten leben.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Abahlali_baseMjondolo",
+    "difficulty": 1
+  },
+  {
+    "id": "mahalla-strike-2008",
+    "title": "Streik von Mahalla 2008",
+    "location": "El-Mahalla el-Kubra",
+    "country": "Ägypten",
+    "continent": "Afrika",
+    "category": "Arbeiter*innenbewegung",
+    "tags": [
+      "Antikapitalistische Bewegung",
+      "Direkte Aktion"
+    ],
+    "yearStart": 2008,
+    "yearEnd": 2008,
+    "coordinates": [
+      31.16,
+      30.97
+    ],
+    "description": "Textilarbeiter*innen und Stadtbewohner*innen rebellierten gegen niedrige Löhne, Preissteigerungen und das Mubarak-Regime.",
+    "significance": "Das Datum 6. April gab einer später wichtigen Jugendbewegung ihren Namen.",
+    "clue": "Suche in Ägyptens großer Textilstadt.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/2008_Egyptian_general_strike",
+    "difficulty": 1
+  },
+  {
+    "archived": true,
+    "id": "yen-a-marre",
+    "title": "Y’en a Marre",
+    "location": "Dakar und landesweit",
+    "country": "Senegal",
+    "continent": "Afrika",
+    "category": "Jugendbewegung",
+    "tags": [
+      "Kulturbewegung",
+      "Antirepression"
+    ],
+    "yearStart": 2011,
+    "yearEnd": 2026,
+    "coordinates": [
+      -17.46,
+      14.72
+    ],
+    "description": "Rapper und Journalist*innen mobilisierten mit Musik, Bürgerforen und Wahlkampagnen gegen Machtmissbrauch.",
+    "significance": "Die Bewegung verband Hip-Hop, alltägliche Organisierung und demokratische Wachsamkeit.",
+    "clue": "Der französische Name bedeutet Es reicht.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Y%27en_a_Marre",
+    "difficulty": 1
+  },
+  {
+    "id": "burkina-uprising-2014",
+    "title": "Volksaufstand in Burkina Faso",
+    "location": "Ouagadougou",
+    "country": "Burkina Faso",
+    "continent": "Afrika",
+    "category": "Antirepression",
+    "tags": [
+      "Jugendbewegung",
+      "Arbeiter*innenbewegung"
+    ],
+    "yearStart": 2014,
+    "yearEnd": 2014,
+    "coordinates": [
+      -1.52,
+      12.37
+    ],
+    "description": "Massenproteste und ein Generalstreik verhinderten eine weitere Amtszeit Blaise Compaorés und stürzten ihn.",
+    "significance": "Balai Citoyen und andere Gruppen zeigten die Kraft organisierter Jugend und Straße.",
+    "clue": "Suche nach Bürgerbesen vor einem brennenden Parlament.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/2014_Burkinab%C3%A9_uprising",
+    "difficulty": 1
+  },
+  {
+    "id": "endsars-protests",
+    "title": "End-SARS-Proteste",
+    "location": "Lagos und Nigeria",
+    "country": "Nigeria",
+    "continent": "Afrika",
+    "category": "Antirepression",
+    "tags": [
+      "Jugendbewegung",
+      "Antirassistischer Widerstand"
+    ],
+    "yearStart": 2020,
+    "yearEnd": 2020,
+    "coordinates": [
+      3.38,
+      6.52
+    ],
+    "description": "Dezentrale Jugendproteste forderten das Ende einer berüchtigten Polizeieinheit und umfassende Rechenschaft für Gewalt.",
+    "significance": "Feminist Coalition und digitale Solidarität trugen Versorgung, Rechtshilfe und Öffentlichkeit.",
+    "clue": "Suche am Lekki Toll Gate.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/End_SARS",
+    "difficulty": 1
+  },
+  {
+    "id": "shutitall-down-namibia",
+    "title": "#ShutItAllDown Namibia",
+    "location": "Windhoek und landesweit",
+    "country": "Namibia",
+    "continent": "Afrika",
+    "category": "Feministischer & antisexistischer Widerstand",
+    "tags": [
+      "Queerer Widerstand",
+      "Jugendbewegung"
+    ],
+    "yearStart": 2020,
+    "yearEnd": 2020,
+    "coordinates": [
+      17.08,
+      -22.56
+    ],
+    "description": "Junge Feminist*innen protestierten gegen Femizide, sexualisierte Gewalt und institutionelle Untätigkeit.",
+    "significance": "Die Mobilisierung verband Straße und soziale Medien zu einer intersektionalen Anklage patriarchaler Gewalt.",
+    "clue": "Suche unter einem Hashtag, der das Land stilllegen wollte.",
+    "sourceUrl": "https://www.namibian.com.na/shutitalldown/",
+    "demands": ["konsequentes Handeln gegen sexualisierte und geschlechtsspezifische Gewalt", "Rechenschaft staatlicher Institutionen", "Schutz und Unterstützung für Betroffene"],
+    "participants": ["junge feministische und queere Aktivist*innen", "Überlebende und Unterstützer*innen", "dezentral mobilisierte Protestierende"],
+    "powerStructures": ["Polizei und staatliche Schutzinstitutionen", "patriarchale Gewaltverhältnisse", "Institutionen, denen Untätigkeit vorgeworfen wurde"],
+    "tactics": ["Straßenproteste", "Hashtag-Mobilisierung", "öffentliche Zeugnisse und Forderungskataloge", "intersektionale Jugendorganisierung"],
+    "immediateConsequences": "Die Proteste machten geschlechtsspezifische Gewalt landesweit sichtbar und zwangen politische Institutionen zu öffentlichen Reaktionen.",
+    "longTermImpact": "#ShutItAllDown verband digitale und körperliche Protestformen und stärkte eine junge intersektionale feministische Öffentlichkeit in Namibia.",
+    "repression": "Protestierende berichteten von Polizeigewalt und Festnahmen während der Mobilisierung.",
+    "aftermath": "Öffentliche Zusagen und Debatten folgten; die Forderung nach wirksamer Prävention, Schutz und Rechenschaft blieb bestehen.",
+    "openQuestions": "Welche institutionellen Zusagen wurden dauerhaft umgesetzt, und wie beurteilen Überlebende deren Wirkung?",
+    "sourceType": "Namibischer unabhängiger Journalismus",
+    "sourceQuality": "Zeitnahe lokale Berichterstattung; Statements der Bewegung, Betroffenenorganisationen und spätere Umsetzungsberichte ergänzen",
+    "sensitivity": "Thematisiert Femizide, sexualisierte Gewalt und Polizeirepression.",
+    "reviewStatus": "Redaktioneller Pilotstand",
+    "difficulty": 2
+  },
+  {
+    "id": "eswatini-protests-2021",
+    "title": "Prodemokratische Proteste in Eswatini",
+    "location": "Manzini, Mbabane und landesweit",
+    "country": "Eswatini",
+    "continent": "Afrika",
+    "category": "Antirepression",
+    "tags": [
+      "Jugendbewegung",
+      "Arbeiter*innenbewegung"
+    ],
+    "yearStart": 2021,
+    "yearEnd": 2021,
+    "coordinates": [
+      31.38,
+      -26.5
+    ],
+    "description": "Jugendliche, Studierende und Gewerkschaften forderten ein Ende absoluter Monarchie; Sicherheitskräfte reagierten tödlich.",
+    "significance": "Die Bewegung erneuerte den demokratischen Kampf trotz Internetabschaltung und Repression.",
+    "clue": "Suche im kleinen Königreich zwischen Südafrika und Mosambik.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/2021_Eswatini_protests",
+    "difficulty": 1
+  },
+  {
+    "id": "senegal-protests-2023",
+    "title": "Senegalesische Demokratieproteste",
+    "location": "Dakar und landesweit",
+    "country": "Senegal",
+    "continent": "Afrika",
+    "category": "Antirepression",
+    "tags": [
+      "Jugendbewegung",
+      "Basisdemokratie"
+    ],
+    "yearStart": 2021,
+    "yearEnd": 2024,
+    "coordinates": [
+      -17.46,
+      14.72
+    ],
+    "description": "Junge Menschen, Opposition und zivilgesellschaftliche Gruppen protestierten gegen politische Ausschlüsse, Verhaftungen und die Verschiebung der Wahl.",
+    "significance": "Die Mobilisierung verteidigte die Möglichkeit eines Machtwechsels gegen autoritäre Verengung.",
+    "clue": "Suche in Dakar zwischen 2021 und der Wahl 2024.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/2023_Senegalese_protests",
+    "difficulty": 1
+  }
+]
